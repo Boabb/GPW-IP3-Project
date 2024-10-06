@@ -148,6 +148,7 @@ public class GravityMovement : MonoBehaviour
 
         PathSection firstTarget = new PathSection();
         firstTarget.target = transform.position;
+
         subTargets.Add(firstTarget);
 
         foreach (RaycastHit2D obstacle in obstacles)
@@ -191,7 +192,7 @@ public class GravityMovement : MonoBehaviour
 
         if (subTargets.Count == 0)
         {
-            currentTarget = target;
+            currentTarget = target; 
             currentTargetNo = -1;
         }
         else
@@ -199,7 +200,7 @@ public class GravityMovement : MonoBehaviour
             currentTarget = subTargets[currentTargetNo];
         }
 
-        Debug.Log("Current Target: " + currentTargetNo);
+        //Debug.Log("Current Target: " + currentTargetNo);
     }
 
     void MoveAlongPath()
@@ -229,6 +230,20 @@ public class GravityMovement : MonoBehaviour
             }
             else if (Vector2.Distance(transform.position, currentTarget.target) < TargetMargin || currentTarget.jump == true && groundY - currentTarget.target.y < TargetMargin && transform.position.x - currentTarget.target.x < TargetMargin)
             {
+                if (currentTarget.jump == true && groundY - currentTarget.target.y < TargetMargin && transform.position.x - currentTarget.target.x < TargetMargin)
+                {
+                    Debug.Log("Jump Target");
+                    Debug.Log("Ground Y: " + groundY);
+                    Debug.Log("Target Y: " +  currentTarget.target.y);
+                }
+
+                if (Vector2.Distance(transform.position, currentTarget.target) < TargetMargin)
+                {
+                    Debug.Log("Not Jump Target");
+                    Debug.Log("Ground Y: " + groundY);
+                    Debug.Log("Target Y: " + currentTarget.target.y);
+                }
+
                 Destroy(currentTarget.marker);
                 currentTargetNo++;
 
@@ -242,7 +257,7 @@ public class GravityMovement : MonoBehaviour
                     currentTarget = subTargets[currentTargetNo];
                 }
 
-                Debug.Log("Current Target: " + currentTargetNo);
+                //Debug.Log("Current Target: " + currentTargetNo);
             }
         }        
     }
