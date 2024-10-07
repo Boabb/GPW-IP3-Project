@@ -22,14 +22,12 @@ public class GravityMovement : MonoBehaviour
 
     //variables for pathfinding
     PathSection target; //the target as set by the mouse pointer
-    Vector2 crowFlies; //the straightest path between the target and the starting position
     List<PathSection> subTargets = new List<PathSection>();
     [SerializeField] Vector2 horizontalBoxSize;
     [SerializeField] LayerMask obstacleLayer;
     PathSection currentTarget;
     int currentTargetNo;
     bool followPath;
-
 
     //player central boarders
     Vector3 rightEdgePosition;
@@ -50,20 +48,46 @@ public class GravityMovement : MonoBehaviour
     float horizontalSpeed;
     float verticalSpeed;
 
+    //touchscreen controls
+    public GameObject JoyStick;
+    Transform JoyStickAnchor;
+    float JoyStickRadius;
+
     //debug
     public GameObject endTargetPrefab;
     public GameObject subTargetPrefab;
 
+    //contol scheme
+    enum ControlScheme
+    {
+        Keyboard,
+        PointAndClick,
+        TouchScreen
+    }
+
+    ControlScheme Control = ControlScheme.TouchScreen;
+
     private void Start()
     {
         target.target = transform.position;
+        JoyStickAnchor = JoyStick.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //KeyControl();
-        PointAndClickControl();
+        switch (Control)
+        {
+            case ControlScheme.Keyboard:
+                KeyControl();
+                break;
+            case ControlScheme.PointAndClick:
+                PointAndClickControl();
+                break;
+            case ControlScheme.TouchScreen:
+                TouchControl();
+                break;
+        }
 
         if (verticalSpeed > 0)
         {
@@ -81,6 +105,35 @@ public class GravityMovement : MonoBehaviour
 
         Movement(ref horizontalSpeed, ref verticalSpeed, HorizontalAirResistance, GravityForce);
         DetectGround();
+    }
+
+    void TouchControl()
+    {
+        for (int c = 0; c < Input.touchCount; c++)
+        {
+            if (c >= 2)
+            {
+                break;
+            }
+
+            if (Input.GetTouch(c).position.x < Screen.width / 2) //move
+            {
+                JoyStick.transform.position = Input.GetTouch(c).position;
+
+                if (Input.GetTouch(c).position.x < Screen.width / 8)
+                {
+                    horizontalSpeed = -BaseHorizontalSpeed;
+                }
+                else
+                {
+                    horizontalSpeed = BaseHorizontalSpeed; 
+                }            
+            }
+            else if (grounded && Input.GetTouch(c).phase == TouchPhase.Ended) //jump
+            {
+                verticalSpeed = BaseVerticalSpeed;
+            }
+        }
     }
 
     void KeyControl()
@@ -330,6 +383,33 @@ public class GravityMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(bottomEdgePosition - transform.up * castDistance, verticalBoxSize);
+    }
+
+    public void ChangeToKeyboard()
+    {
+        ChangeFromPointAndClick();
+        Control = ControlScheme.Keyboard;
+    }
+    public void ChangeToTouchScreen()
+    {
+        ChangeFromPointAndClick();
+        Control = ControlScheme.TouchScreen;
+    }
+    public void ChangeToPointAndClick()
+    {
+        Control = ControlScheme.PointAndClick;
+    }
+
+    void ChangeFromPointAndClick()
+    {
+        followPath = false; 
+        foreach (PathSection subTarget in subTargets)
+        {
+            Destroy(subTarget.marker);
+        }
+        Destroy(target.marker);
+
+        subTargets.Clear();
     }
 
     //from Hamid Homatash

@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Tilemap.Extras", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.VisualScripting.State", "Unity.VisualScripting.State.csproj", "{045EA182-A5F3-9E88-E056-6B2E456A7962}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{4B99C3E6-F2ED-742C-66CE-272189373D59}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro", "Unity.TextMeshPro.csproj", "{B33CB6A3-539E-9514-4D3F-F5B16B33C022}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Aseprite.Common", "Unity.2D.Aseprite.Common.csproj", "{CE3B3765-9A15-2A2D-3681-0853DB161944}"
@@ -90,8 +92,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Common.Runtime", "Unity.2D.Common.Runtime.csproj", "{04C50510-48E8-E973-E91F-2768E1149A8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Mathematics.Editor", "Unity.Mathematics.Editor.csproj", "{12DDFF7A-0108-FFFD-0318-72AF4606A6E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{4B99C3E6-F2ED-742C-66CE-272189373D59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Collections.BurstCompatibilityGen", "Unity.Collections.BurstCompatibilityGen.csproj", "{482F2F76-DFD6-4AC2-75F4-C16102F5E245}"
 EndProject
@@ -127,6 +127,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Tilemap.Extras", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.VisualScripting.State", "Unity.VisualScripting.State.Player.csproj", "{C8AEC3AF-0D68-50AC-68AA-ED0ACB087104}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.Player.csproj", "{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro", "Unity.TextMeshPro.Player.csproj", "{49D56B26-B075-9D50-4984-5513460BAB87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.InternalAPIEngineBridge.001", "Unity.InternalAPIEngineBridge.001.Player.csproj", "{CDFDC414-CB85-6051-7875-CCB94BFE8F85}"
@@ -134,8 +136,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.PixelPerfect", "Unity.2D.PixelPerfect.Player.csproj", "{3482C055-5E36-E3C4-FB7B-F74249D1F436}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Common.Runtime", "Unity.2D.Common.Runtime.Player.csproj", "{A5D7261F-9197-1437-8B42-5323D971A6C1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.Player.csproj", "{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -279,6 +279,10 @@ Global
 		{045EA182-A5F3-9E88-E056-6B2E456A7962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{045EA182-A5F3-9E88-E056-6B2E456A7962}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{045EA182-A5F3-9E88-E056-6B2E456A7962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B99C3E6-F2ED-742C-66CE-272189373D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B99C3E6-F2ED-742C-66CE-272189373D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B99C3E6-F2ED-742C-66CE-272189373D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B99C3E6-F2ED-742C-66CE-272189373D59}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B33CB6A3-539E-9514-4D3F-F5B16B33C022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B33CB6A3-539E-9514-4D3F-F5B16B33C022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B33CB6A3-539E-9514-4D3F-F5B16B33C022}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -323,10 +327,6 @@ Global
 		{12DDFF7A-0108-FFFD-0318-72AF4606A6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12DDFF7A-0108-FFFD-0318-72AF4606A6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12DDFF7A-0108-FFFD-0318-72AF4606A6E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B99C3E6-F2ED-742C-66CE-272189373D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B99C3E6-F2ED-742C-66CE-272189373D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B99C3E6-F2ED-742C-66CE-272189373D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B99C3E6-F2ED-742C-66CE-272189373D59}.Release|Any CPU.Build.0 = Release|Any CPU
 		{482F2F76-DFD6-4AC2-75F4-C16102F5E245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{482F2F76-DFD6-4AC2-75F4-C16102F5E245}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{482F2F76-DFD6-4AC2-75F4-C16102F5E245}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -395,6 +395,10 @@ Global
 		{C8AEC3AF-0D68-50AC-68AA-ED0ACB087104}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8AEC3AF-0D68-50AC-68AA-ED0ACB087104}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8AEC3AF-0D68-50AC-68AA-ED0ACB087104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49D56B26-B075-9D50-4984-5513460BAB87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{49D56B26-B075-9D50-4984-5513460BAB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49D56B26-B075-9D50-4984-5513460BAB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -411,10 +415,6 @@ Global
 		{A5D7261F-9197-1437-8B42-5323D971A6C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5D7261F-9197-1437-8B42-5323D971A6C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5D7261F-9197-1437-8B42-5323D971A6C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EE0866D-AD7A-2758-C096-0FDA1D7B2F6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
