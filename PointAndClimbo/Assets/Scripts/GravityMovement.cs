@@ -11,17 +11,24 @@ public class GravityMovement : MonoBehaviour
         public bool jump;
     }
 
-    //constants
-    [SerializeField] int BaseHorizontalSpeed = 10; //the horizontal force applied when moving
-    [SerializeField] int BaseVerticalSpeed = 15; //the vertical force applied when jumping
-    [SerializeField] float GravityForce = 0.2f; //the force of gravity pulling the agent downwards
-    [SerializeField] float HorizontalAirResistance = 0.05f; //the force which slows the agent while it is in the air
+    [Header("Gravity Settings")]
+    /// <summary> The horizontal force applied when moving. </summary> 
+    [SerializeField] int BaseHorizontalSpeed = 10;
+    ///<summary> The vertical force applied when jumping. </summary>
+    [SerializeField] int BaseVerticalSpeed = 15;
+    ///<summary> The force of gravity pulling the agent downwards </summary>
+    [SerializeField] float GravityForce = 0.2f; 
+    /// <summary> //the force which slows the agent while it is in the air </summary>
+    [SerializeField] float HorizontalAirResistance = 0.05f;
+    ///<summary> The margin in which the agent can land. </summary>
+    [SerializeField] float GroundedMargin = 0.03f;
+    ///<summary> The margin in which the agent can reach a target. </summary>
+    [SerializeField] float TargetMargin = 0.1f; 
 
-    [SerializeField] float GroundedMargin = 0.03f; //the margin in which the agent can land
-    [SerializeField] float TargetMargin = 0.1f; //the margin in which the agent can reach a target
+    [Header("Pathfinding Variables")]
 
-    //variables for pathfinding
-    PathSection target; //the target as set by the mouse pointer
+    ///<summary> The target set to path towards as the mouse pointer. </summary>
+    PathSection target; 
     List<PathSection> subTargets = new List<PathSection>();
     [SerializeField] Vector2 horizontalBoxSize;
     [SerializeField] LayerMask obstacleLayer;
@@ -29,35 +36,36 @@ public class GravityMovement : MonoBehaviour
     int currentTargetNo;
     bool followPath;
 
-    //player central boarders
+    ///player central boarders
     Vector3 rightEdgePosition;
     Vector3 leftEdgePosition;
     Vector3 topEdgePosition;
     Vector3 bottomEdgePosition;
 
-    //variables for checking grounded
+    ///variables for checking grounded
     bool grounded; 
     RaycastHit2D ground;
     float groundY = -3.99f;
     [SerializeField] Vector2 verticalBoxSize;
     [SerializeField] float castDistance = 20;
+    /// <summary> The Layer within the Unity Editor that will be the 'ground'. </summary>
     [SerializeField] LayerMask groundLayer;
     bool isJumping;
 
-    //variables for movement
+    /// Movement variables
     float horizontalSpeed;
     float verticalSpeed;
 
-    //touchscreen controls
+    [Header("Touchscreen Controls")]
     public GameObject JoyStick;
     Transform JoyStickAnchor;
     float JoyStickRadius;
 
-    //debug
+    [Header("Debug")]
     public GameObject endTargetPrefab;
     public GameObject subTargetPrefab;
 
-    //contol scheme
+    /// Control schemes
     enum ControlScheme
     {
         Keyboard,
