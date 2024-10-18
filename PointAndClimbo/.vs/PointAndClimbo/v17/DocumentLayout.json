@@ -1,9 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\",
+  "WorkspaceRootPath": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|c:\\users\\akira\\documents\\github\\gpw-ip3-project\\pointandclimbo\\assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|c:\\users\\matty\\documents\\github\\gpw-ip3-project\\pointandclimbo\\assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|c:\\users\\matty\\documents\\github\\gpw-ip3-project\\pointandclimbo\\assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -19,12 +23,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Movement.cs",
+              "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\Movement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Movement.cs",
+              "ToolTip": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\Movement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Movement.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAALEAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T19:51:41.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "GravityMovement.cs",
-              "DocumentMoniker": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GravityMovement.cs",
+              "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GravityMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GravityMovement.cs",
-              "ToolTip": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GravityMovement.cs",
+              "ToolTip": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GravityMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\GravityMovement.cs",
-              "ViewState": "AQIAAGkAAAAAAAAAAAAAAHoAAABDAAAA",
+              "ViewState": "AQIAAHsBAAAAAAAAAAASwIcBAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-06T20:37:25.68Z",
               "EditorCaption": ""

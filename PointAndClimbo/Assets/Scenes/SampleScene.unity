@@ -733,6 +733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 451460640}
   - component: {fileID: 451460639}
+  - component: {fileID: 451460644}
   - component: {fileID: 451460643}
   m_Layer: 0
   m_Name: Player
@@ -821,23 +822,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseHorizontalSpeed: 8
-  BaseVerticalSpeed: 12
+  BaseVerticalSpeed: 8
   GravityForce: 0.5
   HorizontalAirResistance: 0.05
   GroundedMargin: 0.03
   TargetMargin: 0.05
-  horizontalBoxSize: {x: 0.1, y: 1}
+  horizontalBoxSize: {x: 0.6, y: 1}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
-  verticalBoxSize: {x: 0.6, y: 0.1}
-  castDistance: 100
+  verticalBoxSize: {x: 0.6, y: 1}
+  castDistance: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   JoyStick: {fileID: 1809393189}
   endTargetPrefab: {fileID: 8983933179723981291, guid: 71c206abc68536649ac929e1c00de374, type: 3}
   subTargetPrefab: {fileID: 1039997336492723021, guid: 1d530c8a72fa79249b7645232948d3ad, type: 3}
+--- !u!114 &451460644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451460638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdfeeea2ccb7e94baadf5a613eda2e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 10
+  baseJump: 5
+  maxAcceleration: 3
+  minAcceleration: 1
+  accelerationAlterer: 1
+  boxSize: {x: 0.6, y: 1}
+  castDistance: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &452427943
 GameObject:
   m_ObjectHideFlags: 0
