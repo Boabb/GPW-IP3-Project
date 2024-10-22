@@ -70,3 +70,31 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Annoying Log files that wont untrack
+PointAndClimbo/Logs/AssetImportWorker0-prev.log
+PointAndClimbo/Logs/AssetImportWorker0.log
+PointAndClimbo/Logs/AssetImportWorker1-prev.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe1.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe10.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe11.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe12.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe13.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe14.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe15.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe16.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe17.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe18.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe19.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe2.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe20.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe21.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe22.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe23.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe24.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe25.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe26.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe27.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe3.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe4.log
+PointAndClimbo/Logs/shadercompiler-UnityShaderCompiler.exe9.log
