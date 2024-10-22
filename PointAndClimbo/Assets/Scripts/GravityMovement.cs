@@ -66,14 +66,14 @@ public class GravityMovement : MonoBehaviour
     public GameObject subTargetPrefab;
 
     /// Control schemes
-    enum ControlScheme
+    public enum ControlScheme
     {
         Keyboard,
         PointAndClick,
         TouchScreen
     }
 
-    ControlScheme Control = ControlScheme.TouchScreen;
+    public ControlScheme Control = ControlScheme.Keyboard;
 
     private void Start()
     {

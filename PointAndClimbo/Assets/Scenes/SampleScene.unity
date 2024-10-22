@@ -839,6 +839,7 @@ MonoBehaviour:
   JoyStick: {fileID: 1809393189}
   endTargetPrefab: {fileID: 8983933179723981291, guid: 71c206abc68536649ac929e1c00de374, type: 3}
   subTargetPrefab: {fileID: 1039997336492723021, guid: 1d530c8a72fa79249b7645232948d3ad, type: 3}
+  Control: 1
 --- !u!114 &451460644
 MonoBehaviour:
   m_ObjectHideFlags: 0
