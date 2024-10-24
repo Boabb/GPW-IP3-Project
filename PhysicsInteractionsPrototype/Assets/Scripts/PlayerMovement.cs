@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     bool grounded;
 
     bool canJump;
+    bool hasCaught;
+
+    float caughtHeight;
+    float playerTempCaughtHeight;
 
     enum MovementMode
     {
@@ -38,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         speed = uprightSpeed;
+        canJump = true;
+
         groundLayer = LayerMask.GetMask("Ground");
         playerLayer = LayerMask.GetMask("Player");
         playerSize = GetComponent<Collider2D>().bounds.size;
@@ -55,18 +61,21 @@ public class PlayerMovement : MonoBehaviour
         checkGround();
         checkMovementType();
 
-        walk();
+        move();
         jump();
+        jumpAndCatch();
         climb();
     }
 
     void checkMovementType()
     {
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x + (playerSize.x / 2), transform.position.y + (playerSize.y / 2)), transform.right, 0.05f);
+        //only works when walking to the right rn
 
-        Debug.Log(hit.collider);
-
-        if (hit && movementMode == MovementMode.upright)
+        //https://discussions.unity.com/t/raycast-layermask-parameter/802897/7
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x - (playerSize.x / 2) - 0.05f, transform.position.y + (playerSize.y / 2)), transform.right, 0.1f + playerSize.x, ~playerLayer);
+        RaycastHit2D clear = Physics2D.Raycast(new Vector2(transform.position.x - (playerSize.x / 2) - 0.05f, transform.position.y - (playerSize.y / 4)), transform.right, 0.1f + playerSize.x, ~playerLayer);
+        
+        if (hit && !clear && movementMode == MovementMode.upright)
         {
             movementMode = MovementMode.crawl;
             speed = crawlSpeed;
@@ -109,17 +118,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void walk()
+    void move()
     {
-        //walk
-        if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+        if (hasCaught) //climb caught object
+        {
+            playerRb.AddForce(new Vector2(0, climbSpeed));
+
+            if (transform.position.y - (playerSize.y / 2) > caughtHeight)
+            {
+                hasCaught = false;
+                canJump = true;
+            }
+        }
+        else if (SystemSettings.moveRight && !SystemSettings.moveLeft) //walk right
         {
             float currentSpeed = groundNormal.x + speed;
             checkMaxSpeed(currentSpeed);
 
             playerRb.AddForce(new Vector2(currentSpeed, groundNormal.y));
         }
-        else if (SystemSettings.moveLeft && !SystemSettings.moveRight)
+        else if (SystemSettings.moveLeft && !SystemSettings.moveRight) //walk left
         {
             float currentSpeed = groundNormal.x + -speed;
             checkMaxSpeed(currentSpeed);
@@ -139,26 +157,45 @@ public class PlayerMovement : MonoBehaviour
 
     void jump()
     {
-        if (jumpSpace.IsTouchingLayers(Physics2D.AllLayers))
-        {
-            canJump = false;
-        }
+        //if (jumpSpace.IsTouchingLayers(Physics2D.AllLayers))
+        //{
+        //    canJump = false;
+        //}
 
         if (canJump && grounded && SystemSettings.jump)
         {
-            Debug.Log("Jump");
+            playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
             playerRb.AddForce(new Vector2(0, jumpPower));
         }
     }
 
     void jumpAndCatch()
     {
+        RaycastHit2D clear = Physics2D.Raycast(new Vector2(transform.position.x - (playerSize.x / 2) - 0.05f, transform.position.y + ((playerSize.y / 2) + (playerSize.y / 4))), transform.right, 0.1f + playerSize.x, ~playerLayer);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x - (playerSize.x / 2) - 0.05f, transform.position.y + (playerSize.y / 4)), transform.right, 0.1f + playerSize.x, ~playerLayer);
 
+        if (!hasCaught && !grounded && hit && !clear)
+        {
+            Debug.Log("Catch");
+            hasCaught = true;
+            canJump = false;
+
+            caughtHeight = hit.collider.bounds.max.y;
+            playerTempCaughtHeight = hit.collider.bounds.max.y - (playerSize.y / 2);
+
+            transform.position = new Vector2(transform.position.x, playerTempCaughtHeight);
+        }
     }
 
     void climb()
     {
 
+    }
+
+    float animLerp(float lerp1, float lerp2, ref float currentProgress, float animSpeed)
+    {
+        currentProgress += animSpeed;
+        return Mathf.Lerp(lerp1, lerp2, currentProgress);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
