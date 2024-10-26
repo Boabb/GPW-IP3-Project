@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Follower.cs" />
+    <Compile Include="Assets\Scripts\Interactions.cs" />
     <Compile Include="Assets\Scripts\SystemSettings.cs" />
     <Compile Include="Assets\Scripts\PlayerPhysicsInteraction.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />

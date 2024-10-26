@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public int crawlSpeed;
     public float groundCheckRadius;
 
+    public bool interacting;
+
     int speed;
     [SerializeField] Collider2D jumpSpace; //from inspector
 
@@ -58,6 +60,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (SystemSettings.interact)
+        {
+            interacting = true;
+        }
+        else
+        {
+            interacting = false;
+        }
+
         checkGround();
         checkMovementType();
 
@@ -69,26 +80,29 @@ public class PlayerMovement : MonoBehaviour
 
     void checkMovementType()
     {
-        //only works when walking to the right rn
-
         //https://discussions.unity.com/t/raycast-layermask-parameter/802897/7
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x - (playerSize.x / 2) - 0.05f, transform.position.y + (playerSize.y / 2)), transform.right, 0.1f + playerSize.x, ~playerLayer);
-        RaycastHit2D clear = Physics2D.Raycast(new Vector2(transform.position.x - (playerSize.x / 2) - 0.05f, transform.position.y - (playerSize.y / 4)), transform.right, 0.1f + playerSize.x, ~playerLayer);
-        
-        if (hit && !clear && movementMode == MovementMode.upright)
-        {
-            movementMode = MovementMode.crawl;
-            speed = crawlSpeed;
-            canJump = false;
-            playerRb.velocity = Vector2.zero;
-            playerRb.SetRotation(90);
-        }
-        else if (!hit && movementMode == MovementMode.crawl)
+        RaycastHit2D notClear = Physics2D.Raycast(new Vector2(transform.position.x - (playerSize.x / 2) - 0.05f, transform.position.y - (playerSize.y / 4)), transform.right, 0.1f + playerSize.x, ~playerLayer);
+
+        RaycastHit2D roof = Physics2D.BoxCast(new Vector2(transform.position.x, transform.position.y + playerSize.x), new Vector2 (playerSize.y, playerSize.x), 0, Vector2.zero, 0, ~playerLayer);
+
+        if (!roof && movementMode == MovementMode.crawl)
         {
             movementMode = MovementMode.upright;
             speed = uprightSpeed;
             canJump = true;
             playerRb.SetRotation(0);
+        }
+        
+        
+        if (!interacting && hit && !notClear && movementMode == MovementMode.upright)
+        {
+            movementMode = MovementMode.crawl;
+            speed = crawlSpeed;
+            canJump = false;
+            playerRb.velocity = Vector2.zero;
+            
+            playerRb.SetRotation(90);
         }
 
         if (movementMode == MovementMode.upright)
@@ -101,10 +115,23 @@ public class PlayerMovement : MonoBehaviour
 
     void checkGround()
     {
-        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, -transform.up, Mathf.Infinity, groundLayer);
+        float playerModifer;
+        Vector2 rayDirection;
+        if (movementMode == MovementMode.crawl)
+        {
+            playerModifer = playerSize.x / 2;
+            rayDirection = -transform.right;
+        }
+        else
+        {
+            playerModifer = playerSize.y / 2;
+            rayDirection = -transform.up;
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, rayDirection, Mathf.Infinity, groundLayer);
         if (hit)
         {
-            groundPosition = transform.position.y - hit.distance + (playerSize.y / 2);
+            groundPosition = transform.position.y - hit.distance + playerModifer;
             groundNormal = hit.normal;
         }
 
@@ -162,6 +189,11 @@ public class PlayerMovement : MonoBehaviour
         //    canJump = false;
         //}
 
+        if (hasCaught || interacting)
+        {
+            canJump = false;
+        }
+
         if (canJump && grounded && SystemSettings.jump)
         {
             playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
@@ -174,9 +206,8 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D clear = Physics2D.Raycast(new Vector2(transform.position.x - (playerSize.x / 2) - 0.05f, transform.position.y + ((playerSize.y / 2) + (playerSize.y / 4))), transform.right, 0.1f + playerSize.x, ~playerLayer);
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x - (playerSize.x / 2) - 0.05f, transform.position.y + (playerSize.y / 4)), transform.right, 0.1f + playerSize.x, ~playerLayer);
 
-        if (!hasCaught && !grounded && hit && !clear)
+        if (!interacting && !hasCaught && !grounded && hit && !clear)
         {
-            Debug.Log("Catch");
             hasCaught = true;
             canJump = false;
 
@@ -192,7 +223,13 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    float animLerp(float lerp1, float lerp2, ref float currentProgress, float animSpeed)
+    float angularLerp(float lerp1, float lerp2, ref float currentProgress, float animSpeed)
+    {
+        currentProgress += animSpeed;
+        return Mathf.LerpAngle(lerp1, lerp2, currentProgress);
+    }
+
+    float positionLerp(float lerp1, float lerp2, ref float currentProgress, float animSpeed)
     {
         currentProgress += animSpeed;
         return Mathf.Lerp(lerp1, lerp2, currentProgress);
