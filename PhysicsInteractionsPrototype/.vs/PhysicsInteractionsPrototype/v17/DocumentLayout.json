@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PhysicsInteractionsPrototype\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AC8F3CE2-760C-383A-7715-3FEB05225EAD}|Assembly-CSharp.csproj|C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PhysicsInteractionsPrototype\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AC8F3CE2-760C-383A-7715-3FEB05225EAD}|Assembly-CSharp.csproj|c:\\users\\akira\\documents\\github\\gpw-ip3-project\\physicsinteractionsprototype\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AC8F3CE2-760C-383A-7715-3FEB05225EAD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC8F3CE2-760C-383A-7715-3FEB05225EAD}|Assembly-CSharp.csproj|C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PhysicsInteractionsPrototype\\assets\\scripts\\playerphysicsinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AC8F3CE2-760C-383A-7715-3FEB05225EAD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerphysicsinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AC8F3CE2-760C-383A-7715-3FEB05225EAD}|Assembly-CSharp.csproj|c:\\users\\akira\\documents\\github\\gpw-ip3-project\\physicsinteractionsprototype\\assets\\scripts\\interactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC8F3CE2-760C-383A-7715-3FEB05225EAD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,22 +28,9 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
               "ToolTip": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PhysicsInteractionsPrototype\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAIwF8AAAAIAAAA",
+              "ViewState": "AQIAAGoAAAAAAAAAAAAcwLwAAAB3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-26T15:22:12.194Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Interactions.cs",
-              "DocumentMoniker": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PhysicsInteractionsPrototype\\Assets\\Scripts\\Interactions.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Interactions.cs",
-              "ToolTip": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PhysicsInteractionsPrototype\\Assets\\Scripts\\Interactions.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Interactions.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAowCgAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T14:42:13.917Z",
               "EditorCaption": ""
             },
             {
@@ -58,7 +41,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerPhysicsInteraction.cs",
               "ToolTip": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\PhysicsInteractionsPrototype\\Assets\\Scripts\\PlayerPhysicsInteraction.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerPhysicsInteraction.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADsAAAAJAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABAAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-23T15:40:52.683Z",
               "EditorCaption": ""

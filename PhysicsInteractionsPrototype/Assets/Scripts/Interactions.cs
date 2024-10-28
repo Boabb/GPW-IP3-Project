@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactions : MonoBehaviour
@@ -7,6 +5,9 @@ public class Interactions : MonoBehaviour
     //Rigidbody2D rb;
     public bool interact;
     Vector2 offset;
+    Collider2D objectCollider;
+    float playerY;
+    LayerMask playerLayer;
 
     public enum InteractionType
     {
@@ -17,36 +18,42 @@ public class Interactions : MonoBehaviour
     
     private void Start()
     {
+        playerLayer = LayerMask.GetMask("Player");
         interact = false;
-        //rb = GetComponent<Rigidbody2D>();
+        objectCollider = GetComponent<Collider2D>();
     }
 
     private void FixedUpdate()
     {
         if (!interact)
         {
-            //rb.constraints = RigidbodyConstraints2D.None;
-            //rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            //rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-
-            //rb.velocity = Vector3.zero;
+            //objectCollider.isTrigger = false;
+            objectCollider.excludeLayers = 0;
+        }
+        else
+        {
+            //objectCollider.isTrigger = true;
+            objectCollider.excludeLayers = playerLayer;
         }
     }
 
     public void setOffset(Rigidbody2D player)
     {
-        offset = new Vector2(transform.position.x, 0) - new Vector2(player.position.x, 0);
+        offset = new Vector2(player.position.x, player.position.y) - new Vector2(transform.position.x, transform.position.y);
+        playerY = player.position.y;
     }
 
-    public void moveWithPlayer(Rigidbody2D player)
+    public bool moveWithPlayer(Rigidbody2D player)
     {
-        Debug.Log("Bloop");
-        transform.position = player.position + offset;
-
-        //rb.position = player.position;
-
-        //rb.constraints = RigidbodyConstraints2D.None;
-        //rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        //rb.velocity = player.velocity;
+        if (player.position.y > playerY)
+        {
+            interact = false;
+            return false;
+        }
+        else
+        {
+            transform.position = new Vector2(player.position.x - offset.x, transform.position.y);
+            return true;
+        }
     }
 }

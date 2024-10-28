@@ -6,21 +6,26 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Vector2 playerSize;
+    Collider2D playerCollider;
     Rigidbody2D playerRb;
 
     int groundLayer;
     int playerLayer;
+    int interactableLayer;
 
     public int maxSpeed;
     public int jumpPower;
     public int climbSpeed;
     public int uprightSpeed;
     public int crawlSpeed;
+    public float pushForce;
+    public float pullForce;
+
     public float groundCheckRadius;
 
     public bool interacting;
 
-    int speed;
+    float speed;
     [SerializeField] Collider2D jumpSpace; //from inspector
 
     Vector2 groundNormal;
@@ -31,7 +36,11 @@ public class PlayerMovement : MonoBehaviour
     bool hasCaught;
 
     float caughtHeight;
-    float playerTempCaughtHeight;
+    float playerTempCaughtHeight;    
+
+    Collider2D interactableCollider;
+    Rigidbody2D interactableRigidbody;
+    float reachDistance = 100f; //temporary
 
     enum MovementMode
     {
@@ -48,9 +57,11 @@ public class PlayerMovement : MonoBehaviour
 
         groundLayer = LayerMask.GetMask("Ground");
         playerLayer = LayerMask.GetMask("Player");
+        interactableLayer = LayerMask.GetMask("Interactable");
         playerSize = GetComponent<Collider2D>().bounds.size;
         playerRb = GetComponent<Rigidbody2D>();
-        jumpSpace.excludeLayers = playerLayer;
+        playerCollider = GetComponent<Collider2D>();
+        jumpSpace.excludeLayers = playerLayer; 
     }
 
     void Update()
@@ -60,14 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (SystemSettings.interact)
-        {
-            interacting = true;
-        }
-        else
-        {
-            interacting = false;
-        }
+        checkInteract();
 
         checkGround();
         checkMovementType();
@@ -76,6 +80,66 @@ public class PlayerMovement : MonoBehaviour
         jump();
         jumpAndCatch();
         climb();
+    }
+
+    void checkInteract()
+    {
+        try
+        {
+            float currentXDistance = transform.position.x - interactableCollider.transform.position.x;
+
+            if (!SystemSettings.interact || currentXDistance > reachDistance)
+            {
+                interactableCollider = unsetInteractable();
+            }
+        }
+        catch
+        {
+            interactableCollider = unsetInteractable();
+        }
+
+        if (interactableCollider == null)
+        {
+            interactableCollider = interact();
+        }
+    }
+
+    Collider2D interact()
+    {
+        if (SystemSettings.interact)
+        {
+            if (playerCollider.IsTouchingLayers(interactableLayer))
+            {
+                return setInteractable();
+            }
+        }
+
+        return unsetInteractable();
+    }
+
+    Collider2D setInteractable()
+    {
+        ContactFilter2D onlyInteractions = new ContactFilter2D();
+        onlyInteractions.SetLayerMask(interactableLayer);
+        List<Collider2D> interactableColliders = new List<Collider2D>();
+        playerCollider.OverlapCollider(onlyInteractions, interactableColliders);
+
+        Collider2D toReturn = interactableColliders[0];
+        toReturn.gameObject.transform.parent = transform;
+        return toReturn;
+    }
+
+    Collider2D unsetInteractable()
+    {
+        try
+        {
+            interactableCollider.gameObject.transform.parent = null;
+        }
+        catch
+        {
+            //already null
+        }
+        return null;
     }
 
     void checkMovementType()
@@ -90,26 +154,18 @@ public class PlayerMovement : MonoBehaviour
         {
             movementMode = MovementMode.upright;
             speed = uprightSpeed;
-            canJump = true;
+            //canJump = true;
             playerRb.SetRotation(0);
-        }
+        }        
         
-        
-        if (!interacting && hit && !notClear && movementMode == MovementMode.upright)
+        if (grounded && !interacting && hit && !notClear && movementMode == MovementMode.upright)
         {
             movementMode = MovementMode.crawl;
             speed = crawlSpeed;
-            canJump = false;
+            //canJump = false;
             playerRb.velocity = Vector2.zero;
             
             playerRb.SetRotation(90);
-        }
-
-        if (movementMode == MovementMode.upright)
-        {
-        }
-        else if (movementMode == MovementMode.crawl)
-        {
         }
     }
 
@@ -128,7 +184,9 @@ public class PlayerMovement : MonoBehaviour
             rayDirection = -transform.up;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, rayDirection, Mathf.Infinity, groundLayer);
+        int combinedLayer = groundLayer | interactableLayer;
+
+        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, rayDirection, Mathf.Infinity, combinedLayer);
         if (hit)
         {
             groundPosition = transform.position.y - hit.distance + playerModifer;
@@ -147,6 +205,22 @@ public class PlayerMovement : MonoBehaviour
 
     void move()
     {
+        if (interactableCollider != null)
+        {
+            if (relativeMovementDirection(interactableCollider.gameObject))
+            {
+                speed = pullForce;
+            }
+            else
+            {
+                speed = pushForce;
+            }
+        }
+        else if (movementMode == MovementMode.upright)
+        {
+            speed = uprightSpeed;
+        }
+
         if (hasCaught) //climb caught object
         {
             playerRb.AddForce(new Vector2(0, climbSpeed));
@@ -154,7 +228,6 @@ public class PlayerMovement : MonoBehaviour
             if (transform.position.y - (playerSize.y / 2) > caughtHeight)
             {
                 hasCaught = false;
-                canJump = true;
             }
         }
         else if (SystemSettings.moveRight && !SystemSettings.moveLeft) //walk right
@@ -189,9 +262,13 @@ public class PlayerMovement : MonoBehaviour
         //    canJump = false;
         //}
 
-        if (hasCaught || interacting)
+        if (hasCaught || interacting || movementMode == MovementMode.crawl)
         {
             canJump = false;
+        }
+        else
+        {
+            canJump = true;
         }
 
         if (canJump && grounded && SystemSettings.jump)
@@ -209,8 +286,6 @@ public class PlayerMovement : MonoBehaviour
         if (!interacting && !hasCaught && !grounded && hit && !clear)
         {
             hasCaught = true;
-            canJump = false;
-
             caughtHeight = hit.collider.bounds.max.y;
             playerTempCaughtHeight = hit.collider.bounds.max.y - (playerSize.y / 2);
 
@@ -235,8 +310,12 @@ public class PlayerMovement : MonoBehaviour
         return Mathf.Lerp(lerp1, lerp2, currentProgress);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    bool relativeMovementDirection(GameObject comparator) //returns true if moving away from the comparator object
     {
-        
+        if (transform.position.x > comparator.transform.position.x && SystemSettings.moveRight || transform.position.x < comparator.transform.position.x && SystemSettings.moveLeft)
+        {
+            return true;
+        }
+        return false;
     }
 }
