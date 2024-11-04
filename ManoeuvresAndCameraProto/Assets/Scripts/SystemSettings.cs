@@ -6,6 +6,8 @@ public class SystemSettings: MonoBehaviour
 {
     public static bool moveLeft;
     public static bool moveRight;
+    public static bool tapLeft;
+    public static bool tapRight;
     public static bool jump;
     public static bool interact;
 
@@ -58,7 +60,7 @@ public class SystemSettings: MonoBehaviour
                 moveRight = false;
             }
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 jump = true;
             }
@@ -74,6 +76,24 @@ public class SystemSettings: MonoBehaviour
             else
             {
                 interact = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                tapLeft = true;
+            }
+            else
+            {
+                tapLeft = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                tapRight = true;
+            }
+            else
+            {
+                tapRight = false;
             }
         }
     }

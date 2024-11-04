@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GravityMovement : MonoBehaviour
@@ -7,7 +8,9 @@ public class GravityMovement : MonoBehaviour
     enum MovementType
     {
         Walking,
-        Crawling
+        Crawling,
+        CatchRight,
+        CatchLeft
     }
 
     MovementType movementType;
@@ -39,8 +42,16 @@ public class GravityMovement : MonoBehaviour
     Vector3 playerSize;
     Collider2D playerCollisionCollider;
 
-    Collider2D playerGroundCollider;
     GameObject playerGroundObject;
+    Collider2D playerGroundCollider;
+
+    Collider2D climbCollider;
+
+    //map edges
+    float upperLimit;
+    float lowerLimit;
+    float rightLimit;
+    float leftLimit;
 
     //grounded varaibles
     float castDistance;
@@ -65,13 +76,16 @@ public class GravityMovement : MonoBehaviour
     LayerMask groundLayer;
     LayerMask playerLayer;
     LayerMask crawlLayer;
-    LayerMask climbLayer;
+    LayerMask climbLayerRight;
+    LayerMask climbLayerLeft;
 
     //booleans
     bool isManoeuvring;
     bool grounded;
     bool isJumping;
+    bool hasJumped;
     bool canJump;
+    bool hasCaught;
 
     private void Start()
     {
@@ -85,7 +99,8 @@ public class GravityMovement : MonoBehaviour
         groundLayer = LayerMask.GetMask("Ground"); 
         playerLayer = LayerMask.GetMask("Player");
         crawlLayer = LayerMask.GetMask("CrawlSpace");
-        climbLayer = LayerMask.GetMask("Climbable");
+        climbLayerRight = LayerMask.GetMask("ClimbableRight");
+        climbLayerLeft = LayerMask.GetMask("ClimbableLeft");
 
         playerCollisionCollider = GetComponent<Collider2D>();
         playerSize = playerCollisionCollider.bounds.size;
@@ -108,6 +123,11 @@ public class GravityMovement : MonoBehaviour
             isJumping = false;
         }
 
+        if (hasJumped && grounded)
+        {
+            hasJumped = false;
+        }
+
         if (grounded)
         {
             canJump = true;
@@ -116,21 +136,62 @@ public class GravityMovement : MonoBehaviour
         {
             canJump = false;
         }
-    
+
+        GetEdgePositions(gameObject);
         getMovementType();
         userInput();
         DetectGround();
         Movement();
     }
 
+    void maintainAreaLimits() //stops the player from leaving the level area
+    {
+        if (transform.position.x > rightLimit)
+        {
+            transform.position = new Vector3(rightLimit, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.x < leftLimit) 
+        {
+            transform.position = new Vector3(leftLimit, transform.position.y, transform.position.z); 
+        }
+
+        if (transform.position.y > upperLimit)
+        {
+            transform.position = new Vector3(transform.position.x, upperLimit, transform.position.z);
+        }
+
+        if (transform.position.y < lowerLimit)
+        {
+            transform.position = new Vector3(transform.position.x, lowerLimit, transform.position.z);
+        }
+    }
+
     void getMovementType()
     {
-        if (movementType != MovementType.Crawling && Physics2D.IsTouchingLayers(playerCollisionCollider, crawlLayer))
+        RaycastHit2D hit = Physics2D.BoxCast(bottomEdgePosition, playerSize, 0, transform.up, 0, climbLayerRight | climbLayerLeft);
+
+        if (Physics2D.IsTouchingLayers(playerCollisionCollider, crawlLayer))
         {
+            hasCaught = false;
             movementType = MovementType.Crawling;
         }
-        else if (movementType != MovementType.Walking)
+        else if (hit && !isJumping && hasJumped && !grounded)
         {
+            hit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, climbLayerRight);
+
+            if (hit)
+            {
+                activateJumpCatch(MovementType.CatchRight, climbLayerRight);
+            }
+            else
+            {
+                activateJumpCatch(MovementType.CatchLeft, climbLayerLeft);
+            }
+        }
+        else if (movementType != MovementType.CatchRight && movementType != MovementType.CatchLeft)
+        {
+            hasCaught = false;
             movementType = MovementType.Walking;
         }
 
@@ -140,8 +201,29 @@ public class GravityMovement : MonoBehaviour
                 currentHorizontalForce = BaseWalkForce;
                 break;
             case MovementType.Crawling:
-                currentHorizontalForce = 0;
+                currentHorizontalForce = BaseCrawlForce;
                 break;
+            case MovementType.CatchRight:
+                break;
+            case MovementType.CatchLeft:
+                break;
+        }
+
+        void activateJumpCatch(MovementType movement, LayerMask layer)
+        {
+            movementType = movement;
+            try
+            {
+                climbCollider.gameObject.SetActive(true);
+            }
+            catch
+            {
+
+            }
+            climbCollider = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, layer).collider;
+            transform.position = climbCollider.transform.position;
+            climbCollider.gameObject.SetActive(false);
+            hasCaught = true;
         }
     }
 
@@ -149,20 +231,57 @@ public class GravityMovement : MonoBehaviour
     {
         if (!isManoeuvring)
         {
+            if ((SystemSettings.tapRight && movementType == MovementType.CatchRight) || (SystemSettings.tapLeft && movementType == MovementType.CatchLeft))
+            {
+                ClimbUpObstacle();
+            }
+
             if (SystemSettings.moveRight && !SystemSettings.moveLeft)
             {
+                if (movementType == MovementType.CatchRight)
+                {
+                    return;
+                }
+                else if (movementType == MovementType.CatchLeft)
+                {
+                    hasCaught = false;
+                    movementType = MovementType.Walking;
+                }
                 horizontalSpeed = currentHorizontalForce;
                 transform.position = new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime), transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime), transform.position.z + playerGroundObject.transform.right.z);
             }
             else if (SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
+                if (movementType == MovementType.CatchLeft)
+                {
+                    return;
+                }
+                else if (movementType == MovementType.CatchRight)
+                {
+                    hasCaught = false;
+                    movementType = MovementType.Walking;
+                }
+
                 horizontalSpeed = -currentHorizontalForce;
                 transform.position = new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime), transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime), transform.position.z + playerGroundObject.transform.right.z);
+            }
+
+            if (grounded)
+            {
+                try
+                {
+                    climbCollider.gameObject.SetActive(true);
+                }
+                catch 
+                {
+
+                }
             }
 
             if (SystemSettings.jump && canJump)
             {
                 grounded = canJump;
+                hasJumped = true;
                 verticalSpeed = BaseJumpForce;
                 transform.position = new Vector3(transform.position.x, transform.position.y + (verticalSpeed * Time.deltaTime), transform.position.z);
 
@@ -199,7 +318,7 @@ public class GravityMovement : MonoBehaviour
             verticalSpeed = -TerminalVelocity;
         }
 
-        if (!grounded)
+        if (!grounded && !hasCaught)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + (verticalSpeed * Time.deltaTime), transform.position.z);
         }
@@ -238,22 +357,26 @@ public class GravityMovement : MonoBehaviour
                     break;
                 }
             }
+
+            if (Vector2.Distance(bottomEdgePosition, new Vector2(transform.position.x, checkGroundY)) > GroundedMargin)
+            {
+                grounded = false;
+                groundY = checkGroundY;
+                groundNormal = groundChecks[indexCheck].normal;
+                verticalSpeed -= GravityForce;
+            }
+
+            playerGroundObject.transform.rotation = groundChecks[indexCheck].collider.transform.rotation;
         }
         catch
         {
             Debug.LogError("No Ground Found");
             checkGroundY = groundY;
+            transform.position = new Vector3(transform.position.x, groundY + (playerSize.y / 2), 0);
+            grounded = true;
+            verticalSpeed = 0;
+            horizontalSpeed = 0;
         }
-
-        if (Vector2.Distance(bottomEdgePosition, new Vector2(transform.position.x, checkGroundY)) > GroundedMargin)
-        {
-            grounded = false;
-            groundY = checkGroundY;
-            groundNormal = groundChecks[indexCheck].normal;
-            verticalSpeed -= GravityForce;
-        }
-
-        playerGroundObject.transform.rotation = groundChecks[indexCheck].collider.transform.rotation;
     }
 
     void GetEdgePositions(GameObject objectToGet)
@@ -267,6 +390,23 @@ public class GravityMovement : MonoBehaviour
     void ClimbUpObstacle()
     {
         isManoeuvring = true;
+
+        //temp
+        climbCollider.gameObject.SetActive(true);
+        Collider2D[] attachedColliders = climbCollider.GetComponentsInChildren<Collider2D>();
+        Collider2D targetCollider = new Collider2D();
+
+        for (int i = 0; i < attachedColliders.Length; i++)
+        {
+            if (attachedColliders[i] != climbCollider)
+            {
+                targetCollider = attachedColliders[i];
+            }
+        }
+
+        transform.position = targetCollider.transform.position;
+        movementType = MovementType.Walking;
+        isManoeuvring = false;
     }
 
     void Manoeuvre()
