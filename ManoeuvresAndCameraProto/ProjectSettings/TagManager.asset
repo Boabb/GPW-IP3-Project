@@ -14,8 +14,8 @@ TagManager:
   - CrawlSpace
   - ClimbableRight
   - ClimbableLeft
-  - 
-  - 
+  - InteractableRight
+  - InteractableLeft
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3661641799
+    locked: 0
+  - name: Player
+    uniqueID: 897772553
+    locked: 0
+  - name: Foreground
+    uniqueID: 902611627
     locked: 0

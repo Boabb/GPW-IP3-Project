@@ -10,9 +10,19 @@ public class GravityMovement : MonoBehaviour
         Walking,
         Crawling,
         CatchRight,
-        CatchLeft
+        CatchLeft,
+        InteractRight,
+        InteractLeft
     }
 
+    enum InteractionType
+    {
+        None,
+        Push,
+        Pull
+    }
+
+    InteractionType interactionType;
     MovementType movementType;
 
     [Header("Gravity Settings")]
@@ -20,6 +30,10 @@ public class GravityMovement : MonoBehaviour
     [SerializeField] float BaseWalkForce = 10f;
     /// <summary> The horizontal force applied when crawling. </summary> 
     [SerializeField] float BaseCrawlForce = 5f;
+    ///<summary> The horizontal force applied when pushing an object. </summary>
+    [SerializeField] float BasePushForce = 6f;
+    ///<summary> The horizontal force applied when pulling an object. </summary>
+    [SerializeField] float BasePullForce = 4f;
     ///<summary> The vertical force applied when jumping. </summary>
     [SerializeField] float BaseJumpForce = 15f;
     ///<summary> The force of gravity pulling the agent downwards </summary>
@@ -46,6 +60,8 @@ public class GravityMovement : MonoBehaviour
     Collider2D playerGroundCollider;
 
     Collider2D climbCollider;
+
+    GameObject interactingObject;
 
     //map edges
     float upperLimit;
@@ -78,6 +94,8 @@ public class GravityMovement : MonoBehaviour
     LayerMask crawlLayer;
     LayerMask climbLayerRight;
     LayerMask climbLayerLeft;
+    LayerMask interactbleLayerRight;
+    LayerMask interactbleLayerLeft;
 
     //booleans
     bool isManoeuvring;
@@ -86,6 +104,7 @@ public class GravityMovement : MonoBehaviour
     bool hasJumped;
     bool canJump;
     bool hasCaught;
+    bool isInteracting;
 
     private void Start()
     {
@@ -93,6 +112,7 @@ public class GravityMovement : MonoBehaviour
         grounded = true;
         isManoeuvring = false;
         movementType = MovementType.Walking;
+        interactionType = InteractionType.None;
 
         castDistance = 100;
 
@@ -101,6 +121,8 @@ public class GravityMovement : MonoBehaviour
         crawlLayer = LayerMask.GetMask("CrawlSpace");
         climbLayerRight = LayerMask.GetMask("ClimbableRight");
         climbLayerLeft = LayerMask.GetMask("ClimbableLeft");
+        interactbleLayerRight = LayerMask.GetMask("InteractableRight");
+        interactbleLayerLeft = LayerMask.GetMask("InteractableLeft");
 
         playerCollisionCollider = GetComponent<Collider2D>();
         playerSize = playerCollisionCollider.bounds.size;
@@ -169,22 +191,36 @@ public class GravityMovement : MonoBehaviour
 
     void getMovementType()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(bottomEdgePosition, playerSize, 0, transform.up, 0, climbLayerRight | climbLayerLeft);
+        RaycastHit2D catchHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, climbLayerRight | climbLayerLeft);
+        RaycastHit2D interactHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, interactbleLayerRight | interactbleLayerLeft);
 
-        if (Physics2D.IsTouchingLayers(playerCollisionCollider, crawlLayer))
+        if (Physics2D.IsTouchingLayers(playerCollisionCollider, crawlLayer)) //this wont work, remember
         {
             hasCaught = false;
             movementType = MovementType.Crawling;
         }
-        else if (hit && !isJumping && hasJumped && !grounded)
+        else if (interactHit.collider != null && grounded && SystemSettings.interact)
         {
-            hit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, climbLayerRight);
-
-            if (hit)
+            interactingObject = interactHit.collider.GetComponentInParent<InteractableObject>().gameObject;
+            transform.position = interactHit.collider.transform.position;
+            if (interactHit.collider.gameObject.layer == 9)
+            {
+                movementType = MovementType.InteractRight;
+                isInteracting = true;
+            }
+            else if (interactHit.collider.gameObject.layer == 10)
+            {
+                movementType = MovementType.InteractLeft;
+                isInteracting = true;
+            }
+        }
+        else if (catchHit.collider != null && !isJumping && hasJumped && !grounded)
+        {
+            if (catchHit.collider.gameObject.layer == 7)
             {
                 activateJumpCatch(MovementType.CatchRight, climbLayerRight);
             }
-            else
+            else if (catchHit.collider.gameObject.layer == 8)
             {
                 activateJumpCatch(MovementType.CatchLeft, climbLayerLeft);
             }
@@ -212,6 +248,7 @@ public class GravityMovement : MonoBehaviour
         void activateJumpCatch(MovementType movement, LayerMask layer)
         {
             movementType = movement;
+            hasJumped = false;
             try
             {
                 climbCollider.gameObject.SetActive(true);
@@ -229,6 +266,11 @@ public class GravityMovement : MonoBehaviour
 
     void userInput()
     {
+        if (movementType == MovementType.InteractRight || movementType == MovementType.InteractLeft)
+        {
+
+        }
+
         if (!isManoeuvring)
         {
             if ((SystemSettings.tapRight && movementType == MovementType.CatchRight) || (SystemSettings.tapLeft && movementType == MovementType.CatchLeft))
@@ -247,6 +289,19 @@ public class GravityMovement : MonoBehaviour
                     hasCaught = false;
                     movementType = MovementType.Walking;
                 }
+
+                if (movementType == MovementType.InteractRight)
+                {
+                    interactionType = InteractionType.Push;
+                    currentHorizontalForce = BasePushForce;
+                    interactingObject.GetComponent<InteractableObject>().Interact(gameObject); //this is messy, and expensive
+                }
+                else if (movementType == MovementType.InteractLeft)
+                {
+                    interactionType = InteractionType.Pull;
+                    currentHorizontalForce = BasePullForce;
+                    interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
+                }
                 horizontalSpeed = currentHorizontalForce;
                 transform.position = new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime), transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime), transform.position.z + playerGroundObject.transform.right.z);
             }
@@ -262,6 +317,18 @@ public class GravityMovement : MonoBehaviour
                     movementType = MovementType.Walking;
                 }
 
+                if (movementType == MovementType.InteractRight)
+                {
+                    interactionType = InteractionType.Pull;
+                    currentHorizontalForce = BasePullForce;
+                    interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
+                }
+                else if (movementType == MovementType.InteractLeft)
+                {
+                    interactionType = InteractionType.Push;
+                    currentHorizontalForce = BasePushForce;
+                    interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
+                }
                 horizontalSpeed = -currentHorizontalForce;
                 transform.position = new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime), transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime), transform.position.z + playerGroundObject.transform.right.z);
             }
@@ -284,12 +351,6 @@ public class GravityMovement : MonoBehaviour
                 hasJumped = true;
                 verticalSpeed = BaseJumpForce;
                 transform.position = new Vector3(transform.position.x, transform.position.y + (verticalSpeed * Time.deltaTime), transform.position.z);
-
-            }
-
-            if (SystemSettings.interact)
-            {
-                Interact();
             }
         }
     }
