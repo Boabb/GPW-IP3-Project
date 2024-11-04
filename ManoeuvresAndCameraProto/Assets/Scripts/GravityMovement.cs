@@ -150,7 +150,7 @@ public class GravityMovement : MonoBehaviour
             hasJumped = false;
         }
 
-        if (grounded)
+        if (grounded || movementType == MovementType.Crawling)
         {
             canJump = true;
         }
@@ -193,8 +193,9 @@ public class GravityMovement : MonoBehaviour
     {
         RaycastHit2D catchHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, climbLayerRight | climbLayerLeft);
         RaycastHit2D interactHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, interactbleLayerRight | interactbleLayerLeft);
+        RaycastHit2D crawlHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, crawlLayer);
 
-        if (Physics2D.IsTouchingLayers(playerCollisionCollider, crawlLayer)) //this wont work, remember
+        if (crawlHit.collider != null && grounded) //no animation or rotation
         {
             hasCaught = false;
             movementType = MovementType.Crawling;
