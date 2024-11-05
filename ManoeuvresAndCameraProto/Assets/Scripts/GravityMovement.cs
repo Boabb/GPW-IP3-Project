@@ -88,6 +88,10 @@ public class GravityMovement : MonoBehaviour
     Quaternion targetRotation;
     float rotationProgress;
 
+    //unwalkable variables
+    float unwalkableRight;
+    float unwalkableLeft;
+
     //layer masks
     LayerMask groundLayer;
     LayerMask playerLayer;
@@ -96,6 +100,8 @@ public class GravityMovement : MonoBehaviour
     LayerMask climbLayerLeft;
     LayerMask interactbleLayerRight;
     LayerMask interactbleLayerLeft;
+    LayerMask unwalkableLayerRight;
+    LayerMask unwalkableLayerLeft;
 
     //booleans
     bool isManoeuvring;
@@ -123,6 +129,8 @@ public class GravityMovement : MonoBehaviour
         climbLayerLeft = LayerMask.GetMask("ClimbableLeft");
         interactbleLayerRight = LayerMask.GetMask("InteractableRight");
         interactbleLayerLeft = LayerMask.GetMask("InteractableLeft");
+        unwalkableLayerRight = LayerMask.GetMask("WallRight");
+        unwalkableLayerLeft = LayerMask.GetMask("WallLeft");
 
         playerCollisionCollider = GetComponent<Collider2D>();
         playerSize = playerCollisionCollider.bounds.size;
@@ -348,6 +356,7 @@ public class GravityMovement : MonoBehaviour
 
             if (SystemSettings.jump && canJump)
             {
+                Debug.Log("Is JUmpinh");
                 grounded = canJump;
                 hasJumped = true;
                 verticalSpeed = BaseJumpForce;
@@ -397,8 +406,40 @@ public class GravityMovement : MonoBehaviour
         GetEdgePositions(gameObject);
 
         RaycastHit2D[] groundChecks = Physics2D.BoxCastAll(new Vector3(bottomEdgePosition.x, bottomEdgePosition.y + (playerSize.y / 2)), playerSize, 0, -gameObject.transform.up, castDistance, groundLayer);
+
+        RaycastHit2D unwalkableRightCheck = Physics2D.BoxCast(transform.position, playerSize, 0, transform.right, castDistance, unwalkableLayerRight);
+        RaycastHit2D unwalkableLeftCheck = Physics2D.BoxCast(transform.position, playerSize, 0, -transform.right, castDistance, unwalkableLayerLeft);
+
         float checkGroundY;
         int indexCheck = 0;
+
+
+        //if (transform.position.x + (playerSize.x / 2) > unwalkableRight)
+        //{            
+        //    transform.position = new Vector3(unwalkableRight - (playerSize.x / 2), transform.position.y, transform.position.z);
+        //}
+
+        try
+        {
+            unwalkableRight = unwalkableRightCheck.collider.transform.position.x;
+        }
+        catch
+        {
+
+        }
+
+        if (transform.position.x - (playerSize.x / 2) < unwalkableLeft)
+        {
+            transform.position = new Vector3(unwalkableLeft + (playerSize.x / 2), transform.position.y, transform.position.z);
+        }
+        try
+        {
+            unwalkableLeft = unwalkableLeftCheck.collider.transform.position.x;
+        }
+        catch
+        {
+
+        }
 
         try
         {
@@ -406,7 +447,7 @@ public class GravityMovement : MonoBehaviour
 
             for (int c = 0; c < groundChecks.Length; c++)
             {
-                if (Vector2.Distance(bottomEdgePosition, new Vector2(transform.position.x, groundChecks[c].collider.ClosestPoint(transform.position).y)) < GroundedMargin && !isJumping)
+                if (Vector2.Distance(bottomEdgePosition, new Vector2(transform.position.x, groundChecks[c].collider.ClosestPoint(transform.position).y)) < TerminalVelocity * Time.deltaTime && !isJumping)
                 {
                     checkGroundY = groundChecks[c].collider.ClosestPoint(transform.position).y;
                     groundY = checkGroundY;
@@ -420,12 +461,12 @@ public class GravityMovement : MonoBehaviour
                 }
             }
 
-            if (Vector2.Distance(bottomEdgePosition, new Vector2(transform.position.x, checkGroundY)) > GroundedMargin)
+            if (Vector2.Distance(bottomEdgePosition, new Vector2(transform.position.x, checkGroundY)) > TerminalVelocity * Time.deltaTime)
             {
                 grounded = false;
                 groundY = checkGroundY;
                 groundNormal = groundChecks[indexCheck].normal;
-                verticalSpeed -= GravityForce;
+                verticalSpeed -= GravityForce * Time.deltaTime;
             }
 
             playerGroundObject.transform.rotation = groundChecks[indexCheck].collider.transform.rotation;

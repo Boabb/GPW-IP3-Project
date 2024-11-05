@@ -16,8 +16,8 @@ TagManager:
   - ClimbableLeft
   - InteractableRight
   - InteractableLeft
-  - 
-  - 
+  - WallRight
+  - WallLeft
   - 
   - 
   - 
