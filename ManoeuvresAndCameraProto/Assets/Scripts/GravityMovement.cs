@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class GravityMovement : MonoBehaviour
 {
+    public struct UnwalkableCoordinates
+    {
+        public float rightX, leftX, rightY, leftY;
+    }
+
     enum MovementType
     {
         Walking,
@@ -43,7 +48,7 @@ public class GravityMovement : MonoBehaviour
     ///<summary> The maximum speed the agent can fall at. </summary>
     [SerializeField] float TerminalVelocity = 15f;
     ///<summary> The margin in which the agent can land. </summary>
-    [SerializeField] float GroundedMargin = 0.03f; //this should be roughly equal to TerminalVelocity * time.DeltaTime
+    [SerializeField] float GroundedMargin = 0.03f; //this should be roughly equal to TerminalVelocity * Time.deltaTime (all uses should be replaced with TerminalVelocity * Time.deltaTime)
     ///<summary> The margin in which the agent can reach a target. </summary>
     [SerializeField] float TargetMargin = 0.1f;
 
@@ -89,8 +94,7 @@ public class GravityMovement : MonoBehaviour
     float rotationProgress;
 
     //unwalkable variables
-    float unwalkableRight;
-    float unwalkableLeft;
+    List<UnwalkableCoordinates> unwalkableCoords; //could be a vecctor2 i guess, but this is simpler
 
     //layer masks
     LayerMask groundLayer;
@@ -120,7 +124,7 @@ public class GravityMovement : MonoBehaviour
         movementType = MovementType.Walking;
         interactionType = InteractionType.None;
 
-        castDistance = 100;
+        castDistance = 1000;
 
         groundLayer = LayerMask.GetMask("Ground"); 
         playerLayer = LayerMask.GetMask("Player");
@@ -137,6 +141,8 @@ public class GravityMovement : MonoBehaviour
 
         playerGroundObject = GameObject.Find("PlayerGroundCollider");
         playerGroundCollider = playerGroundObject.GetComponent<Collider2D>();
+
+        unwalkableCoords = new List<UnwalkableCoordinates>();
 
         DetectGround();
     }
@@ -311,6 +317,16 @@ public class GravityMovement : MonoBehaviour
                     currentHorizontalForce = BasePullForce;
                     interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
                 }
+                for (int i = 0; i < unwalkableCoords.Count; i++)
+                {
+                    if (rightEdgePosition.x > unwalkableCoords[i].rightX && leftEdgePosition.x < unwalkableCoords[i].leftX && bottomEdgePosition.y < unwalkableCoords[i].rightY)
+                    {
+                        transform.position = new Vector3(unwalkableCoords[i].rightX - (playerSize.x / 2), transform.position.y, transform.position.z);
+
+                        return;
+                    }
+                }
+
                 horizontalSpeed = currentHorizontalForce;
                 transform.position = new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime), transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime), transform.position.z + playerGroundObject.transform.right.z);
             }
@@ -338,6 +354,17 @@ public class GravityMovement : MonoBehaviour
                     currentHorizontalForce = BasePushForce;
                     interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
                 }
+
+                for (int i = 0; i < unwalkableCoords.Count; i++)
+                {
+                    if (leftEdgePosition.x < unwalkableCoords[i].leftX && rightEdgePosition.x > unwalkableCoords[i].rightX && bottomEdgePosition.y < unwalkableCoords[i].leftY)
+                    {
+                        transform.position = new Vector3(unwalkableCoords[i].leftX + (playerSize.x / 2), transform.position.y, transform.position.z);
+
+                        return;
+                    }
+                }
+
                 horizontalSpeed = -currentHorizontalForce;
                 transform.position = new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime), transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime), transform.position.z + playerGroundObject.transform.right.z);
             }
@@ -356,7 +383,6 @@ public class GravityMovement : MonoBehaviour
 
             if (SystemSettings.jump && canJump)
             {
-                Debug.Log("Is JUmpinh");
                 grounded = canJump;
                 hasJumped = true;
                 verticalSpeed = BaseJumpForce;
@@ -407,39 +433,11 @@ public class GravityMovement : MonoBehaviour
 
         RaycastHit2D[] groundChecks = Physics2D.BoxCastAll(new Vector3(bottomEdgePosition.x, bottomEdgePosition.y + (playerSize.y / 2)), playerSize, 0, -gameObject.transform.up, castDistance, groundLayer);
 
-        RaycastHit2D unwalkableRightCheck = Physics2D.BoxCast(transform.position, playerSize, 0, transform.right, castDistance, unwalkableLayerRight);
-        RaycastHit2D unwalkableLeftCheck = Physics2D.BoxCast(transform.position, playerSize, 0, -transform.right, castDistance, unwalkableLayerLeft);
+        RaycastHit2D[] unwalkableRightChecks = Physics2D.BoxCastAll(new Vector3(transform.position.x - castDistance, transform.position.y), playerSize, 0, gameObject.transform.right, castDistance * 2, unwalkableLayerRight);
+        RaycastHit2D[] unwalkableLeftChecks = Physics2D.BoxCastAll(new Vector3(transform.position.x + castDistance, transform.position.y), playerSize, 0, -gameObject.transform.right, castDistance * 2, unwalkableLayerLeft);
 
         float checkGroundY;
         int indexCheck = 0;
-
-
-        //if (transform.position.x + (playerSize.x / 2) > unwalkableRight)
-        //{            
-        //    transform.position = new Vector3(unwalkableRight - (playerSize.x / 2), transform.position.y, transform.position.z);
-        //}
-
-        try
-        {
-            unwalkableRight = unwalkableRightCheck.collider.transform.position.x;
-        }
-        catch
-        {
-
-        }
-
-        if (transform.position.x - (playerSize.x / 2) < unwalkableLeft)
-        {
-            transform.position = new Vector3(unwalkableLeft + (playerSize.x / 2), transform.position.y, transform.position.z);
-        }
-        try
-        {
-            unwalkableLeft = unwalkableLeftCheck.collider.transform.position.x;
-        }
-        catch
-        {
-
-        }
 
         try
         {
@@ -480,12 +478,57 @@ public class GravityMovement : MonoBehaviour
             verticalSpeed = 0;
             horizontalSpeed = 0;
         }
+
+        for (int i = 0; i < unwalkableRightChecks.Length; i++) 
+        {
+            for (int j = 0; j < unwalkableLeftChecks.Length; j++)
+            {
+                if (unwalkableRightChecks[i].collider.transform.parent.gameObject == unwalkableLeftChecks[j].collider.transform.parent.gameObject)
+                {
+                    UnwalkableCoordinates unwalkableCoordinates = new UnwalkableCoordinates();
+                    unwalkableCoordinates.rightX = unwalkableRightChecks[i].collider.transform.position.x;
+                    unwalkableCoordinates.leftX = unwalkableLeftChecks[j].collider.transform.position.x;
+
+                    unwalkableCoordinates.rightY = unwalkableRightChecks[i].collider.bounds.max.y;
+                    unwalkableCoordinates.leftY = unwalkableLeftChecks[j].collider.bounds.max.y;
+
+                    unwalkableCoords.Add(unwalkableCoordinates);
+                }
+            }
+        }
+
+        //if (transform.position.x + (playerSize.x / 2) > unwalkableRight)
+        //{
+        //    transform.position = new Vector3(unwalkableRight - (playerSize.x / 2), transform.position.y, transform.position.z);
+        //}
+
+        //try
+        //{
+        //    //unwalkableRight = unwalkableRightCheck.collider.transform.position.x;
+        //}
+        //catch
+        //{
+
+        //}
+
+        //if (transform.position.x - (playerSize.x / 2) < unwalkableLeft)
+        //{
+        //    transform.position = new Vector3(unwalkableLeft + (playerSize.x / 2), transform.position.y, transform.position.z);
+        //}
+        //try
+        //{
+        //    //unwalkableLeft = unwalkableLeftCheck.collider.transform.position.x;
+        //}
+        //catch
+        //{
+
+        //}
     }
 
     void GetEdgePositions(GameObject objectToGet)
     {
-        rightEdgePosition = new Vector3(objectToGet.transform.position.x - (playerSize.x / 2), objectToGet.transform.position.y, objectToGet.transform.position.z);
-        leftEdgePosition = new Vector3(objectToGet.transform.position.x + (playerSize.x / 2), objectToGet.transform.position.y, objectToGet.transform.position.z);
+        leftEdgePosition = new Vector3(objectToGet.transform.position.x - (playerSize.x / 2), objectToGet.transform.position.y, objectToGet.transform.position.z);
+        rightEdgePosition = new Vector3(objectToGet.transform.position.x + (playerSize.x / 2), objectToGet.transform.position.y, objectToGet.transform.position.z);
         topEdgePosition = new Vector3(objectToGet.transform.position.x, objectToGet.transform.position.y + (playerSize.y / 2), objectToGet.transform.position.z);
         bottomEdgePosition = new Vector3(objectToGet.transform.position.x, objectToGet.transform.position.y - (playerSize.y / 2), objectToGet.transform.position.z);    
     }
