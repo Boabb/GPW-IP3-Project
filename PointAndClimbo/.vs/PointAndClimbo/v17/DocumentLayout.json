@@ -1,14 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\",
+  "WorkspaceRootPath": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|c:\\users\\aparkh300\\documents\\github\\gpw-ip3-project\\pointandclimbo\\assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|c:\\users\\matty\\documents\\github\\gpw-ip3-project\\pointandclimbo\\assets\\scripts\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B99C3E6-F2ED-742C-66CE-272189373D59}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,10 +31,35 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T20:52:47.695Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AudioManager.cs",
+              "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\AudioManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\AudioManager.cs",
+              "ToolTip": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\AudioManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\AudioManager.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACwAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T17:06:30.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Movement.cs",
-              "DocumentMoniker": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\Movement.cs",
+              "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\Movement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Movement.cs",
-              "ToolTip": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\Movement.cs",
+              "ToolTip": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\Movement.cs",
               "RelativeToolTip": "Assets\\Scripts\\Movement.cs",
               "ViewState": "AQIAABoAAAAAAAAAAAAQwAwAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -34,16 +67,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "GravityMovement.cs",
-              "DocumentMoniker": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GravityMovement.cs",
+              "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GravityMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GravityMovement.cs",
-              "ToolTip": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GravityMovement.cs",
+              "ToolTip": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\PointAndClimbo\\Assets\\Scripts\\GravityMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\GravityMovement.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAnwFoAAAAWAAAAAAAAAA==",
+              "ViewState": "AQIAAGoBAAAAAAAAAAAAAIcBAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T20:37:25.68Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-06T20:37:25.68Z"
             }
           ]
         }
