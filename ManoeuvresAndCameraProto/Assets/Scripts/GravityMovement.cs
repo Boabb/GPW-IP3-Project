@@ -144,7 +144,7 @@ public class GravityMovement : MonoBehaviour
 
         unwalkableCoords = new List<UnwalkableCoordinates>();
 
-        DetectGround();
+        DetectCollision();
     }
 
     // Update is called once per frame
@@ -176,7 +176,7 @@ public class GravityMovement : MonoBehaviour
         GetEdgePositions(gameObject);
         getMovementType();
         userInput();
-        DetectGround();
+        DetectCollision();
         Movement();
     }
 
@@ -427,7 +427,7 @@ public class GravityMovement : MonoBehaviour
     }
 
     //https://www.youtube.com/watch?v=P_6W-36QfLA
-    void DetectGround()
+    void DetectCollision()
     {
         GetEdgePositions(gameObject);
 

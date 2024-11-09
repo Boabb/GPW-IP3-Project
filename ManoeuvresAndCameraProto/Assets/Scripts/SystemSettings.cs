@@ -12,6 +12,18 @@ public class SystemSettings: MonoBehaviour
     public static bool interact;
     public static bool tapInteract;
 
+    [SerializeField] GameObject touchControlsParent; //this should be activated if touch controls are in use
+
+    //these are used to control the placement of the controls depending on resolution of the screen
+    [SerializeField] GameObject movementParent;
+    [SerializeField] GameObject otherParent;
+
+    //the actual buttons to be clicked on
+    [SerializeField] Collider2D rightButton;
+    [SerializeField] Collider2D leftButton;
+    [SerializeField] Collider2D jumpButton;
+    [SerializeField] Collider2D interactButton;
+
     enum SystemType
     {
         TouchScreen,
@@ -36,6 +48,11 @@ public class SystemSettings: MonoBehaviour
         {
             Debug.LogWarning("Can't detect system type... Reverting to Default");
             systemType = SystemType.Desktop;
+        }
+
+        if (systemType == SystemType.TouchScreen)
+        {
+            touchControlsParent.SetActive(true);
         }
     }
 
@@ -104,6 +121,59 @@ public class SystemSettings: MonoBehaviour
             else
             {
                 tapRight = false;
+            }
+        }
+
+        if (systemType == SystemType.TouchScreen)
+        {
+            moveLeft = false;
+            moveRight = false;
+            interact = false;
+            jump = false;
+            tapLeft = false;
+            tapRight = false;
+            tapInteract = false;
+
+            Ray[] rays = new Ray[Input.touchCount];
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                rays[i] = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
+                Collider2D checkCollider = Physics2D.Raycast(rays[i].origin, rays[i].direction).collider;
+
+                if (checkCollider == leftButton && (Input.GetTouch(i).phase == TouchPhase.Began || Input.GetTouch(i).phase == TouchPhase.Stationary))
+                {
+                    moveLeft = true;
+                }
+
+                if (checkCollider == rightButton && (Input.GetTouch(i).phase == TouchPhase.Began || Input.GetTouch(i).phase == TouchPhase.Stationary))
+                {
+                    moveRight = true;
+                }
+
+                if (checkCollider == interactButton && (Input.GetTouch(i).phase == TouchPhase.Began || Input.GetTouch(i).phase == TouchPhase.Stationary))
+                {
+                    interact = true;
+                }
+
+                if (checkCollider == jumpButton && Input.GetTouch(i).phase == TouchPhase.Began)
+                {
+                    jump = true;
+                }
+
+                if (checkCollider == leftButton && Input.GetTouch(i).phase == TouchPhase.Began)
+                {
+                    tapLeft = true;
+                }
+
+                if (checkCollider == rightButton && Input.GetTouch(i).phase == TouchPhase.Began)
+                {
+                    tapRight = true;
+                }
+
+                if (checkCollider == interactButton && Input.GetTouch(i).phase == TouchPhase.Began)
+                {
+                    tapInteract = true;
+                }
             }
         }
     }
