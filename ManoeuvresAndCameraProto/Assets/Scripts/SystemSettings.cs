@@ -10,6 +10,7 @@ public class SystemSettings: MonoBehaviour
     public static bool tapRight;
     public static bool jump;
     public static bool interact;
+    public static bool tapInteract;
 
     enum SystemType
     {
@@ -76,6 +77,15 @@ public class SystemSettings: MonoBehaviour
             else
             {
                 interact = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                tapInteract = true;
+            }
+            else
+            {
+                tapInteract = false;
             }
 
             if (Input.GetKeyDown(KeyCode.A))
