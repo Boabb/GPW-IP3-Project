@@ -39,6 +39,7 @@ public class Interactor : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("Interacted!");
+                AudioManager.PlaySound(Resources.Load<AudioClip>("radiosound"));
             }
             yield return null;
         }
