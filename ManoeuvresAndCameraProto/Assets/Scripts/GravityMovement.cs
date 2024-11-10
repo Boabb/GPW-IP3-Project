@@ -398,10 +398,11 @@ public class GravityMovement : MonoBehaviour
 
             if (SystemSettings.jump && canJump)
             {
+                DetectGround();
                 grounded = canJump;
                 hasJumped = true;
                 verticalSpeed = BaseJumpForce;
-                transform.position = new Vector3(transform.position.x, transform.position.y + (verticalSpeed * Time.deltaTime), transform.position.z);
+                transform.position += playerGroundCollider.transform.up * (verticalSpeed * Time.deltaTime);
             }
         }
     }
