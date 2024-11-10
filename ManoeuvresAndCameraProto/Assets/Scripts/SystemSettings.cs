@@ -55,12 +55,6 @@ public class SystemSettings: MonoBehaviour
         if (systemType == SystemType.TouchScreen)
         {
             touchControlsParent.SetActive(true);
-
-            float viewHeight = mainCamera.orthographicSize;
-            float viewWidth = viewHeight * mainCamera.aspect;
-
-            movementParent.transform.position = new Vector3(-viewWidth + (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
-            otherParent.transform.position = new Vector3(viewWidth - (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
         }
     }
 
@@ -134,6 +128,12 @@ public class SystemSettings: MonoBehaviour
 
         if (systemType == SystemType.TouchScreen)
         {
+            float viewHeight = mainCamera.orthographicSize;
+            float viewWidth = viewHeight * mainCamera.aspect;
+
+            movementParent.transform.position = new Vector3(-viewWidth + (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
+            otherParent.transform.position = new Vector3(viewWidth - (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
+
             moveLeft = false;
             moveRight = false;
             interact = false;

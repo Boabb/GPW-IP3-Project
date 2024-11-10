@@ -29,6 +29,7 @@ public class GravityMovement : MonoBehaviour
 
     InteractionType interactionType;
     MovementType movementType;
+    PlayerAnimator playerAnimator;
 
     [Header("Gravity Settings")]
     /// <summary> The horizontal force applied when walking. </summary> 
@@ -135,6 +136,8 @@ public class GravityMovement : MonoBehaviour
         interactbleLayerLeft = LayerMask.GetMask("InteractableLeft");
         unwalkableLayerRight = LayerMask.GetMask("WallRight");
         unwalkableLayerLeft = LayerMask.GetMask("WallLeft");
+
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
 
         playerCollisionCollider = GetComponent<Collider2D>();
         playerSize = playerCollisionCollider.bounds.size;
@@ -295,6 +298,10 @@ public class GravityMovement : MonoBehaviour
 
             if (SystemSettings.moveRight && !SystemSettings.moveLeft)
             {
+                if (movementType == MovementType.Walking)
+                {
+                    playerAnimator.playerWalkRight();
+                }
                 if (movementType == MovementType.CatchRight)
                 {
                     return;
@@ -332,6 +339,10 @@ public class GravityMovement : MonoBehaviour
             }
             else if (SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
+                if (movementType == MovementType.Walking)
+                {
+                    playerAnimator.playerWalkLeft();
+                }
                 if (movementType == MovementType.CatchLeft)
                 {
                     return;
@@ -367,6 +378,10 @@ public class GravityMovement : MonoBehaviour
 
                 horizontalSpeed = -currentHorizontalForce;
                 transform.position = new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime), transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime), transform.position.z + playerGroundObject.transform.right.z);
+            }
+            else if (!SystemSettings.moveLeft && !SystemSettings.moveRight)
+            {
+                playerAnimator.playerIdle();
             }
 
             if (grounded)
