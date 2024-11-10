@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\matty\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\assets\\scripts\\follower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\follower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\matty\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\interactor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\assets\\scripts\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\assets\\scripts\\interactableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\matty\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\assets\\scripts\\systemsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\systemsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\assets\\scripts\\follower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\follower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,11 +38,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "AudioManager.cs",
+              "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\AudioManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\AudioManager.cs",
+              "ToolTip": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\AudioManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\AudioManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T13:02:10.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
@@ -46,8 +62,7 @@
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T12:40:52.607Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-09T12:40:52.607Z"
             },
             {
               "$type": "Document",
@@ -57,14 +72,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Interactor.cs",
               "ToolTip": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\Interactor.cs",
               "RelativeToolTip": "Assets\\Scripts\\Interactor.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAnAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAIwCcAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-09T12:40:30.734Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "InteractableObject.cs",
               "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\InteractableObject.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InteractableObject.cs",
@@ -72,12 +87,11 @@
               "RelativeToolTip": "Assets\\Scripts\\InteractableObject.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T20:27:38.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-04T20:27:38.637Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "SystemSettings.cs",
               "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\SystemSettings.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SystemSettings.cs",
@@ -89,19 +103,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Follower.cs",
               "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\Follower.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Follower.cs",
               "ToolTip": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\Follower.cs",
               "RelativeToolTip": "Assets\\Scripts\\Follower.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T11:13:28.401Z"
+              "WhenOpened": "2024-11-03T11:13:28.401Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "GravityMovement.cs",
               "DocumentMoniker": "C:\\Users\\matty\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\GravityMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GravityMovement.cs",
@@ -109,8 +124,7 @@
               "RelativeToolTip": "Assets\\Scripts\\GravityMovement.cs",
               "ViewState": "AQIAACoBAAAAAAAAAAA8wD0BAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T11:13:27.024Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-03T11:13:27.024Z"
             }
           ]
         }
