@@ -12,6 +12,8 @@ public class SystemSettings: MonoBehaviour
     public static bool interact;
     public static bool tapInteract;
 
+    [SerializeField] Camera mainCamera;
+
     [SerializeField] GameObject touchControlsParent; //this should be activated if touch controls are in use
 
     //these are used to control the placement of the controls depending on resolution of the screen
@@ -53,6 +55,12 @@ public class SystemSettings: MonoBehaviour
         if (systemType == SystemType.TouchScreen)
         {
             touchControlsParent.SetActive(true);
+
+            float viewHeight = mainCamera.orthographicSize;
+            float viewWidth = viewHeight * mainCamera.aspect;
+
+            movementParent.transform.position = new Vector3(-viewWidth + (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
+            otherParent.transform.position = new Vector3(viewWidth - (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
         }
     }
 
