@@ -10,21 +10,6 @@ public class SystemSettings: MonoBehaviour
     public static bool tapRight;
     public static bool jump;
     public static bool interact;
-    public static bool tapInteract;
-
-    [SerializeField] Camera mainCamera;
-
-    [SerializeField] GameObject touchControlsParent; //this should be activated if touch controls are in use
-
-    //these are used to control the placement of the controls depending on resolution of the screen
-    [SerializeField] GameObject movementParent;
-    [SerializeField] GameObject otherParent;
-
-    //the actual buttons to be clicked on
-    [SerializeField] Collider2D rightButton;
-    [SerializeField] Collider2D leftButton;
-    [SerializeField] Collider2D jumpButton;
-    [SerializeField] Collider2D interactButton;
 
     enum SystemType
     {
@@ -96,15 +81,6 @@ public class SystemSettings: MonoBehaviour
             else
             {
                 interact = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                tapInteract = true;
-            }
-            else
-            {
-                tapInteract = false;
             }
 
             if (Input.GetKeyDown(KeyCode.A))

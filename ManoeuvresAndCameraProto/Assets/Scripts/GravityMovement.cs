@@ -51,7 +51,7 @@ public class GravityMovement : MonoBehaviour
     ///<summary> The margin in which the agent can land. </summary>
     [SerializeField] float GroundedMargin = 0.03f; //this should be roughly equal to TerminalVelocity * Time.deltaTime (all uses should be replaced with TerminalVelocity * Time.deltaTime)
     ///<summary> The margin in which the agent can reach a target. </summary>
-    //[SerializeField] float TargetMargin = 0.1f;
+    [SerializeField] float TargetMargin = 0.1f;
 
     //player info
     Vector3 rightEdgePosition;
@@ -95,7 +95,7 @@ public class GravityMovement : MonoBehaviour
     float rotationProgress;
 
     //unwalkable variables
-    List<UnwalkableCoordinates> unwalkableCoords;
+    List<UnwalkableCoordinates> unwalkableCoords; //could be a vecctor2 i guess, but this is simpler
 
     //layer masks
     LayerMask groundLayer;
@@ -147,7 +147,7 @@ public class GravityMovement : MonoBehaviour
 
         unwalkableCoords = new List<UnwalkableCoordinates>();
 
-        DetectCollision();
+        DetectGround();
     }
 
     // Update is called once per frame
@@ -179,7 +179,7 @@ public class GravityMovement : MonoBehaviour
         GetEdgePositions(gameObject);
         getMovementType();
         userInput();
-        DetectCollision();
+        DetectGround();
         Movement();
     }
 
@@ -442,7 +442,7 @@ public class GravityMovement : MonoBehaviour
     }
 
     //https://www.youtube.com/watch?v=P_6W-36QfLA
-    void DetectCollision()
+    void DetectGround()
     {
         GetEdgePositions(gameObject);
 

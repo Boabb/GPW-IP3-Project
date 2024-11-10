@@ -36,7 +36,7 @@ public class Interactor : MonoBehaviour
 
         while (interacting && Vector2.Distance(GameManager.player.transform.position, transform.position) <= interactRange)
         {
-            if (SystemSettings.tapInteract)
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("Interacted!");
                 AudioManager.PlaySound(Resources.Load<AudioClip>("radiosound"));
