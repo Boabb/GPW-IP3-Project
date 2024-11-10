@@ -10,6 +10,21 @@ public class SystemSettings: MonoBehaviour
     public static bool tapRight;
     public static bool jump;
     public static bool interact;
+    public static bool tapInteract;
+
+    [SerializeField] Camera mainCamera;
+
+    [SerializeField] GameObject touchControlsParent; //this should be activated if touch controls are in use
+
+    //these are used to control the placement of the controls depending on resolution of the screen
+    [SerializeField] GameObject movementParent;
+    [SerializeField] GameObject otherParent;
+
+    //the actual buttons to be clicked on
+    [SerializeField] Collider2D rightButton;
+    [SerializeField] Collider2D leftButton;
+    [SerializeField] Collider2D jumpButton;
+    [SerializeField] Collider2D interactButton;
 
     enum SystemType
     {
@@ -36,6 +51,18 @@ public class SystemSettings: MonoBehaviour
             Debug.LogWarning("Can't detect system type... Reverting to Default");
             systemType = SystemType.Desktop;
         }
+
+        float viewHeight = mainCamera.orthographicSize;
+        float viewWidth = viewHeight * mainCamera.aspect;
+
+        Vector3 movementButtons = new Vector3(-viewWidth + (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
+        Vector3 otherButtons = new Vector3(viewWidth - (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
+
+        movementParent.transform.position = movementButtons;
+        otherParent.transform.position = otherButtons;
+
+        Debug.Log(movementButtons);
+        Debug.Log(otherButtons);
 
         if (systemType == SystemType.TouchScreen)
         {
@@ -83,6 +110,15 @@ public class SystemSettings: MonoBehaviour
                 interact = false;
             }
 
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                tapInteract = true;
+            }
+            else
+            {
+                tapInteract = false;
+            }
+
             if (Input.GetKeyDown(KeyCode.A))
             {
                 tapLeft = true;
@@ -104,11 +140,6 @@ public class SystemSettings: MonoBehaviour
 
         if (systemType == SystemType.TouchScreen)
         {
-            float viewHeight = mainCamera.orthographicSize;
-            float viewWidth = viewHeight * mainCamera.aspect;
-
-            movementParent.transform.position = new Vector3(-viewWidth + (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
-            otherParent.transform.position = new Vector3(viewWidth - (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
 
             moveLeft = false;
             moveRight = false;
