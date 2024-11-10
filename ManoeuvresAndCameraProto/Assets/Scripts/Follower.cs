@@ -5,34 +5,31 @@ using UnityEngine;
 public class Follower : MonoBehaviour
 {
     [SerializeField] GameObject agentToFollow;
-
-    //where the camera is compared to the agent when it is 'directly' on the agent
-    [SerializeField] float baseOffsetX = 0;
-    [SerializeField] float baseOffsetY = 0;
-
-    //the furthest the camera can move in a level regardless of offset
-    [SerializeField] float levelMaxY;
-    [SerializeField] float levelMinY;
-    [SerializeField] float levelMaxX;
-    [SerializeField] float levelMinX;
-
-    //tigger objects
-    GameObject[] triggerObjects;
-
+    [SerializeField] float xOffset = 50;
+    [SerializeField] float cameraSpeed = 10;
     // Start is called before the first frame update
     void Start()
     {
-        triggerObjects = GameObject.FindGameObjectsWithTag("FollowerTriggerObject");
+        if (agentToFollow != null)
+        {
+            agentToFollow = GameManager.player;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(agentToFollow.transform.position.x, agentToFollow.transform.position.y, transform.position.z);
-    }
+        if (agentToFollow != null)
+        {
+            Vector3 position = new(agentToFollow.transform.position.x, agentToFollow.transform.position.y, transform.position.z);
+            position.x -= xOffset;
 
-    void ZoomToAgent()
-    {
-
+            transform.position = Vector3.Lerp(transform.position, position, cameraSpeed);
+        }
+        else
+        {
+            agentToFollow = GameManager.player;
+        }
     }
+    
 }
