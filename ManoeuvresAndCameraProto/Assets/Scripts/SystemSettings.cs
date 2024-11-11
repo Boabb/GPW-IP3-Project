@@ -52,18 +52,6 @@ public class SystemSettings: MonoBehaviour
             systemType = SystemType.Desktop;
         }
 
-        float viewHeight = mainCamera.orthographicSize;
-        float viewWidth = viewHeight * mainCamera.aspect;
-
-        Vector3 movementButtons = new Vector3(-viewWidth + (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
-        Vector3 otherButtons = new Vector3(viewWidth - (viewWidth / 5), -viewHeight + (viewHeight / 4), 0);
-
-        movementParent.transform.position = movementButtons;
-        otherParent.transform.position = otherButtons;
-
-        Debug.Log(movementButtons);
-        Debug.Log(otherButtons);
-
         if (systemType == SystemType.TouchScreen)
         {
             touchControlsParent.SetActive(true);
@@ -72,6 +60,18 @@ public class SystemSettings: MonoBehaviour
 
     private void Update()
     {
+        float viewHeight = mainCamera.orthographicSize;
+        float viewWidth = viewHeight * mainCamera.aspect;
+
+        Vector3 movementButtons = new Vector3(-viewWidth + (viewWidth / 4) + mainCamera.transform.position.x, -viewHeight + (viewHeight / 3) + mainCamera.transform.position.y, 0);
+        Vector3 otherButtons = new Vector3(viewWidth - (viewWidth / 4) + mainCamera.transform.position.x, -viewHeight + (viewHeight / 3) + mainCamera.transform.position.y, 0);
+
+        movementParent.transform.position = movementButtons;
+        otherParent.transform.position = otherButtons;
+
+        Debug.Log(movementParent.transform.position);
+        Debug.Log(otherParent.transform.position);
+
         if (systemType == SystemType.Desktop)
         {
             if (Input.GetKey(KeyCode.A))

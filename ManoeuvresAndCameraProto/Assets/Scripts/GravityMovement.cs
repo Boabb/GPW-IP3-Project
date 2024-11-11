@@ -147,7 +147,7 @@ public class GravityMovement : MonoBehaviour
 
         unwalkableCoords = new List<UnwalkableCoordinates>();
 
-        DetectGround();
+        DetectCollision();
     }
 
     // Update is called once per frame
@@ -179,7 +179,7 @@ public class GravityMovement : MonoBehaviour
         GetEdgePositions(gameObject);
         getMovementType();
         userInput();
-        DetectGround();
+        DetectCollision();
         Movement();
     }
 
@@ -326,7 +326,7 @@ public class GravityMovement : MonoBehaviour
                 }
                 for (int i = 0; i < unwalkableCoords.Count; i++)
                 {
-                    if (rightEdgePosition.x > unwalkableCoords[i].rightX && leftEdgePosition.x < unwalkableCoords[i].leftX && bottomEdgePosition.y < unwalkableCoords[i].rightY)
+                    if (rightEdgePosition.x > unwalkableCoords[i].rightX && leftEdgePosition.x < unwalkableCoords[i].rightX && bottomEdgePosition.y < unwalkableCoords[i].rightY)
                     {
                         transform.position = new Vector3(unwalkableCoords[i].rightX - (playerSize.x / 2), transform.position.y, transform.position.z);
 
@@ -368,7 +368,7 @@ public class GravityMovement : MonoBehaviour
 
                 for (int i = 0; i < unwalkableCoords.Count; i++)
                 {
-                    if (leftEdgePosition.x < unwalkableCoords[i].leftX && rightEdgePosition.x > unwalkableCoords[i].rightX && bottomEdgePosition.y < unwalkableCoords[i].leftY)
+                    if (leftEdgePosition.x < unwalkableCoords[i].leftX && rightEdgePosition.x > unwalkableCoords[i].leftX && bottomEdgePosition.y < unwalkableCoords[i].leftY)
                     {
                         transform.position = new Vector3(unwalkableCoords[i].leftX + (playerSize.x / 2), transform.position.y, transform.position.z);
 
@@ -398,7 +398,7 @@ public class GravityMovement : MonoBehaviour
 
             if (SystemSettings.jump && canJump)
             {
-                DetectGround();
+                DetectCollision();
                 grounded = canJump;
                 hasJumped = true;
                 verticalSpeed = BaseJumpForce;
@@ -443,7 +443,7 @@ public class GravityMovement : MonoBehaviour
     }
 
     //https://www.youtube.com/watch?v=P_6W-36QfLA
-    void DetectGround()
+    void DetectCollision()
     {
         GetEdgePositions(gameObject);
 
@@ -454,6 +454,8 @@ public class GravityMovement : MonoBehaviour
 
         float checkGroundY;
         int indexCheck = 0;
+
+        unwalkableCoords.Clear();
 
         try
         {
@@ -502,9 +504,9 @@ public class GravityMovement : MonoBehaviour
                 if (unwalkableRightChecks[i].collider.transform.parent.gameObject == unwalkableLeftChecks[j].collider.transform.parent.gameObject)
                 {
                     UnwalkableCoordinates unwalkableCoordinates = new UnwalkableCoordinates();
-                    unwalkableCoordinates.rightX = unwalkableRightChecks[i].collider.transform.position.x;
-                    unwalkableCoordinates.leftX = unwalkableLeftChecks[j].collider.transform.position.x;
 
+                    unwalkableCoordinates.rightX = unwalkableRightChecks[i].collider.bounds.max.x;
+                    unwalkableCoordinates.leftX = unwalkableLeftChecks[j].collider.bounds.min.x;
                     unwalkableCoordinates.rightY = unwalkableRightChecks[i].collider.bounds.max.y;
                     unwalkableCoordinates.leftY = unwalkableLeftChecks[j].collider.bounds.max.y;
 
