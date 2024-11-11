@@ -69,8 +69,8 @@ public class SystemSettings: MonoBehaviour
         movementParent.transform.position = movementButtons;
         otherParent.transform.position = otherButtons;
 
-        Debug.Log(movementParent.transform.position);
-        Debug.Log(otherParent.transform.position);
+        //Debug.Log(movementParent.transform.position);
+        //Debug.Log(otherParent.transform.position);
 
         if (systemType == SystemType.Desktop)
         {
