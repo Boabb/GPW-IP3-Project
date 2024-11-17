@@ -170,6 +170,7 @@ public class GravityMovement : MonoBehaviour
         if (hasJumped && grounded)
         {
             hasJumped = false;
+            PlayerAudio.PlayWoodenJump();
         }
 
         if (grounded || movementType == MovementType.Crawling)
@@ -225,7 +226,7 @@ public class GravityMovement : MonoBehaviour
             }
             hasCaught = false;
             movementType = MovementType.Crawling;
-            Debug.Log("Crawl: " + grounded);
+            //Debug.Log("Crawl: " + grounded);
         }
         else if (interactHit.collider != null && grounded && SystemSettings.interact)
         {
@@ -265,8 +266,6 @@ public class GravityMovement : MonoBehaviour
             }
             hasCaught = false;
             movementType = MovementType.Walking;
-
-            Debug.Log("Walk: " + grounded);
         }
 
         switch (movementType)
@@ -321,10 +320,14 @@ public class GravityMovement : MonoBehaviour
                 ClimbUpObstacle();
             }
 
+            PlayerAudio.PlayWoodenFootsteps(false); 
+            PlayerAudio.PlayWoodenScrape(false);
+
             if (SystemSettings.moveRight && !SystemSettings.moveLeft)
             {
                 if (movementType == MovementType.Walking)
                 {
+                    PlayerAudio.PlayWoodenFootsteps(true);
                     playerAnimator.PlayerWalkRight();
                 }
                 else if (movementType == MovementType.Crawling)
@@ -344,16 +347,19 @@ public class GravityMovement : MonoBehaviour
 
                 if (movementType == MovementType.InteractRight)
                 {
+                    PlayerAudio.PlayWoodenScrape(true);
                     interactionType = InteractionType.Push;
                     currentHorizontalForce = BasePushForce;
                     interactingObject.GetComponent<InteractableObject>().Interact(gameObject); //this is messy, and expensive
                 }
                 else if (movementType == MovementType.InteractLeft)
                 {
+                    PlayerAudio.PlayWoodenScrape(true);
                     interactionType = InteractionType.Pull;
                     currentHorizontalForce = BasePullForce;
                     interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
                 }
+
                 for (int i = 0; i < unwalkableCoords.Count; i++)
                 {
                     if (rightEdgePosition.x > unwalkableCoords[i].rightX && leftEdgePosition.x < unwalkableCoords[i].rightX && bottomEdgePosition.y < unwalkableCoords[i].rightY)
@@ -371,6 +377,7 @@ public class GravityMovement : MonoBehaviour
             {
                 if (movementType == MovementType.Walking)
                 {
+                    PlayerAudio.PlayWoodenFootsteps(true);
                     playerAnimator.PlayerWalkLeft();
                 }
                 else if (movementType == MovementType.Crawling)
@@ -390,15 +397,21 @@ public class GravityMovement : MonoBehaviour
 
                 if (movementType == MovementType.InteractRight)
                 {
+                    PlayerAudio.PlayWoodenScrape(true);
                     interactionType = InteractionType.Pull;
                     currentHorizontalForce = BasePullForce;
                     interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
                 }
                 else if (movementType == MovementType.InteractLeft)
                 {
+                    PlayerAudio.PlayWoodenScrape(true);
                     interactionType = InteractionType.Push;
                     currentHorizontalForce = BasePushForce;
                     interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
+                }
+                else
+                {
+                    PlayerAudio.PlayWoodenScrape(false);
                 }
 
                 for (int i = 0; i < unwalkableCoords.Count; i++)
@@ -491,8 +504,6 @@ public class GravityMovement : MonoBehaviour
         int indexCheck = 0;
 
         unwalkableCoords.Clear();
-
-        Debug.Log(grounded);
 
         try
         {
