@@ -60,7 +60,8 @@ public class GravityMovement : MonoBehaviour
     Vector3 bottomEdgePosition;
 
     Vector3 playerSize;
-    Collider2D playerCollisionCollider;
+    Collider2D playerUprightCollider;
+    Collider2D playerCrawlingCollider;
 
     GameObject playerGroundObject;
     Collider2D playerGroundCollider;
@@ -68,6 +69,7 @@ public class GravityMovement : MonoBehaviour
     Collider2D climbCollider;
 
     GameObject interactingObject;
+    GameObject currentPlayerColliderGO;
 
     //map edges
     float upperLimit;
@@ -139,8 +141,11 @@ public class GravityMovement : MonoBehaviour
 
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
 
-        playerCollisionCollider = GetComponent<Collider2D>();
-        playerSize = playerCollisionCollider.bounds.size;
+        playerUprightCollider = GameObject.Find("UprightCollider").GetComponent<Collider2D>();
+        playerCrawlingCollider = GameObject.Find("CrawlingCollider").GetComponent<Collider2D>();
+
+        currentPlayerColliderGO = playerUprightCollider.gameObject;
+        playerSize = playerUprightCollider.bounds.size;
 
         playerGroundObject = GameObject.Find("PlayerGroundCollider");
         playerGroundCollider = playerGroundObject.GetComponent<Collider2D>();
@@ -177,13 +182,13 @@ public class GravityMovement : MonoBehaviour
         }
 
         GetEdgePositions(gameObject);
-        getMovementType();
-        userInput();
+        GetMovementType();
+        UserInput();
         DetectCollision();
         Movement();
     }
 
-    void maintainAreaLimits() //stops the player from leaving the level area
+    void MaintainAreaLimits() //stops the player from leaving the level area
     {
         if (transform.position.x > rightLimit)
         {
@@ -206,16 +211,21 @@ public class GravityMovement : MonoBehaviour
         }
     }
 
-    void getMovementType()
+    void GetMovementType()
     {
         RaycastHit2D catchHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, climbLayerRight | climbLayerLeft);
         RaycastHit2D interactHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, interactbleLayerRight | interactbleLayerLeft);
         RaycastHit2D crawlHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, crawlLayer);
 
-        if (crawlHit.collider != null && grounded) //no animation or rotation
+        if (crawlHit.collider != null && grounded)
         {
+            if (movementType != MovementType.Crawling)
+            {
+                transform.position = new Vector3(transform.transform.position.x, transform.position.y - 0.25f);
+            }
             hasCaught = false;
             movementType = MovementType.Crawling;
+            Debug.Log("Crawl: " + grounded);
         }
         else if (interactHit.collider != null && grounded && SystemSettings.interact)
         {
@@ -232,30 +242,44 @@ public class GravityMovement : MonoBehaviour
                 isInteracting = true;
             }
         }
+        else if (crawlHit.collider != null && !grounded)
+        {
+
+        }
         else if (catchHit.collider != null && !isJumping && hasJumped && !grounded)
         {
             if (catchHit.collider.gameObject.layer == 7)
             {
-                activateJumpCatch(MovementType.CatchRight, climbLayerRight);
+                ActivateJumpCatch(MovementType.CatchRight, climbLayerRight);
             }
             else if (catchHit.collider.gameObject.layer == 8)
             {
-                activateJumpCatch(MovementType.CatchLeft, climbLayerLeft);
+                ActivateJumpCatch(MovementType.CatchLeft, climbLayerLeft);
             }
         }
         else if (movementType != MovementType.CatchRight && movementType != MovementType.CatchLeft)
         {
+            if (movementType == MovementType.Crawling)
+            {
+                transform.position = new Vector3(transform.transform.position.x, transform.position.y + 0.5f);
+            }
             hasCaught = false;
             movementType = MovementType.Walking;
+
+            Debug.Log("Walk: " + grounded);
         }
 
         switch (movementType)
         {
             case MovementType.Walking:
                 currentHorizontalForce = BaseWalkForce;
+                currentPlayerColliderGO = playerUprightCollider.gameObject;
+                playerSize = playerUprightCollider.bounds.size;
                 break;
             case MovementType.Crawling:
                 currentHorizontalForce = BaseCrawlForce;
+                currentPlayerColliderGO = playerCrawlingCollider.gameObject;
+                playerSize = playerCrawlingCollider.bounds.size;
                 break;
             case MovementType.CatchRight:
                 break;
@@ -263,7 +287,7 @@ public class GravityMovement : MonoBehaviour
                 break;
         }
 
-        void activateJumpCatch(MovementType movement, LayerMask layer)
+        void ActivateJumpCatch(MovementType movement, LayerMask layer)
         {
             movementType = movement;
             hasJumped = false;
@@ -282,8 +306,9 @@ public class GravityMovement : MonoBehaviour
         }
     }
 
-    void userInput()
+    void UserInput()
     {
+        GetEdgePositions(gameObject);
         if (movementType == MovementType.InteractRight || movementType == MovementType.InteractLeft)
         {
 
@@ -300,8 +325,13 @@ public class GravityMovement : MonoBehaviour
             {
                 if (movementType == MovementType.Walking)
                 {
-                    playerAnimator.playerWalkRight();
+                    playerAnimator.PlayerWalkRight();
                 }
+                else if (movementType == MovementType.Crawling)
+                {
+                    playerAnimator.PlayerCrawlRight();
+                }
+
                 if (movementType == MovementType.CatchRight)
                 {
                     return;
@@ -341,8 +371,13 @@ public class GravityMovement : MonoBehaviour
             {
                 if (movementType == MovementType.Walking)
                 {
-                    playerAnimator.playerWalkLeft();
+                    playerAnimator.PlayerWalkLeft();
                 }
+                else if (movementType == MovementType.Crawling)
+                {
+                    playerAnimator.PlayerCrawlLeft();
+                }
+
                 if (movementType == MovementType.CatchLeft)
                 {
                     return;
@@ -381,7 +416,7 @@ public class GravityMovement : MonoBehaviour
             }
             else if (!SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
-                playerAnimator.playerIdle();
+                playerAnimator.PlayerIdle();
             }
 
             if (grounded)
@@ -445,27 +480,29 @@ public class GravityMovement : MonoBehaviour
     //https://www.youtube.com/watch?v=P_6W-36QfLA
     void DetectCollision()
     {
-        GetEdgePositions(gameObject);
+        GetEdgePositions(currentPlayerColliderGO);
+        RaycastHit2D[] groundChecks = Physics2D.BoxCastAll(new Vector3(bottomEdgePosition.x, bottomEdgePosition.y + (playerSize.y / 2)), playerSize, 0, -currentPlayerColliderGO.transform.up, castDistance, groundLayer);
 
-        RaycastHit2D[] groundChecks = Physics2D.BoxCastAll(new Vector3(bottomEdgePosition.x, bottomEdgePosition.y + (playerSize.y / 2)), playerSize, 0, -gameObject.transform.up, castDistance, groundLayer);
-
-        RaycastHit2D[] unwalkableRightChecks = Physics2D.BoxCastAll(new Vector3(transform.position.x - castDistance, transform.position.y), playerSize, 0, gameObject.transform.right, castDistance * 2, unwalkableLayerRight);
-        RaycastHit2D[] unwalkableLeftChecks = Physics2D.BoxCastAll(new Vector3(transform.position.x + castDistance, transform.position.y), playerSize, 0, -gameObject.transform.right, castDistance * 2, unwalkableLayerLeft);
+        GetEdgePositions(currentPlayerColliderGO);
+        RaycastHit2D[] unwalkableRightChecks = Physics2D.BoxCastAll(new Vector3(currentPlayerColliderGO.transform.position.x - castDistance, currentPlayerColliderGO.transform.position.y), playerSize, 0, currentPlayerColliderGO.gameObject.transform.right, castDistance * 2, unwalkableLayerRight);
+        RaycastHit2D[] unwalkableLeftChecks = Physics2D.BoxCastAll(new Vector3(currentPlayerColliderGO.transform.position.x + castDistance, currentPlayerColliderGO.transform.position.y), playerSize, 0, -currentPlayerColliderGO.gameObject.transform.right, castDistance * 2, unwalkableLayerLeft);
 
         float checkGroundY;
         int indexCheck = 0;
 
         unwalkableCoords.Clear();
 
+        Debug.Log(grounded);
+
         try
         {
-            checkGroundY = groundChecks[0].collider.ClosestPoint(transform.position).y;
+            checkGroundY = groundChecks[0].collider.ClosestPoint(currentPlayerColliderGO.transform.position).y;
 
             for (int c = 0; c < groundChecks.Length; c++)
             {
-                if (Vector2.Distance(bottomEdgePosition, new Vector2(transform.position.x, groundChecks[c].collider.ClosestPoint(transform.position).y)) < TerminalVelocity * Time.deltaTime && !isJumping)
+                if (Vector2.Distance(bottomEdgePosition, new Vector2(currentPlayerColliderGO.transform.position.x, groundChecks[c].collider.ClosestPoint(currentPlayerColliderGO.transform.position).y)) < TerminalVelocity * Time.deltaTime && !isJumping)
                 {
-                    checkGroundY = groundChecks[c].collider.ClosestPoint(transform.position).y;
+                    checkGroundY = groundChecks[c].collider.ClosestPoint(currentPlayerColliderGO.transform.position).y;
                     groundY = checkGroundY;
                     indexCheck = c;
 
@@ -477,7 +514,7 @@ public class GravityMovement : MonoBehaviour
                 }
             }
 
-            if (Vector2.Distance(bottomEdgePosition, new Vector2(transform.position.x, checkGroundY)) > TerminalVelocity * Time.deltaTime)
+            if (Vector2.Distance(bottomEdgePosition, new Vector2(currentPlayerColliderGO.transform.position.x, checkGroundY)) > TerminalVelocity * Time.deltaTime)
             {
                 grounded = false;
                 groundY = checkGroundY;
@@ -555,7 +592,6 @@ public class GravityMovement : MonoBehaviour
     {
         isManoeuvring = true;
 
-        //temp
         climbCollider.gameObject.SetActive(true);
         Collider2D[] attachedColliders = climbCollider.GetComponentsInChildren<Collider2D>();
         Collider2D targetCollider = new Collider2D();

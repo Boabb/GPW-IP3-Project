@@ -13,21 +13,40 @@ public class PlayerAnimator : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void playerWalkRight()
+    public void PlayerWalkRight()
     {
         playerAnimator.SetInteger("AnimationNumber", 1);
         spriteRenderer.flipX = true;
+        spriteRenderer.flipY = false;
+        spriteRenderer.gameObject.transform.eulerAngles = Vector3.zero;
     }
 
-    public void playerWalkLeft()
+    public void PlayerWalkLeft()
     {
         playerAnimator.SetInteger("AnimationNumber", 1);
         spriteRenderer.flipX = false;
+        spriteRenderer.flipY = false;
+        spriteRenderer.gameObject.transform.eulerAngles = Vector3.zero;
     }
 
-    public void playerIdle()
+    public void PlayerIdle()
     {
         playerAnimator.SetInteger("AnimationNumber", 0);
     }
 
+    public void PlayerCrawlRight()
+    {
+        playerAnimator.SetInteger("AnimationNumber", 1);
+        spriteRenderer.flipY = true;
+        spriteRenderer.flipX = false;
+        spriteRenderer.gameObject.transform.eulerAngles = new Vector3(0, 0, 90);
+    }
+
+    public void PlayerCrawlLeft()
+    {
+        playerAnimator.SetInteger("AnimationNumber", 1);
+        spriteRenderer.flipY = false;
+        spriteRenderer.flipX = false;
+        spriteRenderer.gameObject.transform.eulerAngles = new Vector3(0, 0, 90);
+    }
 }
