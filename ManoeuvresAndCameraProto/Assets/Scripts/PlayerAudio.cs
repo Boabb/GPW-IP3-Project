@@ -39,8 +39,6 @@ public class PlayerAudio : MonoBehaviour
             woodenJump = false;
         }
 
-        Debug.Log(woodenFootsteps);
-
         if (woodenFootsteps)
         {
             if (!woodenFootstepsClip.isPlaying)

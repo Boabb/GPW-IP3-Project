@@ -231,6 +231,7 @@ public class GravityMovement : MonoBehaviour
         else if (interactHit.collider != null && grounded && SystemSettings.interact)
         {
             interactingObject = interactHit.collider.GetComponentInParent<InteractableObject>().gameObject;
+            interactingObject.GetComponentInChildren<InteractableObject>().Interaction(gameObject);
             transform.position = interactHit.collider.transform.position;
             if (interactHit.collider.gameObject.layer == 9)
             {
@@ -350,14 +351,14 @@ public class GravityMovement : MonoBehaviour
                     PlayerAudio.PlayWoodenScrape(true);
                     interactionType = InteractionType.Push;
                     currentHorizontalForce = BasePushForce;
-                    interactingObject.GetComponent<InteractableObject>().Interact(gameObject); //this is messy, and expensive
+                    interactingObject.GetComponent<InteractableObject>().Interaction(gameObject); //this is messy, and expensive
                 }
                 else if (movementType == MovementType.InteractLeft)
                 {
                     PlayerAudio.PlayWoodenScrape(true);
                     interactionType = InteractionType.Pull;
                     currentHorizontalForce = BasePullForce;
-                    interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
+                    interactingObject.GetComponent<InteractableObject>().Interaction(gameObject);
                 }
 
                 for (int i = 0; i < unwalkableCoords.Count; i++)
@@ -400,14 +401,14 @@ public class GravityMovement : MonoBehaviour
                     PlayerAudio.PlayWoodenScrape(true);
                     interactionType = InteractionType.Pull;
                     currentHorizontalForce = BasePullForce;
-                    interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
+                    interactingObject.GetComponent<InteractableObject>().Interaction(gameObject);
                 }
                 else if (movementType == MovementType.InteractLeft)
                 {
                     PlayerAudio.PlayWoodenScrape(true);
                     interactionType = InteractionType.Push;
                     currentHorizontalForce = BasePushForce;
-                    interactingObject.GetComponent<InteractableObject>().Interact(gameObject);
+                    interactingObject.GetComponent<InteractableObject>().Interaction(gameObject);
                 }
                 else
                 {

@@ -17,7 +17,7 @@ public class InteractableObject : MonoBehaviour
         interact = false;
     }
 
-    public void Interact(GameObject playerGO)
+    public virtual void Interaction(GameObject playerGO)
     {
         interact = true;
         player = playerGO;
