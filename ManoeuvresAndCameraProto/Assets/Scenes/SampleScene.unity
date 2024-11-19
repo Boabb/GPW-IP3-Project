@@ -1574,7 +1574,7 @@ Transform:
   m_GameObject: {fileID: 366536063}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: 7.1, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1598,6 +1598,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b207955481a44448d08fde4810c509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionType: 0
+  movementType: 0
+  playerAnimator: {fileID: 0}
   BaseWalkForce: 8
   BaseCrawlForce: 3
   BasePushForce: 6
@@ -1608,6 +1611,59 @@ MonoBehaviour:
   TerminalVelocity: 14
   GroundedMargin: 0.03
   TargetMargin: 0.1
+  rightEdgePosition: {x: 0, y: 0, z: 0}
+  leftEdgePosition: {x: 0, y: 0, z: 0}
+  topEdgePosition: {x: 0, y: 0, z: 0}
+  bottomEdgePosition: {x: 0, y: 0, z: 0}
+  playerSize: {x: 0, y: 0, z: 0}
+  playerUprightCollider: {fileID: 0}
+  playerCrawlingCollider: {fileID: 0}
+  playerGroundObject: {fileID: 0}
+  playerGroundCollider: {fileID: 0}
+  climbCollider: {fileID: 0}
+  interactingObject: {fileID: 0}
+  currentPlayerColliderGO: {fileID: 0}
+  upperLimit: 0
+  lowerLimit: 0
+  rightLimit: 0
+  leftLimit: 0
+  castDistance: 0
+  groundY: 0
+  groundNormal: {x: 0, y: 0, z: 0}
+  currentHorizontalForce: 0
+  horizontalSpeed: 0
+  verticalSpeed: 0
+  originalPosition: {fileID: 0}
+  targetPosition: {fileID: 0}
+  transformProgress: 0
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  rotationProgress: 0
+  groundLayer:
+    m_Bits: 0
+  playerLayer:
+    m_Bits: 0
+  crawlLayer:
+    m_Bits: 0
+  climbLayerRight:
+    m_Bits: 0
+  climbLayerLeft:
+    m_Bits: 0
+  interactbleLayerRight:
+    m_Bits: 0
+  interactbleLayerLeft:
+    m_Bits: 0
+  unwalkableLayerRight:
+    m_Bits: 0
+  unwalkableLayerLeft:
+    m_Bits: 0
+  isManoeuvring: 0
+  grounded: 0
+  isJumping: 0
+  hasJumped: 0
+  canJump: 0
+  hasCaught: 0
+  isInteracting: 0
 --- !u!114 &366536067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1621,6 +1677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 500
+  interacting: 0
 --- !u!1 &370959942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,6 +1726,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5008aee5ca384945856fc574b50ccaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  interact: 0
+  offset: 0
+  UnwalkableTileRight: {fileID: 0}
+  UnwalkableTileLeft: {fileID: 0}
+  Sprite: {fileID: 0}
+  open: 0
 --- !u!1 &382138175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,6 +1887,7 @@ MonoBehaviour:
   leftButton: {fileID: 1890123991}
   jumpButton: {fileID: 337139325}
   interactButton: {fileID: 483229896}
+  systemType: 1
 --- !u!4 &397826494
 Transform:
   m_ObjectHideFlags: 0
@@ -4900,6 +4965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b86d8948bf51f6c499833ce5a03fbeef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  interact: 0
+  offset: 0
 --- !u!1 &1048269917
 GameObject:
   m_ObjectHideFlags: 0
@@ -6867,6 +6935,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98eff9e2762d054cab58cb3ec90a158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!1 &1452024055
 GameObject:
   m_ObjectHideFlags: 0
