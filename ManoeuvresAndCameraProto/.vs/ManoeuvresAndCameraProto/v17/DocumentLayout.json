@@ -1,22 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\",
+  "WorkspaceRootPath": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\aparkh300\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\userinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\akira\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\userinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\userinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\aparkh300\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\systemsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\systemsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\aparkh300\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\old scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\akira\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\old scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\old scripts\\gravitymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\aparkh300\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|c:\\users\\akira\\documents\\github\\gpw-ip3-project\\manoeuvresandcameraproto\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6FF40A5D-6160-7ADF-088E-23F0F501CDF3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +26,79 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SystemSettings.cs",
-              "DocumentMoniker": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\SystemSettings.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\SystemSettings.cs",
-              "ToolTip": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\SystemSettings.cs",
-              "RelativeToolTip": "Assets\\Scripts\\SystemSettings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAeAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "UserInput.cs",
+              "DocumentMoniker": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\UserInput.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UserInput.cs",
+              "ToolTip": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\UserInput.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UserInput.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T11:34:36.406Z",
+              "WhenOpened": "2024-11-19T11:30:28.818Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "PlayerController.cs",
-              "DocumentMoniker": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\PlayerController.cs",
+              "DocumentMoniker": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
-              "ToolTip": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\PlayerController.cs",
+              "ToolTip": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAABoAAAAAAAAAAAAQwG4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-19T11:33:14.829Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GravityMovement.cs",
-              "DocumentMoniker": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\Old Scripts\\GravityMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Old Scripts\\GravityMovement.cs",
-              "ToolTip": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\Old Scripts\\GravityMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Old Scripts\\GravityMovement.cs",
-              "ViewState": "AgIAALUBAAAAAAAAAAAAwMcBAAAJAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T11:30:37.666Z",
+              "WhenOpened": "2024-11-24T13:27:17.044Z",
               "EditorCaption": ""
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "aea40ebf-01f3-4aab-99b7-cdc4477b7fcb",
+        "Display": 1,
+        "X": -5,
+        "Y": 236,
+        "Width": 1610,
+        "Height": 825,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserInput.cs",
-              "DocumentMoniker": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\UserInput.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UserInput.cs",
-              "ToolTip": "C:\\Users\\APARKH300\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\UserInput.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UserInput.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "GravityMovement.cs",
+              "DocumentMoniker": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\Old Scripts\\GravityMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Old Scripts\\GravityMovement.cs",
+              "ToolTip": "C:\\Users\\akira\\Documents\\GitHub\\GPW-IP3-Project\\ManoeuvresAndCameraProto\\Assets\\Scripts\\Old Scripts\\GravityMovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Old Scripts\\GravityMovement.cs",
+              "ViewState": "AQIAAJ0BAAAAAAAAAAAuwO4BAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T11:30:28.818Z",
+              "WhenOpened": "2024-11-24T13:27:47.497Z",
               "EditorCaption": ""
             }
           ]

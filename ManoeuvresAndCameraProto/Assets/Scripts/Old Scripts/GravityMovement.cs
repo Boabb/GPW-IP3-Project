@@ -226,7 +226,6 @@ public class GravityMovement : MonoBehaviour
             }
             hasCaught = false;
             movementType = MovementType.Crawling;
-            //Debug.Log("Crawl: " + grounded);
         }
         else if (interactHit.collider != null && grounded && SystemSettings.interact)
         {

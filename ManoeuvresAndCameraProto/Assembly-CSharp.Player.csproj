@@ -60,17 +60,33 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.44f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Manoeuvres\Stagger.cs" />
+    <Compile Include="Assets\Scripts\MovementTypes.cs" />
     <Compile Include="Assets\Scripts\PlayerAudio.cs" />
-    <Compile Include="Assets\Scripts\DoorInteractable.cs" />
-    <Compile Include="Assets\Scripts\Follower.cs" />
+    <Compile Include="Assets\Scripts\Old Scripts\Follower.cs" />
+    <Compile Include="Assets\Scripts\AnimationManager.cs" />
+    <Compile Include="Assets\Scripts\Manoeuvres\CatchClimbToCrawl.cs" />
+    <Compile Include="Assets\Scripts\Manoeuvres\CatchClimb.cs" />
+    <Compile Include="Assets\Scripts\Interactables\PushPullInteractable.cs" />
+    <Compile Include="Assets\Scripts\Interactables\SoundInteractable.cs" />
+    <Compile Include="Assets\Scripts\Manoeuvres\StopCrawl.cs" />
+    <Compile Include="Assets\Scripts\Old Scripts\UnwalkableObject.cs" />
+    <Compile Include="Assets\Scripts\Old Scripts\Interactor.cs" />
     <Compile Include="Assets\Scripts\InteractableObject.cs" />
+    <Compile Include="Assets\Scripts\TagController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
-    <Compile Include="Assets\Scripts\UnwalkableObject.cs" />
+    <Compile Include="Assets\Scripts\Interactables\CollectableInteractable.cs" />
+    <Compile Include="Assets\Scripts\Manoeuvre.cs" />
+    <Compile Include="Assets\Scripts\Manoeuvres\StartCrawl.cs" />
+    <Compile Include="Assets\Scripts\CameraFollower.cs" />
+    <Compile Include="Assets\Scripts\Old Scripts\GravityMovement.cs" />
+    <Compile Include="Assets\Scripts\UserInput.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\SystemSettings.cs" />
-    <Compile Include="Assets\Scripts\Interactor.cs" />
-    <Compile Include="Assets\Scripts\GravityMovement.cs" />
+    <Compile Include="Assets\Scripts\Interactables\DoorInteractable.cs" />
+    <Compile Include="Assets\Scripts\CollisionDetector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
