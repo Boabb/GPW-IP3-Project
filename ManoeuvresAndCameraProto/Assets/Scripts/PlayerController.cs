@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +18,11 @@ public class PlayerController : MonoBehaviour
     float groundY;
     bool grounded;
     bool canJump;
-    bool hasJumped;
+    bool hasJumped = false;
     bool isFalling;
 
     //jumping variables
-    bool isJumping;
+    bool isJumping = false;
 
     //gravity variables
     float terminalVelocity;
@@ -36,7 +37,8 @@ public class PlayerController : MonoBehaviour
     List<GameManager.UnwalkableCoordinates> unwalkableCoordinates;
 
     //manoeuvre variables
-    bool manoeuvring;
+    public bool manoeuvring;
+    bool interact;
     Manoeuvre currentManoeuvre;
 
     //layer masks
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
         gravityForce = gameManager.GetGravityForce();
 
         movementTypes.gameManager = gameManager;
+        movementType = GameManager.MovementType.walk;
 
         groundLayer = LayerMask.GetMask("Ground");
         playerLayer = LayerMask.GetMask("Player");
@@ -67,6 +70,12 @@ public class PlayerController : MonoBehaviour
         interactbleLayerLeft = LayerMask.GetMask("InteractableLeft");
         unwalkableLayerRight = LayerMask.GetMask("WallRight");
         unwalkableLayerLeft = LayerMask.GetMask("WallLeft");
+
+        playerGroundObject = GameObject.Find("PlayerGroundCollider");
+
+        unwalkableCoordinates = new List<GameManager.UnwalkableCoordinates>();
+
+        movementTypes.UpdateMovementType(ref currentPlayerCollider, ref currentHorizontalForce, true);
     }
 
     private void Update()
@@ -77,7 +86,51 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            CheckGround();
+            CheckUnwalkables();
+            GetAirType();
+            DetectManoeuvre();
             ProcessInput();
+            ApplyGravity();
+            CheckManoeuvring();
+        }
+    }
+
+    void CheckManoeuvring()
+    {
+        if (!manoeuvring)
+        {
+            currentManoeuvre = null;
+        }
+    }
+
+    void GetAirType()
+    {
+        if (verticalSpeed > 0)
+        {
+            isJumping = true;
+            isFalling = false;
+        }
+        else
+        {
+            isJumping = false;
+        }
+
+        if (verticalSpeed < 0)
+        {
+            isFalling = true;
+            isJumping = false;
+        }
+        else
+        {
+            isFalling = false;
+        }
+
+        if (grounded) 
+        {
+            isFalling = false;
+            isJumping = false;
+            hasJumped = false;
         }
     }
 
@@ -85,17 +138,90 @@ public class PlayerController : MonoBehaviour
     {
         if (SystemSettings.moveRight && !SystemSettings.moveLeft) //move right
         {
-            HoldRight();
+            movementTypes.UpdateMovementType(ref currentPlayerCollider, ref currentHorizontalForce, false);
+            //moves you right by a speed
+
+            for (int i = 0; i < unwalkableCoordinates.Count; i++)
+            {
+                if (GetPlayerRightEdge() > unwalkableCoordinates[i].rightX && GetPlayerLeftEdge() < unwalkableCoordinates[i].rightX && GetPlayerBottomEdge() < unwalkableCoordinates[i].rightY)
+                {
+                    transform.position = new Vector3(unwalkableCoordinates[i].rightX - (GetPlayerSize().x / 2), transform.position.y, transform.position.z);
+                    currentHorizontalForce = 0;
+                }
+            }
+
+            horizontalSpeed = currentHorizontalForce;
+            Move();
+            //changes animation
+            //changes sound effect
         }
         else if (SystemSettings.moveLeft && !SystemSettings.moveRight) //move left
         {
-            HoldLeft();
+            movementTypes.UpdateMovementType(ref currentPlayerCollider, ref currentHorizontalForce, true);
+            //moves you left by a speed
+
+            for (int i = 0; i < unwalkableCoordinates.Count; i++)
+            {
+                if (GetPlayerLeftEdge() < unwalkableCoordinates[i].leftX && GetPlayerRightEdge() > unwalkableCoordinates[i].leftX && GetPlayerBottomEdge() < unwalkableCoordinates[i].leftY)
+                {
+                    transform.position = new Vector3(unwalkableCoordinates[i].leftX + (GetPlayerSize().x / 2), transform.position.y, transform.position.z);
+                    currentHorizontalForce = 0;
+                }
+            }
+            horizontalSpeed = -currentHorizontalForce;
+            Move();
+            //changes animation
+            //changes sound effect
         }
 
-        if (SystemSettings.jump) //jump
+        if (SystemSettings.jump)
         {
-            TapJump();
+            canJump = true; //temp
+            //jumps
+            if (canJump && grounded)
+            {
+                CheckGround();
+                grounded = canJump;
+                hasJumped = true;
+                verticalSpeed = gameManager.GetBaseJumpForce();
+                transform.position += playerGroundObject.transform.up * (verticalSpeed * Time.deltaTime);
+                //changes animation
+            }
         }
+
+        if (SystemSettings.interact && interact)
+        {
+            //begins interaction with an interactable triggered by a hold
+        }
+
+        if (SystemSettings.tapInteract && interact)
+        {
+            //begins interaction with an interactable triggered by a tap
+        }
+
+        if (SystemSettings.tapLeft)
+        {
+
+            //begins climb manoeuvre
+            if (currentManoeuvre.manoeuvreID == Manoeuvre.ManoeuvreID.catchClimb)
+            {
+                currentManoeuvre.UpdateManoeuvre();
+            }
+        }
+
+        if(SystemSettings.tapRight)
+        {
+            //begins climb manoeuvre
+            if (currentManoeuvre.manoeuvreID == Manoeuvre.ManoeuvreID.catchClimb)
+            {
+                currentManoeuvre.UpdateManoeuvre();
+            }
+        }
+
+        //if() //no input
+        //{
+        //    //begins idle animation
+        //}
     }
 
     void Move()
@@ -103,6 +229,47 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime),
             transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime),
             transform.position.z + playerGroundObject.transform.right.z);
+    }
+
+    void DetectManoeuvre()
+    {
+        //check crawl
+        RaycastHit2D crawlHit = Physics2D.BoxCast(transform.position, GetPlayerSize(), 0, transform.up, 0, crawlLayer);
+
+        //check interaction
+        RaycastHit2D interactHit = Physics2D.BoxCast(transform.position, GetPlayerSize(), 0, transform.up, 0, interactbleLayerRight | interactbleLayerLeft);
+
+        //check for catch
+        RaycastHit2D catchHit = Physics2D.BoxCast(new Vector3(transform.position.x, transform.position.y - gameManager.GetCatchReach(), 0), GetPlayerSize(), 0, transform.up, 0, climbLayerRight | climbLayerLeft);
+        Debug.Log("CatchHitCollider: " + catchHit.collider);
+        if (crawlHit.collider != null && grounded)
+        {
+            if (movementType != GameManager.MovementType.crawl)
+            {
+                movementType = GameManager.MovementType.crawl;
+            }
+        }
+        else if (catchHit.collider != null && isFalling)
+        {
+            if (catchHit.collider.gameObject.layer == 7)
+            {
+                //right
+                currentManoeuvre = new CatchClimb(false, climbLayerRight, this);
+            }
+            else if (catchHit.collider.gameObject.layer == 8)
+            {
+                //left
+                currentManoeuvre = new CatchClimb(true, climbLayerLeft, this);
+            }
+        }
+        else if(interactHit.collider != null)
+        {
+            interact = true;
+        }
+        else
+        {
+            movementType = GameManager.MovementType.walk;
+        }
     }
 
     void CheckGround()
@@ -113,7 +280,8 @@ public class PlayerController : MonoBehaviour
         int index = 0;
 
         RaycastHit2D[] groundChecks = Physics2D.BoxCastAll(new Vector3(currentPlayerCollider.transform.position.x, bottomEdgePosition + (playerSize.y / 2)), 
-            playerSize, 0, -currentPlayerCollider.transform.up, 0, groundLayer);
+            playerSize, 0, -currentPlayerCollider.transform.up, 1000, groundLayer);
+        
         grounded = collisionDetector.DetectGround(groundChecks, new Vector3(currentPlayerCollider.transform.position.x, bottomEdgePosition), 
             currentPlayerCollider.gameObject, terminalVelocity, isJumping, ref index);
 
@@ -150,80 +318,19 @@ public class PlayerController : MonoBehaviour
         unwalkableCoordinates = collisionDetector.DetectUnwalkables(unwalkableRightChecks, unwalkableLeftChecks);
     }
 
-    public void HoldLeft()
+   
+    void ApplyGravity()
     {
-        //moves you left by a speed
-        if (movementType == GameManager.MovementType.pushPullRight)
+        if (verticalSpeed < -terminalVelocity)
         {
-            currentHorizontalForce = gameManager.GetBasePushForce();
-        }
-        else if (movementType == GameManager.MovementType.pushPullLeft)
-        {
-            currentHorizontalForce = gameManager.GetBasePullForce();
+            verticalSpeed = -terminalVelocity;
         }
 
-        horizontalSpeed = -currentHorizontalForce;
-        Move();
-        //changes animation
-        //changes sound effect
-    }
-
-    public void HoldRight()
-    {
-        //moves you right by a speed
-        if (movementType == GameManager.MovementType.pushPullLeft)
+        if (!grounded) //&& !hasCaught)
         {
-            currentHorizontalForce = gameManager.GetBasePushForce();
-        }
-        else if (movementType == GameManager.MovementType.pushPullRight)
-        {
-            currentHorizontalForce = gameManager.GetBasePullForce();
-        }
-
-        horizontalSpeed = currentHorizontalForce;
-        Move();
-        //changes animation
-        //changes sound effect
-    }
-
-    public void TapLeft()
-    {
-        //begins climb manoeuvre 
-    }
-
-    public void TapRight()
-    {
-        //begins climb manoeuvre
-    }
-
-    public void TapJump()
-    {
-        //jumps
-        if(canJump && grounded)
-        {
-            hasJumped = true;
-            verticalSpeed = gameManager.GetBaseJumpForce();
-            transform.position += playerGroundObject.transform.up * (verticalSpeed * Time.deltaTime);
-
-            //changes animation
+            transform.position = new Vector3(transform.position.x, transform.position.y + (verticalSpeed * Time.deltaTime), transform.position.z);
         }
     }
-
-    public void HoldInteract()
-    {
-        //begins interaction with an interactable triggered by a hold
-    }
-
-    public void TapInteract()
-    {
-        //begins interaction with an interactable triggered by a tap
-    }
-
-    public void NoInput()
-    {
-        //begins idle animation
-    }
-
     Vector3 GetPlayerSize()
     {
         return currentPlayerCollider.bounds.size;

@@ -4,7 +4,14 @@ using UnityEngine;
 
 public abstract class Manoeuvre
 {
-    public abstract void BeginManoeuvre();
+    public enum ManoeuvreID
+    {
+        catchClimb,
+        crawl
+    }
+
+    public ManoeuvreID manoeuvreID;
+    public abstract void BeginManoeuvre(PlayerController playerController);
     public abstract void UpdateManoeuvre();
     public abstract void EndManoeuvre();
 }

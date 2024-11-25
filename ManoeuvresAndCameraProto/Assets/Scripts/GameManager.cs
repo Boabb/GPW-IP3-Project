@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         pushPullRight
     }
 
-    public GameObject player;
+    public static GameObject player;
 
     [Header("Movement Settings")]
     /// <summary> The horizontal force applied when walking. </summary> 
@@ -36,8 +36,12 @@ public class GameManager : MonoBehaviour
     ///<summary> The maximum speed the agent can fall at. </summary>
     float TerminalVelocity;
 
+    [Header("Interaction Settings")]
+    ///<summary> How close the player has to be in order to catch a ledge, the higher the harder </summary>
+    [SerializeField] float CatchReach = 2f;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         TerminalVelocity = BaseJumpForce;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -71,5 +75,10 @@ public class GameManager : MonoBehaviour
     public float GetTerminalVelocity()
     {
         return TerminalVelocity;
+    }
+
+    public float GetCatchReach()
+    {
+        return CatchReach;
     }
 }
