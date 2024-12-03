@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Manoeuvre
+public class Manoeuvre : MonoBehaviour
 {
-    public abstract void BeginManoeuvre();
-    public abstract void UpdateManoeuvre();
-    public abstract void EndManoeuvre();
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }
