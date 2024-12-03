@@ -13,6 +13,7 @@ public class SystemSettings: MonoBehaviour
     public static bool tapInteract;
 
     [SerializeField] Camera mainCamera;
+
     [SerializeField] GameObject touchControlsParent; //this should be activated if touch controls are in use
 
     //these are used to control the placement of the controls depending on resolution of the screen
@@ -67,6 +68,9 @@ public class SystemSettings: MonoBehaviour
 
         movementParent.transform.position = movementButtons;
         otherParent.transform.position = otherButtons;
+
+        //Debug.Log(movementParent.transform.position);
+        //Debug.Log(otherParent.transform.position);
 
         if (systemType == SystemType.Desktop)
         {
