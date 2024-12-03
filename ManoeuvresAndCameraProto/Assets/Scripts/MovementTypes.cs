@@ -4,25 +4,39 @@ using UnityEngine;
 
 public class MovementTypes : MonoBehaviour
 {
-    [HideInInspector] public GameManager gameManager;
+    public GameManager gameManager;
     GameManager.MovementType movementType;
     float horizontalForce;
 
     Collider2D playerUprightCollider;
     Collider2D playerCrawlingCollider;
 
-    private void Awake()
+    private void Start()
     {
         playerUprightCollider = GameObject.Find("UprightCollider").GetComponent<Collider2D>();
         playerCrawlingCollider = GameObject.Find("CrawlingCollider").GetComponent<Collider2D>();
-
-        movementType = GameManager.MovementType.walk;
     }
 
-    public void UpdateMovementType(ref Collider2D playerCollider, ref float movementSpeed, bool left)
+    public void UpdateMovementType(ref Collider2D playerCollider)
     {
         playerCollider = UpdateCollider();
-        movementSpeed = UpdateMovementSpeed(left);
+    }
+
+    void Walk()
+    {
+
+    }
+    void Crawl()
+    {
+
+    }
+    void PushPullLeft() 
+    {
+    
+    }
+    void PushPullRight() 
+    {
+    
     }
 
     Collider2D UpdateCollider()
@@ -42,34 +56,23 @@ public class MovementTypes : MonoBehaviour
         }
     }
 
-    float UpdateMovementSpeed(bool left)
+    public void Move(float force)
     {
+        horizontalForce = force;
         switch (movementType)
         {
             case GameManager.MovementType.walk:
-                return gameManager.GetBaseWalkForce();
-            case GameManager.MovementType.crawl:
-                return gameManager.GetBaseCrawlForce();
-            case GameManager.MovementType.pushPullLeft:
-                if(left)
-                {
-                    return gameManager.GetBasePullForce();
-                }
-                else
-                {
-                    return gameManager.GetBasePushForce();
-                }
-            case GameManager.MovementType.pushPullRight:
-                if (!left)
-                {
-                    return gameManager.GetBasePullForce();
-                }
-                else
-                {
-                    return gameManager.GetBasePushForce();
-                }
-            default:
-                return gameManager.GetBaseWalkForce();
+                Walk(); 
+                break;
+            case GameManager.MovementType.crawl: 
+                Crawl(); 
+                break;
+            case GameManager.MovementType.pushPullLeft: 
+                PushPullLeft(); 
+                break;
+            case GameManager.MovementType.pushPullRight: 
+                PushPullRight(); 
+                break;
         }
     }
 }

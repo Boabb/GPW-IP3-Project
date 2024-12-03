@@ -73,7 +73,6 @@
     <Compile Include="Assets\Scripts\Old Scripts\UnwalkableObject.cs" />
     <Compile Include="Assets\Scripts\Old Scripts\Interactor.cs" />
     <Compile Include="Assets\Scripts\InteractableObject.cs" />
-    <Compile Include="Assets\Scripts\Manoeuvres\ToCrawlLeft.cs" />
     <Compile Include="Assets\Scripts\TagController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
@@ -83,13 +82,10 @@
     <Compile Include="Assets\Scripts\CameraFollower.cs" />
     <Compile Include="Assets\Scripts\Old Scripts\GravityMovement.cs" />
     <Compile Include="Assets\Scripts\UserInput.cs" />
-    <Compile Include="Assets\Scripts\Manoeuvres\CatchClimbRight.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\SystemSettings.cs" />
     <Compile Include="Assets\Scripts\Interactables\DoorInteractable.cs" />
-    <Compile Include="Assets\Scripts\Manoeuvres\CatchClimbLeft.cs" />
-    <Compile Include="Assets\Scripts\Manoeuvres\ToCrawlRight.cs" />
     <Compile Include="Assets\Scripts\CollisionDetector.cs" />
   </ItemGroup>
   <ItemGroup>
