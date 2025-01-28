@@ -45,7 +45,7 @@ public class GravityMovement : MonoBehaviour
     ///<summary> The vertical force applied when jumping. </summary>
     [SerializeField] float BaseJumpForce = 15f;
     ///<summary> The force of gravity pulling the agent downwards </summary>
-    [SerializeField] float GravityForce = 0.2f; 
+    [SerializeField] float GravityForce = 0.2f;
     /// <summary> //the force which slows the agent while it is in the air </summary>
     [SerializeField] float AirResistance = 0.05f;
     ///<summary> The maximum speed the agent can fall at. </summary>
@@ -101,8 +101,8 @@ public class GravityMovement : MonoBehaviour
     LayerMask groundLayer;
     LayerMask playerLayer;
     LayerMask crawlLayer;
-    LayerMask climbLayerRight;
-    LayerMask climbLayerLeft;
+    LayerMask catchLayerRight;
+    LayerMask catchLayerLeft;
     LayerMask movableLayerRight;
     LayerMask movableLayerLeft;
     LayerMask unwalkableLayerRight;
@@ -128,11 +128,11 @@ public class GravityMovement : MonoBehaviour
 
         castDistance = 1000;
 
-        groundLayer = LayerMask.GetMask("Ground"); 
+        groundLayer = LayerMask.GetMask("Ground");
         playerLayer = LayerMask.GetMask("Player");
         crawlLayer = LayerMask.GetMask("CrawlSpace");
-        climbLayerRight = LayerMask.GetMask("ClimbableRight");
-        climbLayerLeft = LayerMask.GetMask("ClimbableLeft");
+        catchLayerRight = LayerMask.GetMask("ClimbableRight");
+        catchLayerLeft = LayerMask.GetMask("ClimbableLeft");
         movableLayerRight = LayerMask.GetMask("MovableRight");
         movableLayerLeft = LayerMask.GetMask("MovableLeft");
         unwalkableLayerRight = LayerMask.GetMask("WallRight");
@@ -186,7 +186,7 @@ public class GravityMovement : MonoBehaviour
         }
 
         GetPlayerEdgePositions();
-        GetMovementType();
+        MovementTypeLogic();
         UserInput();
 
         if (movementType != MovementType.CatchLeft && movementType != MovementType.CatchRight)
@@ -199,60 +199,74 @@ public class GravityMovement : MonoBehaviour
         Movement();
     }
 
-    void GetMovementType()
+    void MovementTypeLogic()
     {
         GetPlayerEdgePositions();
-        RaycastHit2D catchHit = Physics2D.BoxCast(new Vector3(transform.position.x, transform.position.y - playerSize.y / 4), new Vector3(playerSize.x, playerSize.y / 2), 0, transform.up, 0, climbLayerRight | climbLayerLeft);
+        RaycastHit2D catchHit = Physics2D.BoxCast(new Vector3(transform.position.x, transform.position.y - playerSize.y / 4), new Vector3(playerSize.x, playerSize.y / 2), 0, transform.up, 0, catchLayerRight | catchLayerLeft);
         RaycastHit2D movableHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, movableLayerRight | movableLayerLeft);
         RaycastHit2D crawlHit = Physics2D.BoxCast(transform.position, playerSize, 0, transform.up, 0, crawlLayer);
 
-        if (crawlHit.collider != null && grounded)
+        //Grounded Logic
+        if (grounded)
         {
-            if (movementType != MovementType.Crawling)
+            //Crawling
+            if (crawlHit.collider != null)
             {
-                fader.collision = true;
-                //transform.position = new Vector3(transform.transform.position.x, transform.position.y - 0.25f);
+                if (movementType != MovementType.Crawling)
+                {
+                    fader.collision = true;
+                    //transform.position = new Vector3(transform.transform.position.x, transform.position.y - 0.25f);
+                }
+                hasCaught = false;
+                movementType = MovementType.Crawling;
             }
-            hasCaught = false;
-            movementType = MovementType.Crawling;
-        }
-        else if (movableHit.collider != null && grounded && SystemSettings.interact)
-        {
-            interactingObject = movableHit.collider.GetComponentInParent<MovableInteractable>().gameObject;
-            transform.position = movableHit.collider.transform.position;
-            if (movableHit.collider.gameObject.layer == 9)
+            //Movables
+            else if (movableHit.collider != null && SystemSettings.interact)
             {
-                movementType = MovementType.MovableRight;
+                interactingObject = movableHit.collider.GetComponentInParent<MovableInteractable>().gameObject;
+                transform.position = movableHit.collider.transform.position;
+                if (movableHit.collider.gameObject.layer == 9)
+                {
+                    movementType = MovementType.MovableRight;
+                }
+                else if (movableHit.collider.gameObject.layer == 10)
+                {
+                    movementType = MovementType.MovableLeft;
+                }
             }
-            else if (movableHit.collider.gameObject.layer == 10)
+            else
             {
-                movementType = MovementType.MovableLeft;
-            }
-        }
-        else if (crawlHit.collider != null && !grounded)
-        {
-            return;
-        }
-        else if (catchHit.collider != null && !isJumping && hasJumped && !grounded)
-        {
-            if (catchHit.collider.gameObject.layer == 7)
-            {
-                ActivateJumpCatch(MovementType.CatchRight, climbLayerRight, catchHit.collider);
-            }
-            else if (catchHit.collider.gameObject.layer == 8)
-            {
-                ActivateJumpCatch(MovementType.CatchLeft, climbLayerLeft, catchHit.collider);
+                movementType = MovementType.Walking;
             }
         }
-        else if (movementType != MovementType.CatchRight && movementType != MovementType.CatchLeft)
+        //Mid-Air Logic
+        else
         {
-            if (movementType == MovementType.Crawling)
+            if (crawlHit.collider != null)
             {
-                fader.collision = true;
-                //transform.position = new Vector3(transform.transform.position.x, transform.position.y + 0.5f);
+                return;
             }
-            hasCaught = false;
-            movementType = MovementType.Walking;
+            else if (catchHit.collider != null && !isJumping && hasJumped)
+            {
+                if (catchHit.collider.gameObject.layer == 7)
+                {
+                    ActivateJumpCatch(MovementType.CatchRight, catchLayerRight, catchHit.collider);
+                }
+                else if (catchHit.collider.gameObject.layer == 8)
+                {
+                    ActivateJumpCatch(MovementType.CatchLeft, catchLayerLeft, catchHit.collider);
+                }
+            }
+            else if (movementType != MovementType.CatchRight && movementType != MovementType.CatchLeft)
+            {
+                if (movementType == MovementType.Crawling)
+                {
+                    fader.collision = true;
+                    //transform.position = new Vector3(transform.transform.position.x, transform.position.y + 0.5f);
+                }
+                hasCaught = false;
+                movementType = MovementType.Walking;
+            }
         }
 
         switch (movementType)
@@ -511,7 +525,7 @@ public class GravityMovement : MonoBehaviour
             Debug.LogError("No Ground Detected");
             index = -1; //this is an error
             grounded = true; //keeps the player from falling if there is no ground
-            
+
         }
         else
         {
@@ -606,7 +620,7 @@ public class GravityMovement : MonoBehaviour
         leftEdgePosition = new Vector3(objectToGet.bounds.min.x, objectToGet.transform.position.y, objectToGet.transform.position.z);
         rightEdgePosition = new Vector3(objectToGet.bounds.max.x, objectToGet.transform.position.y, objectToGet.transform.position.z);
         topEdgePosition = new Vector3(objectToGet.transform.position.x, objectToGet.bounds.max.y, objectToGet.transform.position.z);
-        bottomEdgePosition = new Vector3(objectToGet.transform.position.x, objectToGet.bounds.min.y, objectToGet.transform.position.z);    
+        bottomEdgePosition = new Vector3(objectToGet.transform.position.x, objectToGet.bounds.min.y, objectToGet.transform.position.z);
     }
 
     void GetPlayerEdgePositions()
