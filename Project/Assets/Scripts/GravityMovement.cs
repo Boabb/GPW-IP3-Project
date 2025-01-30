@@ -533,7 +533,8 @@ public class GravityMovement : MonoBehaviour
 
             for (int c = 0; c < groundChecks.Length; c++) //loops through the entire array of ground colliders
             {
-                if (Vector2.Distance(bottomEdgePosition, new Vector2(currentPlayerColliderGO.transform.position.x, groundChecks[c].collider.ClosestPoint(currentPlayerColliderGO.transform.position).y)) < TerminalVelocity * Time.deltaTime && !isJumping) //if the player is close enough to the ground and isnt currently jumping
+                if (Vector2.Distance(bottomEdgePosition, new Vector2(currentPlayerColliderGO.transform.position.x, groundChecks[c].collider.ClosestPoint(currentPlayerColliderGO.transform.position).y)) < TerminalVelocity * Time.deltaTime && !isJumping) 
+                    //if the player is close enough to the ground and isnt currently jumping
                 {
                     index = c; //the index changes to the ground that player is currently standing on
                     grounded = true;

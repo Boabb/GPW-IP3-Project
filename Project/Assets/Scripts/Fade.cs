@@ -13,31 +13,31 @@ public class Fade : MonoBehaviour
 
     Collider2D fadeCollider;
 
-    public bool collision = false;
-    bool switchOverTime = false;
-    bool switchBetween = true;
-
-    Color hidden;
-    Color revealed;
+    Color hidden = new Color(1,1,1,1);
+    Color revealed = new Color(1,1,1,0);
 
     float timer = 0;
     float adder = 1f;
 
-    AudioSource audioSound;
+    AudioSource audioSource;
+
+    public bool collision = false;
+    bool switchOverTime = false;
+    bool switchBetween = true;
 
     bool playAudio = true;
+
     bool shake = true;
     float shakeAdder = 0;
 
+    private void OnValidate()
+    {
+        Fade1.sharedMaterial.color = revealed;
+    }
     private void Awake()
     {
         fadeCollider = GetComponentInChildren<Collider2D>();
-        audioSound = GetComponentInChildren<AudioSource>();
-        hidden = new Color(1, 1, 1);
-        revealed = new Color(1, 1, 1);
-
-        hidden.a = 1;
-        revealed.a = 0;
+        audioSource = GetComponentInChildren<AudioSource>();
 
         Fade1.material.color = hidden;
         Fade2.material.color = revealed;
@@ -56,6 +56,8 @@ public class Fade : MonoBehaviour
         {
             SwitchOverTime();
         }
+
+
     }
 
     void QuickSwitch()
@@ -76,10 +78,10 @@ public class Fade : MonoBehaviour
     {
         timer += adder * Time.deltaTime;
 
-        if (playAudio)
+        if (audioSource.isPlaying == false && playAudio)
         {
             playAudio = false;
-            audioSound.Play();
+            audioSource.Play();
             musicController.SwitchToVent();
         }
 
