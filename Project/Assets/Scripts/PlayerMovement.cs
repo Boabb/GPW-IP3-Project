@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerData playerData;
     Collider2D uprightCollider;
     Collider2D crawlingCollider;
+    Collider2D groundedCollider;
     Rigidbody2D playerRB2D;
 
     Collider2D currentPlayerCollider;
@@ -15,8 +16,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("For Designers")]
     [SerializeField] float walkingForce = 10f;
     [SerializeField] float crawlingForce = 5f;
+    [SerializeField] float jumpForce = 100f;
 
     float movementForce;
+    bool grounded;
     enum MovementType
     {
         Walking,
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         playerData = GetComponent<PlayerData>();
         uprightCollider = playerData.playerWalkingCollider;
         crawlingCollider = playerData.playerCrawlingCollider;
+        groundedCollider = playerData.playerGroundedCollider;
         playerRB2D = playerData.playerRigidbody;
 
         currentPlayerCollider = uprightCollider;
@@ -50,11 +54,12 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        Jump();
     }
 
     void Move()
     {
-        Debug.Log("Player mass: " + playerRB2D.mass);
+        //Debug.Log("Player mass: " + playerRB2D.mass);
         if (movementType != MovementType.Pulling)
         {
             if (SystemSettings.moveLeft && !SystemSettings.moveRight)
@@ -66,6 +71,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRB2D.AddForce(transform.right * movementForce);
             }
+        }
+    }
+
+    void Jump()
+    {
+        SetGrounded();
+        if (SystemSettings.jump && grounded == true)
+        {
+            Debug.Log("Jump");
+            playerRB2D.AddForce(transform.up * jumpForce);
         }
     }
 
@@ -82,6 +97,26 @@ public class PlayerMovement : MonoBehaviour
         {
             //temp
             movementType = MovementType.Walking;
+        }
+    }
+
+    void SetGrounded()
+    {
+        List<Collider2D> overlappingColliders = new List<Collider2D>();
+
+        groundedCollider.OverlapCollider(new ContactFilter2D().NoFilter(), overlappingColliders);
+
+        for (int i = 0; i < overlappingColliders.Count; i++)
+        {
+            if (overlappingColliders[i].tag == "Ground")
+            {
+                grounded = true;
+                break;
+            }
+            else
+            {
+                grounded = false;
+            }
         }
     }
 

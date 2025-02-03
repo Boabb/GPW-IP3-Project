@@ -2421,7 +2421,7 @@ GameObject:
   - component: {fileID: 265330419}
   m_Layer: 3
   m_Name: Ground (09)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4655,7 +4655,7 @@ GameObject:
   - component: {fileID: 597605635}
   m_Layer: 3
   m_Name: Ground (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8793,6 +8793,7 @@ GameObject:
   - component: {fileID: 1056329802}
   - component: {fileID: 1056329801}
   - component: {fileID: 1056329806}
+  - component: {fileID: 1056329807}
   m_Layer: 15
   m_Name: PlayerAgentPhysics
   m_TagString: Player
@@ -8814,6 +8815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingForce: 10
   crawlingForce: 5
+  jumpForce: 100
 --- !u!4 &1056329796
 Transform:
   m_ObjectHideFlags: 0
@@ -8991,6 +8993,7 @@ MonoBehaviour:
   playerCrawlingCollider: {fileID: 1056329802}
   playerInteractCollider: {fileID: 1056329801}
   playerOverlapCheckCollider: {fileID: 1056329806}
+  playerGroundedCollider: {fileID: 1056329807}
   playerAnimatorComponent: {fileID: 1509823543}
   playerSprite: {fileID: 1509823544}
   playerAnimator: {fileID: 1056329804}
@@ -9060,6 +9063,47 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.35, y: 0.35}
   m_Direction: 0
+--- !u!68 &1056329807
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056329794}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.5}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.3, y: 0}
+  - {x: 0.3, y: 0}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1064081531
 GameObject:
   m_ObjectHideFlags: 0

@@ -151,7 +151,7 @@ public class PlayerPushPull : MonoBehaviour
 
     void MoveObject()
     {
-        Debug.Log("object mass" + currentPushPullObject.attachedRigidbody.mass);
+        //Debug.Log("object mass" + currentPushPullObject.attachedRigidbody.mass);
         if (interactionType == InteractionType.Pull && interactionSide != InteractionSide.None)
         {
             movementForce = playerData.playerMovement.GetMovementForce();
