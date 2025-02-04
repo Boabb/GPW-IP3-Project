@@ -109,6 +109,11 @@ public class PlayerPushPull : MonoBehaviour
                 playerData.pulling = false;
             }
         }
+        else
+        {
+            interactionType = InteractionType.None;
+            playerData.pulling = false;
+        }
     }
 
     void ChooseSuitableAnimation()
