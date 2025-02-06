@@ -6,20 +6,14 @@ public class AutoSound : AutoEvent
 {
     [SerializeField] Fade fader;
     [SerializeField] Camera mainCamera;
-    AudioSource sound;
     bool played = false;
-
-    private void Start()
-    {
-        sound = GetComponent<AudioSource>();
-    }
 
     public override void Event(GameObject playerGO)
     {
         if (!played)
         {
             played = true;
-            sound.Play();
+            AudioManager.PlayWallenbergAudio(2);
             //playerGO.GetComponent<GravityMovement>().speedMultiplier = 0.1f;
             //mainCamera.orthographicSize = 2f;
             fader.collision = true;
