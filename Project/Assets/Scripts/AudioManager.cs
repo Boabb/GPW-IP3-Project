@@ -6,24 +6,35 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 
-
+[ExecuteInEditMode]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public static AudioSource masterAudioSource;
     public static AudioClip BGM;
-    [SerializeField] private List<AudioSourceData> soundEffects;
+    [SerializeField] private List<MultipleSourceAudio> SoundEffects;  
+    [SerializeField] private List<MultipleSourceAudio> AllSounds;
+    [SerializeField] private MultipleSourceAudio[] WallenbergAudios;
     [System.Serializable]
-    public struct AudioSourceData
+    public struct MultipleSourceAudio
     {
+        public string name;
         public AudioSource reference;
         public AudioMixerGroup mixerGroup;
 
-        public AudioSourceData(AudioSource name, AudioMixerGroup type)
+        public MultipleSourceAudio(AudioSource name, AudioMixerGroup type)
         {
             this.reference = name;
             this.mixerGroup = type;
+            this.name = String.Concat(this.reference.name, $" ({mixerGroup.name})");
         }
+    }
+    [System.Serializable]
+    public struct SingleSourceAudio
+    {
+        public string name;
+        public AudioClip[] clips;
+        public AudioMixerGroup mixerGroup;
     }
 
 
@@ -40,8 +51,13 @@ public class AudioManager : MonoBehaviour
 #if UNITY_EDITOR
     private void OnEnable()
     {
+        OnValidate();
+    }
+    private void OnValidate()
+    {
+        AllSounds.Clear();
         Debug.ClearDeveloperConsole();
-        foreach (var audioSrc in Transform.FindObjectsOfType<AudioSource>())
+        foreach (var audioSrc in FindObjectsOfType<AudioSource>())
         {
             if(audioSrc.outputAudioMixerGroup == null)
             {
@@ -51,12 +67,12 @@ public class AudioManager : MonoBehaviour
 
             var mixerGroup = audioSrc.outputAudioMixerGroup;
 
-            AudioSourceData newAudioInstance = new(audioSrc, mixerGroup);
+            MultipleSourceAudio newAudioInstance = new(audioSrc, mixerGroup);
 
             // This should be changed when we want multiple instances of sounds other than sound effects
             if (mixerGroup.name != "Sound Effects") 
             {
-                foreach (AudioSourceData sound in soundEffects)
+                foreach (MultipleSourceAudio sound in AllSounds)
                 {
                     if (sound.mixerGroup == mixerGroup)
                     {
@@ -64,7 +80,7 @@ public class AudioManager : MonoBehaviour
                     }
                 }
             }
-            soundEffects.Add(newAudioInstance);
+            AllSounds.Add(newAudioInstance);
         }
     }
 #endif
@@ -103,7 +119,11 @@ public class AudioManager : MonoBehaviour
     /// <param name="index">The volume of the audio source (0.0 to 1.0).</param>
     public static void PlayWallenbergAudio(int index)
     {
+        foreach(MultipleSourceAudio wallenbergAudio in Instance.WallenbergAudios)
+        if(wallenbergAudio.reference.isPlaying && index != Array.IndexOf(Instance.WallenbergAudios, wallenbergAudio))
+        {
 
+        }
     }
 
 
