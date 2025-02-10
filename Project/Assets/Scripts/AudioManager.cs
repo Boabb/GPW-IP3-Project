@@ -11,10 +11,11 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public static AudioSource masterAudioSource;
-    public static AudioClip BGM;
+    public static AudioClip currentBGM;
+    [SerializeField] public AudioMixerGroup MusicMixerGroup, SoundEffectsMixerGroup, VoiceOverMixerGroup;
     [SerializeField] private List<MultipleSourceAudio> AllSounds;
-    [SerializeField] private MultipleSourceAudio[] SoundEffects = new MultipleSourceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
-    [SerializeField] private MultipleSourceAudio[] BGMs = new MultipleSourceAudio[Enum.GetNames(typeof(Music)).Length];
+    [SerializeField] private SingleSourceAudio[] SoundEffects = new SingleSourceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
+    [SerializeField] private MultipleSourceAudio[] BackgroundMusics = new MultipleSourceAudio[Enum.GetNames(typeof(Music)).Length];
     [SerializeField] private MultipleSourceAudio[] VoiceOvers = new MultipleSourceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
     [System.Serializable]
     public struct MultipleSourceAudio
@@ -102,19 +103,21 @@ public class AudioManager : MonoBehaviour
         string[] soundEffectsAsStrings = Enum.GetNames(typeof(SoundEffect));
 
         Array.Resize(ref VoiceOvers, voiceOversAsStrings.Length);
-        Array.Resize(ref BGMs, bGMsAsStrings.Length);
-        Array.Resize(ref SoundEffects, soundEffectsAsStrings.Length);
+        Array.Resize(ref BackgroundMusics, bGMsAsStrings.Length);
 
         for (int i = 0; i < voiceOversAsStrings.Length; i++)
         {
+            VoiceOvers[i].mixerGroup = VoiceOverMixerGroup;
             VoiceOvers[i].name = voiceOversAsStrings[i];
         }        
         for(int i = 0; i < bGMsAsStrings.Length; i++)
         {
-            BGMs[i].name = bGMsAsStrings[i];
+            BackgroundMusics[i].mixerGroup = MusicMixerGroup;
+            BackgroundMusics[i].name = bGMsAsStrings[i];
         }        
         for(int i = 0; i < soundEffectsAsStrings.Length; i++)
         {
+            SoundEffects[i].mixerGroup = SoundEffectsMixerGroup;
             SoundEffects[i].name = soundEffectsAsStrings[i];
         }
 
@@ -136,8 +139,7 @@ public class AudioManager : MonoBehaviour
     
     public static void PlaySoundEffect(SoundEffect soundEffect, float volume = 1.0f)
     {
-        throw new NotImplementedException();
-        //masterAudioSource.PlayOneShot(Instance.soundEffects[(int)soundEffect], volume);
+        masterAudioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects.Length)], volume);
     }
 
     public static void PlaySoundFromSource(AudioSource audioSource, AudioClip audioClip, float volume = 1.0f)
@@ -156,10 +158,16 @@ public class AudioManager : MonoBehaviour
     /// <param name="index">The volume of the audio source (0.0 to 1.0).</param>
     public static void PlayWallenbergAudio(int index)
     {
-        foreach(MultipleSourceAudio wallenbergAudio in Instance.VoiceOvers)
-        if(wallenbergAudio.reference.isPlaying && index != Array.IndexOf(Instance.VoiceOvers, wallenbergAudio))
+        foreach (MultipleSourceAudio wallenbergAudio in Instance.VoiceOvers)
         {
-
+            if (wallenbergAudio.reference.isPlaying && index != Array.IndexOf(Instance.VoiceOvers, wallenbergAudio))
+            {
+                wallenbergAudio.reference.Pause();
+            }
+            else if(index == Array.IndexOf(Instance.VoiceOvers, wallenbergAudio))
+            {
+                wallenbergAudio.reference.Play();
+            }
         }
     }
 
@@ -171,10 +179,10 @@ public class AudioManager : MonoBehaviour
     /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
     public static void PlayBackgroundMusic(AudioClip newBGM, float volume = 1.0f)
     {
-        if(BGM != newBGM)
+        if(currentBGM != newBGM)
         {
             masterAudioSource.Stop();
-            BGM = newBGM;
+            currentBGM = newBGM;
             masterAudioSource.clip = newBGM;
             masterAudioSource.Play();
             masterAudioSource.volume = volume;
