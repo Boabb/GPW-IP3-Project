@@ -5,38 +5,65 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    public GameObject inventoryScreen;
-    public GameObject controlScreen;
+    public GameObject[] screens; // Array of screens to switch between
+    private int activeScreenIndex = -1; // Track active screen index
+    public GameObject menuButton;
 
     void Start()
     {
-        Time.timeScale = 1f;
-        inventoryScreen.SetActive(false);
-        controlScreen.SetActive(false);
+        // Loop through all screens and deactivate them
+        foreach (GameObject screen in screens)
+        {
+            screen.SetActive(false);
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("p"))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            bool isAnyScreenActive = inventoryScreen.activeSelf || controlScreen.activeSelf;
-
-            // If any screen is active, deactivate both
-            inventoryScreen.SetActive(!isAnyScreenActive);
-            controlScreen.SetActive(false);
+            ToggleMenus();
         }
     }
 
-    public void SwitchScreen()
+    public void ToggleMenus()
     {
-        bool inventoryActive = inventoryScreen.activeSelf;
+        if (activeScreenIndex != -1)
+        {
+            // Hide all screens when closing the menu
+            foreach (GameObject screen in screens)
+            {
+                screen.SetActive(false);
+            }
+            activeScreenIndex = -1;
 
-        // Ensure both screens never show at the same time
-        inventoryScreen.SetActive(!inventoryActive);
-        controlScreen.SetActive(inventoryActive);
+            // Show the menu button again when the menus are closed
+            menuButton.SetActive(true);
+        }
+        else
+        {
+            // Default to showing the first screen
+            SwitchScreen(0);
+
+            // Hide the menu button when the menus are opened
+            menuButton.SetActive(false);
+        }
     }
 
-    public void mainMenu()
+
+    public void SwitchScreen(int screenIndex)
+    {
+        if (screenIndex >= 0 && screenIndex < screens.Length)
+        {
+            for (int i = 0; i < screens.Length; i++)
+            {
+                screens[i].SetActive(i == screenIndex); // Only activate the selected screen
+            }
+            activeScreenIndex = screenIndex;
+        }
+    }
+
+    public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
