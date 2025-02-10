@@ -12,9 +12,10 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     public static AudioSource masterAudioSource;
     public static AudioClip BGM;
-    [SerializeField] private List<MultipleSourceAudio> SoundEffects;  
     [SerializeField] private List<MultipleSourceAudio> AllSounds;
-    [SerializeField] private MultipleSourceAudio[] WallenbergAudios;
+    [SerializeField] private MultipleSourceAudio[] SoundEffects = new MultipleSourceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
+    [SerializeField] private MultipleSourceAudio[] BGMs = new MultipleSourceAudio[Enum.GetNames(typeof(Music)).Length];
+    [SerializeField] private MultipleSourceAudio[] VoiceOvers = new MultipleSourceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
     [System.Serializable]
     public struct MultipleSourceAudio
     {
@@ -22,10 +23,10 @@ public class AudioManager : MonoBehaviour
         public AudioSource reference;
         public AudioMixerGroup mixerGroup;
 
-        public MultipleSourceAudio(AudioSource name, AudioMixerGroup type)
+        public MultipleSourceAudio(AudioSource audioSrc, AudioMixerGroup mixerGrp)
         {
-            this.reference = name;
-            this.mixerGroup = type;
+            this.reference = audioSrc;
+            this.mixerGroup = mixerGrp;
             this.name = String.Concat(this.reference.name, $" ({mixerGroup.name})");
         }
     }
@@ -46,6 +47,20 @@ public class AudioManager : MonoBehaviour
         WoodenFootsteps,
         WoodenJump,
         WoodenScrape
+    }
+    public enum VoiceOver
+    {
+        Wallenberg1,
+        Wallenberg2,
+        Wallenberg3,
+        EmbroideryPickup
+    }
+    public enum Music
+    {
+        Wallenberg1,
+        Wallenberg2,
+        Wallenberg3,
+        EmbroideryPickup
     }
 
 #if UNITY_EDITOR
@@ -82,7 +97,29 @@ public class AudioManager : MonoBehaviour
             }
             AllSounds.Add(newAudioInstance);
         }
+        string[] voiceOversAsStrings = Enum.GetNames(typeof(VoiceOver));
+        string[] bGMsAsStrings = Enum.GetNames(typeof(Music));
+        string[] soundEffectsAsStrings = Enum.GetNames(typeof(SoundEffect));
+
+        Array.Resize(ref VoiceOvers, voiceOversAsStrings.Length);
+        Array.Resize(ref BGMs, bGMsAsStrings.Length);
+        Array.Resize(ref SoundEffects, soundEffectsAsStrings.Length);
+
+        for (int i = 0; i < voiceOversAsStrings.Length; i++)
+        {
+            VoiceOvers[i].name = voiceOversAsStrings[i];
+        }        
+        for(int i = 0; i < bGMsAsStrings.Length; i++)
+        {
+            BGMs[i].name = bGMsAsStrings[i];
+        }        
+        for(int i = 0; i < soundEffectsAsStrings.Length; i++)
+        {
+            SoundEffects[i].name = soundEffectsAsStrings[i];
+        }
+
     }
+    
 #endif
 
     private void Start()
@@ -119,8 +156,8 @@ public class AudioManager : MonoBehaviour
     /// <param name="index">The volume of the audio source (0.0 to 1.0).</param>
     public static void PlayWallenbergAudio(int index)
     {
-        foreach(MultipleSourceAudio wallenbergAudio in Instance.WallenbergAudios)
-        if(wallenbergAudio.reference.isPlaying && index != Array.IndexOf(Instance.WallenbergAudios, wallenbergAudio))
+        foreach(MultipleSourceAudio wallenbergAudio in Instance.VoiceOvers)
+        if(wallenbergAudio.reference.isPlaying && index != Array.IndexOf(Instance.VoiceOvers, wallenbergAudio))
         {
 
         }
