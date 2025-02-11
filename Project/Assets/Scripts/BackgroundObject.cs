@@ -14,35 +14,54 @@ public class BackgroundObject : MonoBehaviour
     void Start()
     {
         objectCollider = GetComponent<Collider2D>();
+        //objectCollider.excludeLayers = LayerMask.GetMask("Default");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!SystemSettings.interact) //when the player isn't holding the interact button
+        if (!SystemSettings.interact && playerData.playerMovement.grounded) //when the player isn't holding the interact button and isnt in the air
         {
             objectCollider.excludeLayers = playerData.playerLayer; //the collider excludes the player layer
             //the player can walk past the object 
         }
         else //when the player is holding the interact button
-        {            
-            List<Collider2D> overlappingColliders = new List<Collider2D>();
-            objectCollider.OverlapCollider(new ContactFilter2D().NoFilter(), overlappingColliders);
+        {
+            bool overlap = CheckOverlap();
 
-            for (int i = 0; i < overlappingColliders.Count; i++)
+            if (overlap)
             {
-                if (overlappingColliders[i] == playerData.playerOverlapCheckCollider) //if the collider overlaps with the player collider
-                {
-                    objectCollider.excludeLayers = playerData.playerLayer; //the collider excludes the player layer
-                    //the player can walk past the object
-                    break;
-                }
-                else //if it doesnt overlap with the player collider
-                {
-                    objectCollider.excludeLayers = 0; //the collider excludes nothing
-                    //the player cannot walk past the object
-                }    
+                objectCollider.excludeLayers = playerData.playerLayer; //the collider excludes the player layer
+                                                                       //the player can walk past the object
+            }
+            else
+            {
+                objectCollider.excludeLayers = 0; //the collider excludes nothing
+                                                  //the player cannot walk past the object
             }
         }
+    }
+
+    public bool CheckOverlap()
+    {
+        List<Collider2D> overlappingColliders = new List<Collider2D>();
+        objectCollider.OverlapCollider(new ContactFilter2D().NoFilter(), overlappingColliders);
+
+        bool returnBool = false;
+
+        for (int i = 0; i < overlappingColliders.Count; i++)
+        {
+            if (overlappingColliders[i] == playerData.playerOverlapCheckCollider) //if the collider overlaps with the player collider
+            {
+                returnBool = true;
+                break;
+            }
+            else //if it doesnt overlap with the player collider
+            {
+                returnBool = false;
+            }
+        }
+
+        return returnBool;
     }
 }

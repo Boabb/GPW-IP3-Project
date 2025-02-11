@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 100f;
 
     float movementForce;
-    bool grounded;
+    [HideInInspector] public bool grounded;
     enum MovementType
     {
         Walking,
@@ -49,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         movementForce = walkingForce;
         //end temp
         UpdateMovementType();
+
+        Debug.Log("Ground: " + grounded);
     }
 
     private void FixedUpdate()
@@ -117,6 +119,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 grounded = false;
             }
+        }
+
+        //test
+        if (playerRB2D.velocity.y == 0)
+        {
+            grounded = true;
         }
     }
 
