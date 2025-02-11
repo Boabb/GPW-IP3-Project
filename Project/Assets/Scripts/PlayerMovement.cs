@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerData playerData;
     Collider2D uprightCollider;
     Collider2D crawlingCollider;
-    Collider2D groundedCollider;
+    //Collider2D groundedCollider;
     Rigidbody2D playerRB2D;
 
     Collider2D currentPlayerCollider;
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         playerData = GetComponent<PlayerData>();
         uprightCollider = playerData.playerWalkingCollider;
         crawlingCollider = playerData.playerCrawlingCollider;
-        groundedCollider = playerData.playerGroundedCollider;
+        //groundedCollider = playerData.playerGroundedCollider;
         playerRB2D = playerData.playerRigidbody;
 
         currentPlayerCollider = uprightCollider;
@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         movementForce = walkingForce;
         //end temp
         UpdateMovementType();
+        SetGrounded();
 
         Debug.Log("Ground: " + grounded);
     }
@@ -104,27 +105,31 @@ public class PlayerMovement : MonoBehaviour
 
     void SetGrounded()
     {
-        List<Collider2D> overlappingColliders = new List<Collider2D>();
+        //List<Collider2D> overlappingColliders = new List<Collider2D>();
 
-        groundedCollider.OverlapCollider(new ContactFilter2D().NoFilter(), overlappingColliders);
+        //groundedCollider.OverlapCollider(new ContactFilter2D().NoFilter(), overlappingColliders);
 
-        for (int i = 0; i < overlappingColliders.Count; i++)
-        {
-            if (overlappingColliders[i].tag == "Ground")
-            {
-                grounded = true;
-                break;
-            }
-            else
-            {
-                grounded = false;
-            }
-        }
+        //for (int i = 0; i < overlappingColliders.Count; i++)
+        //{
+        //    if (overlappingColliders[i].tag == "Ground")
+        //    {
+        //        grounded = true;
+        //        break;
+        //    }
+        //    else
+        //    {
+        //        grounded = false;
+        //    }
+        //}
 
         //test
         if (playerRB2D.velocity.y == 0)
         {
             grounded = true;
+        }
+        else
+        {
+            grounded = false;
         }
     }
 

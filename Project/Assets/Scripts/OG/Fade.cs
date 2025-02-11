@@ -32,7 +32,7 @@ public class Fade : MonoBehaviour
 
     private void Awake()
     {
-        Fade1.sharedMaterial.color = revealed;
+        //Fade1.sharedMaterial.color = revealed;
 
         fadeCollider = GetComponentInChildren<Collider2D>();
         audioSource = GetComponentInChildren<AudioSource>();
