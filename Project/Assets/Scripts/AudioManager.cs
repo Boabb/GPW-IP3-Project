@@ -13,7 +13,12 @@ public class AudioManager : MonoBehaviour
     public static AudioSource masterAudioSource;
     public static AudioClip currentBGM;
     [SerializeField] public AudioMixerGroup MusicMixerGroup, SoundEffectsMixerGroup, VoiceOverMixerGroup;
-    [SerializeField] private List<MultipleSourceAudio> AllSounds;
+    [Header("Do Not Change")]
+    /// <summary>
+    /// This should not be changed in the Inspector
+    /// </summary>
+    public List<MultipleSourceAudio> AllSounds;
+    [Header("Change (Drag in the AudioClips)")]
     [SerializeField] private SingleSourceAudio[] SoundEffects = new SingleSourceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
     [SerializeField] private MultipleSourceAudio[] BackgroundMusics = new MultipleSourceAudio[Enum.GetNames(typeof(Music)).Length];
     [SerializeField] private MultipleSourceAudio[] VoiceOvers = new MultipleSourceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
@@ -63,12 +68,11 @@ public class AudioManager : MonoBehaviour
         Wallenberg3,
         EmbroideryPickup
     }
-
-#if UNITY_EDITOR
     private void OnEnable()
     {
         OnValidate();
     }
+#if UNITY_EDITOR
     private void OnValidate()
     {
         AllSounds.Clear();
@@ -135,8 +139,14 @@ public class AudioManager : MonoBehaviour
     public static void PlaySound(AudioClip audioClip, float volume = 1.0f)
     {
         masterAudioSource.PlayOneShot(audioClip, volume);
-    }    
-    
+    }
+
+    /// <summary>
+    /// Plays the <seealso cref="SoundEffect"/>  Audio of type <paramref name="soundEffect"/> on the <seealso cref="masterAudioSource"/> (if it exists)
+    /// </summary>
+    /// <param name="soundEffect">The <seealso cref="SoundEffect"/> to be played (Look at <seealso cref="SoundEffect"/> Enum to find the index).</param>
+    /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
+
     public static void PlaySoundEffect(SoundEffect soundEffect, float volume = 1.0f)
     {
         masterAudioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects.Length)], volume);
@@ -153,20 +163,20 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays the Wallenberg Audio of type <paramref name="index"/> on the Wallenberg audio source (if it exists)
+    /// Plays the <seealso cref="VoiceOver"/> Audio of type <paramref name="index"/> on the <seealso cref="VoiceOvers"/> respective Audio Source (if it exists)
     /// </summary>
-    /// <param name="index">The volume of the audio source (0.0 to 1.0).</param>
-    public static void PlayWallenbergAudio(int index)
+    /// <param name="index">The <paramref name="index"/> of the Voice-Over Audio; see <seealso cref="VoiceOver"/> Enum for indexes of each audio.</param>
+    public static void PlayVoiceOverAudio(int index)
     {
-        foreach (MultipleSourceAudio wallenbergAudio in Instance.VoiceOvers)
+        foreach (MultipleSourceAudio voiceOver in Instance.VoiceOvers)
         {
-            if (wallenbergAudio.reference.isPlaying && index != Array.IndexOf(Instance.VoiceOvers, wallenbergAudio))
+            if (voiceOver.reference.isPlaying && index != Array.IndexOf(Instance.VoiceOvers, voiceOver))
             {
-                wallenbergAudio.reference.Pause();
+                voiceOver.reference.Pause();
             }
-            else if(index == Array.IndexOf(Instance.VoiceOvers, wallenbergAudio))
+            else if(index == Array.IndexOf(Instance.VoiceOvers, voiceOver))
             {
-                wallenbergAudio.reference.Play();
+                voiceOver.reference.Play();
             }
         }
     }
