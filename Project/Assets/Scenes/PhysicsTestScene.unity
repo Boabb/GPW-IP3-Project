@@ -9056,7 +9056,7 @@ MonoBehaviour:
   playerInteractCollider: {fileID: 1056329801}
   playerOverlapCheckCollider: {fileID: 1056329806}
   playerGroundedCollider: {fileID: 1056329807}
-  playerCatchClimbCollider: {fileID: 0}
+  playerCatchClimbCollider: {fileID: 1754994745}
   playerAnimatorComponent: {fileID: 1509823543}
   playerSprite: {fileID: 1509823544}
   playerAnimator: {fileID: 1056329804}
@@ -18240,6 +18240,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3c0ffb23b73c94b81ab50da0c9a020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MusicMixerGroup: {fileID: 0}
+  SoundEffectsMixerGroup: {fileID: 0}
+  VoiceOverMixerGroup: {fileID: 0}
+  AllSounds:
+  - name: Main Camera (Master)
+    reference: {fileID: 2057718743}
+    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  SoundEffects:
+  - name: JumpWood
+    clips: []
+    mixerGroup: {fileID: 0}
+  - name: WalkWood
+    clips: []
+    mixerGroup: {fileID: 0}
+  - name: Vent
+    clips: []
+    mixerGroup: {fileID: 0}
+  - name: WoodenFootsteps
+    clips: []
+    mixerGroup: {fileID: 0}
+  - name: WoodenJump
+    clips: []
+    mixerGroup: {fileID: 0}
+  - name: WoodenScrape
+    clips: []
+    mixerGroup: {fileID: 0}
+  BackgroundMusics:
+  - name: Wallenberg1
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Wallenberg2
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Wallenberg3
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: EmbroideryPickup
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  VoiceOvers:
+  - name: Wallenberg1
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Wallenberg2
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: Wallenberg3
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: EmbroideryPickup
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 0}
 --- !u!114 &2057718745
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -68,12 +68,13 @@ public class AudioManager : MonoBehaviour
         Wallenberg3,
         EmbroideryPickup
     }
-    private void OnEnable()
-    {
-        OnValidate();
-    }
 #if UNITY_EDITOR
     private void OnValidate()
+    {
+        OnSceneRefresh();
+    }
+#endif
+    private void OnSceneRefresh()
     {
         AllSounds.Clear();
         Debug.ClearDeveloperConsole();
@@ -126,8 +127,6 @@ public class AudioManager : MonoBehaviour
         }
 
     }
-    
-#endif
 
     private void Start()
     {
