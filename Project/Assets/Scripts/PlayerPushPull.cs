@@ -150,7 +150,7 @@ public class PlayerPushPull : MonoBehaviour
         }
         else
         {
-            playerAnimator.PlayerIdle();
+            //playerAnimator.PlayerIdle();
         }
     }
 
@@ -176,7 +176,7 @@ public class PlayerPushPull : MonoBehaviour
     {
         pushPullMoveableObject = collider.gameObject.GetComponent<MoveableObject>(); //gets the object tags component of the pushPullObject
         
-        if (pushPullMoveableObject != null)
+        if (pushPullMoveableObject != null && playerData.playerMovement.grounded)
         {
             currentPushPullObject = collider; //sets the pushPullObject to the collider
             playerData.currentPlayerRBMass = (playerData.playerRBMass + pushPullMoveableObject.objectRBMass)/2; //sets the player mass
@@ -203,9 +203,11 @@ public class PlayerPushPull : MonoBehaviour
     }
 
     //NOTE: THIS MUST OCCUR AFTER OTHER PLAYER COLLISION CHECKS!!
+    //why...?
+    //I don't remember, this is why we write better comments
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Tiggered!");
+        //Debug.Log("Tiggered!");
         if (currentPushPullObject == null)
         {
             AttachPushPullObject(collider);

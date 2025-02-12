@@ -458,7 +458,10 @@ public class GravityMovement : MonoBehaviour
 
                 GetPlayerEdgePositions();
                 horizontalSpeed = -currentHorizontalForce * speedMultiplier;
-                transform.position = new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime), transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime), transform.position.z + playerGroundObject.transform.right.z);
+                transform.position = 
+                    new Vector3(transform.position.x + (playerGroundObject.transform.right.x * horizontalSpeed * Time.deltaTime), 
+                    transform.position.y + (horizontalSpeed * playerGroundObject.transform.right.y * Time.deltaTime), 
+                    transform.position.z + playerGroundObject.transform.right.z);
             }
             else if (((!SystemSettings.moveLeft && !SystemSettings.moveRight) || (SystemSettings.moveLeft && SystemSettings.moveRight)) && movementType != MovementType.Crawling && movementType != MovementType.MovableRight && movementType != MovementType.MovableLeft)
             {
