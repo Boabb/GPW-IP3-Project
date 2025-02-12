@@ -5,19 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject settingsMenu;
+    public GameObject mainMenu;
+
     public void PlayGame()
     {
         //SceneManager.LoadScene("ControlScreen");
     }
 
-    public void QuitGame()
+    public void SettingsMenuToggle()
     {
-        Application.Quit();
-    }
-
-    public void SettingsMenu()
-    {
-
+        settingsMenu.SetActive(!settingsMenu.activeSelf);
+        mainMenu.SetActive(!mainMenu.activeSelf);
     }
 
     public void CreditsScreen()
