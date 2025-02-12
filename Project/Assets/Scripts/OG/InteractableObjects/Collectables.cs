@@ -33,7 +33,7 @@ public class Collectables : InteractableObject
             Player = playerGO;
             Player.GetComponent<GravityMovement>().isManoeuvring = true;
             CollectableVisual.SetActive(true);
-            CollectableAudio.Play();
+            AudioManager.PlayVoiceOverAudio(VoiceOver.EmbroideryPickup, .3f);
         }
     }
 }
