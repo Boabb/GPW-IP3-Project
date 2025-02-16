@@ -173,7 +173,8 @@ public class GravityMovement : MonoBehaviour
         if (hasJumped && grounded)
         {
             hasJumped = false;
-            PlayerAudio.PlayWoodenJump();
+            AudioManager.PlaySoundEffect(SoundEffect.SuzanneExhale);
+            AudioManager.PlaySoundEffect(SoundEffect.LandOnWood);
         }
 
         if (grounded && movementType == MovementType.Walking)
