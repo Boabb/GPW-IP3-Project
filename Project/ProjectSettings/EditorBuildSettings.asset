@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ControlScreen.unity
     guid: 7da4ef21a2b58d24da0878e175601c85
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WallenbergHouse.unity
     guid: 9f97d2a46510ae346ad07cd6945bd801
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/PhysicsTestScene.unity
+    guid: 315f8468729fd6c4db4cd2249dcb372e
   m_configObjects: {}

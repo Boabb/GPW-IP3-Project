@@ -92,7 +92,7 @@ public class SystemSettings: MonoBehaviour
                 moveRight = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 jump = true;
             }

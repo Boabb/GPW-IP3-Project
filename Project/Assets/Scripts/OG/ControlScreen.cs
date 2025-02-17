@@ -7,9 +7,10 @@ public class ControlScreen : MonoBehaviour
 {
 
     [SerializeField]private float delayTime = 10f;
-    [SerializeField]private string WallenbergHouse;
 
     private float timer;
+
+    public GameObject levelLoader;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +31,6 @@ public class ControlScreen : MonoBehaviour
 
     void LoadScene()
     {
-        if (!string.IsNullOrEmpty(WallenbergHouse))
-        {
-            SceneManager.LoadScene("WallenbergHouse");
-        }
+        levelLoader.GetComponent<LevelLoader>().LoadNextLevel();
     }
 }

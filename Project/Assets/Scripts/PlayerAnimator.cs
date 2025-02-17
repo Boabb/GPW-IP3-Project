@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+    PlayerData playerData;
     Animator playerAnimator;
     SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-        playerAnimator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        playerData = GetComponent<PlayerData>();
+        playerAnimator = playerData.playerAnimatorComponent;
+        spriteRenderer = playerData.playerSprite;
     }
 
     public void PlayerWalkRight()
@@ -49,31 +51,45 @@ public class PlayerAnimator : MonoBehaviour
         spriteRenderer.gameObject.transform.localPosition = new Vector3(0, 0.255f, 0);
     }
 
-    public void PlayerPushRight()
+    public void PlayerPushLeft()
     {
         playerAnimator.SetInteger("AnimationNumber", 3);
         spriteRenderer.flipX = true;
         spriteRenderer.gameObject.transform.localPosition = new Vector3(-0.12f, 0, 0);
     }
 
-    public void PlayerPushLeft()
+    public void PlayerPushRight()
     {
         playerAnimator.SetInteger("AnimationNumber", 3);
         spriteRenderer.flipX = false; 
         spriteRenderer.gameObject.transform.localPosition = new Vector3(0.12f, 0, 0);
     }
 
-    public void PlayerPullRight()
+    public void PlayerPullLeft()
     {
         playerAnimator.SetInteger("AnimationNumber", 4);
         spriteRenderer.flipX = true;
         spriteRenderer.gameObject.transform.localPosition = new Vector3(-0.12f, 0, 0);
     }
 
-    public void PlayerPullLeft() 
+    public void PlayerPullRight() 
     {
         playerAnimator.SetInteger("AnimationNumber", 4);
         spriteRenderer.flipX = false;
         spriteRenderer.gameObject.transform.localPosition = new Vector3(0.12f, 0, 0);
+    }
+
+    public void PlayerClingLeft()
+    {
+        playerAnimator.SetInteger("AnimationNumber", 5);
+        spriteRenderer.flipX = true;
+        //spriteRenderer.gameObject.transform.localPosition = new Vector3(0.12f, 0, 0);
+    }
+
+    public void PlayerClingRight()
+    {
+        playerAnimator.SetInteger("AnimationNumber", 5);
+        spriteRenderer.flipX = false;
+        //spriteRenderer.gameObject.transform.localPosition = new Vector3(-0.12f, 0, 0);
     }
 }

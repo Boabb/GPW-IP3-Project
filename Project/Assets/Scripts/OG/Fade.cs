@@ -30,12 +30,10 @@ public class Fade : MonoBehaviour
     bool shake = true;
     float shakeAdder = 0;
 
-    private void OnValidate()
-    {
-        Fade1.sharedMaterial.color = revealed;
-    }
     private void Awake()
     {
+        //Fade1.sharedMaterial.color = revealed;
+
         fadeCollider = GetComponentInChildren<Collider2D>();
         audioSource = GetComponentInChildren<AudioSource>();
 
