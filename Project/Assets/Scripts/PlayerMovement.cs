@@ -81,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
+                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
                 playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
                 AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
                 playerData.playerAnimator.PlayerWalkLeft();
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (SystemSettings.moveRight && !SystemSettings.moveLeft)
             {
+                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
                 playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
                 playerData.playerAnimator.PlayerWalkRight();
                 AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
@@ -130,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
         {
             //temp
             movementType = MovementType.Walking;
-            AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
         }
     }
 
