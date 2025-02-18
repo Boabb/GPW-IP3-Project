@@ -1205,8 +1205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7a1d4ee8a5ce4468a1b84a8541d3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectRBMass: 0.5
-  currentObjectRBMass: 0
+  playerData: {fileID: 1056329803}
 --- !u!114 &107570783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8941,7 +8940,6 @@ MonoBehaviour:
   jumpForce: 400
   gravityForce: 25
   dragForce: 10
-  grounded: 0
 --- !u!4 &1056329796
 Transform:
   m_ObjectHideFlags: 0
@@ -9021,6 +9019,7 @@ MonoBehaviour:
   currentPlayerRBMass: 0
   pulling: 0
   pushing: 0
+  grounded: 0
 --- !u!114 &1056329804
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -352,12 +352,12 @@ public class GravityMovement : MonoBehaviour
                 if (movementType == MovementType.Walking) //walk right
                 {
                     PlayerAudio.PlayWoodenFootsteps(true);
-                    playerAnimator.PlayerWalkRight();
+                    //playerAnimator.PlayerWalkRight();
                 }
                 else if (movementType == MovementType.Crawling) //crawl right
                 {
                     PlayerAudio.PlayCrawlInVent(true);
-                    playerAnimator.PlayerCrawlRight();
+                    //playerAnimator.PlayerCrawlRight();
                 }
 
                 if (movementType == MovementType.CatchRight) //should never occur 
@@ -373,7 +373,7 @@ public class GravityMovement : MonoBehaviour
                 if (movementType == MovementType.MovableRight) //push object
                 {
                     PlayerAudio.PlayWoodenScrape(true);
-                    playerAnimator.PlayerPushRight();
+                    //playerAnimator.PlayerPushRight();
                     interactionType = InteractionType.Push;
                     currentHorizontalForce = BasePushForce;
                     interactingObject.GetComponent<MovableInteractable>().Interaction(gameObject);
@@ -381,7 +381,7 @@ public class GravityMovement : MonoBehaviour
                 else if (movementType == MovementType.MovableLeft) //pull object
                 {
                     PlayerAudio.PlayWoodenScrape(true);
-                    playerAnimator.PlayerPullLeft();
+                    //playerAnimator.PlayerPullLeft();
                     interactionType = InteractionType.Pull;
                     currentHorizontalForce = BasePullForce;
                     interactingObject.GetComponent<MovableInteractable>().Interaction(gameObject);
@@ -421,12 +421,12 @@ public class GravityMovement : MonoBehaviour
                 if (movementType == MovementType.Walking) //walk to the left
                 {
                     PlayerAudio.PlayWoodenFootsteps(true);
-                    playerAnimator.PlayerWalkLeft();
+                    //playerAnimator.PlayerWalkLeft();
                 }
                 else if (movementType == MovementType.Crawling) //crawl to the left
                 {
                     PlayerAudio.PlayCrawlInVent(true);
-                    playerAnimator.PlayerCrawlLeft();
+                    //playerAnimator.PlayerCrawlLeft();
                 }
 
                 if (movementType == MovementType.CatchLeft) //should never occur 
@@ -442,7 +442,7 @@ public class GravityMovement : MonoBehaviour
                 if (movementType == MovementType.MovableRight) //pull object
                 {
                     PlayerAudio.PlayWoodenScrape(true);
-                    playerAnimator.PlayerPullRight();
+                    //playerAnimator.PlayerPullRight();
                     interactionType = InteractionType.Pull;
                     currentHorizontalForce = BasePullForce;
                     interactingObject.GetComponent<MovableInteractable>().Interaction(gameObject);
@@ -450,7 +450,7 @@ public class GravityMovement : MonoBehaviour
                 else if (movementType == MovementType.MovableLeft) //push object
                 {
                     PlayerAudio.PlayWoodenScrape(true);
-                    playerAnimator.PlayerPushLeft();
+                    //playerAnimator.PlayerPushLeft();
                     interactionType = InteractionType.Push;
                     currentHorizontalForce = BasePushForce;
                     interactingObject.GetComponent<MovableInteractable>().Interaction(gameObject);
@@ -465,7 +465,7 @@ public class GravityMovement : MonoBehaviour
             }
             else if (((!SystemSettings.moveLeft && !SystemSettings.moveRight) || (SystemSettings.moveLeft && SystemSettings.moveRight)) && movementType != MovementType.Crawling && movementType != MovementType.MovableRight && movementType != MovementType.MovableLeft)
             {
-                playerAnimator.PlayerIdle();
+                //playerAnimator.PlayerIdle();
             }
 
             if (SystemSettings.jump && canJump)

@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D playerRB2D;
 
     Collider2D currentPlayerCollider;
+    MovementDirection movementDirection;
     MovementType movementType;
 
     [Header("For Designers")]
@@ -25,13 +26,23 @@ public class PlayerMovement : MonoBehaviour
     float pullForce;
 
     float movementForce;
-    [HideInInspector] public bool grounded;
+    bool grounded;
+
+    enum MovementDirection
+    {
+        Left, 
+        Right
+    }
+
     enum MovementType
     {
+        None,
         Walking,
         Crawling,
         Pulling,
-        Pushing
+        Pushing,
+        Jumping,
+        Falling
     }
 
     // Start is called before the first frame update
@@ -48,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
         movementType = MovementType.Walking;
         movementForce = walkingForce;
 
-        pushForce = walkingForce / 2;
-        pullForce = walkingForce / 3;
+        pushForce = walkingForce / 1.5f;
+        pullForce = walkingForce / 2;
     }
 
     // Update is called once per frame
@@ -57,13 +68,13 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateMovementType();
         UpdateMovementForce();
-        SetGrounded();
 
-        Debug.Log("Ground: " + grounded);
+        //Debug.Log("Ground: " + grounded);
     }
 
     private void FixedUpdate()
     {
+        SetGrounded();
         Move();
         Jump();
         ApplyGravity();
@@ -76,13 +87,30 @@ public class PlayerMovement : MonoBehaviour
         {
             if (SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
+                movementDirection = MovementDirection.Left;
+                if (grounded)
+                {
+                    movementType = MovementType.Walking;
+                    playerData.playerAnimator.walkLeft = true;
+                }
                 playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
             }
 
             if (SystemSettings.moveRight && !SystemSettings.moveLeft)
             {
+                movementDirection = MovementDirection.Right;
+                if (grounded)
+                {
+                    movementType = MovementType.Walking;
+                    playerData.playerAnimator.walkRight = true;
+                }
                 playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
             }
+
+            //if (movementType == MovementType.None)
+            //{
+            //    playerData.playerAnimator.idle = true;
+            //}
         }
     }
 
@@ -92,6 +120,14 @@ public class PlayerMovement : MonoBehaviour
         if (SystemSettings.jump && grounded == true)
         {
             Debug.Log("Jump");
+            if (movementDirection == MovementDirection.Left)
+            {
+                playerData.playerAnimator.jumpLeft = true;
+            }
+            else
+            {
+                playerData.playerAnimator.jumpRight = true;
+            }
             playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
         }
     }
@@ -110,8 +146,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            //temp
-            movementType = MovementType.Walking;
+            movementType = MovementType.None;
         }
     }
 
@@ -182,12 +217,35 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerRB2D.velocity.y == 0)
         {
+            if (playerData.animationNumber == 7)
+            {
+                if (movementDirection == MovementDirection.Left)
+                {
+                    playerData.playerAnimator.landLeft = true;
+                }
+                else
+                {
+                    playerData.playerAnimator.landRight = true;
+                }
+            }
+
             grounded = true;
         }
         else
         {
+            if (movementDirection == MovementDirection.Left)
+            {
+                playerData.playerAnimator.fallLeft = true;
+            }
+            else
+            {
+                playerData.playerAnimator.fallRight = true;
+            }
+
             grounded = false;
         }
+
+        playerData.grounded = grounded;
     }
 
     public float GetMovementForce()

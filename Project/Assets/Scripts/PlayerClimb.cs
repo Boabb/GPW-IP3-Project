@@ -66,7 +66,7 @@ public class PlayerClimb : MonoBehaviour
         climbType = ClimbType.None;
 
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x  + offsetX, playerRB.gameObject.transform.position.y + offsetY);
-        playerAnimator.PlayerIdle();
+        playerAnimator.idle = true;
     }
 
     void ClimbUpObjectRight()
@@ -76,7 +76,7 @@ public class PlayerClimb : MonoBehaviour
         climbType = ClimbType.None;
 
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x - offsetX, playerRB.gameObject.transform.position.y + offsetY);
-        playerAnimator.PlayerIdle();
+        playerAnimator.idle = true;
     }
 
     void LetGoOfObject()
@@ -84,8 +84,7 @@ public class PlayerClimb : MonoBehaviour
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
-
-        playerAnimator.PlayerIdle();
+        playerAnimator.idle = true;
     }
 
     void QuickClimb()
@@ -98,12 +97,12 @@ public class PlayerClimb : MonoBehaviour
         if (climbSide == ClimbSide.Left)
         {
             //animation left
-            playerAnimator.PlayerClingLeft();
+            playerAnimator.clingLeft = true;
         }
         else
         {
             //animation right
-            playerAnimator.PlayerClingRight();
+            playerAnimator.clingRight = true;
         }
         climbType = ClimbType.Catch;
         playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -139,10 +138,5 @@ public class PlayerClimb : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collider)
-    {
-
     }
 }
