@@ -104,6 +104,7 @@ public class PlayerClimb : MonoBehaviour
 
     void CatchClimb()
     {
+        playerData.catching = true;
         if (climbSide == ClimbSide.Left)
         {
             //animation left

@@ -2750,6 +2750,8 @@ Transform:
   - {fileID: 1993417585}
   - {fileID: 1210174060}
   - {fileID: 190354710}
+  - {fileID: 867228142}
+  - {fileID: 538825459}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &303941121
@@ -3771,12 +3773,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538825457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 14.721, y: 0.008, z: 0}
   m_LocalScale: {x: 0.17013402, y: 0.33144325, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 280706847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &541034783
 GameObject:
@@ -5202,6 +5204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 708879405}
   - component: {fileID: 708879406}
+  - component: {fileID: 708879407}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -5238,6 +5241,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
+  - name: Audio Manager (Master)
+    clips: []
+    audioSource: {fileID: 708879407}
+    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: suzanneExert (Sound Effects)
     clips: []
     audioSource: {fileID: 280288822}
@@ -5246,6 +5253,18 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 588717446}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Voice-Over Audio (Voice-Over)
+    clips: []
+    audioSource: {fileID: 768029583}
+    mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: OutOfVent (Music)
+    clips: []
+    audioSource: {fileID: 774843205}
+    mixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Vent (Music)
+    clips: []
+    audioSource: {fileID: 1017921284}
+    mixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: suzanneExhale (Sound Effects)
     clips: []
     audioSource: {fileID: 1414484381}
@@ -5258,16 +5277,16 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 2009915524}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Firstroom (Music)
+    clips: []
+    audioSource: {fileID: 2021852136}
+    mixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: woodenFootsteps (Sound Effects)
     clips: []
     audioSource: {fileID: 2043104613}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Main Camera (Master)
-    clips: []
-    audioSource: {fileID: 2057718743}
-    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  MusicAudioSource: {fileID: 0}
-  VoiceOverAudioSource: {fileID: 0}
+  MusicAudioSource: {fileID: 2021852136}
+  VoiceOverAudioSource: {fileID: 768029583}
   SoundEffectsMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   VoiceOverMixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -5338,6 +5357,102 @@ MonoBehaviour:
   - name: EmbroideryPickup
     clip: {fileID: 8300000, guid: 0e160e320ce4f9840b290baf56d8282c, type: 3}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+--- !u!82 &708879407
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708879404}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &726185600 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4077002549455478694, guid: 6bec70bbe6e12e048b478f1cf2b2e08b, type: 3}
@@ -5490,7 +5605,7 @@ AudioSource:
   m_GameObject: {fileID: 768029581}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: 3114d987ed7b92e46998add39cbf6316, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.45
@@ -5603,7 +5718,7 @@ AudioSource:
   m_GameObject: {fileID: 774843204}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: e6749c7fad2320843b441bcc5dcc5efb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
@@ -6535,12 +6650,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867228140}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.8781, y: 0.008, z: 0}
   m_LocalScale: {x: 0.17013402, y: 0.33144325, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 280706847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &876486130
 GameObject:
@@ -8007,7 +8122,7 @@ AudioSource:
   m_GameObject: {fileID: 1017921282}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: b28de0d50a80cc0439f5bb38e2c0c981, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
@@ -16282,9 +16397,9 @@ AudioSource:
   m_GameObject: {fileID: 2021852134}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1568ac8f0dedd3b4faa3d05587f50854, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
@@ -16557,10 +16672,7 @@ GameObject:
   - component: {fileID: 2057718747}
   - component: {fileID: 2057718742}
   - component: {fileID: 2057718746}
-  - component: {fileID: 2057718741}
   - component: {fileID: 2057718745}
-  - component: {fileID: 2057718743}
-  - component: {fileID: 2057718744}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -16568,18 +16680,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2057718741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057718740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec1e4f7e8a52aa4981641dbcce0120d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &2057718742
 Camera:
   m_ObjectHideFlags: 0
@@ -16631,204 +16731,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!82 &2057718743
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057718740}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &2057718744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057718740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a3c0ffb23b73c94b81ab50da0c9a020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AllSounds:
-  - name: suzanneExert (Sound Effects)
-    clips: []
-    audioSource: {fileID: 280288822}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenScrape (Sound Effects)
-    clips: []
-    audioSource: {fileID: 588717446}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: suzanneExhale (Sound Effects)
-    clips: []
-    audioSource: {fileID: 1414484381}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenJump (Sound Effects)
-    clips: []
-    audioSource: {fileID: 1967089608}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: crawlInVent (Sound Effects)
-    clips: []
-    audioSource: {fileID: 2009915524}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenFootsteps (Sound Effects)
-    clips: []
-    audioSource: {fileID: 2043104613}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Main Camera (Master)
-    clips: []
-    audioSource: {fileID: 2057718743}
-    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  MusicAudioSource: {fileID: 0}
-  VoiceOverAudioSource: {fileID: 0}
-  SoundEffectsMixerGroup: {fileID: 0}
-  MusicMixerGroup: {fileID: 0}
-  VoiceOverMixerGroup: {fileID: 0}
-  SoundEffects:
-  - name: LandOnWood
-    clips: []
-    audioSource: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: WalkWood
-    clips: []
-    audioSource: {fileID: 2043104613}
-    mixerGroup: {fileID: 0}
-  - name: Vent
-    clips: []
-    audioSource: {fileID: 2009915524}
-    mixerGroup: {fileID: 0}
-  - name: WoodenFootsteps
-    clips: []
-    audioSource: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: WoodenJump
-    clips: []
-    audioSource: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: WoodenScrape
-    clips: []
-    audioSource: {fileID: 588717446}
-    mixerGroup: {fileID: 0}
-  - name: SuzanneExhale
-    clips: []
-    audioSource: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: SuzanneExert
-    clips: []
-    audioSource: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  BackgroundMusics:
-  - name: FirstRoomSong
-    clip: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: InVentSong
-    clip: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: OutOfVentSong
-    clip: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  VoiceOvers:
-  - name: Wallenberg1
-    clip: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: Wallenberg2
-    clip: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: Wallenberg3
-    clip: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: EmbroideryPickup
-    clip: {fileID: 0}
-    mixerGroup: {fileID: 0}
 --- !u!114 &2057718745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17458,6 +17360,4 @@ SceneRoots:
   - {fileID: 407382750}
   - {fileID: 1800340409}
   - {fileID: 1469985137}
-  - {fileID: 867228142}
-  - {fileID: 538825459}
   - {fileID: 1585614876}
