@@ -55,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //temp
+        movementForce = walkingForce;
+        //end temp
         UpdateMovementType();
         UpdateMovementForce();
         SetGrounded();
@@ -72,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        //Debug.Log("Player mass: " + playerRB2D.mass);
         if (movementType != MovementType.Pulling)
         {
             if (SystemSettings.moveLeft && !SystemSettings.moveRight)
@@ -84,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
                 playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
             }
         }
+        AudioManager.StopSoundEffect(SoundEffect.WoodenFootsteps);
     }
 
     void Jump()
@@ -91,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         SetGrounded();
         if (SystemSettings.jump && grounded == true)
         {
+            AudioManager.PlaySoundEffect(SoundEffect.SuzanneExert);
             Debug.Log("Jump");
             playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
         }
@@ -100,18 +106,22 @@ public class PlayerMovement : MonoBehaviour
     {
         //implement this!
         //should switch between walking and crawling!
+
         if (playerData.pulling)
         {
             movementType = MovementType.Pulling;
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
         }
         else if (playerData.pushing)
         {
             movementType = MovementType.Pushing;
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
         }
         else
         {
             //temp
             movementType = MovementType.Walking;
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
         }
     }
 
