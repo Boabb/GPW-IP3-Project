@@ -32,6 +32,8 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public float currentPlayerRBMass; //this is the mass of the player when it is moving an object (equal to the player mass plus the object mass)
     [HideInInspector] public bool pulling = false; //is the player currently pulling an object?
     [HideInInspector] public bool pushing = false; //is the player currently pushing an object?
+    [HideInInspector] public bool catching = false; //is the player currently catching onto an object?
+
     private void Start()
     {
         playerLayer = LayerMask.GetMask("Player");

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -76,19 +77,28 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         //Debug.Log("Player mass: " + playerRB2D.mass);
-        if (movementType != MovementType.Pulling)
+        if (!playerData.pushing && !playerData.catching && !playerData.pulling)
         {
             if (SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
                 playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
+                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                playerData.playerAnimator.PlayerWalkLeft();
             }
 
             if (SystemSettings.moveRight && !SystemSettings.moveLeft)
             {
                 playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
+                playerData.playerAnimator.PlayerWalkRight();
+                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
             }
         }
+        else
+        {
+        playerData.playerAnimator.PlayerIdle();
         AudioManager.StopSoundEffect(SoundEffect.WoodenFootsteps);
+        }
+
     }
 
     void Jump()
@@ -96,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
         SetGrounded();
         if (SystemSettings.jump && grounded == true)
         {
-            AudioManager.PlaySoundEffect(SoundEffect.SuzanneExert);
             Debug.Log("Jump");
             playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
         }

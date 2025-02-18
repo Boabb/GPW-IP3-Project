@@ -44,6 +44,7 @@ public class PlayerClimb : MonoBehaviour
     {
         if (climbType == ClimbType.Catch)
         {
+            playerData.catching = true;
             if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
             {
                 ClimbUpObjectLeft();
@@ -56,6 +57,14 @@ public class PlayerClimb : MonoBehaviour
             {
                 LetGoOfObject();
             }
+            else
+            {
+                CatchClimb();
+            }
+        }
+        else
+        {
+            playerData.catching = false;
         }
     }
 
@@ -98,12 +107,12 @@ public class PlayerClimb : MonoBehaviour
         if (climbSide == ClimbSide.Left)
         {
             //animation left
-            playerAnimator.PlayerClingLeft();
+            playerAnimator.PlayerCatchLeft();
         }
         else
         {
             //animation right
-            playerAnimator.PlayerClingRight();
+            playerAnimator.PlayerCatchRight();
         }
         climbType = ClimbType.Catch;
         playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
