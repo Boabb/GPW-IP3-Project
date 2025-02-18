@@ -110,16 +110,18 @@ public class PlayerMovement : MonoBehaviour
         if (playerData.pulling)
         {
             movementType = MovementType.Pulling;
-            AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
         }
         else if (playerData.pushing)
         {
             movementType = MovementType.Pushing;
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
         }
         else
         {
             //temp
             movementType = MovementType.Walking;
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
         }
     }
 

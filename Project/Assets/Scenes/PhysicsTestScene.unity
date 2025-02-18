@@ -1067,6 +1067,7 @@ Transform:
   m_Children:
   - {fileID: 1754994744}
   - {fileID: 1865764602}
+  - {fileID: 608827985}
   m_Father: {fileID: 801441773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &107570779
@@ -1917,7 +1918,6 @@ GameObject:
   - component: {fileID: 183234835}
   - component: {fileID: 183234837}
   - component: {fileID: 183234836}
-  - component: {fileID: 183234837}
   m_Layer: 16
   m_Name: ClimbCollider
   m_TagString: Untagged
@@ -2611,10 +2611,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ace7dfbfc5a5f0d48bc6e01e9f7dcd67, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.72
+  m_Pitch: 0.93
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -2657,7 +2657,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.865
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3801,9 +3801,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 652813708}
-  - {fileID: 473620022}
-  - {fileID: 810214131}
   - {fileID: 1478294002}
   m_Father: {fileID: 1585614876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3819,9 +3816,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f44c1e80ef124469621f62baf37858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodenScrapeClip: {fileID: 810214132}
-  woodenJumpClip: {fileID: 473620023}
-  woodenFootstepsClip: {fileID: 652813709}
+  woodenScrapeClip: {fileID: 0}
+  woodenJumpClip: {fileID: 0}
+  woodenFootstepsClip: {fileID: 0}
   crawlInVentClip: {fileID: 1478294003}
 --- !u!1 &447554463
 GameObject:
@@ -3907,134 +3904,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 280706847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &473620021
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 473620022}
-  - component: {fileID: 473620023}
-  m_Layer: 0
-  m_Name: woodenJump
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &473620022
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473620021}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 419791831}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &473620023
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473620021}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2ea04ef375ccdae4b88f62e57966eccb, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.286
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &496355860
 GameObject:
   m_ObjectHideFlags: 0
@@ -4601,7 +4470,7 @@ AudioSource:
   m_GameObject: {fileID: 588717444}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: 29e32ea84645cd444baaf3ebc4c0c320, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.286
@@ -5619,134 +5488,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &652813707
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 652813708}
-  - component: {fileID: 652813709}
-  m_Layer: 0
-  m_Name: woodenFootsteps
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &652813708
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652813707}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 419791831}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &652813709
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652813707}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7aa7aec7fddbd9c449ea75c9957c239a, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.286
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &677361964
 GameObject:
   m_ObjectHideFlags: 0
@@ -6061,14 +5802,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.051984, y: -2.1369474, z: 0}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.6219845, y: -0.83694744, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 768029582}
-  m_Father: {fileID: 0}
-  - {fileID: 2021852135}
   m_Father: {fileID: 2057718747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &708879406
@@ -6088,9 +5825,9 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 248662206}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: suzanneExhale (Sound Effects)
+  - name: woodenScrape (Sound Effects)
     clips: []
-    audioSource: {fileID: 1816118013}
+    audioSource: {fileID: 588717446}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Wardrobe Sound (Sound Effects)
     clips: []
@@ -6100,10 +5837,26 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 708879407}
     mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: suzanneExhale (Sound Effects)
+    clips: []
+    audioSource: {fileID: 1816118013}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenJump (Sound Effects)
+    clips: []
+    audioSource: {fileID: 1967089608}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: crawlInVent (Sound Effects)
+    clips: []
+    audioSource: {fileID: 2009915524}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: woodenFootsteps (Sound Effects)
     clips: []
     audioSource: {fileID: 2043104613}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Main Camera (Master)
+    clips: []
+    audioSource: {fileID: 2057718743}
+    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 2021852136}
   VoiceOverAudioSource: {fileID: 768029583}
   SoundEffectsMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -6111,16 +5864,18 @@ MonoBehaviour:
   VoiceOverMixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   SoundEffects:
   - name: LandOnWood
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 2ea04ef375ccdae4b88f62e57966eccb, type: 3}
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WalkWood
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 8d2042951b6965b47b1474235f940ade, type: 3}
     audioSource: {fileID: 2043104613}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Vent
     clips: []
-    audioSource: {fileID: 0}
+    audioSource: {fileID: 2009915524}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WoodenFootsteps
     clips:
@@ -6128,12 +5883,14 @@ MonoBehaviour:
     audioSource: {fileID: 2043104613}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WoodenJump
-    clips: []
-    audioSource: {fileID: 0}
+    clips:
+    - {fileID: 8300000, guid: 40c0f180db9a0164a8d33aed3b6da8b2, type: 3}
+    audioSource: {fileID: 1967089608}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WoodenScrape
-    clips: []
-    audioSource: {fileID: 0}
+    clips:
+    - {fileID: 8300000, guid: 29e32ea84645cd444baaf3ebc4c0c320, type: 3}
+    audioSource: {fileID: 588717446}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: SuzanneExhale
     clips:
@@ -6806,134 +6563,6 @@ Transform:
   - {fileID: 1848003207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &810214130
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 810214131}
-  - component: {fileID: 810214132}
-  m_Layer: 0
-  m_Name: woodenScrape
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &810214131
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810214130}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 419791831}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &810214132
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810214130}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 29e32ea84645cd444baaf3ebc4c0c320, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.286
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &814398053
 GameObject:
   m_ObjectHideFlags: 0
@@ -9376,9 +9005,7 @@ GameObject:
   - component: {fileID: 1056329803}
   - component: {fileID: 1056329800}
   - component: {fileID: 1056329805}
-  - component: {fileID: 1056329803}
   - component: {fileID: 1056329804}
-  - component: {fileID: 1056329800}
   - component: {fileID: 1056329799}
   - component: {fileID: 1056329802}
   - component: {fileID: 1056329801}
@@ -13014,18 +12641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b207955481a44448d08fde4810c509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplier: 1
-  BaseWalkForce: 5
-  BaseCrawlForce: 2
-  BasePushForce: 2
-  BasePullForce: 2
-  BaseJumpForce: 11.5
-  GravityForce: 60
-  AirResistance: 0.05
-  TerminalVelocity: 11
-  TargetMargin: 0.1
-  fader: {fileID: 978086948}
-  isManoeuvring: 0
 --- !u!61 &1585614875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14664,7 +14279,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1763670570}
-  - component: {fileID: 1763670571}
   m_Layer: 0
   m_Name: PlayerAudioManager
   m_TagString: Untagged
@@ -14693,22 +14307,6 @@ Transform:
   - {fileID: 248662205}
   m_Father: {fileID: 1056329796}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1763670571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763670569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f44c1e80ef124469621f62baf37858, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  woodenScrapeClip: {fileID: 588717446}
-  woodenJumpClip: {fileID: 1967089608}
-  woodenFootstepsClip: {fileID: 2043104613}
-  crawlInVentClip: {fileID: 2009915524}
 --- !u!1 &1768980004
 GameObject:
   m_ObjectHideFlags: 0
@@ -16538,8 +16136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0f796c71889014090332fbeeae553a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fader: {fileID: 954138757}
-  mainCamera: {fileID: 2057718742}
 --- !u!4 &1848003207
 Transform:
   m_ObjectHideFlags: 0
@@ -18052,7 +17648,7 @@ AudioSource:
   m_GameObject: {fileID: 1967089606}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2ea04ef375ccdae4b88f62e57966eccb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.286
@@ -18399,7 +17995,7 @@ AudioSource:
   m_GameObject: {fileID: 2009915522}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: 230a8678e3e8aac4b92ab21b946a45bd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
@@ -18980,8 +18576,8 @@ AudioSource:
   m_GameObject: {fileID: 2043104611}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7aa7aec7fddbd9c449ea75c9957c239a, type: 3}
+  OutputAudioMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.286
   m_Pitch: 1
@@ -19080,7 +18676,6 @@ GameObject:
   - component: {fileID: 2057718746}
   - component: {fileID: 2057718741}
   - component: {fileID: 2057718745}
-  - component: {fileID: 2057718744}
   - component: {fileID: 2057718743}
   m_Layer: 0
   m_Name: Main Camera
@@ -19252,70 +18847,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2057718744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057718740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a3c0ffb23b73c94b81ab50da0c9a020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicMixerGroup: {fileID: 0}
-  SoundEffectsMixerGroup: {fileID: 0}
-  VoiceOverMixerGroup: {fileID: 0}
-  AllSounds:
-  - name: Main Camera (Master)
-    reference: {fileID: 2057718743}
-    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  SoundEffects:
-  - name: JumpWood
-    clips: []
-    mixerGroup: {fileID: 0}
-  - name: WalkWood
-    clips: []
-    mixerGroup: {fileID: 0}
-  - name: Vent
-    clips: []
-    mixerGroup: {fileID: 0}
-  - name: WoodenFootsteps
-    clips: []
-    mixerGroup: {fileID: 0}
-  - name: WoodenJump
-    clips: []
-    mixerGroup: {fileID: 0}
-  - name: WoodenScrape
-    clips: []
-    mixerGroup: {fileID: 0}
-  BackgroundMusics:
-  - name: Wallenberg1
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: Wallenberg2
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: Wallenberg3
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: EmbroideryPickup
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  VoiceOvers:
-  - name: Wallenberg1
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: Wallenberg2
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: Wallenberg3
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 0}
-  - name: EmbroideryPickup
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 0}
 --- !u!114 &2057718745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19955,7 +19486,6 @@ SceneRoots:
   - {fileID: 801441773}
   - {fileID: 2062487371}
   - {fileID: 2087461132}
-  - {fileID: 708879405}
   - {fileID: 2057718747}
   - {fileID: 1585614876}
   - {fileID: 1056329796}
