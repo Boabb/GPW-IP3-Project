@@ -616,7 +616,7 @@ public class GravityMovement : MonoBehaviour
 
         if (autoEvents.Length > 0)
         {
-            autoEvents[0].collider.gameObject.GetComponent<AutoEvent>().Event(gameObject);
+            //autoEvents[0].collider.gameObject.GetComponent<AutoEvent>().Event(gameObject);
         }
     }
 

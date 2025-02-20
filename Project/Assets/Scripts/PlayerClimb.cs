@@ -121,6 +121,7 @@ public class PlayerClimb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        //Debug.Log("Climb");
         ObjectTags tags = collider.gameObject.GetComponentInParent<ObjectTags>();
         currentClimbObjectTags = tags;
         climbObjectCollider = collider;

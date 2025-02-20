@@ -92,18 +92,34 @@ public class PlayerMovement : MonoBehaviour
         {
             if (SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
-                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                if (movementType == MovementType.Walking)
+                {
+                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                    playerData.playerAnimator.PlayerWalkLeft();
+                }
+                else if (movementType == MovementType.Crawling)
+                {
+                    //add crawling anim and sound
+                }
+
                 playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
-                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
-                playerData.playerAnimator.PlayerWalkLeft();
             }
 
             if (SystemSettings.moveRight && !SystemSettings.moveLeft)
             {
-                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                if (movementType == MovementType.Walking)
+                {
+                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                    playerData.playerAnimator.PlayerWalkRight();
+                }
+                else if (movementType == MovementType.Crawling)
+                {
+                    //add crawling anim and sound
+                }
+
                 playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
-                playerData.playerAnimator.PlayerWalkRight();
-                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
             }
         }
         else
@@ -126,22 +142,22 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateMovementType()
     {
-        //implement this!
-        //should switch between walking and crawling!
-
-        if (playerData.pulling)
+        if (playerData.crawling)
         {
-            movementType = MovementType.Pulling;
-            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
+            movementType = MovementType.Crawling;
         }
         else if (playerData.pushing)
         {
             movementType = MovementType.Pushing;
             AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
         }
+        else if (playerData.pulling)
+        {
+            movementType = MovementType.Pulling;
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
+        }
         else
         {
-            //temp
             movementType = MovementType.Walking;
         }
     }
@@ -150,18 +166,31 @@ public class PlayerMovement : MonoBehaviour
     {
         if (movementType == MovementType.Pulling)
         {
+            uprightCollider.gameObject.SetActive(true);
+            crawlingCollider.gameObject.SetActive(false);
+            currentPlayerCollider = uprightCollider;
             movementForce = pullForce;
         }
         else if (movementType == MovementType.Pushing)
         {
+            uprightCollider.gameObject.SetActive(true);
+            crawlingCollider.gameObject.SetActive(false);
+            currentPlayerCollider = uprightCollider;
             movementForce = pushForce;
         }
         else if (movementType == MovementType.Crawling)
         {
+            uprightCollider.gameObject.SetActive(false);
+            crawlingCollider.gameObject.SetActive(true);
+            currentPlayerCollider = crawlingCollider;
             movementForce = crawlingForce;
         }
         else //default to walking
         {
+            //temp?
+            uprightCollider.gameObject.SetActive(true);
+            crawlingCollider.gameObject.SetActive(false);
+            currentPlayerCollider = uprightCollider;
             movementForce = walkingForce;
         }
     }

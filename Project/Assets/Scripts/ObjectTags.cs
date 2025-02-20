@@ -12,6 +12,7 @@ public class ObjectTags : MonoBehaviour
     public bool catchClimbable; //if the player is in the catch radius of this object (regardless of layer), they will catch onto the edge of the object and the player will be able to climb it
     public bool foreground; //objects in the foreground are also tangible (the player can never just walk past them), if an object is quick climbable and moveable, it should be in the foreground and the moveable aspect will take priority
     public bool background; //objects in the background can be walked past if the player isn't actively 'interacting', this allows the player to move past moveable objects that are in the background
+    public bool autoEvent; //when the player moves through the objects collider, an auto event occurs
 
     private void Start()
     {
@@ -27,6 +28,8 @@ public class ObjectTags : MonoBehaviour
                 Debug.LogError(gameObject + ": object cannot be quick climbable, background and moveable!");
             }
         }
+
+        //put errors if object doesn't have the necessary scripts for its tags
     }
 
     private void Update()
