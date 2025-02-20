@@ -33,6 +33,7 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public bool pulling = false; //is the player currently pulling an object?
     [HideInInspector] public bool pushing = false; //is the player currently pushing an object?
     [HideInInspector] public bool catching = false; //is the player currently catching onto an object?
+    [HideInInspector] public bool grounded = false; //is the player currently grounded?
 
     private void Start()
     {

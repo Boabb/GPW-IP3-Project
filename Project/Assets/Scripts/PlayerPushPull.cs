@@ -181,7 +181,7 @@ public class PlayerPushPull : MonoBehaviour
     {
         pushPullMoveableObject = collider.gameObject.GetComponent<MoveableObject>(); //gets the object tags component of the pushPullObject
         
-        if (pushPullMoveableObject != null && playerData.playerMovement.grounded)
+        if (pushPullMoveableObject != null && playerData.grounded)
         {
             currentPushPullObject = collider; //sets the pushPullObject to the collider
             //playerData.currentPlayerRBMass = (playerData.playerRBMass + pushPullMoveableObject.objectRBMass)/2; //sets the player mass

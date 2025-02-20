@@ -1140,6 +1140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectRBMass: 0.5
   currentObjectRBMass: 0
+  playerData: {fileID: 1056329803}
 --- !u!114 &107570783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5241,10 +5242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
-  - name: Audio Manager (Master)
-    clips: []
-    audioSource: {fileID: 708879407}
-    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: suzanneExert (Sound Effects)
     clips: []
     audioSource: {fileID: 280288822}
@@ -5253,6 +5250,10 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 588717446}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Audio Manager (Master)
+    clips: []
+    audioSource: {fileID: 708879407}
+    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Voice-Over Audio (Voice-Over)
     clips: []
     audioSource: {fileID: 768029583}

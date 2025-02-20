@@ -8,10 +8,10 @@ public class PlayerMovement : MonoBehaviour
     PlayerData playerData;
     Collider2D uprightCollider;
     Collider2D crawlingCollider;
-    //Collider2D groundedCollider;
     Rigidbody2D playerRB2D;
 
     Collider2D currentPlayerCollider;
+    MovementDirection movementDirection;
     MovementType movementType;
 
     [Header("For Designers")]
@@ -26,13 +26,23 @@ public class PlayerMovement : MonoBehaviour
     float pullForce;
 
     float movementForce;
-    [HideInInspector] public bool grounded;
+    bool grounded;
+
+    enum MovementDirection
+    {
+        Left,
+        Right
+    }
+
     enum MovementType
     {
+        None,
         Walking,
         Crawling,
         Pulling,
-        Pushing
+        Pushing,
+        Jumping,
+        Falling
     }
 
     // Start is called before the first frame update
@@ -49,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
         movementType = MovementType.Walking;
         movementForce = walkingForce;
 
-        pushForce = walkingForce / 2;
-        pullForce = walkingForce / 3;
+        pushForce = walkingForce / 1.5f;
+        pullForce = walkingForce / 2f;
     }
 
     // Update is called once per frame
@@ -62,8 +72,9 @@ public class PlayerMovement : MonoBehaviour
         UpdateMovementType();
         UpdateMovementForce();
         SetGrounded();
+        playerData.grounded = grounded;
 
-        Debug.Log("Ground: " + grounded);
+        //Debug.Log("Ground: " + grounded);
     }
 
     private void FixedUpdate()
@@ -97,8 +108,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-        playerData.playerAnimator.PlayerIdle();
-        AudioManager.StopSoundEffect(SoundEffect.WoodenFootsteps);
+            playerData.playerAnimator.PlayerIdle();
+            AudioManager.StopSoundEffect(SoundEffect.WoodenFootsteps);
         }
 
     }
