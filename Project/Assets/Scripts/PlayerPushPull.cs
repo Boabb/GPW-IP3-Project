@@ -83,11 +83,13 @@ public class PlayerPushPull : MonoBehaviour
                 {
                     interactionType = InteractionType.Pull;
                     playerData.pulling = true;
+                    playerData.pushing = false;
                 }
                 else
                 {
                     interactionType = InteractionType.Push;
                     playerData.pulling = false;
+                    playerData.pushing = true;
                 }
             }
             else if (SystemSettings.moveRight && !SystemSettings.moveLeft)
@@ -96,23 +98,27 @@ public class PlayerPushPull : MonoBehaviour
                 {
                     interactionType = InteractionType.Pull;
                     playerData.pulling = true;
+                    playerData.pushing = false;
                 }
                 else
                 {
                     interactionType = InteractionType.Push;
                     playerData.pulling = false;
+                    playerData.pushing = true;
                 }
             }
             else
             {
                 interactionType = InteractionType.None;
                 playerData.pulling = false;
+                playerData.pushing = false;
             }
         }
         else
         {
             interactionType = InteractionType.None;
             playerData.pulling = false;
+            playerData.pushing = false;
         }
     }
 
@@ -156,19 +162,18 @@ public class PlayerPushPull : MonoBehaviour
 
     void MoveObject()
     {
-        //Debug.Log("object mass" + currentPushPullObject.attachedRigidbody.mass);
         if (interactionType == InteractionType.Pull && interactionSide != InteractionSide.None)
         {
             movementForce = playerData.playerMovement.GetMovementForce();
 
             if (SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
-                currentPushPullObject.attachedRigidbody.AddForce(-transform.right * movementForce);
+                currentPushPullObject.attachedRigidbody.velocity = -transform.right * movementForce * Time.fixedDeltaTime;
             }
 
             if (SystemSettings.moveRight && !SystemSettings.moveLeft)
             {
-                currentPushPullObject.attachedRigidbody.AddForce(transform.right * movementForce);
+                currentPushPullObject.attachedRigidbody.velocity = transform.right * movementForce * Time.fixedDeltaTime;
             }
         }
     }
@@ -179,8 +184,8 @@ public class PlayerPushPull : MonoBehaviour
         if (pushPullMoveableObject != null && playerData.playerMovement.grounded)
         {
             currentPushPullObject = collider; //sets the pushPullObject to the collider
-            playerData.currentPlayerRBMass = (playerData.playerRBMass + pushPullMoveableObject.objectRBMass)/2; //sets the player mass
-            pushPullMoveableObject.currentObjectRBMass = (pushPullMoveableObject.objectRBMass + playerData.playerRBMass)/2; //sets the pushPullObject mass
+            //playerData.currentPlayerRBMass = (playerData.playerRBMass + pushPullMoveableObject.objectRBMass)/2; //sets the player mass
+            //pushPullMoveableObject.currentObjectRBMass = (pushPullMoveableObject.objectRBMass + playerData.playerRBMass)/2; //sets the pushPullObject mass
         }
         else
         {
@@ -190,12 +195,12 @@ public class PlayerPushPull : MonoBehaviour
 
     void DetachPushPullObject()
     {
-        if (currentPushPullObject != null && pushPullMoveableObject != null)
-        {
-            pushPullMoveableObject.currentObjectRBMass = pushPullMoveableObject.objectRBMass;
-        }
+        //if (currentPushPullObject != null && pushPullMoveableObject != null)
+        //{
+        //    pushPullMoveableObject.currentObjectRBMass = pushPullMoveableObject.objectRBMass;
+        //}
 
-        playerData.currentPlayerRBMass = playerData.playerRBMass;
+        //playerData.currentPlayerRBMass = playerData.playerRBMass;
         currentPushPullObject = null;
         pushPullMoveableObject = null;
         interactionType = InteractionType.None;
