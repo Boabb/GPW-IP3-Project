@@ -66,14 +66,17 @@ public class PlayerMovement : MonoBehaviour
         {
             if (SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
+                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
                 playerRB2D.AddForce(-transform.right * movementForce);
             }
 
             if (SystemSettings.moveRight && !SystemSettings.moveLeft)
             {
+                AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
                 playerRB2D.AddForce(transform.right * movementForce);
             }
         }
+        AudioManager.StopSoundEffect(SoundEffect.WoodenFootsteps);
     }
 
     void Jump()
@@ -81,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         SetGrounded();
         if (SystemSettings.jump && grounded == true)
         {
+            AudioManager.PlaySoundEffect(SoundEffect.SuzanneExert);
             Debug.Log("Jump");
             playerRB2D.AddForce(transform.up * jumpForce);
         }
@@ -94,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerData.pulling)
         {
             movementType = MovementType.Pulling;
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
         }
         else
         {

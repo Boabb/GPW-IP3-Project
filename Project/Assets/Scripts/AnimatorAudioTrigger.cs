@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class AnimatorAudioTrigger : StateMachineBehaviour
 {
+    [SerializeField] private SoundEffect soundToPlay;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);   
+        AudioManager.PlaySoundEffect(soundToPlay);   
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -19,7 +21,7 @@ public class AnimatorAudioTrigger : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AudioManager.StopSoundEffect(SoundEffect.WoodenScrape);
+        AudioManager.StopSoundEffect(soundToPlay);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

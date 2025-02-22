@@ -173,6 +173,7 @@ public class GravityMovement : MonoBehaviour
         if (hasJumped && grounded)
         {
             hasJumped = false;
+            AudioManager.PlaySoundEffect(SoundEffect.SuzanneExhale);
             AudioManager.PlaySoundEffect(SoundEffect.LandOnWood);
         }
 

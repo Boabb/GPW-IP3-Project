@@ -14,7 +14,9 @@ public enum SoundEffect
     Vent,
     WoodenFootsteps,
     WoodenJump,
-    WoodenScrape
+    WoodenScrape,
+    SuzanneExhale,
+    SuzanneExert
 }
 public enum VoiceOver
 {
@@ -23,7 +25,7 @@ public enum VoiceOver
     Wallenberg3,
     EmbroideryPickup
 }
-public enum Music
+public enum BackgroundMusic
 {
     FirstRoomSong,
     InVentSong,
@@ -52,7 +54,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioMixerGroup MusicMixerGroup;
     [SerializeField] private AudioMixerGroup VoiceOverMixerGroup;
     public MultipleInstanceAudio[] SoundEffects = new MultipleInstanceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
-    public SingleInstanceAudio[] BackgroundMusics = new SingleInstanceAudio[Enum.GetNames(typeof(Music)).Length];
+    public SingleInstanceAudio[] BackgroundMusics = new SingleInstanceAudio[Enum.GetNames(typeof(BackgroundMusic)).Length];
     public SingleInstanceAudio[] VoiceOvers = new SingleInstanceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
 
     [System.Serializable]
@@ -89,6 +91,15 @@ public class AudioManager : MonoBehaviour
     private void OnSceneRefresh()
     {
         AllSounds.Clear();
+        if(Enum.GetNames(typeof(SoundEffect)).Length != SoundEffects.Length)
+            SoundEffects = new MultipleInstanceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
+
+        if (Enum.GetNames(typeof(BackgroundMusic)).Length != BackgroundMusics.Length)
+            BackgroundMusics = new SingleInstanceAudio[Enum.GetNames(typeof(BackgroundMusic)).Length];
+
+        if (Enum.GetNames(typeof(VoiceOver)).Length != VoiceOvers.Length)
+            VoiceOvers = new SingleInstanceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
+
         Debug.ClearDeveloperConsole();
         foreach (var audioSrc in FindObjectsOfType<AudioSource>())
         {
@@ -133,7 +144,7 @@ public class AudioManager : MonoBehaviour
             AllSounds.Add(newAudioInstance);
         }
         string[] voiceOversAsStrings = Enum.GetNames(typeof(VoiceOver));
-        string[] bGMsAsStrings = Enum.GetNames(typeof(Music));
+        string[] bGMsAsStrings = Enum.GetNames(typeof(BackgroundMusic));
         string[] soundEffectsAsStrings = Enum.GetNames(typeof(SoundEffect));
 
         Array.Resize(ref VoiceOvers, voiceOversAsStrings.Length);
@@ -170,7 +181,7 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays the <seealso cref="SoundEffect"/> Audio of type <paramref name="soundEffect"/> on its respective AudioSource (if there is one) or it will use the <seealso cref="MasterAudioSource"/> (if it exists)
+    /// Plays the <seealso cref="SoundEffect"/> of type <paramref name="soundEffect"/> on its respective AudioSource (if there is one) or it will use the <seealso cref="MasterAudioSource"/> (if it exists)
     /// </summary>
     /// <param name="soundEffect">The <seealso cref="SoundEffect"/> to be played (Look at <seealso cref="SoundEffect"/> Enum to find the index).</param>
     /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
@@ -197,6 +208,23 @@ public class AudioManager : MonoBehaviour
             PlaySound(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
         }
     }
+    /// <summary>
+    /// Play(s)OneShot of the <seealso cref="SoundEffect"/> of type <paramref name="soundEffect"/> on its respective AudioSource (if there is one) or it will use the <seealso cref="MasterAudioSource"/> (if it exists)
+    /// </summary>
+    /// <param name="soundEffect">The <seealso cref="SoundEffect"/> to be played (Look at <seealso cref="SoundEffect"/> Enum to find the index).</param>
+    /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
+
+    public static void PlaySoundEffectOneShot(SoundEffect soundEffect, float volume = 1.0f)
+    {
+        if (CheckIfValidAudioSource(Instance.SoundEffects[(int)soundEffect].audioSource))
+        {
+            Instance.SoundEffects[(int)soundEffect].audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length - 1)], volume);
+        }
+        else
+        {
+            PlaySound(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
+        }
+    }
 
     private static bool CheckIfValidAudioSource(AudioSource audioSource)
     {
@@ -215,7 +243,7 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Stops the <seealso cref="SoundEffect"/> Audio of type <paramref name="soundEffect"/> on the <seealso cref="MasterAudioSource"/> (if it exists)
+    /// Stops the <seealso cref="SoundEffect"/> of type <paramref name="soundEffect"/> on the AudioSource of the <seealso cref="SoundEffect"/> (if there is an AudioSource attached to it), otherwise it will <seealso cref="MasterAudioSource"/> (if it exists)
     /// </summary>
     /// <param name="soundEffect">The <seealso cref="SoundEffect"/> to be played (Look at <seealso cref="SoundEffect"/> Enum to find the index).</param>
     /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
@@ -277,7 +305,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="musicType"></param>
     /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
-    public static void PlayBackgroundMusic(Music musicType, float volume = 1.0f)
+    public static void PlayBackgroundMusic(BackgroundMusic musicType, float volume = 1.0f)
     {
         if (Instance.MusicAudioSource.isPlaying && Instance.BackgroundMusics[(int)musicType].clip != Instance.MusicAudioSource.clip)
         {
@@ -293,7 +321,7 @@ public class AudioManager : MonoBehaviour
     public void SwitchToOutOfVent()
     {
         PlayVoiceOverAudio(VoiceOver.Wallenberg2);
-        PlayBackgroundMusic(Music.OutOfVentSong);
+        PlayBackgroundMusic(BackgroundMusic.OutOfVentSong);
     }
     public void SetVolume(AudioMixer mixerGroup, float volume)
     {
