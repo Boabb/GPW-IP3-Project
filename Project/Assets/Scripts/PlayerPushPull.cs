@@ -128,30 +128,30 @@ public class PlayerPushPull : MonoBehaviour
         {
             if (interactionType == InteractionType.Pull)
             {
-                playerAnimator.pullLeft = true;
+                playerAnimator.PlayerPullLeft();
             }
             else if (interactionType == InteractionType.Push)
             {
-                playerAnimator.pushLeft = true;
+                playerAnimator.PlayerPushLeft();
             }
             else
             {
-                playerAnimator.idle = true;
+                playerAnimator.PlayerIdle();
             }
         }
         else if (interactionSide == InteractionSide.Right)
         {
             if (interactionType == InteractionType.Pull)
             {
-                playerAnimator.pullRight = true;
+                playerAnimator.PlayerPullRight();
             }
             else if (interactionType == InteractionType.Push)
             {
-                playerAnimator.pushRight = true;
+                playerAnimator.PlayerPushRight();
             }
             else
             {
-                playerAnimator.idle = true;
+                playerAnimator.PlayerIdle();
             }
         }
     }

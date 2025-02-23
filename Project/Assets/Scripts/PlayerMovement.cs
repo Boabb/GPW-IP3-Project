@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
                 if (grounded)
                 {
                     movementType = MovementType.Walking;
-                    playerData.playerAnimator.walkLeft = true;
+                    playerData.playerAnimator.PlayerWalkLeft();
                 }
                 playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
             }
@@ -102,15 +102,15 @@ public class PlayerMovement : MonoBehaviour
                 if (grounded)
                 {
                     movementType = MovementType.Walking;
-                    playerData.playerAnimator.walkRight = true;
+                    playerData.playerAnimator.PlayerWalkRight();
                 }
                 playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
             }
 
-            //if (movementType == MovementType.None)
-            //{
-            //    playerData.playerAnimator.idle = true;
-            //}
+            if (movementType == MovementType.None)
+            {
+                playerData.playerAnimator.PlayerIdle();
+            }
         }
     }
 
@@ -120,14 +120,6 @@ public class PlayerMovement : MonoBehaviour
         if (SystemSettings.jump && grounded == true)
         {
             Debug.Log("Jump");
-            if (movementDirection == MovementDirection.Left)
-            {
-                playerData.playerAnimator.jumpLeft = true;
-            }
-            else
-            {
-                playerData.playerAnimator.jumpRight = true;
-            }
             playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
         }
     }
@@ -221,11 +213,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (movementDirection == MovementDirection.Left)
                 {
-                    playerData.playerAnimator.landLeft = true;
+                    playerData.playerAnimator.PlayerLandLeft();
                 }
                 else
                 {
-                    playerData.playerAnimator.landRight = true;
+                    playerData.playerAnimator.PlayerLandRight();
                 }
             }
 
@@ -235,11 +227,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (movementDirection == MovementDirection.Left)
             {
-                playerData.playerAnimator.fallLeft = true;
+                playerData.playerAnimator.PlayerFallLeft();
             }
             else
             {
-                playerData.playerAnimator.fallRight = true;
+                playerData.playerAnimator.PlayerFallRight();
             }
 
             grounded = false;
