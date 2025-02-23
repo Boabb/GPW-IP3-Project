@@ -13,7 +13,7 @@ public class AutoSound : AutoEvent
         if (!played)
         {
             played = true;
-            AudioManager.PlayVoiceOverAudio(VoiceOver.Wallenberg2);
+            AudioManager.PlayVoiceOverAudio(2);
             //playerGO.GetComponent<GravityMovement>().speedMultiplier = 0.1f;
             //mainCamera.orthographicSize = 2f;
             fader.collision = true;

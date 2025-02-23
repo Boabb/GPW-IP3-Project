@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         //end temp
         UpdateMovementType();
 
-        //Debug.Log("Ground: " + grounded);
+        Debug.Log("Ground: " + grounded);
     }
 
     private void FixedUpdate()

@@ -173,7 +173,7 @@ public class GravityMovement : MonoBehaviour
         if (hasJumped && grounded)
         {
             hasJumped = false;
-            AudioManager.PlaySoundEffect(SoundEffect.LandOnWood);
+            PlayerAudio.PlayWoodenJump();
         }
 
         if (grounded && movementType == MovementType.Walking)
@@ -310,6 +310,10 @@ public class GravityMovement : MonoBehaviour
     {
         GetPlayerEdgePositions();
 
+        PlayerAudio.PlayWoodenFootsteps(false);
+        PlayerAudio.PlayWoodenScrape(false);
+        PlayerAudio.PlayCrawlInVent(false);
+
         if (!isManoeuvring)
         {
             if ((SystemSettings.tapRight && movementType == MovementType.CatchRight) || (SystemSettings.tapLeft && movementType == MovementType.CatchLeft))
@@ -347,12 +351,12 @@ public class GravityMovement : MonoBehaviour
 
                 if (movementType == MovementType.Walking) //walk right
                 {
-                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                    PlayerAudio.PlayWoodenFootsteps(true);
                     playerAnimator.PlayerWalkRight();
                 }
                 else if (movementType == MovementType.Crawling) //crawl right
                 {
-                    AudioManager.PlaySoundEffect(SoundEffect.Vent);
+                    PlayerAudio.PlayCrawlInVent(true);
                     playerAnimator.PlayerCrawlRight();
                 }
 
@@ -368,7 +372,7 @@ public class GravityMovement : MonoBehaviour
 
                 if (movementType == MovementType.MovableRight) //push object
                 {
-                    AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
+                    PlayerAudio.PlayWoodenScrape(true);
                     playerAnimator.PlayerPushRight();
                     interactionType = InteractionType.Push;
                     currentHorizontalForce = BasePushForce;
@@ -376,7 +380,7 @@ public class GravityMovement : MonoBehaviour
                 }
                 else if (movementType == MovementType.MovableLeft) //pull object
                 {
-                    AudioManager.PlaySoundEffect(SoundEffect.Vent);
+                    PlayerAudio.PlayWoodenScrape(true);
                     playerAnimator.PlayerPullLeft();
                     interactionType = InteractionType.Pull;
                     currentHorizontalForce = BasePullForce;
@@ -416,12 +420,12 @@ public class GravityMovement : MonoBehaviour
 
                 if (movementType == MovementType.Walking) //walk to the left
                 {
-                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                    PlayerAudio.PlayWoodenFootsteps(true);
                     playerAnimator.PlayerWalkLeft();
                 }
                 else if (movementType == MovementType.Crawling) //crawl to the left
                 {
-                    AudioManager.PlaySoundEffect(SoundEffect.Vent);
+                    PlayerAudio.PlayCrawlInVent(true);
                     playerAnimator.PlayerCrawlLeft();
                 }
 
@@ -437,7 +441,7 @@ public class GravityMovement : MonoBehaviour
 
                 if (movementType == MovementType.MovableRight) //pull object
                 {
-                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                    PlayerAudio.PlayWoodenScrape(true);
                     playerAnimator.PlayerPullRight();
                     interactionType = InteractionType.Pull;
                     currentHorizontalForce = BasePullForce;
@@ -445,7 +449,7 @@ public class GravityMovement : MonoBehaviour
                 }
                 else if (movementType == MovementType.MovableLeft) //push object
                 {
-                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                    PlayerAudio.PlayWoodenScrape(true);
                     playerAnimator.PlayerPushLeft();
                     interactionType = InteractionType.Push;
                     currentHorizontalForce = BasePushForce;

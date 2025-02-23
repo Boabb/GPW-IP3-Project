@@ -8,6 +8,9 @@ public class Fade : MonoBehaviour
     [SerializeField] Renderer Fade1;
     [SerializeField] Renderer Fade2;
 
+    [SerializeField] MusicController musicController; //this is a bad way of doing this, it shouldnt be in the fade it should be in an autoevent and fade itself should be
+                                                       //an autoevent
+
     Collider2D fadeCollider;
 
     Color hidden = new Color(1,1,1,1);
@@ -29,7 +32,7 @@ public class Fade : MonoBehaviour
 
     private void Awake()
     {
-        //Fade1.sharedMaterial.color = revealed;
+        Fade1.sharedMaterial.color = revealed;
 
         fadeCollider = GetComponentInChildren<Collider2D>();
         audioSource = GetComponentInChildren<AudioSource>();
@@ -76,7 +79,8 @@ public class Fade : MonoBehaviour
         if (audioSource.isPlaying == false && playAudio)
         {
             playAudio = false;
-            AudioManager.Instance.SwitchToOutOfVent();
+            audioSource.Play();
+            musicController.SwitchToVent();
         }
 
         if (switchBetween)
@@ -96,7 +100,7 @@ public class Fade : MonoBehaviour
         {
             shake = false;
             follower.StartShake();
-            AudioManager.Instance.SwitchToOutOfVent();
+            musicController.SwitchToOutOfVent();
         }
 
         if (timer >= 1 && !shake)
