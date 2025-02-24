@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        SetGrounded();
         Move();
         Jump();
         ApplyGravity();
@@ -124,6 +125,11 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
+            }
+
+            if (movementType == MovementType.None)
+            {
+                playerData.playerAnimator.PlayerIdle();
             }
         }
         else
@@ -248,12 +254,35 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerRB2D.velocity.y == 0)
         {
+            if (playerData.animationNumber == 7)
+            {
+                if (movementDirection == MovementDirection.Left)
+                {
+                    playerData.playerAnimator.PlayerLandLeft();
+                }
+                else
+                {
+                    playerData.playerAnimator.PlayerLandRight();
+                }
+            }
+
             grounded = true;
         }
         else
         {
+            if (movementDirection == MovementDirection.Left)
+            {
+                playerData.playerAnimator.PlayerFallLeft();
+            }
+            else
+            {
+                playerData.playerAnimator.PlayerFallRight();
+            }
+
             grounded = false;
         }
+
+        playerData.grounded = grounded;
     }
 
     public float GetMovementForce()

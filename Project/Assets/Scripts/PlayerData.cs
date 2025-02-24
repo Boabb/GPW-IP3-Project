@@ -35,6 +35,7 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public bool catching = false; //is the player currently catching onto an object?
     [HideInInspector] public bool grounded = false; //is the player currently grounded?
     [HideInInspector] public bool crawling = false; //is the player currently crawling?
+    [HideInInspector] public int animationNumber = 0; //what animation is currently trying to be active
 
     private void Start()
     {

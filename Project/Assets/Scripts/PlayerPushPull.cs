@@ -172,10 +172,6 @@ public class PlayerPushPull : MonoBehaviour
                 playerAnimator.PlayerIdle();
             }
         }
-        else
-        {
-            //playerAnimator.PlayerIdle();
-        }
     }
 
     void MoveObject()
