@@ -13,7 +13,7 @@ public class PlayerData : MonoBehaviour
     public Collider2D playerCrawlingCollider;
     public Collider2D playerInteractCollider;
     public Collider2D playerOverlapCheckCollider;
-    public Collider2D playerGroundedCollider;
+    //public Collider2D playerGroundedCollider;
     public Collider2D playerCatchClimbCollider;
     public Animator playerAnimatorComponent;
     public SpriteRenderer playerSprite;
@@ -30,7 +30,11 @@ public class PlayerData : MonoBehaviour
 
     //variables
     [HideInInspector] public float currentPlayerRBMass; //this is the mass of the player when it is moving an object (equal to the player mass plus the object mass)
-    [HideInInspector] public bool pulling = false; //is the player currently pushing an object?
+    [HideInInspector] public bool pulling = false; //is the player currently pulling an object?
+    [HideInInspector] public bool pushing = false; //is the player currently pushing an object?
+    [HideInInspector] public bool grounded = false; //is the player currently grounded?
+    [HideInInspector] public int animationNumber = 0; //what animation is currently trying to be active
+
     private void Start()
     {
         playerLayer = LayerMask.GetMask("Player");

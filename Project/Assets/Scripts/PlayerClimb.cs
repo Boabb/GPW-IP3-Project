@@ -56,6 +56,10 @@ public class PlayerClimb : MonoBehaviour
             {
                 LetGoOfObject();
             }
+            else
+            {
+                CatchClimb();
+            }
         }
     }
 
@@ -84,7 +88,6 @@ public class PlayerClimb : MonoBehaviour
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
-
         playerAnimator.PlayerIdle();
     }
 
@@ -139,10 +142,5 @@ public class PlayerClimb : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collider)
-    {
-
     }
 }
