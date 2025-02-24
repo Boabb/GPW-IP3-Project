@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         //Debug.Log("Player mass: " + playerRB2D.mass);
-        if (!playerData.pushing && !playerData.catching && !playerData.pulling)
+        if (!playerData.catching && !playerData.pulling)
         {
             if (SystemSettings.moveLeft && !SystemSettings.moveRight)
             {
@@ -101,6 +101,10 @@ public class PlayerMovement : MonoBehaviour
                 else if (movementType == MovementType.Crawling)
                 {
                     //add crawling anim and sound
+                }
+                else if (movementType == MovementType.Pushing)
+                {
+                    //add push anim and sound
                 }
 
                 playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
@@ -135,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
         SetGrounded();
         if (SystemSettings.jump && grounded == true)
         {
-            Debug.Log("Jump");
+            //Debug.Log("Jump");
             playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
         }
     }
@@ -160,6 +164,8 @@ public class PlayerMovement : MonoBehaviour
         {
             movementType = MovementType.Walking;
         }
+
+        Debug.Log(movementType);
     }
 
     void UpdateMovementForce()

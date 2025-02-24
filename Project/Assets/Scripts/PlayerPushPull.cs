@@ -81,9 +81,18 @@ public class PlayerPushPull : MonoBehaviour
             {
                 if (interactionSide == InteractionSide.Left)
                 {
-                    interactionType = InteractionType.Pull;
-                    playerData.pulling = true;
-                    playerData.pushing = false;
+                    if(currentPushPullObject.GetComponent<ObjectTags>().foreground && !SystemSettings.interact)
+                    {
+                        interactionType = InteractionType.None;
+                        playerData.pulling = false;
+                        playerData.pushing = false;
+                    }
+                    else
+                    {
+                        interactionType = InteractionType.Pull;
+                        playerData.pulling = true;
+                        playerData.pushing = false;
+                    }
                 }
                 else
                 {
@@ -96,9 +105,18 @@ public class PlayerPushPull : MonoBehaviour
             {
                 if (interactionSide == InteractionSide.Right)
                 {
-                    interactionType = InteractionType.Pull;
-                    playerData.pulling = true;
-                    playerData.pushing = false;
+                    if (currentPushPullObject.GetComponent<ObjectTags>().foreground && !SystemSettings.interact)
+                    {
+                        interactionType = InteractionType.None;
+                        playerData.pulling = false;
+                        playerData.pushing = false;
+                    }
+                    else
+                    {
+                        interactionType = InteractionType.Pull;
+                        playerData.pulling = true;
+                        playerData.pushing = false;
+                    }
                 }
                 else
                 {
@@ -179,7 +197,7 @@ public class PlayerPushPull : MonoBehaviour
     }
     void AttachPushPullObject(Collider2D collider)
     {
-        pushPullMoveableObject = collider.gameObject.GetComponent<MoveableObject>(); //gets the object tags component of the pushPullObject
+        pushPullMoveableObject = collider.gameObject.GetComponent<MoveableObject>(); //gets the moveableobject component of the pushPullObject
         
         if (pushPullMoveableObject != null && playerData.grounded)
         {

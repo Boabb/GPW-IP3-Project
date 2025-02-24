@@ -18,15 +18,15 @@ public class MoveableObject : MonoBehaviour
     private void Start()
     {
         objectRB = GetComponent<Rigidbody2D>();
-        currentObjectRBMass = objectRBMass;
-        objectRB.mass = currentObjectRBMass;
+        //currentObjectRBMass = objectRBMass;
+        //objectRB.mass = currentObjectRBMass;
         //currentObjectRBMass = objectRBMass;
         //objectRB.mass = currentObjectRBMass;
     }
 
     private void Update()
     {
-        objectRB.mass = currentObjectRBMass;
+        //objectRB.mass = currentObjectRBMass;
         //objectRB.mass = currentObjectRBMass;
 
         //stop objects from being moveable when Suzanne is jumping/falling

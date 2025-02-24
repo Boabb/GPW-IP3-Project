@@ -22,8 +22,8 @@ TagManager:
   - Interactable
   - AutoEvent
   - Player
-  - Climb
-  - 
+  - CatchClimb
+  - QuickClimb
   - 
   - 
   - 
