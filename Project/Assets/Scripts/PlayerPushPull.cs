@@ -81,8 +81,18 @@ public class PlayerPushPull : MonoBehaviour
             {
                 if (interactionSide == InteractionSide.Left)
                 {
-                    interactionType = InteractionType.Pull;
-                    playerData.pulling = true;
+                    if(currentPushPullObject.GetComponent<ObjectTags>().foreground && !SystemSettings.interact)
+                    {
+                        interactionType = InteractionType.None;
+                        playerData.pulling = false;
+                        playerData.pushing = false;
+                    }
+                    else
+                    {
+                        interactionType = InteractionType.Pull;
+                        playerData.pulling = true;
+                        playerData.pushing = false;
+                    }
                 }
                 else
                 {
@@ -94,8 +104,18 @@ public class PlayerPushPull : MonoBehaviour
             {
                 if (interactionSide == InteractionSide.Right)
                 {
-                    interactionType = InteractionType.Pull;
-                    playerData.pulling = true;
+                    if (currentPushPullObject.GetComponent<ObjectTags>().foreground && !SystemSettings.interact)
+                    {
+                        interactionType = InteractionType.None;
+                        playerData.pulling = false;
+                        playerData.pushing = false;
+                    }
+                    else
+                    {
+                        interactionType = InteractionType.Pull;
+                        playerData.pulling = true;
+                        playerData.pushing = false;
+                    }
                 }
                 else
                 {
@@ -148,10 +168,6 @@ public class PlayerPushPull : MonoBehaviour
                 playerAnimator.PlayerIdle();
             }
         }
-        else
-        {
-            //playerAnimator.PlayerIdle();
-        }
     }
 
     void MoveObject()
@@ -174,9 +190,9 @@ public class PlayerPushPull : MonoBehaviour
     }
     void AttachPushPullObject(Collider2D collider)
     {
-        pushPullMoveableObject = collider.gameObject.GetComponent<MoveableObject>(); //gets the object tags component of the pushPullObject
+        pushPullMoveableObject = collider.gameObject.GetComponent<MoveableObject>(); //gets the moveableobject component of the pushPullObject
         
-        if (pushPullMoveableObject != null && playerData.playerMovement.grounded)
+        if (pushPullMoveableObject != null && playerData.grounded)
         {
             currentPushPullObject = collider; //sets the pushPullObject to the collider
             playerData.currentPlayerRBMass = (playerData.playerRBMass + pushPullMoveableObject.objectRBMass)/2; //sets the player mass

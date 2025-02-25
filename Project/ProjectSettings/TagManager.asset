@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Undefined
+  - Collectable
   layers:
   - Default
   - TransparentFX
@@ -22,8 +24,8 @@ TagManager:
   - Interactable
   - AutoEvent
   - Player
-  - Climb
-  - 
+  - CatchClimb
+  - QuickClimb
   - 
   - 
   - 

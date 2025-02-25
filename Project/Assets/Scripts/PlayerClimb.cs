@@ -44,6 +44,8 @@ public class PlayerClimb : MonoBehaviour
     {
         if (climbType == ClimbType.Catch)
         {
+            playerData.catching = true;
+
             if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
             {
                 ClimbUpObjectLeft();
@@ -56,6 +58,26 @@ public class PlayerClimb : MonoBehaviour
             {
                 LetGoOfObject();
             }
+            else
+            {
+                CatchClimb();
+            }
+        }
+        else
+        {
+            playerData.catching = false;
+
+            if (climbType == ClimbType.Quick)
+            {
+                if (SystemSettings.tapRight && climbSide == ClimbSide.Left) 
+                {
+                    QuickClimbLeft();                
+                }
+                else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
+                {
+                    QuickClimbRight();
+                }
+            }
         }
     }
 
@@ -65,7 +87,20 @@ public class PlayerClimb : MonoBehaviour
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
 
+        //add animation and delay for animation
+
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x  + offsetX, playerRB.gameObject.transform.position.y + offsetY);
+        playerAnimator.PlayerIdle();
+    }
+
+    void QuickClimbLeft()
+    {
+        climbSide = ClimbSide.None;
+        climbType = ClimbType.None;
+
+        //add animation and delay for animation
+
+        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x + offsetX, playerRB.gameObject.transform.position.y + climbObjectCollider.bounds.size.y);
         playerAnimator.PlayerIdle();
     }
 
@@ -75,7 +110,20 @@ public class PlayerClimb : MonoBehaviour
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
 
+        //add animation and delay for animation
+
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x - offsetX, playerRB.gameObject.transform.position.y + offsetY);
+        playerAnimator.PlayerIdle();
+    }
+
+    void QuickClimbRight()
+    {
+        climbSide = ClimbSide.None;
+        climbType = ClimbType.None;
+
+        //add animation and delay for animation
+
+        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x - offsetX, playerRB.gameObject.transform.position.y + climbObjectCollider.bounds.size.y);
         playerAnimator.PlayerIdle();
     }
 
@@ -84,17 +132,19 @@ public class PlayerClimb : MonoBehaviour
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
-
         playerAnimator.PlayerIdle();
     }
 
     void QuickClimb()
     {
         climbType = ClimbType.Quick;
+        Debug.Log("QuickClimb");
     }
 
     void CatchClimb()
     {
+        Debug.Log("CatchClimb");
+        playerData.catching = true;
         if (climbSide == ClimbSide.Left)
         {
             //animation left
@@ -111,6 +161,7 @@ public class PlayerClimb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        Debug.Log("Climb");
         ObjectTags tags = collider.gameObject.GetComponentInParent<ObjectTags>();
         currentClimbObjectTags = tags;
         climbObjectCollider = collider;
@@ -143,6 +194,10 @@ public class PlayerClimb : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-
+        if (collider == climbObjectCollider && climbType == ClimbType.Quick)
+        {
+            climbType = ClimbType.None;
+            climbSide = ClimbSide.None;
+        }
     }
 }

@@ -7,10 +7,10 @@ public class PlayerMovement : MonoBehaviour
     PlayerData playerData;
     Collider2D uprightCollider;
     Collider2D crawlingCollider;
-    Collider2D groundedCollider;
     Rigidbody2D playerRB2D;
 
     Collider2D currentPlayerCollider;
+    MovementDirection movementDirection;
     MovementType movementType;
 
     [Header("For Designers")]
@@ -19,12 +19,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 100f;
 
     float movementForce;
-    [HideInInspector] public bool grounded;
+    bool grounded;
+
+    enum MovementDirection
+    {
+        Left,
+        Right
+    }
+
     enum MovementType
     {
+        None,
         Walking,
         Crawling,
-        Pulling
+        Pulling,
+        Pushing,
+        Jumping,
+        Falling
     }
 
     // Start is called before the first frame update
@@ -40,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
         playerRB2D = GetComponent<Rigidbody2D>();
         movementType = MovementType.Walking;
         movementForce = walkingForce;
+
+        pushForce = walkingForce / 1.5f;
+        pullForce = walkingForce / 2f;
     }
 
     // Update is called once per frame
@@ -49,12 +63,16 @@ public class PlayerMovement : MonoBehaviour
         movementForce = walkingForce;
         //end temp
         UpdateMovementType();
+        UpdateMovementForce();
+        SetGrounded();
+        playerData.grounded = grounded;
 
         Debug.Log("Ground: " + grounded);
     }
 
     private void FixedUpdate()
     {
+        SetGrounded();
         Move();
         Jump();
     }
@@ -62,18 +80,57 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         //Debug.Log("Player mass: " + playerRB2D.mass);
-        if (movementType != MovementType.Pulling)
+        if (!playerData.catching && !playerData.pulling)
         {
-            if (SystemSettings.moveLeft && !SystemSettings.moveRight)
+            if (SystemSettings.moveLeft || SystemSettings.moveRight)
             {
-                playerRB2D.AddForce(-transform.right * movementForce);
-            }
+                if (SystemSettings.moveLeft && !SystemSettings.moveRight)
+                {
+                    if (movementType == MovementType.Walking)
+                    {
+                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        playerData.playerAnimator.PlayerWalkLeft();
+                    }
+                    else if (movementType == MovementType.Crawling)
+                    {
+                        //add crawling anim and sound
+                    }
+                    else if (movementType == MovementType.Pushing)
+                    {
+                        //add push anim and sound
+                    }
 
-            if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+                    playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
+                }
+
+                if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+                {
+                    if (movementType == MovementType.Walking)
+                    {
+                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        playerData.playerAnimator.PlayerWalkRight();
+                    }
+                    else if (movementType == MovementType.Crawling)
+                    {
+                        //add crawling anim and sound
+                    }
+
+                    playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
+                }
+            }
+            else if (movementType == MovementType.Walking)
             {
-                playerRB2D.AddForce(transform.right * movementForce);
+                playerData.playerAnimator.PlayerIdle();
             }
         }
+        else
+        {
+            playerData.playerAnimator.PlayerIdle();
+            AudioManager.StopSoundEffect(SoundEffect.WoodenFootsteps);
+        }
+
     }
 
     void Jump()
@@ -81,25 +138,109 @@ public class PlayerMovement : MonoBehaviour
         SetGrounded();
         if (SystemSettings.jump && grounded == true)
         {
-            Debug.Log("Jump");
-            playerRB2D.AddForce(transform.up * jumpForce);
+            //Debug.Log("Jump");
+            playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
         }
     }
 
     void UpdateMovementType()
     {
-        //implement this!
-        //should switch between walking and crawling!
-
-        if (playerData.pulling)
+        if (playerData.crawling)
+        {
+            movementType = MovementType.Crawling;
+        }
+        else if (playerData.pushing)
+        {
+            movementType = MovementType.Pushing;
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
+        }
+        else if (playerData.pulling)
         {
             movementType = MovementType.Pulling;
+            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
         }
         else
         {
-            //temp
             movementType = MovementType.Walking;
         }
+
+        Debug.Log(movementType);
+    }
+
+    void UpdateMovementForce()
+    {
+        if (movementType == MovementType.Pulling)
+        {
+            uprightCollider.gameObject.SetActive(true);
+            crawlingCollider.gameObject.SetActive(false);
+            currentPlayerCollider = uprightCollider;
+            movementForce = pullForce;
+        }
+        else if (movementType == MovementType.Pushing)
+        {
+            uprightCollider.gameObject.SetActive(true);
+            crawlingCollider.gameObject.SetActive(false);
+            currentPlayerCollider = uprightCollider;
+            movementForce = pushForce;
+        }
+        else if (movementType == MovementType.Crawling)
+        {
+            uprightCollider.gameObject.SetActive(false);
+            crawlingCollider.gameObject.SetActive(true);
+            currentPlayerCollider = crawlingCollider;
+            movementForce = crawlingForce;
+        }
+        else //default to walking
+        {
+            //temp?
+            uprightCollider.gameObject.SetActive(true);
+            crawlingCollider.gameObject.SetActive(false);
+            currentPlayerCollider = uprightCollider;
+            movementForce = walkingForce;
+        }
+    }
+
+    void ApplyGravity()
+    {
+        playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, playerRB2D.velocity.y - (gravityForce * Time.fixedDeltaTime), 0);
+    }
+
+    void ApplyHorizontalDrag()
+    {
+        float dragValue = dragForce * Time.fixedDeltaTime;
+        //Debug.Log("Player X velocity: " + playerRB2D.velocity.x);
+
+        if (playerRB2D.velocity.x != 0) //the player is moving on the x axis
+        {
+            if (playerRB2D.velocity.x > 0) //positive movement
+            {
+                if (playerRB2D.velocity.x - dragValue < 0)
+                {
+                    //Debug.Log("positive should 0");
+                    playerRB2D.velocity = new Vector3(0, playerRB2D.velocity.y, 0);
+                }
+                else
+                {
+                    //Debug.Log("positive");
+                    playerRB2D.velocity = new Vector3(playerRB2D.velocity.x - (dragForce * Time.fixedDeltaTime), playerRB2D.velocity.y, 0);
+                }
+            }
+            else //negative movement
+            {
+                if (playerRB2D.velocity.x + dragValue > 0)
+                {
+                    //Debug.Log("negative should 0");
+                    playerRB2D.velocity = new Vector3(0, playerRB2D.velocity.y, 0);
+                }
+                else
+                {
+                    //Debug.Log("negative");
+                    playerRB2D.velocity = new Vector3(playerRB2D.velocity.x + (dragForce * Time.fixedDeltaTime), playerRB2D.velocity.y, 0);
+                }
+            }
+        }
+
+        //playerRB2D.velocity = new Vector3(playerRB2D.velocity.x - (dragForce * Time.fixedDeltaTime), playerRB2D.velocity.y, 0);
     }
 
     void SetGrounded()
@@ -124,8 +265,35 @@ public class PlayerMovement : MonoBehaviour
         //test
         if (playerRB2D.velocity.y == 0)
         {
+            if (playerData.animationNumber == 7)
+            {
+                if (movementDirection == MovementDirection.Left)
+                {
+                    playerData.playerAnimator.PlayerLandLeft();
+                }
+                else
+                {
+                    playerData.playerAnimator.PlayerLandRight();
+                }
+            }
+
             grounded = true;
         }
+        else
+        {
+            if (movementDirection == MovementDirection.Left)
+            {
+                playerData.playerAnimator.PlayerFallLeft();
+            }
+            else
+            {
+                playerData.playerAnimator.PlayerFallRight();
+            }
+
+            grounded = false;
+        }
+
+        playerData.grounded = grounded;
     }
 
     public float GetMovementForce()

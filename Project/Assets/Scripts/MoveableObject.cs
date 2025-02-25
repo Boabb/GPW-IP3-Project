@@ -2,22 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MoveableObject : MonoBehaviour
 {
-    public float objectRBMass = 0.0f; //this should be 0 unless the object is moveable, then it should be equal to the mass of the object's rigidbody
+    //public float objectRBMass = 0.0f; //this should be 0 unless the object is moveable, then it should be equal to the mass of the object's rigidbody
     Rigidbody2D objectRB;
-
-    [HideInInspector] public float currentObjectRBMass; //this is the mass of the object when it is being moved by the player (equal to the player mass plus the object mass)
+    
+    [Header("Designers Don't Change!")]
+    [SerializeField] PlayerData playerData;
+    //[HideInInspector] public float currentObjectRBMass; //this is the mass of the object when it is being moved by the player (equal to the player mass plus the object mass)
 
     private void Start()
     {
         objectRB = GetComponent<Rigidbody2D>();
-        currentObjectRBMass = objectRBMass;
-        objectRB.mass = currentObjectRBMass;
+        //currentObjectRBMass = objectRBMass;
+        //objectRB.mass = currentObjectRBMass;
     }
 
     private void Update()
     {
-        objectRB.mass = currentObjectRBMass;
+        //objectRB.mass = currentObjectRBMass;
+
+        //stop objects from being moveable when Suzanne is jumping/falling
+        if (!playerData.grounded)
+        {
+            objectRB.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            objectRB.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 }
