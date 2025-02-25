@@ -175,8 +175,8 @@ public class PlayerPushPull : MonoBehaviour
         if (pushPullMoveableObject != null && playerData.grounded)
         {
             currentPushPullObject = collider; //sets the pushPullObject to the collider
-            playerData.currentPlayerRBMass = (playerData.playerRBMass + pushPullMoveableObject.objectRBMass)/2; //sets the player mass
-            pushPullMoveableObject.currentObjectRBMass = (pushPullMoveableObject.objectRBMass + playerData.playerRBMass)/2; //sets the pushPullObject mass
+            //playerData.currentPlayerRBMass = (playerData.playerRBMass + pushPullMoveableObject.objectRBMass)/2; //sets the player mass
+            //pushPullMoveableObject.currentObjectRBMass = (pushPullMoveableObject.objectRBMass + playerData.playerRBMass)/2; //sets the pushPullObject mass
         }
         else
         {
@@ -188,7 +188,7 @@ public class PlayerPushPull : MonoBehaviour
     {
         if (currentPushPullObject != null && pushPullMoveableObject != null)
         {
-            pushPullMoveableObject.currentObjectRBMass = pushPullMoveableObject.objectRBMass;
+            //pushPullMoveableObject.currentObjectRBMass = pushPullMoveableObject.objectRBMass;
         }
 
         playerData.currentPlayerRBMass = playerData.playerRBMass;
