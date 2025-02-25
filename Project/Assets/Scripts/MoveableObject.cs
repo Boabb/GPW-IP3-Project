@@ -12,10 +12,6 @@ public class MoveableObject : MonoBehaviour
     [SerializeField] PlayerData playerData;
     //[HideInInspector] public float currentObjectRBMass; //this is the mass of the object when it is being moved by the player (equal to the player mass plus the object mass)
 
-    [Header("Designers Don't Change!")]
-    [SerializeField] PlayerData playerData;
-    //[HideInInspector] public float currentObjectRBMass; //this is the mass of the object when it is being moved by the player (equal to the player mass plus the object mass)
-
     private void Start()
     {
         objectRB = GetComponent<Rigidbody2D>();

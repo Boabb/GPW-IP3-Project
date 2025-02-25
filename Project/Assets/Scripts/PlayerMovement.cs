@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -91,43 +92,45 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Player mass: " + playerRB2D.mass);
         if (!playerData.catching && !playerData.pulling)
         {
-            if (SystemSettings.moveLeft && !SystemSettings.moveRight)
+            if (SystemSettings.moveLeft || SystemSettings.moveRight)
             {
-                if (movementType == MovementType.Walking)
+                if (SystemSettings.moveLeft && !SystemSettings.moveRight)
                 {
-                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
-                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
-                    playerData.playerAnimator.PlayerWalkLeft();
-                }
-                else if (movementType == MovementType.Crawling)
-                {
-                    //add crawling anim and sound
-                }
-                else if (movementType == MovementType.Pushing)
-                {
-                    //add push anim and sound
+                    if (movementType == MovementType.Walking)
+                    {
+                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        playerData.playerAnimator.PlayerWalkLeft();
+                    }
+                    else if (movementType == MovementType.Crawling)
+                    {
+                        //add crawling anim and sound
+                    }
+                    else if (movementType == MovementType.Pushing)
+                    {
+                        //add push anim and sound
+                    }
+
+                    playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
                 }
 
-                playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
+                if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+                {
+                    if (movementType == MovementType.Walking)
+                    {
+                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        playerData.playerAnimator.PlayerWalkRight();
+                    }
+                    else if (movementType == MovementType.Crawling)
+                    {
+                        //add crawling anim and sound
+                    }
+
+                    playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
+                }
             }
-
-            if (SystemSettings.moveRight && !SystemSettings.moveLeft)
-            {
-                if (movementType == MovementType.Walking)
-                {
-                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
-                    AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
-                    playerData.playerAnimator.PlayerWalkRight();
-                }
-                else if (movementType == MovementType.Crawling)
-                {
-                    //add crawling anim and sound
-                }
-
-                playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
-            }
-
-            if (movementType == MovementType.None)
+            else if (movementType == MovementType.Walking)
             {
                 playerData.playerAnimator.PlayerIdle();
             }
