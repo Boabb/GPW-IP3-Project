@@ -97,14 +97,14 @@ public class PlayerAnimator : MonoBehaviour
     {
         playerAnimator.SetInteger("AnimationNumber", 5);
         spriteRenderer.flipX = true;
-        //spriteRenderer.gameObject.transform.localPosition = new Vector3(0.12f, 0, 0);
+        spriteRenderer.gameObject.transform.localPosition = new Vector3(0f, -0.15f, 0);
     }
 
     public void PlayerCatchRight()
     {
         playerAnimator.SetInteger("AnimationNumber", 5);
         spriteRenderer.flipX = false;
-        //spriteRenderer.gameObject.transform.localPosition = new Vector3(-0.12f, 0, 0);
+        spriteRenderer.gameObject.transform.localPosition = new Vector3(0f, -0.15f, 0);
     }
 
     public void PlayerJumpLeft()
