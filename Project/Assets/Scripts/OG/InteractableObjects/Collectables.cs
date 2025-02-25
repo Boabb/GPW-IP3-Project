@@ -1,39 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Collectables : InteractableObject
 {
-    [SerializeField] GameObject CollectableVisual;
-    [SerializeField] GameObject Animated;
-    GameObject Player;
-    AudioSource CollectableAudio;
+    public static event Action<int> OnItemCollected;
 
-    // Start is called before the first frame update
+    [SerializeField] private int itemIndex;
+    [SerializeField] private GameObject collectableVisual;
+    [SerializeField] private GameObject animated;
+    private AudioSource collectableAudio;
+
+    private bool canBeCollected = false;
+    private GameObject currentPlayer;
+
     void Start()
     {
-        CollectableAudio = CollectableVisual.GetComponent<AudioSource>();
+        collectableAudio = collectableVisual.GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (CollectableVisual.activeSelf && !CollectableAudio.isPlaying) //automatically closes 
+        if (canBeCollected && currentPlayer != null && Input.GetKeyDown(KeyCode.LeftShift))
         {
-            CollectableVisual.SetActive(false); 
-            Player.GetComponent<GravityMovement>().isManoeuvring = false;
-            Animated.SetActive(false);
+            Interaction(currentPlayer);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            currentPlayer = other.gameObject;
+            canBeCollected = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            currentPlayer = null;
+            canBeCollected = false;
         }
     }
 
     public override void Interaction(GameObject playerGO)
     {
-        if (Animated.activeSelf)
+        if (collectableVisual.activeSelf)
         {
-            Player = playerGO;
-            Player.GetComponent<GravityMovement>().isManoeuvring = true;
-            CollectableVisual.SetActive(true);
-            AudioManager.PlayVoiceOverAudio(VoiceOver.EmbroideryPickup, .3f);
+            OnItemCollected?.Invoke(itemIndex);
+            FindObjectOfType<PickupManager>().CollectItem(itemIndex);
+            collectableVisual.SetActive(false);
+            animated.SetActive(false);
         }
     }
 }
