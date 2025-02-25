@@ -1,9 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -85,22 +81,21 @@ public class AudioManager : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        Instance = this;
         OnSceneRefresh();
     }
 #endif
-    private static void OnSceneRefresh()
+    private void OnSceneRefresh()
     {
-        Instance.AllSounds.Clear();
+        AllSounds.Clear();
 
-        if (Enum.GetNames(typeof(SoundEffect)).Length != Instance.SoundEffects.Length)
-            Instance.SoundEffects = new MultipleInstanceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
+        if (Enum.GetNames(typeof(SoundEffect)).Length != SoundEffects.Length)
+            SoundEffects = new MultipleInstanceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
 
-        if (Enum.GetNames(typeof(BackgroundMusic)).Length != Instance.BackgroundMusics.Length)
-            Instance.BackgroundMusics = new SingleInstanceAudio[Enum.GetNames(typeof(BackgroundMusic)).Length];
+        if (Enum.GetNames(typeof(BackgroundMusic)).Length != BackgroundMusics.Length)
+            BackgroundMusics = new SingleInstanceAudio[Enum.GetNames(typeof(BackgroundMusic)).Length];
 
-        if (Enum.GetNames(typeof(VoiceOver)).Length != Instance.VoiceOvers.Length)
-            Instance.VoiceOvers = new SingleInstanceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
+        if (Enum.GetNames(typeof(VoiceOver)).Length != VoiceOvers.Length)
+            VoiceOvers = new SingleInstanceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
 
         Debug.ClearDeveloperConsole();
         foreach (var audioSrc in FindObjectsOfType<AudioSource>())
@@ -135,7 +130,7 @@ public class AudioManager : MonoBehaviour
                     {
                         if (string.Equals(temp, audioSrc.clip.name, StringComparison.OrdinalIgnoreCase))
                         {
-                            Instance.SoundEffects[i].audioSource = audioSrc;
+                            SoundEffects[i].audioSource = audioSrc;
                         }
                     }
                     i++;
@@ -143,7 +138,7 @@ public class AudioManager : MonoBehaviour
                 }
             }
 
-            Instance.AllSounds.Add(newAudioInstance);
+            AllSounds.Add(newAudioInstance);
         }
         string[] voiceOversAsStrings = Enum.GetNames(typeof(VoiceOver));
         string[] bGMsAsStrings = Enum.GetNames(typeof(BackgroundMusic));
@@ -151,18 +146,18 @@ public class AudioManager : MonoBehaviour
 
         for (int i = 0; i < voiceOversAsStrings.Length; i++)
         {
-            Instance.VoiceOvers[i].mixerGroup = Instance.VoiceOverMixerGroup;
-            Instance.VoiceOvers[i].name = voiceOversAsStrings[i];
+            VoiceOvers[i].mixerGroup = VoiceOverMixerGroup;
+            VoiceOvers[i].name = voiceOversAsStrings[i];
         }
         for (int i = 0; i < bGMsAsStrings.Length; i++)
         {
-            Instance.BackgroundMusics[i].mixerGroup = Instance.MusicMixerGroup;
-            Instance.BackgroundMusics[i].name = bGMsAsStrings[i];
+            BackgroundMusics[i].mixerGroup = MusicMixerGroup;
+            BackgroundMusics[i].name = bGMsAsStrings[i];
         }
         for (int i = 0; i < soundEffectsAsStrings.Length; i++)
         {
-            Instance.SoundEffects[i].mixerGroup = Instance.SoundEffectsMixerGroup;
-            Instance.SoundEffects[i].name = soundEffectsAsStrings[i];
+            SoundEffects[i].mixerGroup = SoundEffectsMixerGroup;
+            SoundEffects[i].name = soundEffectsAsStrings[i];
         }
 
     }
