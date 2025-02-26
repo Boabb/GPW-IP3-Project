@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7a1d4ee8a5ce4468a1b84a8541d3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 1056329803}
+  playerData: {fileID: 0}
 --- !u!114 &107570783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2205,11 +2205,11 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: d3ccc35c9fb9824438d3ef5e17e3b2ed, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8792453, g: 0.8792453, b: 0.8792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 2.6220706, y: 24.175692}
+  m_Size: {x: 2.6220706, y: 30.000002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2681,6 +2681,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5555b11b77a97354fa623821c37d5df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  follower: {fileID: 0}
+  Fade1: {fileID: 0}
+  Fade2: {fileID: 0}
+  musicController: {fileID: 0}
+  fadeCollider: {fileID: 0}
+  hidden:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  revealed:
+    r: 1
+    g: 1
+    b: 1
+    a: 0
+  timer: 0
+  adder: 1
+  audioSource: {fileID: 0}
+  collision: 0
+  switchOverTime: 0
+  switchBetween: 1
+  playAudio: 1
+  shake: 1
+  shakeAdder: 0
 --- !u!4 &978086949
 Transform:
   m_ObjectHideFlags: 0
@@ -3338,11 +3362,11 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c4bbb47d4023c134c82153fcf50da39a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8792453, g: 0.8792453, b: 0.8792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 170.4678, y: 19.54438}
+  m_Size: {x: 30.000002, y: 30.000002}
   m_AdaptiveModeThreshold: 0
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3427,7 +3451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7a1d4ee8a5ce4468a1b84a8541d3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 1056329803}
+  playerData: {fileID: 0}
 --- !u!114 &1560044582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3692,11 +3716,11 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c4bbb47d4023c134c82153fcf50da39a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8792453, g: 0.8792453, b: 0.8792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1184.4689, y: 19.54438}
+  m_Size: {x: 30.000002, y: 30.000002}
   m_AdaptiveModeThreshold: 0
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4048,12 +4072,24 @@ PrefabInstance:
       value: -0.315808
       objectReference: {fileID: 0}
     - target: {fileID: 7546050630217260372, guid: ca656f11170c92445ae928dc4e1e8b3a, type: 3}
+      propertyPath: m_Size.x
+      value: 12.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546050630217260372, guid: ca656f11170c92445ae928dc4e1e8b3a, type: 3}
+      propertyPath: m_Size.y
+      value: 12.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546050630217260372, guid: ca656f11170c92445ae928dc4e1e8b3a, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f77ae85fdfa9bfa44bd4b5dd8bdc39e9, type: 3}
     - target: {fileID: 7546050630217260372, guid: ca656f11170c92445ae928dc4e1e8b3a, type: 3}
       propertyPath: m_SortingOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546050630217260372, guid: ca656f11170c92445ae928dc4e1e8b3a, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2300120768352766088, guid: ca656f11170c92445ae928dc4e1e8b3a, type: 3}
@@ -4160,7 +4196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7a1d4ee8a5ce4468a1b84a8541d3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 1056329803}
+  playerData: {fileID: 0}
 --- !u!114 &1816838181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4840,7 +4876,7 @@ MonoBehaviour:
   catchClimbable: 0
   foreground: 0
   background: 0
-  autoEvent: 1
+  autoEvent: 0
 --- !u!61 &2037346749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5076,6 +5112,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f70327799fc9749bf6f56325618cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSound: {fileID: 0}
+  previousSound: {fileID: 0}
+  firstRoom: {fileID: 0}
+  vent: {fileID: 0}
+  outOfVent: {fileID: 0}
+  inProgressSwitch: 0
 --- !u!4 &2087461132
 Transform:
   m_ObjectHideFlags: 0

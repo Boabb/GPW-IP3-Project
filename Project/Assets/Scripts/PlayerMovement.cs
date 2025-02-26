@@ -146,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         SetGrounded();
-        if (SystemSettings.jump && grounded == true)
+        if (SystemSettings.jump && grounded && movementType != MovementType.Crawling)
         {
             //Debug.Log("Jump");
             playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
@@ -158,6 +158,17 @@ public class PlayerMovement : MonoBehaviour
         if (playerData.crawling)
         {
             movementType = MovementType.Crawling;
+            switch(movementDirection)
+            {
+                case MovementDirection.Left:
+                    playerData.playerAnimator.PlayerCrawlLeft();
+                    break;
+                case MovementDirection.Right:
+                    playerData.playerAnimator.PlayerCrawlRight();
+                    break;
+
+            }
+
         }
         else if (playerData.pushing)
         {
@@ -259,13 +270,17 @@ public class PlayerMovement : MonoBehaviour
         {
             if (playerData.animationNumber == 7)
             {
-                if (movementDirection == MovementDirection.Left)
+                switch (movementDirection)
                 {
-                    playerData.playerAnimator.PlayerLandLeft();
-                }
-                else
-                {
-                    playerData.playerAnimator.PlayerLandRight();
+                    case MovementDirection.Left:
+                        playerData.playerAnimator.PlayerLandLeft();
+                        break;
+                    case MovementDirection.Right:
+                        playerData.playerAnimator.PlayerLandRight();
+                        break;
+                    default:
+                        playerData.playerAnimator.PauseAnimation();
+                        break;
                 }
             }
 
@@ -273,13 +288,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (movementDirection == MovementDirection.Left)
-            {
-                playerData.playerAnimator.PlayerFallLeft();
-            }
-            else
-            {
+            switch(movementDirection)
+            { 
+                case MovementDirection.Left:
+                    playerData.playerAnimator.PlayerFallLeft();
+                    break;
+                    case MovementDirection.Right: 
                 playerData.playerAnimator.PlayerFallRight();
+                    break;
             }
 
             grounded = false;
