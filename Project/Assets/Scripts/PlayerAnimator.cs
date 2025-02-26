@@ -27,6 +27,10 @@ public class PlayerAnimator : MonoBehaviour
 
         Debug.Log("AnimationInteger: " +  animationNumber);
     }
+    public void PauseAnimation()
+    {
+        playerAnimator.speed = 0;
+    }
 
     public void PlayerIdle()
     {

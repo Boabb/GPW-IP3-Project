@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -14,9 +16,15 @@ public class PlayerMovement : MonoBehaviour
     MovementType movementType;
 
     [Header("For Designers")]
-    [SerializeField] float walkingForce = 10f;
-    [SerializeField] float crawlingForce = 5f;
-    [SerializeField] float jumpForce = 100f;
+    [SerializeField] float walkingForce = 100f;
+    [SerializeField] float crawlingForce = 50f;
+    [SerializeField] float jumpForce = 1000f;
+
+    [SerializeField] float gravityForce = 100f;
+    [SerializeField] float dragForce = 100f;
+
+    float pushForce;
+    float pullForce;
 
     float movementForce;
     bool grounded;
@@ -44,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         playerData = GetComponent<PlayerData>();
         uprightCollider = playerData.playerWalkingCollider;
         crawlingCollider = playerData.playerCrawlingCollider;
-        groundedCollider = playerData.playerGroundedCollider;
+        //groundedCollider = playerData.playerGroundedCollider;
         playerRB2D = playerData.playerRigidbody;
 
         currentPlayerCollider = uprightCollider;
@@ -67,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         SetGrounded();
         playerData.grounded = grounded;
 
-        Debug.Log("Ground: " + grounded);
+        //Debug.Log("Ground: " + grounded);
     }
 
     private void FixedUpdate()
@@ -75,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
         SetGrounded();
         Move();
         Jump();
+        ApplyGravity();
+        ApplyHorizontalDrag();
     }
 
     void Move()
@@ -136,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         SetGrounded();
-        if (SystemSettings.jump && grounded == true)
+        if (SystemSettings.jump && grounded && movementType != MovementType.Crawling)
         {
             //Debug.Log("Jump");
             playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
@@ -148,6 +158,17 @@ public class PlayerMovement : MonoBehaviour
         if (playerData.crawling)
         {
             movementType = MovementType.Crawling;
+            switch (movementDirection)
+            {
+                case MovementDirection.Left:
+                    playerData.playerAnimator.PlayerCrawlLeft();
+                    break;
+                case MovementDirection.Right:
+                    playerData.playerAnimator.PlayerCrawlRight();
+                    break;
+
+            }
+
         }
         else if (playerData.pushing)
         {
@@ -245,35 +266,21 @@ public class PlayerMovement : MonoBehaviour
 
     void SetGrounded()
     {
-        List<Collider2D> overlappingColliders = new List<Collider2D>();
-
-        groundedCollider.OverlapCollider(new ContactFilter2D().NoFilter(), overlappingColliders);
-
-        for (int i = 0; i < overlappingColliders.Count; i++)
-        {
-            if (overlappingColliders[i].tag == "Ground")
-            {
-                grounded = true;
-                break;
-            }
-            else
-            {
-                grounded = false;
-            }
-        }
-
-        //test
         if (playerRB2D.velocity.y == 0)
         {
             if (playerData.animationNumber == 7)
             {
-                if (movementDirection == MovementDirection.Left)
+                switch (movementDirection)
                 {
-                    playerData.playerAnimator.PlayerLandLeft();
-                }
-                else
-                {
-                    playerData.playerAnimator.PlayerLandRight();
+                    case MovementDirection.Left:
+                        playerData.playerAnimator.PlayerLandLeft();
+                        break;
+                    case MovementDirection.Right:
+                        playerData.playerAnimator.PlayerLandRight();
+                        break;
+                    default:
+                        playerData.playerAnimator.PauseAnimation();
+                        break;
                 }
             }
 
@@ -281,13 +288,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (movementDirection == MovementDirection.Left)
+            switch (movementDirection)
             {
-                playerData.playerAnimator.PlayerFallLeft();
-            }
-            else
-            {
-                playerData.playerAnimator.PlayerFallRight();
+                case MovementDirection.Left:
+                    playerData.playerAnimator.PlayerFallLeft();
+                    break;
+                case MovementDirection.Right:
+                    playerData.playerAnimator.PlayerFallRight();
+                    break;
             }
 
             grounded = false;
