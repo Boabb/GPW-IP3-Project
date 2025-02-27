@@ -28,124 +28,109 @@ public class PlayerAnimator : MonoBehaviour
 
         Debug.Log("AnimationInteger: " +  animationNumber);
     }
-    public void PauseAnimation()
-    {
-        playerAnimator.speed = 0;
-    }
-
+ 
     public void PlayerIdle()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 0);
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         
     }
 
     public void PlayerWalkRight()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 1);
         spriteRenderer.flipX = true;
         spriteRenderer.flipY = false;
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     public void PlayerWalkLeft()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 1);
         spriteRenderer.flipX = false;
         spriteRenderer.flipY = false;
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     public void PlayerCrawlRight()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 2);
         spriteRenderer.flipX = true;
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(0, 0.255f, 0);
     }
 
     public void PlayerCrawlLeft()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 2);
         spriteRenderer.flipX = false;
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(0, 0.255f, 0);
     }
 
     public void PlayerPushLeft()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 3);
         spriteRenderer.flipX = true;
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(-0.12f, 0, 0);
     }
 
     public void PlayerPushRight()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 3);
         spriteRenderer.flipX = false; 
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(0.12f, 0, 0);
     }
 
     public void PlayerPullLeft()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 4);
         spriteRenderer.flipX = true;
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(-0.12f, 0, 0);
     }
 
     public void PlayerPullRight() 
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 4);
         spriteRenderer.flipX = false;
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(0.12f, 0, 0);
     }
 
     public void PlayerClingLeft()
     {
         playerAnimator.SetInteger("AnimationNumber", 5);
         spriteRenderer.flipX = true;
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(0f, -0.15f, 0);
     }
 
     public void PlayerClingRight()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 5);
         spriteRenderer.flipX = false;
-        spriteRenderer.gameObject.transform.localPosition = new Vector3(0f, -0.15f, 0);
     }
 
     public void PlayerJumpLeft()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 6); 
         spriteRenderer.flipX = false;
     }
 
     public void PlayerJumpRight()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 6);
         spriteRenderer.flipX = true;
     }
 
     public void PlayerFallLeft()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 7);
         spriteRenderer.flipX = false;
     }
 
     public void PlayerFallRight()
     {
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 7);
         spriteRenderer.flipX = true;
     }
@@ -156,7 +141,7 @@ public class PlayerAnimator : MonoBehaviour
         //{
         //}
 
-        playerAnimator.speed = 1;
+
         playerAnimator.SetInteger("AnimationNumber", 8);
         spriteRenderer.flipX = false;
     }
@@ -167,7 +152,6 @@ public class PlayerAnimator : MonoBehaviour
         //{
         //}
 
-        playerAnimator.speed = 1;
         playerAnimator.SetInteger("AnimationNumber", 8);
         spriteRenderer.flipX = true;
 

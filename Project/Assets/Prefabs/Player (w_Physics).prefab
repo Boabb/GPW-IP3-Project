@@ -244,6 +244,7 @@ MonoBehaviour:
   playerCrawlingCollider: {fileID: 8686667805701452908}
   playerInteractCollider: {fileID: 626177448183868537}
   playerOverlapCheckCollider: {fileID: 6829465168859839149}
+  playerGroundedCollider: {fileID: 0}
   playerCatchClimbCollider: {fileID: 0}
   playerAnimatorComponent: {fileID: 6571747437202914289}
   playerSprite: {fileID: 7614294576506648438}
@@ -259,6 +260,7 @@ MonoBehaviour:
   catching: 0
   grounded: 0
   crawling: 0
+  animationNumber: 0
 --- !u!50 &1456820099601487006
 Rigidbody2D:
   serializedVersion: 4

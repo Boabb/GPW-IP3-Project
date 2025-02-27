@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -70,12 +71,25 @@ public class PlayerMovement : MonoBehaviour
         //temp
         movementForce = walkingForce;
         //end temp
+        GetMoveDirection();
         UpdateMovementType();
         UpdateMovementForce();
         SetGrounded();
         playerData.grounded = grounded;
 
         //Debug.Log("Ground: " + grounded);
+    }
+
+    private void GetMoveDirection()
+    {
+        if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+        {
+            movementDirection = MovementDirection.Right;
+        }
+        else if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+        {
+            movementDirection = MovementDirection.Left;
+        }
     }
 
     private void FixedUpdate()
@@ -99,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
                     if (movementType == MovementType.Walking)
                     {
                         AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
-                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
                         playerData.playerAnimator.PlayerWalkLeft();
                     }
                     else if (movementType == MovementType.Crawling)
@@ -118,7 +131,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (movementType == MovementType.Walking)
                     {
-                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
                         AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
                         playerData.playerAnimator.PlayerWalkRight();
                     }
@@ -279,7 +291,6 @@ public class PlayerMovement : MonoBehaviour
                         playerData.playerAnimator.PlayerLandRight();
                         break;
                     default:
-                        playerData.playerAnimator.PauseAnimation();
                         break;
                 }
             }

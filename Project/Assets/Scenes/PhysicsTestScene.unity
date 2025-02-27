@@ -1149,7 +1149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectRBMass: 0.5
   currentObjectRBMass: 0
-  playerData: {fileID: 1056329803}
 --- !u!114 &107570783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,7 +1180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0843d52ecf5c4fb4fae9a28f9f00d80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 1056329803}
 --- !u!1 &116866908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5097,7 +5095,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0843d52ecf5c4fb4fae9a28f9f00d80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 1056329803}
 --- !u!1 &609807236
 GameObject:
   m_ObjectHideFlags: 0
@@ -9598,8 +9595,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 0.4}
   m_Direction: 1
---- !u!114 &1056329803
-MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -14951,7 +14946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0843d52ecf5c4fb4fae9a28f9f00d80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 1056329803}
 --- !u!114 &1804841519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15247,7 +15241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectRBMass: 0
   currentObjectRBMass: 0
-  playerData: {fileID: 1056329803}
 --- !u!114 &1816838181
 MonoBehaviour:
   m_ObjectHideFlags: 0
