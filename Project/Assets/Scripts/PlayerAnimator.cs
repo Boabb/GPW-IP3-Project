@@ -28,19 +28,6 @@ public class PlayerAnimator : MonoBehaviour
 
         Debug.Log("AnimationInteger: " +  animationNumber);
     }
-
-    private void FlipBasedOnDirection()
-    {
-        switch (playerData.movementDirection)
-        {
-            case PlayerMovement.MovementDirection.Left:
-                spriteRenderer.flipX = false;
-                break;
-            case PlayerMovement.MovementDirection.Right:
-                spriteRenderer.flipX = true; 
-                break;
-        }
-    }
  
     public void PlayerIdle()
     {
@@ -53,97 +40,99 @@ public class PlayerAnimator : MonoBehaviour
     {
 
         playerAnimator.SetInteger("AnimationNumber", 1);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = true;
+        spriteRenderer.flipY = false;
     }
 
     public void PlayerWalkLeft()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 1);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = false;
+        spriteRenderer.flipY = false;
     }
 
     public void PlayerCrawlRight()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 2);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = true;
     }
 
     public void PlayerCrawlLeft()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 2);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = false;
     }
 
     public void PlayerPushLeft()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 3);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = true;
     }
 
     public void PlayerPushRight()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 3);
-        FlipBasedOnDirection(); 
+        spriteRenderer.flipX = false; 
     }
 
     public void PlayerPullLeft()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 4);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = true;
     }
 
     public void PlayerPullRight() 
     {
 
         playerAnimator.SetInteger("AnimationNumber", 4);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = false;
     }
 
     public void PlayerClingLeft()
     {
         playerAnimator.SetInteger("AnimationNumber", 5);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = true;
     }
 
     public void PlayerClingRight()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 5);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = false;
     }
 
     public void PlayerJumpLeft()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 6); 
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = false;
     }
 
     public void PlayerJumpRight()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 6);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = true;
     }
 
     public void PlayerFallLeft()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 7);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = false;
     }
 
     public void PlayerFallRight()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 7);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = true;
     }
 
     public void PlayerLandLeft()
@@ -154,7 +143,7 @@ public class PlayerAnimator : MonoBehaviour
 
 
         playerAnimator.SetInteger("AnimationNumber", 8);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = false;
     }
 
     public void PlayerLandRight()
@@ -164,7 +153,7 @@ public class PlayerAnimator : MonoBehaviour
         //}
 
         playerAnimator.SetInteger("AnimationNumber", 8);
-        FlipBasedOnDirection();
+        spriteRenderer.flipX = true;
 
     }
 

@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D playerRB2D;
 
     Collider2D currentPlayerCollider;
+    MovementDirection movementDirection;
     MovementType movementType;
 
     [Header("For Designers")]
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     float movementForce;
     bool grounded;
 
-    public enum MovementDirection
+    enum MovementDirection
     {
         Left,
         Right
@@ -83,11 +84,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (SystemSettings.moveRight && !SystemSettings.moveLeft)
         {
-            playerData.movementDirection = MovementDirection.Right;
+            movementDirection = MovementDirection.Right;
         }
         else if (SystemSettings.moveRight && !SystemSettings.moveLeft)
         {
-            playerData.movementDirection = MovementDirection.Left;
+            movementDirection = MovementDirection.Left;
         }
     }
 
@@ -169,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerData.crawling)
         {
             movementType = MovementType.Crawling;
-            switch (playerData.movementDirection)
+            switch (movementDirection)
             {
                 case MovementDirection.Left:
                     playerData.playerAnimator.PlayerCrawlLeft();
@@ -281,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (playerData.animationNumber == 7)
             {
-                switch (playerData.movementDirection)
+                switch (movementDirection)
                 {
                     case MovementDirection.Left:
                         playerData.playerAnimator.PlayerLandLeft();
@@ -298,7 +299,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            switch (playerData.movementDirection)
+            switch (movementDirection)
             {
                 case MovementDirection.Left:
                     playerData.playerAnimator.PlayerFallLeft();
