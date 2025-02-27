@@ -36,6 +36,7 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public bool grounded = false; //is the player currently grounded?
     [HideInInspector] public bool crawling = false; //is the player currently crawling?
     [HideInInspector] public int animationNumber = 0; //what animation is currently trying to be active
+    public PlayerMovement.MovementDirection movementDirection; //what direction is the player moving in?
 
     private void Start()
     {
