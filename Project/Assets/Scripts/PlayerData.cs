@@ -36,6 +36,7 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public bool grounded = false; //is the player currently grounded?
     [HideInInspector] public bool crawling = false; //is the player currently crawling?
     [HideInInspector] public int animationNumber = 0; //what animation is currently trying to be active
+    [HideInInspector] public float customPlayerVelocity; //used to change the player velocity to something custom for auto events (its an adder, to slow down this value should be negative)
 
     private void Start()
     {

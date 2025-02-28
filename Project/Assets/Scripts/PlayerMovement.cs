@@ -231,6 +231,8 @@ public class PlayerMovement : MonoBehaviour
             currentPlayerCollider = uprightCollider;
             movementForce = walkingForce;
         }
+
+        movementForce += playerData.customPlayerVelocity;
     }
 
     void ApplyGravity()
