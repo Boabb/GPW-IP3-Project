@@ -8,7 +8,7 @@ public class AutoSound : AutoEvent
     [SerializeField] Camera mainCamera;
     bool played = false;
 
-    public override void Event(GameObject playerGO)
+    public override void EventEnter(GameObject playerGO)
     {
         if (!played)
         {

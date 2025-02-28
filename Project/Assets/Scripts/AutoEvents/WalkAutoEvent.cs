@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WalkAutoEvent : AutoEvent
 {
-    override public void Event(GameObject playerGO)
+    override public void EventEnter(GameObject playerGO)
     {
         playerGO.GetComponentInParent<PlayerData>().crawling = false;
     }
