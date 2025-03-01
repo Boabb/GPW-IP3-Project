@@ -13,7 +13,7 @@ public class PlayerData : MonoBehaviour
     public Collider2D playerCrawlingCollider;
     public Collider2D playerInteractCollider;
     public Collider2D playerOverlapCheckCollider;
-    public Collider2D playerGroundedCollider;
+    //public Collider2D playerGroundedCollider;
     public Collider2D playerCatchClimbCollider;
     public Animator playerAnimatorComponent;
     public SpriteRenderer playerSprite;
