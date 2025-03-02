@@ -4,6 +4,37 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public class SignedBinary
+{
+    private double _value;
+    public bool reachedLimit = false;
+
+    public double Value
+    {
+        get => _value;
+        set
+        {
+            if (!reachedLimit)
+            {
+                if (value <= -1)
+                {
+                    _value = -1;
+                    reachedLimit = true;
+                }
+                else if (value >= 1)
+                {
+                    _value = 1;
+                    reachedLimit = true;
+                }
+                else
+                {
+                    _value = value;
+                }
+            }
+        }
+    }
+}
+
 public class Fade : MonoBehaviour
 {
     [SerializeField] Renderer Fade1;
@@ -12,24 +43,20 @@ public class Fade : MonoBehaviour
     Color hidden = new Color(1,1,1,1);
     Color revealed = new Color(1,1,1,0);
 
-    float timer = 0;
-    float adder = 1f;
+    SignedBinary currentFadeAmount = new();
+    float fadeScalar = 1f;
 
     Follower follower;
-    AudioSource audioSource;
 
     public bool collision = false;
     bool switchOverTime = false;
     bool switchBetween = true;
 
-    bool playAudio = true;
-
     bool shake = true;
-    float shakeAdder = 0;
+    float shakeScalar = 0;
 
     private void Awake()
     {
-        Fade1.sharedMaterial.color = revealed;
 
         Fade1.material.color = hidden;
         Fade2.material.color = revealed;
@@ -47,7 +74,37 @@ public class Fade : MonoBehaviour
 
         if (switchOverTime)
         {
-            SwitchOverTime();
+            if (currentFadeAmount.reachedLimit)
+            { currentFadeAmount.Value = 1; }
+            else
+            {
+                currentFadeAmount.Value += fadeScalar * Time.deltaTime;
+            }
+
+            if (switchBetween)
+            {
+                Fade1.material.color = new Color(1, 1, 1, (float)currentFadeAmount.Value);
+                Fade2.material.color = new Color(1, 1, 1, (float)(1 - currentFadeAmount.Value));
+            }
+            else
+            {
+                Fade1.material.color = new Color(1, 1, 1, (float)(1 - currentFadeAmount.Value));
+                Fade2.material.color = new Color(1, 1, 1, (float)currentFadeAmount.Value);
+            }
+
+            shakeScalar += 1.15f * Time.deltaTime;
+
+            if (shakeScalar > 8 && shake)
+            {
+                shake = false;
+                follower.StartShake();
+            }
+
+            if (currentFadeAmount.Value >= 1 && !shake)
+            {
+                currentFadeAmount.Value = 0;
+                switchOverTime = false;
+            }
         }
 
 
@@ -67,39 +124,5 @@ public class Fade : MonoBehaviour
         }
     }
 
-    void SwitchOverTime()
-    {
-        timer += adder * Time.deltaTime;
 
-        if (audioSource.isPlaying == false && playAudio)
-        {
-            playAudio = false;
-            audioSource.Play();
-        }
-
-        if (switchBetween)
-        {
-            Fade1.material.color = new Color(1,1,1, timer);
-            Fade2.material.color = new Color(1, 1, 1, 1 - timer);
-        }
-        else
-        {
-            Fade1.material.color = new Color(1, 1, 1, 1 - timer);
-            Fade2.material.color = new Color(1, 1, 1, timer);
-        }
-
-        shakeAdder += 1.15f * Time.deltaTime;
-
-        if (shakeAdder > 8 && shake)
-        {
-            shake = false;
-            follower.StartShake();
-        }
-
-        if (timer >= 1 && !shake)
-        {
-            timer = 0;
-            switchOverTime = false;
-        }
-    }
 }

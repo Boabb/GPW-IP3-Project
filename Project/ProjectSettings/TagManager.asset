@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Undefined
   - Collectable
+  - VentFade
   layers:
   - Default
   - TransparentFX
