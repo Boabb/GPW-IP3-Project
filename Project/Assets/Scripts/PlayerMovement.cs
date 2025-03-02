@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //temp
-        movementForce = walkingForce;
+        //movementForce = walkingForce;
         //end temp
         GetMoveDirection();
         UpdateMovementType();
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         {
             movementDirection = MovementDirection.Right;
         }
-        else if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+        else if (!SystemSettings.moveRight && SystemSettings.moveLeft)
         {
             movementDirection = MovementDirection.Left;
         }

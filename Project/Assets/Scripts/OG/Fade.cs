@@ -1,41 +1,62 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+
+public class SignedBinary
+{
+    private double _value;
+    public bool reachedLimit = false;
+
+    public double Value
+    {
+        get => _value;
+        set
+        {
+            if (!reachedLimit)
+            {
+                if (value <= -1)
+                {
+                    _value = -1;
+                    reachedLimit = true;
+                }
+                else if (value >= 1)
+                {
+                    _value = 1;
+                    reachedLimit = true;
+                }
+                else
+                {
+                    _value = value;
+                }
+            }
+        }
+    }
+}
 
 public class Fade : MonoBehaviour
 {
-    [SerializeField] Follower follower;
     [SerializeField] Renderer Fade1;
     [SerializeField] Renderer Fade2;
-
-    [SerializeField] MusicController musicController; //this is a bad way of doing this, it shouldnt be in the fade it should be in an autoevent and fade itself should be
-                                                       //an autoevent
-
-    Collider2D fadeCollider;
 
     Color hidden = new Color(1,1,1,1);
     Color revealed = new Color(1,1,1,0);
 
-    float timer = 0;
-    float adder = 1f;
+    SignedBinary currentFadeAmount = new();
+    float fadeScalar = 1f;
 
-    AudioSource audioSource;
+    Follower follower;
 
     public bool collision = false;
     bool switchOverTime = false;
     bool switchBetween = true;
 
-    bool playAudio = true;
-
     bool shake = true;
-    float shakeAdder = 0;
+    float shakeScalar = 0;
 
     private void Awake()
     {
-        Fade1.sharedMaterial.color = revealed;
-
-        fadeCollider = GetComponentInChildren<Collider2D>();
-        audioSource = GetComponentInChildren<AudioSource>();
 
         Fade1.material.color = hidden;
         Fade2.material.color = revealed;
@@ -48,11 +69,42 @@ public class Fade : MonoBehaviour
             collision = false;
             switchBetween = !switchBetween;
             switchOverTime = true;
+            follower = Camera.main.GetOrAddComponent<Follower>();
         }
 
         if (switchOverTime)
         {
-            SwitchOverTime();
+            if (currentFadeAmount.reachedLimit)
+            { currentFadeAmount.Value = 1; }
+            else
+            {
+                currentFadeAmount.Value += fadeScalar * Time.deltaTime;
+            }
+
+            if (switchBetween)
+            {
+                Fade1.material.color = new Color(1, 1, 1, (float)currentFadeAmount.Value);
+                Fade2.material.color = new Color(1, 1, 1, (float)(1 - currentFadeAmount.Value));
+            }
+            else
+            {
+                Fade1.material.color = new Color(1, 1, 1, (float)(1 - currentFadeAmount.Value));
+                Fade2.material.color = new Color(1, 1, 1, (float)currentFadeAmount.Value);
+            }
+
+            shakeScalar += 1.15f * Time.deltaTime;
+
+            if (shakeScalar > 8 && shake)
+            {
+                shake = false;
+                follower.StartShake();
+            }
+
+            if (currentFadeAmount.Value >= 1 && !shake)
+            {
+                currentFadeAmount.Value = 0;
+                switchOverTime = false;
+            }
         }
 
 
@@ -72,41 +124,5 @@ public class Fade : MonoBehaviour
         }
     }
 
-    void SwitchOverTime()
-    {
-        timer += adder * Time.deltaTime;
 
-        if (audioSource.isPlaying == false && playAudio)
-        {
-            playAudio = false;
-            audioSource.Play();
-            musicController.SwitchToVent();
-        }
-
-        if (switchBetween)
-        {
-            Fade1.material.color = new Color(1,1,1, timer);
-            Fade2.material.color = new Color(1, 1, 1, 1 - timer);
-        }
-        else
-        {
-            Fade1.material.color = new Color(1, 1, 1, 1 - timer);
-            Fade2.material.color = new Color(1, 1, 1, timer);
-        }
-
-        shakeAdder += 1.15f * Time.deltaTime;
-
-        if (shakeAdder > 8 && shake)
-        {
-            shake = false;
-            follower.StartShake();
-            musicController.SwitchToOutOfVent();
-        }
-
-        if (timer >= 1 && !shake)
-        {
-            timer = 0;
-            switchOverTime = false;
-        }
-    }
 }

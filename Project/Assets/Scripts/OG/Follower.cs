@@ -16,9 +16,9 @@ public class Follower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (agentToFollow != null)
+        if (agentToFollow == null)
         {
-            agentToFollow = GameManager.player;
+            agentToFollow = GameManager.GetPlayer();
         }
     }
 
