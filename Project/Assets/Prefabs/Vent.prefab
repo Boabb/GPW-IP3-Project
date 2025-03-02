@@ -152,8 +152,8 @@ Transform:
   m_GameObject: {fileID: 1707693256456724808}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 384.96, y: 0.028, z: 0}
-  m_LocalScale: {x: 39.50809, y: 0.8333999, z: 1}
+  m_LocalPosition: {x: 381.57, y: 0.028, z: 0}
+  m_LocalScale: {x: 39.90317, y: 0.8333999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2806831336562786481}
@@ -237,8 +237,8 @@ Transform:
   m_GameObject: {fileID: 2795655757646734758}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 384.81, y: -7.594108, z: 0}
-  m_LocalScale: {x: 764.2517, y: 5.2910376, z: 7.8706574}
+  m_LocalPosition: {x: 384.81, y: -7.257, z: 0}
+  m_LocalScale: {x: 764.2517, y: 5.9682903, z: 7.8706574}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2806831336562786481}
@@ -365,7 +365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4025397102903868552}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.459, y: 0.0784, z: 0}
   m_LocalScale: {x: 0.017976858, y: 0.15513343, z: 0.12705418}
   m_ConstrainProportionsScale: 0
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 7482492866857686791}
   - component: {fileID: 1655229763360267764}
   m_Layer: 3
-  m_Name: ' Catch 1'
+  m_Name: ClingCollider
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,8 +458,8 @@ Transform:
   m_GameObject: {fileID: 6860213014197252087}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57.318153, y: -5.687362, z: 0}
-  m_LocalScale: {x: 110.06769, y: 3.4055774, z: 15.741315}
+  m_LocalPosition: {x: 57.318153, y: -5.95, z: 0}
+  m_LocalScale: {x: 110.06769, y: 2.8788164, z: 15.741315}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9178055694070112932}
