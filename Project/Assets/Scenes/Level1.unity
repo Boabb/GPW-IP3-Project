@@ -6296,6 +6296,7 @@ GameObject:
   - component: {fileID: 2037346749}
   - component: {fileID: 2037346748}
   - component: {fileID: 2037346747}
+  - component: {fileID: 2037346750}
   m_Layer: 0
   m_Name: Crawl1
   m_TagString: Untagged
@@ -6330,6 +6331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7d5d93c4c85664b96839023994dee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fade: {fileID: 0}
 --- !u!114 &2037346748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6394,6 +6396,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4397545, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2037346750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037346745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5555b11b77a97354fa623821c37d5df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fade1: {fileID: 0}
+  Fade2: {fileID: 0}
+  collision: 0
 --- !u!82 &2043104613 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1135509934555482556, guid: cc9c739327dff9741b398f555a933366, type: 3}

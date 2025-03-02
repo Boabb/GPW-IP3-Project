@@ -49,6 +49,5 @@ public class PlayerData : MonoBehaviour
     private void Update()
     {
         playerRigidbody.mass = currentPlayerRBMass;
-        Debug.Log("movementDirection: " + movementDirection);
     }
 }

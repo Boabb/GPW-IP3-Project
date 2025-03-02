@@ -1,17 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Fade : MonoBehaviour
 {
-    [SerializeField] Follower follower;
     [SerializeField] Renderer Fade1;
     [SerializeField] Renderer Fade2;
-
-    [SerializeField] MusicController musicController; //this is a bad way of doing this, it shouldnt be in the fade it should be in an autoevent and fade itself should be
-                                                       //an autoevent
-
-    Collider2D fadeCollider;
 
     Color hidden = new Color(1,1,1,1);
     Color revealed = new Color(1,1,1,0);
@@ -19,6 +15,7 @@ public class Fade : MonoBehaviour
     float timer = 0;
     float adder = 1f;
 
+    Follower follower;
     AudioSource audioSource;
 
     public bool collision = false;
@@ -34,9 +31,6 @@ public class Fade : MonoBehaviour
     {
         Fade1.sharedMaterial.color = revealed;
 
-        fadeCollider = GetComponentInChildren<Collider2D>();
-        audioSource = GetComponentInChildren<AudioSource>();
-
         Fade1.material.color = hidden;
         Fade2.material.color = revealed;
     }
@@ -48,6 +42,7 @@ public class Fade : MonoBehaviour
             collision = false;
             switchBetween = !switchBetween;
             switchOverTime = true;
+            follower = Camera.main.GetOrAddComponent<Follower>();
         }
 
         if (switchOverTime)
@@ -80,7 +75,6 @@ public class Fade : MonoBehaviour
         {
             playAudio = false;
             audioSource.Play();
-            musicController.SwitchToVent();
         }
 
         if (switchBetween)
@@ -100,7 +94,6 @@ public class Fade : MonoBehaviour
         {
             shake = false;
             follower.StartShake();
-            musicController.SwitchToOutOfVent();
         }
 
         if (timer >= 1 && !shake)
