@@ -16,14 +16,14 @@ public class MovableInteractable : InteractableObject
         
     }
 
-    protected override void LateUpdate()
-    {
-        if (interact)
-        {
-            transform.position = new Vector3(player.transform.position.x - offset, transform.position.y, transform.position.z);
-        }
-        interact = false;
-    }
+    //protected override void LateUpdate()
+    //{
+    //    if (interact)
+    //    {
+    //        transform.position = new Vector3(player.transform.position.x - offset, transform.position.y, transform.position.z);
+    //    }
+    //    interact = false;
+    //}
 
     public override void Interaction(GameObject playerGO)
     {

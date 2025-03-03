@@ -16,10 +16,14 @@ public enum SoundEffect
 }
 public enum VoiceOver
 {
-    Wallenberg1,
-    Wallenberg2,
-    Wallenberg3,
-    EmbroideryPickup
+    Level1Track1,
+    Level1Track2,
+    Level1Track3,
+    Level1Track4,
+    Level1Track5,
+    BookCollectable,
+    BrokenToyCollectable,
+    FoodCardCollectable
 }
 public enum BackgroundMusic
 {
@@ -301,7 +305,7 @@ public class AudioManager : MonoBehaviour
     }
     public void SwitchToOutOfVent()
     {
-        PlayVoiceOverAudio(VoiceOver.Wallenberg2);
+        //PlayVoiceOverAudio(VoiceOver.Wallenberg2);
         PlayBackgroundMusic(BackgroundMusic.OutOfVentSong);
     }
     public void SetVolume(AudioMixer mixerGroup, float volume)

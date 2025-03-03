@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DoorInteractable : InteractableObject
 {
-    GameObject UnwalkableTileRight;
-    GameObject UnwalkableTileLeft;
     GameObject ClosedSprite;
     GameObject OpenSprite;
+    Collider2D Collider;
 
     bool open;
+    bool locked;
 
     // Start is called before the first frame update
     void Start()
@@ -19,17 +19,6 @@ public class DoorInteractable : InteractableObject
         for (int i = 0; i < transforms.Length; i++)
         {
             GameObject tempObject = transforms[i].gameObject;
-
-            if (tempObject.name == "UnwalkableTileRight")
-            {
-                UnwalkableTileRight = tempObject;
-            }
-
-            if (tempObject.name == "UnwalkableTileLeft")
-            {
-                UnwalkableTileLeft = tempObject;
-            }
-
             if (tempObject.name == "ClosedSprite")
             {
                 ClosedSprite = tempObject;
@@ -41,7 +30,9 @@ public class DoorInteractable : InteractableObject
             }
         }
 
-        if (UnwalkableTileLeft == null || UnwalkableTileRight == null || ClosedSprite == null || OpenSprite == null)
+        Collider = gameObject.GetComponent<Collider2D>();
+
+        if (ClosedSprite == null || OpenSprite == null || Collider == null)
         {
             Debug.LogWarning("A door interactable is incomplete");
         }
@@ -49,21 +40,22 @@ public class DoorInteractable : InteractableObject
 
     public override void Interaction(GameObject playerGO)
     {
-        open = !open;
+        if (!locked)
+        {
+            open = !open;
 
-        if (open)
-        {
-            UnwalkableTileRight.SetActive(false);
-            UnwalkableTileLeft.SetActive(false);
-            ClosedSprite.SetActive(false);
-            OpenSprite.SetActive(true);
-        }
-        else
-        {
-            UnwalkableTileRight.SetActive(true);
-            UnwalkableTileLeft.SetActive(true);
-            ClosedSprite.SetActive(true);
-            OpenSprite.SetActive(false);
+            if (open)
+            {
+                Collider.isTrigger = true;
+                ClosedSprite.SetActive(false);
+                OpenSprite.SetActive(true);
+            }
+            else
+            {
+                Collider.isTrigger = false;
+                ClosedSprite.SetActive(true);
+                OpenSprite.SetActive(false);
+            }
         }
     }
 }
