@@ -15,11 +15,10 @@ public class PlayerClimb : MonoBehaviour
     public ClimbSide climbSide;
     public ClimbType climbType;
 
-    public bool abortedClimb = false;
     Coroutine climbingTask = null;
     public float animTimeRemaining = 0;
-    public bool CanMove { get { if (abortedClimb || (climbingTask == null && animTimeRemaining <= 0)) { return true; } else { return false; } } } 
 
+    public bool ShouldResetRB => climbingTask == null && animTimeRemaining <= 0;
     public float offsetX = 1;
     public float offsetY = 10;
 
@@ -66,14 +65,18 @@ public class PlayerClimb : MonoBehaviour
                     // Should maybe get called in FSM for JumpUp/Climb
                 }
             }
+            else
+            {
+                animTimeRemaining -= Time.deltaTime;
+            }
             if ((SystemSettings.tapRight && climbSide == ClimbSide.Right) || (SystemSettings.tapLeft && climbSide == ClimbSide.Left))
             {
                 if (climbingTask != null)
                 {
-                    abortedClimb = true;
+                    StopCoroutine(climbingTask);
                     climbingTask = null;
+                    LetGoOfObject();
                 }
-                LetGoOfObject();
             }
         }
 
@@ -94,17 +97,13 @@ public class PlayerClimb : MonoBehaviour
                 }
             }
         }
-        if(!CanMove)
-        {
-            animTimeRemaining -= Time.deltaTime;
-        }
     }
 
     public IEnumerator ClimbUpObjectLeft()
     {
         playerData.clinging = true;
         animTimeRemaining += playerData.climbAnimationClip.length;
-        yield return new WaitUntil(() => CanMove);
+        yield return new WaitUntil(() => ShouldResetRB);
 
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
@@ -120,7 +119,7 @@ public class PlayerClimb : MonoBehaviour
     {
         playerData.clinging = true;
         animTimeRemaining += playerData.climbAnimationClip.length;
-        yield return new WaitUntil(() => CanMove);
+        yield return new WaitUntil(() => ShouldResetRB);
 
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
@@ -137,7 +136,7 @@ public class PlayerClimb : MonoBehaviour
     {
         playerData.clinging = true;
         animTimeRemaining += playerData.climbAnimationClip.length;
-        yield return new WaitUntil(() => CanMove);
+        yield return new WaitUntil(() => ShouldResetRB);
 
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
@@ -153,7 +152,7 @@ public class PlayerClimb : MonoBehaviour
     {
         playerData.clinging = true;
         animTimeRemaining += playerData.climbAnimationClip.length;
-        yield return new WaitUntil(() => CanMove);
+        yield return new WaitUntil(() => ShouldResetRB);
 
 
         climbSide = ClimbSide.None;

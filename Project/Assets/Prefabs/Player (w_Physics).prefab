@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1965662972746731301}
   m_Layer: 0
   m_Name: PlayerAudio
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,12 +240,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerGO: {fileID: 2116040391875107370}
   playerRigidbody: {fileID: 1456820099601487006}
-  playerWalkingCollider: {fileID: 8483061987416705676}
+  playerWalkingCollider: {fileID: 3461528295405900189}
   playerCrawlingCollider: {fileID: 8686667805701452908}
   playerInteractCollider: {fileID: 626177448183868537}
   playerOverlapCheckCollider: {fileID: 6829465168859839149}
   playerCatchClimbCollider: {fileID: 0}
   playerAnimatorComponent: {fileID: 6571747437202914289}
+  climbAnimationClip: {fileID: 0}
+  quickClimbAnimationClip: {fileID: 0}
   playerSprite: {fileID: 7614294576506648438}
   playerAnimator: {fileID: 4606130778600714574}
   playerMovement: {fileID: 289016603007994097}
@@ -256,7 +258,7 @@ MonoBehaviour:
   currentPlayerRBMass: 0
   pulling: 0
   pushing: 0
-  catching: 0
+  clinging: 0
   grounded: 0
   crawling: 0
   animationNumber: 0
@@ -324,7 +326,7 @@ GameObject:
   - component: {fileID: 626177448183868537}
   m_Layer: 15
   m_Name: InteractCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -529,7 +531,7 @@ GameObject:
   - component: {fileID: 8686667805701452908}
   m_Layer: 15
   m_Name: CrawlingCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -853,7 +855,7 @@ GameObject:
   - component: {fileID: 6571747437202914289}
   m_Layer: 0
   m_Name: PlayerSprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1087,7 +1089,7 @@ GameObject:
   - component: {fileID: 2015197054146556503}
   m_Layer: 17
   m_Name: QuickClimbCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1119,6 +1121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf1085dfe165394d87999342888cce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  climbSide: 0
+  climbType: 0
+  abortedClimb: 0
+  animTimeRemaining: 0
   offsetX: 0.5
   offsetY: 1.5
 --- !u!61 &2015197054146556503
@@ -1303,10 +1309,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1955087458548789448}
-  - component: {fileID: 8483061987416705676}
+  - component: {fileID: 3461528295405900189}
   m_Layer: 15
   m_Name: WalkingCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1326,8 +1332,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6850051165633342354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &8483061987416705676
-CapsuleCollider2D:
+--- !u!61 &3461528295405900189
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1359,8 +1365,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.3}
-  m_Size: {x: 0.40000004, y: 0.40000004}
-  m_Direction: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.4}
+  m_EdgeRadius: 0
 --- !u!1 &7875826492110234324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,7 +1389,7 @@ GameObject:
   - component: {fileID: 6829465168859839149}
   m_Layer: 15
   m_Name: OverlapCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1441,7 +1457,7 @@ GameObject:
   - component: {fileID: 7833222782003071501}
   m_Layer: 16
   m_Name: CatchClimbCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1473,6 +1489,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf1085dfe165394d87999342888cce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  climbSide: 0
+  climbType: 0
+  abortedClimb: 0
+  animTimeRemaining: 0
   offsetX: 0.5
   offsetY: 1.5
 --- !u!61 &7833222782003071501

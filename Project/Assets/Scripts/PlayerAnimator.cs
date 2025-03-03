@@ -68,28 +68,24 @@ public class PlayerAnimator : MonoBehaviour
     {
 
         playerAnimator.SetInteger("AnimationNumber", 3);
-        spriteRenderer.flipX = true;
     }
 
     public void PlayerPushRight()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 3);
-        spriteRenderer.flipX = false; 
     }
 
     public void PlayerPullLeft()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 4);
-        spriteRenderer.flipX = true;
     }
 
     public void PlayerPullRight() 
     {
 
         playerAnimator.SetInteger("AnimationNumber", 4);
-        spriteRenderer.flipX = false;
     }
 
     public void PlayerClingLeft()
