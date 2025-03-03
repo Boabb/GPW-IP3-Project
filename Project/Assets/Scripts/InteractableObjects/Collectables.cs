@@ -20,7 +20,7 @@ public class Collectables : InteractableObject
 
     void Update()
     {
-        if (canBeCollected && currentPlayer != null && Input.GetKeyDown(KeyCode.LeftShift))
+        if (canBeCollected && currentPlayer != null && SystemSettings.interact)
         {
             Interaction(currentPlayer);
         }

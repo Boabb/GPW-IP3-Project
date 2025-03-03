@@ -26,7 +26,7 @@ public class PlayerAnimator : MonoBehaviour
         animationNumber = playerAnimator.GetInteger("AnimationNumber");
         playerData.animationNumber = animationNumber;
 
-        Debug.Log("AnimationInteger: " +  animationNumber);
+        //Debug.Log("AnimationInteger: " +  animationNumber);
     }
  
     public void PlayerIdle()
