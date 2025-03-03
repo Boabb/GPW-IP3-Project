@@ -6,14 +6,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameObject player;
-    public static new Camera camera;
+    public static Camera mainCamera;
     internal static string ventFadeTag = "VentFade";
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        camera = Camera.main;
+        mainCamera = Camera.main;
 
         CameraStartingState();
     }
