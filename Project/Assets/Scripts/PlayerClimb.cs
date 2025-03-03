@@ -12,26 +12,29 @@ public class PlayerClimb : MonoBehaviour
     Collider2D climbObjectCollider;
     ObjectTags currentClimbObjectTags;
 
-    ClimbSide climbSide;
-    ClimbType climbType;
+    public ClimbSide climbSide;
+    public ClimbType climbType;
 
+    public bool abortedClimb = false;
     Coroutine climbingTask = null;
+    public float animTimeRemaining = 0;
+    public bool CanMove { get { if (abortedClimb || (climbingTask == null && animTimeRemaining <= 0)) { return true; } else { return false; } } } 
 
     public float offsetX = 1;
     public float offsetY = 10;
 
-    enum ClimbSide
+    public enum ClimbSide
     {
         None,
         Left,
         Right
     };
 
-    enum ClimbType
+    public enum ClimbType
     {
         None,
         Quick,
-        Catch
+        Cling
     }
 
     // Start is called before the first frame update
@@ -46,10 +49,8 @@ public class PlayerClimb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (climbType == ClimbType.Catch)
+        if (climbType == ClimbType.Cling)
         {
-            playerData.catching = true;
-
             if (climbingTask == null)
             {
                 if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
@@ -67,43 +68,48 @@ public class PlayerClimb : MonoBehaviour
             }
             if ((SystemSettings.tapRight && climbSide == ClimbSide.Right) || (SystemSettings.tapLeft && climbSide == ClimbSide.Left))
             {
-                if(climbingTask != null)
-                { 
-                    StopCoroutine(climbingTask);
-                    climbingTask = null; 
+                if (climbingTask != null)
+                {
+                    abortedClimb = true;
+                    climbingTask = null;
                 }
                 LetGoOfObject();
             }
-            else
-            {
-                CatchClimb();
-            }
         }
+
         else
         {
-            playerData.catching = false;
-
-            if (climbType == ClimbType.Quick)
+            if (climbingTask == null)
             {
-                if (SystemSettings.tapRight && climbSide == ClimbSide.Left) 
+                if (climbType == ClimbType.Quick)
                 {
-                    climbingTask = StartCoroutine(QuickClimbLeft());                
-                }
-                else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
-                {
-                    climbingTask = StartCoroutine(QuickClimbRight());
+                    if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
+                    {
+                        climbingTask = StartCoroutine(QuickClimbLeft());
+                    }
+                    else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
+                    {
+                        climbingTask = StartCoroutine(QuickClimbRight());
+                    }
                 }
             }
+        }
+        if(!CanMove)
+        {
+            animTimeRemaining -= Time.deltaTime;
         }
     }
 
     public IEnumerator ClimbUpObjectLeft()
     {
-        yield return new WaitForSeconds(playerData.climbAnimationClip.length);
+        playerData.clinging = true;
+        animTimeRemaining += playerData.climbAnimationClip.length;
+        yield return new WaitUntil(() => CanMove);
 
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
+        playerData.clinging = false;
 
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x  + offsetX, playerRB.gameObject.transform.position.y + offsetY);
 
@@ -112,11 +118,14 @@ public class PlayerClimb : MonoBehaviour
 
     public IEnumerator ClimbUpObjectRight()
     {
-        yield return new WaitForSeconds(playerData.climbAnimationClip.length);
+        playerData.clinging = true;
+        animTimeRemaining += playerData.climbAnimationClip.length;
+        yield return new WaitUntil(() => CanMove);
 
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
+        playerData.clinging = false;
 
         //add animation and delay for animation
 
@@ -126,10 +135,13 @@ public class PlayerClimb : MonoBehaviour
 
     public IEnumerator QuickClimbLeft()
     {
-        yield return new WaitForSeconds(playerData.quickClimbAnimationClip.length);
+        playerData.clinging = true;
+        animTimeRemaining += playerData.climbAnimationClip.length;
+        yield return new WaitUntil(() => CanMove);
 
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
+        playerData.clinging = false;
 
         //add animation and delay for animation
 
@@ -139,10 +151,14 @@ public class PlayerClimb : MonoBehaviour
 
     public IEnumerator QuickClimbRight()
     {
-        yield return new WaitForSeconds(playerData.quickClimbAnimationClip.length);
+        playerData.clinging = true;
+        animTimeRemaining += playerData.climbAnimationClip.length;
+        yield return new WaitUntil(() => CanMove);
+
 
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
+        playerData.clinging = false;
 
         //add animation and delay for animation
 
@@ -168,7 +184,7 @@ public class PlayerClimb : MonoBehaviour
     void CatchClimb()
     {
         Debug.Log("CatchClimb");
-        playerData.catching = true;
+        playerData.clinging = true;
         if (climbSide == ClimbSide.Left)
         {
             //animation left
@@ -179,7 +195,7 @@ public class PlayerClimb : MonoBehaviour
             //animation right
             playerAnimator.PlayerClingRight();
         }
-        climbType = ClimbType.Catch;
+        climbType = ClimbType.Cling;
         playerRB.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
@@ -204,7 +220,7 @@ public class PlayerClimb : MonoBehaviour
             QuickClimb();
         }
 
-        if (tags.catchClimbable && playerRB.velocity.y < 0)
+        if (tags.clingClimbable && playerRB.velocity.y < 0)
         {
             if (currentClimbObjectTags.background == true)
             {
