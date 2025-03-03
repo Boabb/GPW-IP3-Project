@@ -854,7 +854,7 @@ MonoBehaviour:
   interactable: 0
   moveable: 1
   quickClimbable: 0
-  catchClimbable: 1
+  clingClimbable: 0
   foreground: 0
   background: 1
   autoEvent: 0
@@ -2565,6 +2565,10 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 2043104613}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: MusicAudio (Music)
+    clips: []
+    audioSource: {fileID: 2061738073}
+    mixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 2061738073}
   VoiceOverAudioSource: {fileID: 768029583}
   SoundEffectsMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -6916,7 +6920,7 @@ MonoBehaviour:
   interactable: 0
   moveable: 1
   quickClimbable: 0
-  catchClimbable: 0
+  clingClimbable: 0
   foreground: 0
   background: 1
   autoEvent: 0
@@ -7155,12 +7159,12 @@ AudioSource:
   m_GameObject: {fileID: 2061738072}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1568ac8f0dedd3b4faa3d05587f50854, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
