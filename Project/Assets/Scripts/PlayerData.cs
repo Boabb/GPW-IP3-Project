@@ -16,6 +16,8 @@ public class PlayerData : MonoBehaviour
     //public Collider2D playerGroundedCollider;
     public Collider2D playerCatchClimbCollider;
     public Animator playerAnimatorComponent;
+    public AnimationClip climbAnimationClip;
+    public AnimationClip quickClimbAnimationClip;
     public SpriteRenderer playerSprite;
 
     //scripts

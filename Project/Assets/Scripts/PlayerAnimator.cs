@@ -12,8 +12,6 @@ public class PlayerAnimator : MonoBehaviour
 
     int animationNumber;
 
-    //animation bools: this should probably be redone as some kind of bitwise enum but I'm tired and can't brain that right now
-
     private void Start()
     {
         playerData = GetComponent<PlayerData>();
@@ -155,6 +153,18 @@ public class PlayerAnimator : MonoBehaviour
         playerAnimator.SetInteger("AnimationNumber", 8);
         spriteRenderer.flipX = true;
 
+    }
+    public void PlayerClimbLeft()
+    {
+        playerAnimator.SetInteger("AnimationNumber", 9);
+        spriteRenderer.flipX = true;
+    }
+
+    public void PlayerClimbRight()
+    {
+
+        playerAnimator.SetInteger("AnimationNumber", 9);
+        spriteRenderer.flipX = false;
     }
 
 

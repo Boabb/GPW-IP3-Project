@@ -185,12 +185,10 @@ public class PlayerMovement : MonoBehaviour
         else if (playerData.pushing)
         {
             movementType = MovementType.Pushing;
-            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
         }
         else if (playerData.pulling)
         {
             movementType = MovementType.Pulling;
-            AudioManager.PlaySoundEffect(SoundEffect.WoodenScrape);
         }
         else
         {

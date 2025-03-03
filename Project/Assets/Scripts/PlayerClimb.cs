@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,11 @@ public class PlayerClimb : MonoBehaviour
 
     Collider2D climbObjectCollider;
     ObjectTags currentClimbObjectTags;
+
     ClimbSide climbSide;
     ClimbType climbType;
+
+    Coroutine climbingTask = null;
 
     public float offsetX = 1;
     public float offsetY = 10;
@@ -46,16 +50,28 @@ public class PlayerClimb : MonoBehaviour
         {
             playerData.catching = true;
 
-            if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
+            if (climbingTask == null)
             {
-                ClimbUpObjectLeft();
+                if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
+                {
+                    playerAnimator.PlayerClimbLeft();
+                    climbingTask = StartCoroutine(ClimbUpObjectLeft());
+                    // Might be more efficient for this to get called in FSM for JumpUp/Climb
+                }
+                else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
+                {
+                    playerAnimator.PlayerClimbRight();
+                    climbingTask = StartCoroutine(ClimbUpObjectRight());
+                    // Should maybe get called in FSM for JumpUp/Climb
+                }
             }
-            else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
+            if ((SystemSettings.tapRight && climbSide == ClimbSide.Right) || (SystemSettings.tapLeft && climbSide == ClimbSide.Left))
             {
-                ClimbUpObjectRight();
-            }
-            else if ((SystemSettings.tapRight && climbSide == ClimbSide.Right) || (SystemSettings.tapLeft && climbSide == ClimbSide.Left))
-            {
+                if(climbingTask != null)
+                { 
+                    StopCoroutine(climbingTask);
+                    climbingTask = null; 
+                }
                 LetGoOfObject();
             }
             else
@@ -71,41 +87,33 @@ public class PlayerClimb : MonoBehaviour
             {
                 if (SystemSettings.tapRight && climbSide == ClimbSide.Left) 
                 {
-                    QuickClimbLeft();                
+                    climbingTask = StartCoroutine(QuickClimbLeft());                
                 }
                 else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
                 {
-                    QuickClimbRight();
+                    climbingTask = StartCoroutine(QuickClimbRight());
                 }
             }
         }
     }
 
-    void ClimbUpObjectLeft()
+    public IEnumerator ClimbUpObjectLeft()
     {
+        yield return new WaitForSeconds(playerData.climbAnimationClip.length);
+
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
 
-        //add animation and delay for animation
-
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x  + offsetX, playerRB.gameObject.transform.position.y + offsetY);
+
         playerAnimator.PlayerIdle();
     }
 
-    void QuickClimbLeft()
+    public IEnumerator ClimbUpObjectRight()
     {
-        climbSide = ClimbSide.None;
-        climbType = ClimbType.None;
+        yield return new WaitForSeconds(playerData.climbAnimationClip.length);
 
-        //add animation and delay for animation
-
-        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x + offsetX, playerRB.gameObject.transform.position.y + climbObjectCollider.bounds.size.y);
-        playerAnimator.PlayerIdle();
-    }
-
-    void ClimbUpObjectRight()
-    {
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
@@ -116,8 +124,23 @@ public class PlayerClimb : MonoBehaviour
         playerAnimator.PlayerIdle();
     }
 
-    void QuickClimbRight()
+    public IEnumerator QuickClimbLeft()
     {
+        yield return new WaitForSeconds(playerData.quickClimbAnimationClip.length);
+
+        climbSide = ClimbSide.None;
+        climbType = ClimbType.None;
+
+        //add animation and delay for animation
+
+        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x + offsetX, playerRB.gameObject.transform.position.y + climbObjectCollider.bounds.size.y);
+        playerAnimator.PlayerIdle();
+    }
+
+    public IEnumerator QuickClimbRight()
+    {
+        yield return new WaitForSeconds(playerData.quickClimbAnimationClip.length);
+
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
 
@@ -132,6 +155,7 @@ public class PlayerClimb : MonoBehaviour
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
+
         playerAnimator.PlayerIdle();
     }
 

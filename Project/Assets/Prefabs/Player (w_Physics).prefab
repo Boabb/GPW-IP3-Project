@@ -244,7 +244,6 @@ MonoBehaviour:
   playerCrawlingCollider: {fileID: 8686667805701452908}
   playerInteractCollider: {fileID: 626177448183868537}
   playerOverlapCheckCollider: {fileID: 6829465168859839149}
-  playerGroundedCollider: {fileID: 0}
   playerCatchClimbCollider: {fileID: 0}
   playerAnimatorComponent: {fileID: 6571747437202914289}
   playerSprite: {fileID: 7614294576506648438}
@@ -261,6 +260,7 @@ MonoBehaviour:
   grounded: 0
   crawling: 0
   animationNumber: 0
+  customPlayerVelocity: 0
 --- !u!50 &1456820099601487006
 Rigidbody2D:
   serializedVersion: 4
@@ -556,7 +556,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4201566480945481861}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -581,7 +581,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.3}
   m_Size: {x: 1, y: 0.4}
   m_Direction: 1
 --- !u!1 &4685974866765290058
@@ -628,7 +628,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7aa7aec7fddbd9c449ea75c9957c239a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.286
+  m_Volume: 0.32
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1085,7 +1085,7 @@ GameObject:
   - component: {fileID: 6315857318174415857}
   - component: {fileID: 5256715552084458089}
   - component: {fileID: 2015197054146556503}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: QuickClimbCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1440,7 +1440,7 @@ GameObject:
   - component: {fileID: 1490042197324066069}
   - component: {fileID: 7833222782003071501}
   m_Layer: 16
-  m_Name: ClimbCollider
+  m_Name: CatchClimbCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
