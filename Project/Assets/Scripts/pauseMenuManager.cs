@@ -8,6 +8,7 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject[] screens; // Array of screens to switch between
     private int activeScreenIndex = -1; // Track active screen index
     public GameObject menuButton;
+    public GameObject bg;
 
     void Start()
     {
@@ -16,6 +17,8 @@ public class PauseMenuManager : MonoBehaviour
         {
             screen.SetActive(false);
         }
+
+        bg.SetActive(false);
     }
 
     void Update()
@@ -30,7 +33,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (activeScreenIndex != -1)
         {
-            // Hide all screens when closing the menu
+            // Hide all screens and background when closing the menu
             foreach (GameObject screen in screens)
             {
                 screen.SetActive(false);
@@ -39,17 +42,17 @@ public class PauseMenuManager : MonoBehaviour
 
             // Show the menu button again when the menus are closed
             menuButton.SetActive(true);
+            bg.SetActive(false);
         }
         else
         {
             // Default to showing the first screen
             SwitchScreen(0);
 
-            // Hide the menu button when the menus are opened
             menuButton.SetActive(false);
+            bg.SetActive(true); // Show background
         }
     }
-
 
     public void SwitchScreen(int screenIndex)
     {

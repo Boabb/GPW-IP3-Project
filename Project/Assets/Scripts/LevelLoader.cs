@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
-
     public float transitionTime = 1f;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Check if any key or button is pressed
+        if (Input.anyKeyDown)
+        {
+            LoadNextLevel();
+        }
     }
 
     public void LoadNextLevel()
@@ -23,9 +25,7 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
-
         yield return new WaitForSeconds(transitionTime);
-
         SceneManager.LoadScene(levelIndex);
     }
 }
