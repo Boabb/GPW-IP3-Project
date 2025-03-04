@@ -854,7 +854,7 @@ MonoBehaviour:
   interactable: 0
   moveable: 1
   quickClimbable: 0
-  clingClimbable: 0
+  clingClimbable: 1
   foreground: 0
   background: 1
   autoEvent: 0
@@ -7026,7 +7026,6 @@ GameObject:
   - component: {fileID: 2057718742}
   - component: {fileID: 2057718746}
   - component: {fileID: 2057718745}
-  - component: {fileID: 2057718748}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7121,18 +7120,6 @@ Transform:
   - {fileID: 970443516}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2057718748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057718740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf9442325f065e48af7d2597ea76c16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2061738072
 GameObject:
   m_ObjectHideFlags: 0
@@ -7586,45 +7573,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 289016603007994097, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: gravityForce
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1066564832120554168, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1135509934555482556, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_Volume
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015197054146556503, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2116040391875107370, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: m_Name
       value: Player (w/Physics)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2557245870366520776, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4201566480945481861, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5996335366111535915, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6224082541099400952, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_Layer
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 6224082541099400952, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6850051165633342354, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7666,34 +7617,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7523364886909989846, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
+    - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
+      propertyPath: climbAnimationClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 5555743ccdf9a8e40b12fe1d2f47fa8f, type: 2}
+    - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
+      propertyPath: quickClimbAnimationClip
+      value: 
+      objectReference: {fileID: 7400000, guid: df85337897d8d8646b7413ddaecdc235, type: 2}
     - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: playerCatchClimbCollider
       value: 
       objectReference: {fileID: 1754994745}
-    - target: {fileID: 7875826492110234324, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8686667805701452908, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218022312057331588, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_Name
-      value: CatchClimbCollider
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218022312057331588, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218022312057331588, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

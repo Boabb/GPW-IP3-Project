@@ -206,7 +206,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            //PlaySound(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
+            PlaySound(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
             Debug.LogError($"{Instance.SoundEffects[(int)soundEffect].audioSource} not valid. Sound Effect: {Instance.SoundEffects[(int)soundEffect].name} not played.");
         }
     }
