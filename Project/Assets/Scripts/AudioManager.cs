@@ -12,7 +12,8 @@ public enum SoundEffect
     WoodenJump,
     WoodenScrape,
     SuzanneExhale,
-    SuzanneExert
+    SuzanneExert,
+    LockedDoor
 }
 public enum VoiceOver
 {
@@ -192,21 +193,24 @@ public class AudioManager : MonoBehaviour
             {
                 switch (soundEffect)
                 {
-                    case SoundEffect.WoodenScrape:
-                    case SoundEffect.WoodenFootsteps:
-                        Instance.SoundEffects[(int)soundEffect].audioSource.clip = Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length - 1)];
-                        Instance.SoundEffects[(int)soundEffect].audioSource.Play();
-                        break;
+                    //case SoundEffect.WoodenScrape:
+                    //case SoundEffect.WoodenFootsteps:
+                    //    Instance.SoundEffects[(int)soundEffect].audioSource.clip = Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)];
+                    //    Instance.SoundEffects[(int)soundEffect].audioSource.Play();
+                    //    break;
 
                     default:
-                        Instance.SoundEffects[(int)soundEffect].audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length - 1)], volume);
+                        //Instance.SoundEffects[(int)soundEffect].audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
                         break;
                 }
             }
         }
         else
         {
-            //PlaySound(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
+            int checkOtherInt = (int)soundEffect;
+            int checkInt = UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length);
+
+            PlaySound(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
             Debug.LogError($"{Instance.SoundEffects[(int)soundEffect].audioSource} not valid. Sound Effect: {Instance.SoundEffects[(int)soundEffect].name} not played.");
         }
     }
@@ -274,7 +278,7 @@ public class AudioManager : MonoBehaviour
             Instance.VoiceOverAudioSource.clip = Instance.VoiceOvers[(int)index].clip;
             Instance.VoiceOverAudioSource.Play();
         }
-        else if (Instance.VoiceOvers[(int)index].clip == Instance.VoiceOverAudioSource.clip)
+        else if (Instance.VoiceOvers[(int)index].clip != Instance.VoiceOverAudioSource.clip)
         {
             if (!Instance.VoiceOverAudioSource.isPlaying)
             {
@@ -290,7 +294,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="musicType"></param>
     /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
-    public static void PlayBackgroundMusic(BackgroundMusic musicType, float volume = 1.0f)
+    public static void PlayBackgroundMusic(BackgroundMusic musicType, float volume = 0.0f)
     {
         if (Instance.MusicAudioSource.isPlaying && Instance.BackgroundMusics[(int)musicType].clip != Instance.MusicAudioSource.clip)
         {
