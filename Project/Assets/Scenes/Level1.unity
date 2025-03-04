@@ -10862,14 +10862,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: climbAnimationClip
-      value: 
-      objectReference: {fileID: 7400000, guid: 5555743ccdf9a8e40b12fe1d2f47fa8f, type: 2}
-    - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: quickClimbAnimationClip
-      value: 
-      objectReference: {fileID: 7400000, guid: df85337897d8d8646b7413ddaecdc235, type: 2}
-    - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: playerCatchClimbCollider
       value: 
       objectReference: {fileID: 1754994745}

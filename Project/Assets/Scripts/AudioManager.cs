@@ -193,14 +193,14 @@ public class AudioManager : MonoBehaviour
             {
                 switch (soundEffect)
                 {
-                    //case SoundEffect.WoodenScrape:
-                    //case SoundEffect.WoodenFootsteps:
-                    //    Instance.SoundEffects[(int)soundEffect].audioSource.clip = Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)];
-                    //    Instance.SoundEffects[(int)soundEffect].audioSource.Play();
-                    //    break;
+                    case SoundEffect.WoodenScrape:
+                    case SoundEffect.WoodenFootsteps:
+                        Instance.SoundEffects[(int)soundEffect].audioSource.clip = Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)];
+                        Instance.SoundEffects[(int)soundEffect].audioSource.Play();
+                        break;
 
                     default:
-                        //Instance.SoundEffects[(int)soundEffect].audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
+                        Instance.SoundEffects[(int)soundEffect].audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
                         break;
                 }
             }

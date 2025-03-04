@@ -246,8 +246,8 @@ MonoBehaviour:
   playerOverlapCheckCollider: {fileID: 6829465168859839149}
   playerCatchClimbCollider: {fileID: 0}
   playerAnimatorComponent: {fileID: 6571747437202914289}
-  climbAnimationClip: {fileID: 0}
-  quickClimbAnimationClip: {fileID: 0}
+  climbAnimationClip: {fileID: 7400000, guid: 5555743ccdf9a8e40b12fe1d2f47fa8f, type: 2}
+  quickClimbAnimationClip: {fileID: 7400000, guid: df85337897d8d8646b7413ddaecdc235, type: 2}
   playerSprite: {fileID: 7614294576506648438}
   playerAnimator: {fileID: 4606130778600714574}
   playerMovement: {fileID: 289016603007994097}
@@ -1121,10 +1121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf1085dfe165394d87999342888cce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  climbSide: 0
-  climbType: 0
-  abortedClimb: 0
-  animTimeRemaining: 0
   offsetX: 0.5
   offsetY: 1.5
 --- !u!61 &2015197054146556503
@@ -1489,10 +1485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf1085dfe165394d87999342888cce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  climbSide: 0
-  climbType: 0
-  abortedClimb: 0
-  animTimeRemaining: 0
   offsetX: 0.5
   offsetY: 1.5
 --- !u!61 &7833222782003071501
