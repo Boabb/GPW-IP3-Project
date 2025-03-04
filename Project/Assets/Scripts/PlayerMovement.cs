@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         //Debug.Log("Player mass: " + playerRB2D.mass);
-        if (!playerData.catching && !playerData.pulling)
+        if (!playerData.clinging && !playerData.pulling)
         {
             if (SystemSettings.moveLeft || SystemSettings.moveRight)
             {

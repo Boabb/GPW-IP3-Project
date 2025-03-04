@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,11 +10,8 @@ public class PlayerClimb : MonoBehaviour
 
     Collider2D climbObjectCollider;
     ObjectTags currentClimbObjectTags;
-
     ClimbSide climbSide;
     ClimbType climbType;
-
-    Coroutine climbingTask = null;
 
     public float offsetX = 1;
     public float offsetY = 10;
@@ -48,30 +44,18 @@ public class PlayerClimb : MonoBehaviour
     {
         if (climbType == ClimbType.Catch)
         {
-            playerData.catching = true;
+            playerData.clinging = true;
 
-            if (climbingTask == null)
+            if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
             {
-                if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
-                {
-                    playerAnimator.PlayerClimbLeft();
-                    climbingTask = StartCoroutine(ClimbUpObjectLeft());
-                    // Might be more efficient for this to get called in FSM for JumpUp/Climb
-                }
-                else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
-                {
-                    playerAnimator.PlayerClimbRight();
-                    climbingTask = StartCoroutine(ClimbUpObjectRight());
-                    // Should maybe get called in FSM for JumpUp/Climb
-                }
+                ClimbUpObjectLeft();
             }
-            if ((SystemSettings.tapRight && climbSide == ClimbSide.Right) || (SystemSettings.tapLeft && climbSide == ClimbSide.Left))
+            else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
             {
-                if(climbingTask != null)
-                { 
-                    StopCoroutine(climbingTask);
-                    climbingTask = null; 
-                }
+                ClimbUpObjectRight();
+            }
+            else if ((SystemSettings.tapRight && climbSide == ClimbSide.Right) || (SystemSettings.tapLeft && climbSide == ClimbSide.Left))
+            {
                 LetGoOfObject();
             }
             else
@@ -81,39 +65,47 @@ public class PlayerClimb : MonoBehaviour
         }
         else
         {
-            playerData.catching = false;
+            playerData.clinging = false;
 
             if (climbType == ClimbType.Quick)
             {
-                if (SystemSettings.tapRight && climbSide == ClimbSide.Left) 
+                if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
                 {
-                    climbingTask = StartCoroutine(QuickClimbLeft());                
+                    QuickClimbLeft();
                 }
                 else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
                 {
-                    climbingTask = StartCoroutine(QuickClimbRight());
+                    QuickClimbRight();
                 }
             }
         }
     }
 
-    public IEnumerator ClimbUpObjectLeft()
+    void ClimbUpObjectLeft()
     {
-        yield return new WaitForSeconds(playerData.climbAnimationClip.length);
-
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
 
-        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x  + offsetX, playerRB.gameObject.transform.position.y + offsetY);
+        //add animation and delay for animation
 
+        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x  + offsetX, playerRB.gameObject.transform.position.y + offsetY);
         playerAnimator.PlayerIdle();
     }
 
-    public IEnumerator ClimbUpObjectRight()
+    void QuickClimbLeft()
     {
-        yield return new WaitForSeconds(playerData.climbAnimationClip.length);
+        climbSide = ClimbSide.None;
+        climbType = ClimbType.None;
 
+        //add animation and delay for animation
+
+        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x + offsetX, playerRB.gameObject.transform.position.y + climbObjectCollider.bounds.size.y);
+        playerAnimator.PlayerIdle();
+    }
+
+    void ClimbUpObjectRight()
+    {
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
@@ -124,23 +116,8 @@ public class PlayerClimb : MonoBehaviour
         playerAnimator.PlayerIdle();
     }
 
-    public IEnumerator QuickClimbLeft()
+    void QuickClimbRight()
     {
-        yield return new WaitForSeconds(playerData.quickClimbAnimationClip.length);
-
-        climbSide = ClimbSide.None;
-        climbType = ClimbType.None;
-
-        //add animation and delay for animation
-
-        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x + offsetX, playerRB.gameObject.transform.position.y + climbObjectCollider.bounds.size.y);
-        playerAnimator.PlayerIdle();
-    }
-
-    public IEnumerator QuickClimbRight()
-    {
-        yield return new WaitForSeconds(playerData.quickClimbAnimationClip.length);
-
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
 
@@ -155,7 +132,6 @@ public class PlayerClimb : MonoBehaviour
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
-
         playerAnimator.PlayerIdle();
     }
 
@@ -168,7 +144,7 @@ public class PlayerClimb : MonoBehaviour
     void CatchClimb()
     {
         Debug.Log("CatchClimb");
-        playerData.catching = true;
+        playerData.clinging = true;
         if (climbSide == ClimbSide.Left)
         {
             //animation left
@@ -204,11 +180,11 @@ public class PlayerClimb : MonoBehaviour
             QuickClimb();
         }
 
-        if (tags.catchClimbable && playerRB.velocity.y < 0)
+        if (tags.clingClimbable && playerRB.velocity.y < 0)
         {
             if (currentClimbObjectTags.background == true)
             {
-                if(!climbObjectCollider.gameObject.GetComponentInParent<BackgroundObject>().CheckOverlap())
+                if (!climbObjectCollider.gameObject.GetComponentInParent<BackgroundObject>().CheckOverlap())
                 {
                     CatchClimb();
                 }
