@@ -13,6 +13,10 @@ public class CameraController : MonoBehaviour
     float yOffset = 0;
     float cameraSpeed = 10;
 
+    bool freezeYFollow = true; //keeps the y coord stationary even when following
+    float levelUpperLimit = 49.13f;
+    float levelLowerLimit = 10.51f;
+
     private void Start()
     {
         player = GameManager.GetPlayer();
@@ -96,7 +100,7 @@ public class CameraController : MonoBehaviour
         m_follow = false;
     }
 
-    bool m_follow;
+    bool m_follow = true;
     public void BeginFollow()
     {
         m_follow = true;
@@ -131,7 +135,26 @@ public class CameraController : MonoBehaviour
     //private methods
     void Follow() //follows the player
     {
-        Vector3 position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+        Vector3 position;
+        if (freezeYFollow)
+        {
+            position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+        }
+
+        if (player.transform.position.x > levelUpperLimit)
+        {
+            return;
+        }
+
+        if (player.transform.position.x < levelLowerLimit)
+        {
+            return;
+        }
+
         position.x -= xOffset;
         position.y -= yOffset;
 

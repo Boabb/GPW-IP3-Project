@@ -9,7 +9,6 @@ public class DoorInteractable : InteractableObject
     Collider2D Collider;
 
     bool open;
-    bool locked;
 
     // Start is called before the first frame update
     void Start()
@@ -40,22 +39,19 @@ public class DoorInteractable : InteractableObject
 
     public override void Interaction(GameObject playerGO)
     {
-        if (!locked)
-        {
-            open = !open;
+        open = !open;
 
-            if (open)
-            {
-                Collider.isTrigger = true;
-                ClosedSprite.SetActive(false);
-                OpenSprite.SetActive(true);
-            }
-            else
-            {
-                Collider.isTrigger = false;
-                ClosedSprite.SetActive(true);
-                OpenSprite.SetActive(false);
-            }
+        if (open)
+        {
+            Collider.isTrigger = true;
+            ClosedSprite.SetActive(false);
+            OpenSprite.SetActive(true);
+        }
+        else
+        {
+            Collider.isTrigger = false;
+            ClosedSprite.SetActive(true);
+            OpenSprite.SetActive(false);
         }
     }
 }

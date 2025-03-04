@@ -10,6 +10,7 @@ public abstract class InteractableObject : MonoBehaviour
     protected float offset;
 
     bool systemInteract = false;
+    bool fixedInteract = false;
     private void Update()
     {
         interact = false;
@@ -23,6 +24,16 @@ public abstract class InteractableObject : MonoBehaviour
     private void FixedUpdate()
     {
         Debug.Log("Tap Interact Fixed Update: " + systemInteract);
+
+        if (systemInteract)
+        {
+            fixedInteract = true;
+            systemInteract = false;
+        }
+        else
+        {
+            fixedInteract = false;
+        }
     }
 
     public abstract void Interaction(GameObject playerGO);
@@ -30,17 +41,12 @@ public abstract class InteractableObject : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("Tap Interact Trigger: " + systemInteract);
-        if (systemInteract && collision.gameObject.tag == "Player" && !interact)
+        if (fixedInteract && collision.gameObject.tag == "Player" && !interact)
         {
             interact = true;
             Interaction(collision.gameObject);
         }
 
-        systemInteract = false;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
         systemInteract = false;
     }
 }
