@@ -1272,7 +1272,7 @@ MonoBehaviour:
   interactable: 0
   moveable: 1
   quickClimbable: 0
-  catchClimbable: 1
+  clingClimbable: 0
   foreground: 0
   background: 1
   autoEvent: 0
@@ -4056,239 +4056,11 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 5552823536169944809, guid: cc9c739327dff9741b398f555a933366, type: 3}
   m_PrefabInstance: {fileID: 870433201917545728}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &537262858
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 537262861}
-  - component: {fileID: 537262860}
-  - component: {fileID: 537262859}
-  - component: {fileID: 537262863}
-  - component: {fileID: 537262862}
-  m_Layer: 13
-  m_Name: RosePickup
-  m_TagString: Collectable
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!58 &537262859
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537262858}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 32768
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 5
---- !u!212 &537262860
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537262858}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c00c2b516f7c3b84cbdadedc66fbd788, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &537262861
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537262858}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.48, y: -2.95, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &537262862
+--- !u!82 &537262862 stripped
 AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2575285575695961648, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+  m_PrefabInstance: {fileID: 2823300502799474415}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537262858}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -8672577803383903426, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0e160e320ce4f9840b290baf56d8282c, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &537262863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537262858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98bbc1192bdb9454883048aba691974b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemIndex: 0
-  collectableVisual: {fileID: 537262858}
-  animated: {fileID: 537262858}
 --- !u!1 &541034783
 GameObject:
   m_ObjectHideFlags: 0
@@ -5194,7 +4966,7 @@ MonoBehaviour:
   interactable: 0
   moveable: 0
   quickClimbable: 0
-  catchClimbable: 1
+  clingClimbable: 0
   foreground: 0
   background: 1
   autoEvent: 0
@@ -6148,29 +5920,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
-  - name: suzanneExhale (Sound Effects)
+  - name: suzanneExert (Sound Effects)
     clips: []
-    audioSource: {fileID: 2023631135}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: crawlInVent (Sound Effects)
-    clips: []
-    audioSource: {fileID: 1561723029}
+    audioSource: {fileID: 280288822}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: woodenScrape (Sound Effects)
     clips: []
     audioSource: {fileID: 520623660}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenJump (Sound Effects)
-    clips: []
-    audioSource: {fileID: 1972652932}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenFootsteps (Sound Effects)
-    clips: []
-    audioSource: {fileID: 2093695726}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: suzanneExert (Sound Effects)
-    clips: []
-    audioSource: {fileID: 280288822}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: RosePickup (Voice)
     clips: []
@@ -6180,10 +5936,26 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 762390654}
     mixerGroup: {fileID: -8672577803383903426, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: crawlInVent (Sound Effects)
+    clips: []
+    audioSource: {fileID: 1561723029}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenJump (Sound Effects)
+    clips: []
+    audioSource: {fileID: 1972652932}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: suzanneExhale (Sound Effects)
+    clips: []
+    audioSource: {fileID: 2023631135}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Main Camera (Master)
     clips: []
     audioSource: {fileID: 2057718743}
     mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenFootsteps (Sound Effects)
+    clips: []
+    audioSource: {fileID: 2093695726}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 2021852136}
   VoiceOverAudioSource: {fileID: 768029583}
   SoundEffectsMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -6191,13 +5963,11 @@ MonoBehaviour:
   VoiceOverMixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   SoundEffects:
   - name: LandOnWood
-    clips:
-    - {fileID: 8300000, guid: 2ea04ef375ccdae4b88f62e57966eccb, type: 3}
+    clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WalkWood
-    clips:
-    - {fileID: 8300000, guid: 8d2042951b6965b47b1474235f940ade, type: 3}
+    clips: []
     audioSource: {fileID: 2093695726}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Vent
@@ -6205,32 +5975,27 @@ MonoBehaviour:
     audioSource: {fileID: 1561723029}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WoodenFootsteps
-    clips:
-    - {fileID: 8300000, guid: 8d2042951b6965b47b1474235f940ade, type: 3}
+    clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WoodenJump
-    clips:
-    - {fileID: 8300000, guid: 40c0f180db9a0164a8d33aed3b6da8b2, type: 3}
+    clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WoodenScrape
-    clips:
-    - {fileID: 8300000, guid: 29e32ea84645cd444baaf3ebc4c0c320, type: 3}
+    clips: []
     audioSource: {fileID: 520623660}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: SuzanneExhale
-    clips:
-    - {fileID: 8300000, guid: 30d9ef370b4724f4097cc021cdb172df, type: 3}
-    - {fileID: 8300000, guid: 6b38d48f13388524f9feed0657d7cfe7, type: 3}
-    - {fileID: 8300000, guid: 6e93b2dac01115b48b482e54d641df00, type: 3}
-    - {fileID: 8300000, guid: e47b4ff4f56326b4a907ea35026a76cd, type: 3}
-    - {fileID: 8300000, guid: ec936395cf7a40b47bfd8ba813402d77, type: 3}
+    clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: SuzanneExert
-    clips:
-    - {fileID: 8300000, guid: ace7dfbfc5a5f0d48bc6e01e9f7dcd67, type: 3}
+    clips: []
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: LockedDoor
+    clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   BackgroundMusics:
@@ -6266,6 +6031,9 @@ MonoBehaviour:
     clip: {fileID: 0}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: FoodCardCollectable
+    clip: {fileID: 0}
+    mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: EmbroideredRoseCollectable
     clip: {fileID: 0}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
 --- !u!4 &726185600 stripped
@@ -10461,7 +10229,7 @@ MonoBehaviour:
   interactable: 0
   moveable: 0
   quickClimbable: 0
-  catchClimbable: 0
+  clingClimbable: 0
   foreground: 0
   background: 0
   autoEvent: 1
@@ -14579,7 +14347,7 @@ MonoBehaviour:
   interactable: 0
   moveable: 0
   quickClimbable: 1
-  catchClimbable: 0
+  clingClimbable: 0
   foreground: 1
   background: 0
   autoEvent: 0
@@ -14873,7 +14641,7 @@ MonoBehaviour:
   interactable: 0
   moveable: 1
   quickClimbable: 0
-  catchClimbable: 0
+  clingClimbable: 0
   foreground: 1
   background: 0
   autoEvent: 0
@@ -17950,7 +17718,7 @@ MonoBehaviour:
   interactable: 0
   moveable: 0
   quickClimbable: 0
-  catchClimbable: 0
+  clingClimbable: 0
   foreground: 0
   background: 0
   autoEvent: 1
@@ -18358,29 +18126,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
-  - name: suzanneExhale (Sound Effects)
+  - name: suzanneExert (Sound Effects)
     clips: []
-    audioSource: {fileID: 2023631135}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: crawlInVent (Sound Effects)
-    clips: []
-    audioSource: {fileID: 1561723029}
+    audioSource: {fileID: 280288822}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: woodenScrape (Sound Effects)
     clips: []
     audioSource: {fileID: 520623660}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenJump (Sound Effects)
-    clips: []
-    audioSource: {fileID: 1972652932}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenFootsteps (Sound Effects)
-    clips: []
-    audioSource: {fileID: 2093695726}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: suzanneExert (Sound Effects)
-    clips: []
-    audioSource: {fileID: 280288822}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: RosePickup (Voice)
     clips: []
@@ -18390,10 +18142,26 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 762390654}
     mixerGroup: {fileID: -8672577803383903426, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: crawlInVent (Sound Effects)
+    clips: []
+    audioSource: {fileID: 1561723029}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenJump (Sound Effects)
+    clips: []
+    audioSource: {fileID: 1972652932}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: suzanneExhale (Sound Effects)
+    clips: []
+    audioSource: {fileID: 2023631135}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Main Camera (Master)
     clips: []
     audioSource: {fileID: 2057718743}
     mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenFootsteps (Sound Effects)
+    clips: []
+    audioSource: {fileID: 2093695726}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 0}
   VoiceOverAudioSource: {fileID: 0}
   SoundEffectsMixerGroup: {fileID: 0}
@@ -18432,6 +18200,10 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: 0}
+  - name: LockedDoor
+    clips: []
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: 0}
   BackgroundMusics:
   - name: FirstRoomSong
     clip: {fileID: 0}
@@ -18465,6 +18237,9 @@ MonoBehaviour:
     clip: {fileID: 0}
     mixerGroup: {fileID: 0}
   - name: FoodCardCollectable
+    clip: {fileID: 0}
+    mixerGroup: {fileID: 0}
+  - name: EmbroideredRoseCollectable
     clip: {fileID: 0}
     mixerGroup: {fileID: 0}
 --- !u!114 &2057718745
@@ -19008,6 +18783,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9c739327dff9741b398f555a933366, type: 3}
+--- !u!1001 &2823300502799474415
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1805012441410508340, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_Name
+      value: RosePickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706853154262009347, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ffc7d002735c4ce49a22c79e86e7fe2c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -19027,7 +18859,7 @@ SceneRoots:
   - {fileID: 1800340409}
   - {fileID: 1469985137}
   - {fileID: 1491961933}
-  - {fileID: 537262861}
+  - {fileID: 2823300502799474415}
   - {fileID: 762390658}
   - {fileID: 870433201917545728}
   - {fileID: 680474874}

@@ -8,14 +8,14 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
 
-    void Update()
-    {
-        // Check if any key or button is pressed
-        if (Input.anyKeyDown)
-        {
-            LoadNextLevel();
-        }
-    }
+    //void Update()
+    //{
+    //    // Check if any key or button is pressed
+    //    if (Input.anyKeyDown)
+    //    {
+    //        LoadNextLevel();
+    //    }
+    //}
 
     public void LoadNextLevel()
     {

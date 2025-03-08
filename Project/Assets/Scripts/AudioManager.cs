@@ -24,7 +24,8 @@ public enum VoiceOver
     Level1Track5,
     BookCollectable,
     BrokenToyCollectable,
-    FoodCardCollectable
+    FoodCardCollectable,
+    EmbroideredRoseCollectable
 }
 public enum BackgroundMusic
 {

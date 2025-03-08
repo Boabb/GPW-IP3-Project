@@ -6,16 +6,16 @@ public class Collectables : InteractableObject
     public static event Action<int> OnItemCollected;
 
     [SerializeField] private int itemIndex;
-    [SerializeField] private GameObject collectableVisual;
-    [SerializeField] private GameObject animated;
-    private AudioSource collectableAudio;
+    [SerializeField] private float bobbingSpeed = 2f;
+    [SerializeField] private float bobbingAmount = 0.1f;
 
     private bool canBeCollected = false;
     private GameObject currentPlayer;
+    private Vector3 startPosition;
 
     void Start()
     {
-        collectableAudio = collectableVisual.GetComponent<AudioSource>();
+        startPosition = transform.position;
     }
 
     void Update()
@@ -24,6 +24,9 @@ public class Collectables : InteractableObject
         {
             Interaction(currentPlayer);
         }
+
+        // Apply bobbing effect
+        transform.position = startPosition + new Vector3(0, Mathf.Sin(Time.time * bobbingSpeed) * bobbingAmount, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -46,12 +49,9 @@ public class Collectables : InteractableObject
 
     public override void Interaction(GameObject playerGO)
     {
-        if (collectableVisual.activeSelf)
-        {
-            OnItemCollected?.Invoke(itemIndex);
-            FindObjectOfType<PickupManager>().CollectItem(itemIndex);
-            collectableVisual.SetActive(false);
-            animated.SetActive(false);
-        }
+        OnItemCollected?.Invoke(itemIndex);
+        FindObjectOfType<PickupManager>().CollectItem(itemIndex);
+        AudioManager.PlayVoiceOverAudio(VoiceOver.EmbroideredRoseCollectable);
+        Destroy(gameObject); // Removes the collectable from the scene
     }
 }

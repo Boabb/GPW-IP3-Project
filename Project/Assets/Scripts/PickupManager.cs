@@ -37,4 +37,9 @@ public class PickupManager : MonoBehaviour
             Debug.Log($"Item {itemIndex} already collected. Current state: {PlayerPrefs.GetInt("ItemCollected_" + itemIndex, 0)}");
         }
     }
+
+    public void buttonPress()
+    {
+        AudioManager.PlayVoiceOverAudio(VoiceOver.EmbroideredRoseCollectable, 5);
+    }
 }

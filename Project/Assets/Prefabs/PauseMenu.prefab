@@ -1340,7 +1340,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7614847333401202101}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 28879940709575475}
+        m_TargetAssemblyTypeName: PickupManager, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2944101977779597029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,7 +1725,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4607191724396620202}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 28879940709575475}
+        m_TargetAssemblyTypeName: PickupManager, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3931065065197025191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,7 +3523,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3059290858436552066}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 28879940709575475}
+        m_TargetAssemblyTypeName: PickupManager, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7898928619562831599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3859,7 +3895,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7749589183297560384}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 28879940709575475}
+        m_TargetAssemblyTypeName: PickupManager, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8168947120205374185
 GameObject:
   m_ObjectHideFlags: 0
@@ -4099,7 +4147,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3780023712791628877}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 28879940709575475}
+        m_TargetAssemblyTypeName: PickupManager, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8481820749010891286
 GameObject:
   m_ObjectHideFlags: 0
@@ -4189,7 +4249,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8383245308163578211}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 28879940709575475}
+        m_TargetAssemblyTypeName: PickupManager, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8826610167934312003
 GameObject:
   m_ObjectHideFlags: 0
