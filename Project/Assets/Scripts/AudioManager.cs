@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.PlayerLoop;
 
 public enum SoundEffect
 {
@@ -58,6 +59,7 @@ public class AudioManager : MonoBehaviour
     public MultipleInstanceAudio[] SoundEffects = new MultipleInstanceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
     public SingleInstanceAudio[] BackgroundMusics = new SingleInstanceAudio[Enum.GetNames(typeof(BackgroundMusic)).Length];
     public SingleInstanceAudio[] VoiceOvers = new SingleInstanceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
+    [SerializeField]public Stack<AudioClip> VoiceOverQueue = new Stack<AudioClip>();
 
     [System.Serializable]
     public struct MultipleInstanceAudio
@@ -81,7 +83,6 @@ public class AudioManager : MonoBehaviour
         public string name;
         public AudioClip clip;
         public AudioMixerGroup mixerGroup;
-
     }
 
 #if UNITY_EDITOR
@@ -172,6 +173,35 @@ public class AudioManager : MonoBehaviour
     {
         Instance = this;
         MasterAudioSource = GetComponent<AudioSource>();
+    }
+
+    private void FixedUpdate()
+    {
+        bool newAudio = (VoiceOverQueue.TryPeek(out var temp) == true && temp != VoiceOverAudioSource.clip);
+        if (!VoiceOverAudioSource.isPlaying && newAudio)
+        {
+            VoiceOverQueue.Pop();
+            VoiceOverQueue.Push(temp);
+
+            VoiceOverAudioSource.clip = temp;
+            Instance.VoiceOverAudioSource.Play();
+        }
+        else if(!VoiceOverAudioSource.isPlaying && VoiceOverQueue.Count > 1)
+        {
+            VoiceOverQueue.Pop();
+
+            VoiceOverAudioSource.clip = VoiceOverQueue.Peek();
+            Instance.VoiceOverAudioSource.Play();
+        }
+        else if (newAudio)
+        {
+            VoiceOverQueue.Pop();
+            VoiceOverQueue.Push(VoiceOverAudioSource.clip);
+            VoiceOverQueue.Push(temp);
+
+            VoiceOverAudioSource.clip = temp;
+            Instance.VoiceOverAudioSource.Play();
+        }
     }
 
 
@@ -270,19 +300,10 @@ public class AudioManager : MonoBehaviour
     /// <param name="index">The <paramref name="index"/> of the Voice-Over Audio; see <seealso cref="VoiceOver"/> Enum for indexes of each audio.</param>
     public static void PlayVoiceOverAudio(VoiceOver index, float volume = 1.0f)
     {
-        if (Instance.VoiceOverAudioSource.isPlaying && Instance.VoiceOvers[(int)index].clip != Instance.VoiceOverAudioSource.clip)
+        if (Instance.VoiceOvers[(int)index].clip != Instance.VoiceOverAudioSource.clip)
         {
-            Instance.VoiceOverAudioSource.Pause();
-            Instance.VoiceOverAudioSource.clip = Instance.VoiceOvers[(int)index].clip;
-            Instance.VoiceOverAudioSource.Play();
-        }
-        else if (Instance.VoiceOvers[(int)index].clip != Instance.VoiceOverAudioSource.clip)
-        {
-            if (!Instance.VoiceOverAudioSource.isPlaying)
-            {
-                Instance.VoiceOverAudioSource.clip = Instance.VoiceOvers[(int)index].clip;
-                Instance.VoiceOverAudioSource.Play();
-            }
+            Instance.VoiceOverQueue.Push(Instance.VoiceOvers[(int)index].clip);
+            Instance.FixedUpdate();
         }
     }
 
