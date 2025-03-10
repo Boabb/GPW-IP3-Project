@@ -4485,11 +4485,23 @@ PrefabInstance:
       value: Audio Manager
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: VoiceOvers.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e160e320ce4f9840b290baf56d8282c, type: 3}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[3].audioSource
+      value: 
+      objectReference: {fileID: 1396998657}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: AllSounds.Array.data[4].audioSource
+      value: 
+      objectReference: {fileID: 1711806936}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: AllSounds.Array.data[6].audioSource
       value: 
       objectReference: {fileID: 708879407}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: AllSounds.Array.data[4].audioSource
+      propertyPath: AllSounds.Array.data[7].audioSource
       value: 
       objectReference: {fileID: 768029583}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
@@ -4973,6 +4985,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &1396998657 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5552823536169944809, guid: cc9c739327dff9741b398f555a933366, type: 3}
+  m_PrefabInstance: {fileID: 870433201917545728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1463334469
 GameObject:
   m_ObjectHideFlags: 0
@@ -5753,6 +5770,11 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!82 &1711806936 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3113612781411206329, guid: cc9c739327dff9741b398f555a933366, type: 3}
+  m_PrefabInstance: {fileID: 870433201917545728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &1754994745 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1169479427166480290, guid: 6a72f0a874fd98c4f9282baeeefeded9, type: 3}
