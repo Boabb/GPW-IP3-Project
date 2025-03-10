@@ -13,6 +13,7 @@ public class ObjectTags : MonoBehaviour
     public bool foreground; //objects in the foreground are also tangible (the player can never just walk past them), if an object is quick climbable and moveable, it should be in the foreground and the moveable aspect will take priority
     public bool background; //objects in the background can be walked past if the player isn't actively 'interacting', this allows the player to move past moveable objects that are in the background
     public bool autoEvent; //when the player moves through the objects collider, an auto event occurs
+    public bool elevatorCatch; //when the player catches onto the collider attached to the elevator, they will be physically stuck like when clinging but also triggering entering animation which gives the illusion of movement
 
     private void Start()
     {

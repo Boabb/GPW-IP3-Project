@@ -11,6 +11,7 @@ public class PlayerAnimator : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     int animationNumber;
+    public bool enteringElevator;
 
     private void Start()
     {
@@ -167,5 +168,20 @@ public class PlayerAnimator : MonoBehaviour
         spriteRenderer.flipX = false;
     }
 
+    public void PlayerElevatorEnter()
+    {
+        playerAnimator.SetTrigger("EnterElevator");
+        var temp = playerAnimator.GetCurrentAnimatorStateInfo(0).ToString();
+        enteringElevator = true;
+        StartCoroutine(ElevatorAnimation(temp));
+    }
 
+    private IEnumerator ElevatorAnimation(string animatorState)
+    {
+        while (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(animatorState))
+        {
+            yield return null;
+        }
+        enteringElevator = false;
+    }
 }

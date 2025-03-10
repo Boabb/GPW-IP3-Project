@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98eff9e2762d054cab58cb3ec90a158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enteringElevator: 0
 --- !u!1 &2557245870366520776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955087458548789448}
   - component: {fileID: 3461528295405900189}
+  - component: {fileID: 2768229929244796961}
   m_Layer: 15
   m_Name: WalkingCollider
   m_TagString: Player
@@ -1373,6 +1375,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &2768229929244796961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7523364886909989846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa17b6311469204bb5e1499e0a34348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 1
+  offsetY: 10
 --- !u!1 &7875826492110234324
 GameObject:
   m_ObjectHideFlags: 0

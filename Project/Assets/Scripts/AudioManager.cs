@@ -14,7 +14,8 @@ public enum SoundEffect
     WoodenScrape,
     SuzanneExhale,
     SuzanneExert,
-    LockedDoor
+    LockedDoor,
+    ElevatorDoorOpenAndClose
 }
 public enum VoiceOver
 {
@@ -217,7 +218,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
 
     public static void PlaySoundEffect(SoundEffect soundEffect, float volume = 1.0f)
-    {
+     {
         if (CheckIfValidAudioSource(Instance.SoundEffects[(int)soundEffect].audioSource))
         {
             if (!Instance.SoundEffects[(int)soundEffect].audioSource.isPlaying)
