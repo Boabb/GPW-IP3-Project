@@ -20,7 +20,7 @@ public class LockedDoorInteractable : DoorInteractable
         }
         else
         {
-            AudioManager.PlaySoundEffect(SoundEffect.LockedDoor);
+            AudioManager.PlaySoundEffect(SoundEffectEnum.LockedDoor);
         }
     }
 

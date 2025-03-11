@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (movementType == MovementType.Walking)
                     {
-                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        AudioManager.PlaySoundEffect(SoundEffectEnum.WoodenFootsteps);
                         playerData.playerAnimator.PlayerWalkLeft();
                     }
                     else if (movementType == MovementType.Crawling)
@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (movementType == MovementType.Walking)
                     {
-                        AudioManager.PlaySoundEffect(SoundEffect.WoodenFootsteps);
+                        AudioManager.PlaySoundEffect(SoundEffectEnum.WoodenFootsteps);
                         playerData.playerAnimator.PlayerWalkRight();
                     }
                     else if (movementType == MovementType.Crawling)
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             playerData.playerAnimator.PlayerIdle();
-            AudioManager.StopSoundEffect(SoundEffect.WoodenFootsteps);
+            AudioManager.StopSoundEffect(SoundEffectEnum.WoodenFootsteps);
         }
 
     }

@@ -51,7 +51,7 @@ public class Collectables : InteractableObject
     {
         OnItemCollected?.Invoke(itemIndex);
         FindObjectOfType<PickupManager>().CollectItem(itemIndex);
-        AudioManager.PlayVoiceOverAudio(VoiceOver.EmbroideredRoseCollectable);
+        AudioManager.PlayVoiceOverAudio(VoiceOverEnum.EmbroideredRoseCollectable);
         Destroy(gameObject); // Removes the collectable from the scene
     }
 }

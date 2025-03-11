@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameObject player;
     public static Camera mainCamera;
+    public static LevelLoader levelLoader => FindObjectOfType<LevelLoader>(true);
+    public static PauseMenuManager pauseMenuManager => FindObjectOfType<PauseMenuManager>();
     internal static string ventFadeTag = "VentFade";
 
     // Start is called before the first frame update
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         mainCamera = Camera.main;
+        levelLoader.gameObject.SetActive(true);
 
         CameraStartingState();
     }

@@ -40,6 +40,6 @@ public class PickupManager : MonoBehaviour
 
     public void buttonPress()
     {
-        AudioManager.PlayVoiceOverAudio(VoiceOver.EmbroideredRoseCollectable, 5);
+        AudioManager.PlayVoiceOverAudio(VoiceOverEnum.EmbroideredRoseCollectable, 5);
     }
 }

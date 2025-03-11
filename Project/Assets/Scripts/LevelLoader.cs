@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,7 +16,7 @@ public class LevelLoader : MonoBehaviour
     }
 
     // Coroutine to handle the transition effect and scene loading
-    IEnumerator LoadLevel(int levelIndex)
+    public IEnumerator LoadLevel(int levelIndex)
     {
         // Trigger the transition animation
         transition.SetTrigger("Start");
@@ -26,5 +27,21 @@ public class LevelLoader : MonoBehaviour
         // Now call the SceneFlowManager to load the next level
         // This will trigger the context screen and load the level after it's done
         SceneFlowManager.Instance.LoadNextLevel();
+    }
+
+    internal void TransitionToMainMenu()
+    {
+        StartCoroutine(Invoke());
+    }
+
+    private IEnumerator Invoke()
+    {
+        // Trigger the transition animation
+        transition.SetTrigger("Start");
+
+        // Wait for the transition animation to finish
+        yield return new WaitForSeconds(9f);
+
+        GameManager.pauseMenuManager.MainMenu();
     }
 }

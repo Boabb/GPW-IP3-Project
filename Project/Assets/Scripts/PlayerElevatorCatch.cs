@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerElevatorCatch : MonoBehaviour
 {
+
     PlayerData playerData;
     Rigidbody2D playerRB;
     PlayerAnimator playerAnimator;

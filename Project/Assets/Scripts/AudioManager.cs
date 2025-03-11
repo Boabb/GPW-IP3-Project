@@ -1,10 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.PlayerLoop;
+using static UnityEngine.GraphicsBuffer;
 
-public enum SoundEffect
+public enum SoundEffectEnum
 {
     LandOnWood,
     WalkWood,
@@ -17,7 +21,7 @@ public enum SoundEffect
     LockedDoor,
     ElevatorDoorOpenAndClose
 }
-public enum VoiceOver
+public enum VoiceOverEnum
 {
     Level1Track1,
     Level1Track2,
@@ -29,7 +33,7 @@ public enum VoiceOver
     FoodCardCollectable,
     EmbroideredRoseCollectable
 }
-public enum BackgroundMusic
+public enum BackgroundMusicEnum
 {
     FirstRoomSong,
     InVentSong,
@@ -39,7 +43,7 @@ public enum BackgroundMusic
 [ExecuteInEditMode]
 public class AudioManager : MonoBehaviour
 {
-    #region
+
     public static AudioManager Instance;
     public static AudioSource MasterAudioSource;
     public static AudioClip currentBGM;
@@ -47,7 +51,7 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// This should not be changed in the Inspector
     /// </summary>
-    public List<MultipleInstanceAudio> AllSounds;
+    public List<AudioInstance> AllSounds;
 
     [Header("Change (Drag and Drop)")]
     [Header("Audio Sources")]
@@ -57,33 +61,53 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioMixerGroup SoundEffectsMixerGroup;
     [SerializeField] private AudioMixerGroup MusicMixerGroup;
     [SerializeField] private AudioMixerGroup VoiceOverMixerGroup;
-    public MultipleInstanceAudio[] SoundEffects = new MultipleInstanceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
-    public SingleInstanceAudio[] BackgroundMusics = new SingleInstanceAudio[Enum.GetNames(typeof(BackgroundMusic)).Length];
-    public SingleInstanceAudio[] VoiceOvers = new SingleInstanceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
-    [SerializeField]public Stack<AudioClip> VoiceOverQueue = new Stack<AudioClip>();
+
+    public SoundEffect[] SoundEffects = new SoundEffect[Enum.GetNames(typeof(SoundEffectEnum)).Length];
+    public BackgroundMusic[] BackgroundMusics = new BackgroundMusic[Enum.GetNames(typeof(BackgroundMusicEnum)).Length];
+    public VoiceOver[] VoiceOvers = new VoiceOver[Enum.GetNames(typeof(VoiceOverEnum)).Length];
+
+    private Stack<AudioClip> VoiceOverQueue = new Stack<AudioClip>();
+    private VoiceOverEnum currentVoiceOverAudio;
+    private bool isPlaying;
+
+    #region
 
     [System.Serializable]
-    public struct MultipleInstanceAudio
+    public struct AudioInstance
+    {
+        public string name;
+        public AudioSource reference;
+        public AudioMixerGroup mixerGroup;
+
+        public AudioInstance(AudioSource audioSrc, AudioMixerGroup mixerGrp)
+        {
+            this.reference = audioSrc;
+            this.mixerGroup = mixerGrp;
+            this.name = String.Concat(this.reference.name, $" ({mixerGroup.name})");
+        }
+    }
+    [System.Serializable]
+    public struct SoundEffect
     {
         public string name;
         public AudioClip[] clips;
         public AudioSource audioSource;
         public AudioMixerGroup mixerGroup;
-
-        public MultipleInstanceAudio(AudioSource audioSrc, AudioMixerGroup mixerGrp)
-        {
-            this.clips = Array.Empty<AudioClip>();
-            this.audioSource = audioSrc;
-            this.mixerGroup = mixerGrp;
-            this.name = $"{audioSrc.name} ({mixerGroup.name})";
-        }
     }
     [System.Serializable]
-    public struct SingleInstanceAudio
+    public struct BackgroundMusic
     {
         public string name;
         public AudioClip clip;
         public AudioMixerGroup mixerGroup;
+    }
+    [System.Serializable]
+    public struct VoiceOver
+    {
+        public string name;
+        public AudioClip clip;
+        public AudioMixerGroup mixerGroup;
+        public float progress;
     }
 
 #if UNITY_EDITOR
@@ -96,14 +120,14 @@ public class AudioManager : MonoBehaviour
     {
         AllSounds.Clear();
 
-        if (Enum.GetNames(typeof(SoundEffect)).Length != SoundEffects.Length)
-            SoundEffects = new MultipleInstanceAudio[Enum.GetNames(typeof(SoundEffect)).Length];
+        if (Enum.GetNames(typeof(SoundEffectEnum)).Length != SoundEffects.Length)
+            SoundEffects = new SoundEffect[Enum.GetNames(typeof(SoundEffectEnum)).Length];
 
-        if (Enum.GetNames(typeof(BackgroundMusic)).Length != BackgroundMusics.Length)
-            BackgroundMusics = new SingleInstanceAudio[Enum.GetNames(typeof(BackgroundMusic)).Length];
+        if (Enum.GetNames(typeof(BackgroundMusicEnum)).Length != BackgroundMusics.Length)
+            BackgroundMusics = new BackgroundMusic[Enum.GetNames(typeof(BackgroundMusicEnum)).Length];
 
-        if (Enum.GetNames(typeof(VoiceOver)).Length != VoiceOvers.Length)
-            VoiceOvers = new SingleInstanceAudio[Enum.GetNames(typeof(VoiceOver)).Length];
+        if (Enum.GetNames(typeof(VoiceOverEnum)).Length != VoiceOvers.Length)
+            VoiceOvers = new VoiceOver[Enum.GetNames(typeof(VoiceOverEnum)).Length];
 
         Debug.ClearDeveloperConsole();
         foreach (var audioSrc in FindObjectsOfType<AudioSource>())
@@ -116,7 +140,7 @@ public class AudioManager : MonoBehaviour
 
             var mixerGroup = audioSrc.outputAudioMixerGroup;
 
-            MultipleInstanceAudio newAudioInstance = new(audioSrc, mixerGroup);
+            AudioInstance newAudioInstance = new(audioSrc, mixerGroup);
 
             // This should be changed when we want multiple instances of sounds other than sound effects
             if (mixerGroup.name != "Sound Effects")
@@ -132,7 +156,7 @@ public class AudioManager : MonoBehaviour
             else
             {
                 int i = 0;
-                foreach (var temp in Enum.GetNames(typeof(SoundEffect)))
+                foreach (var temp in Enum.GetNames(typeof(SoundEffectEnum)))
                 {
                     if (audioSrc.clip != null)
                     {
@@ -148,9 +172,9 @@ public class AudioManager : MonoBehaviour
 
             AllSounds.Add(newAudioInstance);
         }
-        string[] voiceOversAsStrings = Enum.GetNames(typeof(VoiceOver));
-        string[] bGMsAsStrings = Enum.GetNames(typeof(BackgroundMusic));
-        string[] soundEffectsAsStrings = Enum.GetNames(typeof(SoundEffect));
+        string[] voiceOversAsStrings = Enum.GetNames(typeof(VoiceOverEnum));
+        string[] bGMsAsStrings = Enum.GetNames(typeof(BackgroundMusicEnum));
+        string[] soundEffectsAsStrings = Enum.GetNames(typeof(SoundEffectEnum));
 
         for (int i = 0; i < voiceOversAsStrings.Length; i++)
         {
@@ -176,35 +200,6 @@ public class AudioManager : MonoBehaviour
         MasterAudioSource = GetComponent<AudioSource>();
     }
 
-    private void FixedUpdate()
-    {
-        bool newAudio = (VoiceOverQueue.TryPeek(out var temp) == true && temp != VoiceOverAudioSource.clip);
-        if (!VoiceOverAudioSource.isPlaying && newAudio)
-        {
-            VoiceOverQueue.Pop();
-            VoiceOverQueue.Push(temp);
-
-            VoiceOverAudioSource.clip = temp;
-            Instance.VoiceOverAudioSource.Play();
-        }
-        else if(!VoiceOverAudioSource.isPlaying && VoiceOverQueue.Count > 1)
-        {
-            VoiceOverQueue.Pop();
-
-            VoiceOverAudioSource.clip = VoiceOverQueue.Peek();
-            Instance.VoiceOverAudioSource.Play();
-        }
-        else if (newAudio)
-        {
-            VoiceOverQueue.Pop();
-            VoiceOverQueue.Push(VoiceOverAudioSource.clip);
-            VoiceOverQueue.Push(temp);
-
-            VoiceOverAudioSource.clip = temp;
-            Instance.VoiceOverAudioSource.Play();
-        }
-    }
-
 
     public static void PlaySound(AudioClip audioClip, float volume = 1.0f)
     {
@@ -212,12 +207,12 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays the <seealso cref="SoundEffect"/> Audio of type <paramref name="soundEffect"/> on its respective AudioSource (if there is one) or it will use the <seealso cref="MasterAudioSource"/> (if it exists)
+    /// Plays the <seealso cref="SoundEffectEnum"/> Audio of type <paramref name="soundEffect"/> on its respective AudioSource (if there is one) or it will use the <seealso cref="MasterAudioSource"/> (if it exists)
     /// </summary>
-    /// <param name="soundEffect">The <seealso cref="SoundEffect"/> to be played (Look at <seealso cref="SoundEffect"/> Enum to find the index).</param>
+    /// <param name="soundEffect">The <seealso cref="SoundEffectEnum"/> to be played (Look at <seealso cref="SoundEffectEnum"/> to find the index).</param>
     /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
 
-    public static void PlaySoundEffect(SoundEffect soundEffect, float volume = 1.0f)
+    public static void PlaySoundEffect(SoundEffectEnum soundEffect, float volume = 1.0f)
      {
         if (CheckIfValidAudioSource(Instance.SoundEffects[(int)soundEffect].audioSource))
         {
@@ -225,22 +220,44 @@ public class AudioManager : MonoBehaviour
             {
                 switch (soundEffect)
                 {
-                    case SoundEffect.WoodenScrape:
-                    case SoundEffect.WoodenFootsteps:
+                    case SoundEffectEnum.WoodenScrape:
+                    case SoundEffectEnum.WoodenFootsteps:
                         Instance.SoundEffects[(int)soundEffect].audioSource.clip = Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)];
                         Instance.SoundEffects[(int)soundEffect].audioSource.Play();
                         break;
 
                     default:
-                        Instance.SoundEffects[(int)soundEffect].audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
+                        if (Instance.SoundEffects[(int)soundEffect].clips.Length > 0)
+                        {
+                            Instance.SoundEffects[(int)soundEffect].audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"{Instance.SoundEffects[(int)soundEffect].name} is valid but Sound Effect has no clips to play!");
+                        }
                         break;
                 }
             }
         }
         else
         {
-            PlaySound(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
-            Debug.LogWarning($"{Instance.SoundEffects[(int)soundEffect].name} not valid. Sound Effect was played on MasterAudioSource.");
+            switch (soundEffect)
+            {
+                case SoundEffectEnum.WoodenScrape:
+                case SoundEffectEnum.WoodenFootsteps:
+                    break;
+                default:
+                    if (Instance.SoundEffects[(int)soundEffect].clips.Length > 0)
+                    {
+                        PlaySound(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
+                        Debug.LogWarning($"{Instance.SoundEffects[(int)soundEffect].name} not valid. Sound Effect was played on MasterAudioSource.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"{Instance.SoundEffects[(int)soundEffect].name} not valid. Sound Effect has no clips to play!");
+                    }
+                    break;
+            }
         }
     }
 
@@ -261,18 +278,18 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Stops the <seealso cref="SoundEffect"/> Audio of type <paramref name="soundEffect"/> on the <seealso cref="MasterAudioSource"/> (if it exists)
+    /// Stops the <seealso cref="SoundEffectEnum"/> Audio of type <paramref name="soundEffect"/> on the <seealso cref="MasterAudioSource"/> (if it exists)
     /// </summary>
-    /// <param name="soundEffect">The <seealso cref="SoundEffect"/> to be played (Look at <seealso cref="SoundEffect"/> Enum to find the index).</param>
+    /// <param name="soundEffect">The <seealso cref="SoundEffectEnum"/> to be played (Look at <seealso cref="SoundEffectEnum"/> to find the index).</param>
     /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
 
-    public static void StopSoundEffect(SoundEffect soundEffect, float volume = 1.0f)
+    public static void StopSoundEffect(SoundEffectEnum soundEffect, float volume = 1.0f)
     {
 
         switch (soundEffect)
         {
-            case SoundEffect.WoodenScrape:
-            case SoundEffect.WoodenFootsteps:
+            case SoundEffectEnum.WoodenScrape:
+            case SoundEffectEnum.WoodenFootsteps:
                 if (Instance.SoundEffects[(int)soundEffect].audioSource != null)
                 {
                     if (Instance.SoundEffects[(int)soundEffect].audioSource.isPlaying)
@@ -296,25 +313,74 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays the <seealso cref="VoiceOver"/> Audio of type <paramref name="index"/> on the <seealso cref="VoiceOvers"/> respective Audio Source (if it exists)
+    /// Plays the <seealso cref="VoiceOverEnum"/> Audio of type <paramref name="index"/> on the <seealso cref="VoiceOvers"/> respective Audio Source (if it exists)
     /// </summary>
-    /// <param name="index">The <paramref name="index"/> of the Voice-Over Audio; see <seealso cref="VoiceOver"/> Enum for indexes of each audio.</param>
-    public static void PlayVoiceOverAudio(VoiceOver index, float volume = 1.0f)
+    /// <param name="index">The <paramref name="index"/> of the Voice-Over Audio; see <seealso cref="VoiceOverEnum"/> for indexes of each audio.</param>
+    public static void PlayVoiceOverAudio(VoiceOverEnum index, float volume = 1.0f)
     {
-        if (Instance.VoiceOvers[(int)index].clip != Instance.VoiceOverAudioSource.clip)
+        if (Instance.VoiceOvers[(int)index].clip != null)
         {
-            Instance.VoiceOverQueue.Push(Instance.VoiceOvers[(int)index].clip);
-            Instance.FixedUpdate();
+            if (Instance.VoiceOvers[(int)index].clip != Instance.VoiceOverAudioSource.clip)
+            {
+                if (Instance.isPlaying)
+                {
+                    // Store current audio and its progress
+                    if (Instance.VoiceOverAudioSource.clip != null && Instance.VoiceOverAudioSource.isPlaying)
+                    {
+                        Instance.VoiceOvers[(int)Instance.currentVoiceOverAudio].progress = Instance.VoiceOverAudioSource.time;
+                        Instance.VoiceOverQueue.Push(Instance.VoiceOvers[(int)Instance.currentVoiceOverAudio].clip);
+                    }
+                }
+
+                // Start new audio
+                Instance.currentVoiceOverAudio = index;
+                Instance.VoiceOverAudioSource.clip = Instance.VoiceOvers[(int)index].clip;
+                Instance.VoiceOverAudioSource.time = Instance.VoiceOvers[(int)index].progress;
+                Instance.VoiceOverAudioSource.Play();
+                Instance.isPlaying = true;
+
+                // Resume previous audio after the new one finishes
+                Instance.StartCoroutine(ResumePreviousVoiceOver());
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Audio Clip not assigned for: {Instance.VoiceOvers[(int)index].name}. PlayVoiceOverAudio aborted");
         }
     }
 
+    private static IEnumerator ResumePreviousVoiceOver()
+    {
+        yield return new WaitUntil(() => Instance.VoiceOverAudioSource.isPlaying == false);
+
+        if (Instance.VoiceOverQueue.TryPop(out var nextClip))
+        {
+            for (int i = 0; i < Instance.VoiceOvers.Length; i++)
+            {
+                if (Instance.VoiceOvers[i].clip == nextClip)
+                {
+                    Instance.VoiceOverAudioSource.clip = nextClip;
+                    Instance.VoiceOverAudioSource.time = Instance.VoiceOvers[i].progress;
+                    Instance.currentVoiceOverAudio = (VoiceOverEnum)i;
+                    Instance.VoiceOverAudioSource.Play();
+                    Instance.isPlaying = true;
+                    Instance.StartCoroutine(ResumePreviousVoiceOver());
+                    break;
+                }
+            }
+        }
+        else
+        {
+            Instance.isPlaying = false;
+        }
+    }
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="musicType"></param>
     /// <param name="volume">The volume of the audio source (0.0 to 1.0).</param>
-    public static void PlayBackgroundMusic(BackgroundMusic musicType, float volume = 0.0f)
+    public static void PlayBackgroundMusic(BackgroundMusicEnum musicType, float volume = 0.0f)
     {
         if (Instance.MusicAudioSource.isPlaying && Instance.BackgroundMusics[(int)musicType].clip != Instance.MusicAudioSource.clip)
         {
@@ -330,7 +396,7 @@ public class AudioManager : MonoBehaviour
     public void SwitchToOutOfVent()
     {
         //PlayVoiceOverAudio(VoiceOver.Wallenberg2);
-        PlayBackgroundMusic(BackgroundMusic.OutOfVentSong);
+        PlayBackgroundMusic(BackgroundMusicEnum.OutOfVentSong);
     }
     public void SetVolume(AudioMixer mixerGroup, float volume)
     {

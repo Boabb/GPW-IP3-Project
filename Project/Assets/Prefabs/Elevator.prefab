@@ -183,7 +183,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4ec164a21a8e24d4b864187de80dbd68, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.276
+  m_Volume: 0.63
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -463,8 +463,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3787072609982321915}
-  - component: {fileID: 614302649064438219}
   - component: {fileID: 7623199829169239636}
+  - component: {fileID: 1604277443033864359}
   m_Layer: 18
   m_Name: ElevatorEnterCatch
   m_TagString: Untagged
@@ -487,29 +487,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 601050813700389304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &614302649064438219
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8059177560072841250}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.089756
-  m_Height: 13.791151
-  m_Direction: 1
-  m_Center: {x: -0.5470796, y: -4.62284, z: 0}
 --- !u!114 &7623199829169239636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,6 +507,41 @@ MonoBehaviour:
   background: 0
   autoEvent: 0
   elevatorCatch: 1
+--- !u!70 &1604277443033864359
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8059177560072841250}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!1 &8349797607908061125
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,9 +612,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 902611627
-  m_SortingLayer: 3
-  m_SortingOrder: 18
+  m_SortingLayerID: -633325497
+  m_SortingLayer: 1
+  m_SortingOrder: 22
   m_Sprite: {fileID: 21300000, guid: 13f6477c97f16f84683f3f9a57fb6dcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -684,9 +696,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 902611627
-  m_SortingLayer: 3
-  m_SortingOrder: 18
+  m_SortingLayerID: -633325497
+  m_SortingLayer: 1
+  m_SortingOrder: 22
   m_Sprite: {fileID: 21300000, guid: 948d5f07035d4bc42b6992b13eb5ba4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

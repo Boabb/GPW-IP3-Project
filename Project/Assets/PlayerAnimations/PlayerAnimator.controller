@@ -903,7 +903,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: -4833750727908895918}
   - {fileID: -512420742273759484}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 4148271963473988122}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -934,7 +935,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.75409836
+  m_ExitTime: 1.18
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1904,7 +1905,8 @@ AnimatorState:
   - {fileID: -220993194003520788}
   - {fileID: -7181426696186977867}
   - {fileID: 4298551112856434546}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 5372642354869024514}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1994,6 +1996,19 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &4148271963473988122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3dccdb286b3efd40ba7790f760aaef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundToPlay: 7
 --- !u!1101 &4181790821625380980
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -2313,6 +2328,19 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &5372642354869024514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3dccdb286b3efd40ba7790f760aaef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundToPlay: 4
 --- !u!1102 &5442616192488598118
 AnimatorState:
   serializedVersion: 6
