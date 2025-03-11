@@ -40,7 +40,7 @@ public class LevelLoader : MonoBehaviour
         transition.SetTrigger("Start");
 
         // Wait for the transition animation to finish
-        yield return new WaitForSeconds(12f);
+        yield return new WaitForSeconds(GameManager.levelLoader.transitionTime);
 
         GameManager.pauseMenuManager.MainMenu();
     }
