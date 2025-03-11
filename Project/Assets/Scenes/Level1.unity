@@ -4485,10 +4485,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4772230194286788492, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: m_Volume
-      value: 0.45
-      objectReference: {fileID: 0}
     - target: {fileID: 5056611360542000371, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: m_Name
       value: Audio Manager
@@ -4506,18 +4502,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2061738073}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: AllSounds.Array.data[3].audioSource
-      value: 
-      objectReference: {fileID: 708879407}
-    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: AllSounds.Array.data[4].audioSource
-      value: 
-      objectReference: {fileID: 768029583}
-    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: AllSounds.Array.data[9].audioSource
-      value: 
-      objectReference: {fileID: 2061738073}
-    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.data[4].audioSource
       value: 
       objectReference: {fileID: 637540016}
@@ -4525,14 +4509,6 @@ PrefabInstance:
       propertyPath: SoundEffects.Array.data[9].audioSource
       value: 
       objectReference: {fileID: 1815838192}
-    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: SoundEffects.Array.data[4].clips.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: SoundEffects.Array.data[4].clips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 2ea04ef375ccdae4b88f62e57966eccb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

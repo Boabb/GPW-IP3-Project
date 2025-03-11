@@ -105,7 +105,8 @@ MonoBehaviour:
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WoodenJump
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 2ea04ef375ccdae4b88f62e57966eccb, type: 3}
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: WoodenScrape
@@ -196,7 +197,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.28
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
