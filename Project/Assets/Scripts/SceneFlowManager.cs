@@ -14,9 +14,7 @@ public class SceneFlowManager : MonoBehaviour
     {
         "Scene 0, no context scene",
         "Scene 1, no context scene",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " +
-        "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit " +
-        "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "During the German occupation of Hungary in 1944, Budapest's Jewish community faced unprecedented persecution under the alliance between Nazi Germany and the Arrow Cross Party. Before the occupation, Hungarian Jews had been subject to increasing antisemitic laws, but their situation drastically worsened after March 19, when German forces took control. Jewish families were forced into marked “starred houses” and subjected to strict curfews, food shortages, and constant fear of deportation. Despite these hardships, Budapest remained a centre of Jewish resilience, with individuals and organizations—such as diplomats like Raoul Wallenberg—working to provide refuge and forged documents to save lives in the final months of the war.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " +
         "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit " +
         "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",

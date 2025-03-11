@@ -10,7 +10,7 @@ public class PickupManager : MonoBehaviour
     void Start()
     {
         // Optional: Uncomment to clear PlayerPrefs during testing
-        //PlayerPrefs.DeleteAll(); 
+        PlayerPrefs.DeleteAll(); 
 
         itemActive = new bool[items.Length]; // Initialize the tracking array
         for (int i = 0; i < items.Length; i++)
