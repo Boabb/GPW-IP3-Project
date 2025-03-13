@@ -122,7 +122,6 @@ public class PlayerAnimator : MonoBehaviour
 
     public void PlayerFallLeft()
     {
-
         playerAnimator.SetInteger("AnimationNumber", 7);
         spriteRenderer.flipX = false;
     }

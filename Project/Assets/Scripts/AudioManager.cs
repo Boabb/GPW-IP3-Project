@@ -200,6 +200,14 @@ public class AudioManager : MonoBehaviour
         MasterAudioSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        if(FindObjectsOfType<AudioManager>().Length > 1)
+        {
+            Debug.LogWarning("More than one AudioManager Detected! Please find and remove the extra one!");
+        }
+    }
+
 
     public static void PlaySound(AudioClip audioClip, float volume = 1.0f)
     {

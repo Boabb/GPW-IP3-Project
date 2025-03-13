@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerElevatorCatch : MonoBehaviour
 {
-
-    PlayerData playerData;
+    PlayerData playerData; //I have moved this to a static variable in GameManager for easier access and consistency (Singleton pattern)
     Rigidbody2D playerRB;
     PlayerAnimator playerAnimator;
 
@@ -25,7 +24,7 @@ public class PlayerElevatorCatch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerData = GetComponentInParent<PlayerData>();
+        playerData = GameManager.playerData;
         playerRB = playerData.playerRigidbody;
         playerAnimator = playerData.playerAnimator;
         climbType = ElevatorEnterMode.None;

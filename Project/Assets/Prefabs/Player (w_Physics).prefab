@@ -244,7 +244,7 @@ MonoBehaviour:
   playerCrawlingCollider: {fileID: 8686667805701452908}
   playerInteractCollider: {fileID: 626177448183868537}
   playerOverlapCheckCollider: {fileID: 6829465168859839149}
-  playerCatchClimbCollider: {fileID: 0}
+  playerCatchClimbCollider: {fileID: 7833222782003071501}
   playerAnimatorComponent: {fileID: 6571747437202914289}
   climbAnimationClip: {fileID: 7400000, guid: 5555743ccdf9a8e40b12fe1d2f47fa8f, type: 2}
   quickClimbAnimationClip: {fileID: 7400000, guid: df85337897d8d8646b7413ddaecdc235, type: 2}

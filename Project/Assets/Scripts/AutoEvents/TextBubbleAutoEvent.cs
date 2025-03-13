@@ -18,7 +18,7 @@ public class TextBubbleAutoEvent : AutoEvent
 
     public override void EventEnter(GameObject playerGO)
     {
-        if (playerGO.CompareTag("Player") && textBubble != null)
+        if (playerGO.layer == LayerMask.NameToLayer("Player") && textBubble != null)
         {
             textBubble.gameObject.SetActive(true); // Make sure it's active
             StopAllCoroutines(); // Stop any existing fade-out
@@ -28,7 +28,7 @@ public class TextBubbleAutoEvent : AutoEvent
 
     public override void EventExit(GameObject playerGO)
     {
-        if (playerGO.CompareTag("Player") && textBubble != null)
+        if (playerGO.layer == LayerMask.NameToLayer("Player") && textBubble != null)
         {
             StopAllCoroutines(); // Stop any existing fade-in
             StartCoroutine(FadeCanvasGroup(textBubble, 0, fadeDuration, disableAfterFade: true)); // Fade out

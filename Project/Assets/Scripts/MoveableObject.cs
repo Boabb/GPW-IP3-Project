@@ -7,13 +7,14 @@ public class MoveableObject : MonoBehaviour
 {
     //public float objectRBMass = 0.0f; //this should be 0 unless the object is moveable, then it should be equal to the mass of the object's rigidbody
     Rigidbody2D objectRB;
-    
-    [Header("Designers Don't Change!")]
-    [SerializeField] PlayerData playerData;
+
+    //[Header("Designers Don't Change!")]
+    PlayerData playerData; //I have made this a static variable as part of GameManager for easier access and consistency
     //[HideInInspector] public float currentObjectRBMass; //this is the mass of the object when it is being moved by the player (equal to the player mass plus the object mass)
 
     private void Start()
     {
+        playerData = GameManager.playerData;
         objectRB = GetComponent<Rigidbody2D>();
         //currentObjectRBMass = objectRBMass;
         //objectRB.mass = currentObjectRBMass;
@@ -31,6 +32,13 @@ public class MoveableObject : MonoBehaviour
         else
         {
             objectRB.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
         }
     }
 }

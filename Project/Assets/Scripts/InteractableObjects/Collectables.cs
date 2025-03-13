@@ -31,7 +31,7 @@ public class Collectables : InteractableObject
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             currentPlayer = other.gameObject;
             canBeCollected = true;
@@ -40,7 +40,7 @@ public class Collectables : InteractableObject
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             currentPlayer = null;
             canBeCollected = false;

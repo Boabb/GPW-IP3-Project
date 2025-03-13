@@ -41,7 +41,7 @@ public abstract class InteractableObject : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("Tap Interact Trigger: " + systemInteract);
-        if (fixedInteract && collision.gameObject.tag == "Player" && !interact)
+        if (fixedInteract && collision.gameObject.layer == LayerMask.NameToLayer("Player") && !interact)
         {
             interact = true;
             Interaction(collision.gameObject);

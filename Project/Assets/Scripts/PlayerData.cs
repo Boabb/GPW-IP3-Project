@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    public static PlayerData instance;
     //initialised when game starts
     [Header("Designers Don't Change!")]
     //unity components
-    public GameObject playerGO;
     public Rigidbody2D playerRigidbody;
     public Collider2D playerWalkingCollider;
     public Collider2D playerCrawlingCollider;
@@ -19,6 +20,18 @@ public class PlayerData : MonoBehaviour
     public AnimationClip climbAnimationClip;
     public AnimationClip quickClimbAnimationClip;
     public SpriteRenderer playerSprite;
+
+    // Static fallback variables using simple GetComponent expressions
+    public static GameObject PlayerGO;
+    static Rigidbody2D PlayerRigidbody => PlayerGO.GetComponent<Rigidbody2D>();
+    static Collider2D PlayerWalkingCollider => GameObject.FindWithTag("PlayerWalkingCollider").GetComponent<Collider2D>();
+    static Collider2D PlayerCrawlingCollider => GameObject.FindWithTag("PlayerCrawlingCollider").GetComponent<Collider2D>();
+    static Collider2D PlayerInteractCollider => GameObject.FindWithTag("PlayerInteractCollider").GetComponent<Collider2D>();
+    static Collider2D PlayerOverlapCheckCollider => GameObject.FindWithTag("PlayerOverlapCheckCollider").GetComponent<Collider2D>();
+    // static Collider2D PlayerGroundedCollider => PlayerGO.GetComponent<Collider2D>();
+    static Collider2D PlayerCatchClimbCollider => GameObject.FindWithTag("PlayerCatchClimbCollider").GetComponent<Collider2D>();
+    static Animator PlayerAnimatorComponent => PlayerGO.GetComponentInChildren<Animator>();
+    static SpriteRenderer PlayerSprite => PlayerAnimatorComponent.gameObject.GetComponent<SpriteRenderer>();
 
     //scripts
     public PlayerAnimator playerAnimator;
@@ -40,8 +53,26 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public int animationNumber = 0; //what animation is currently trying to be active
     [HideInInspector] public float customPlayerVelocity; //used to change the player velocity to something custom for auto events (its an adder, to slow down this value should be negative)
 
+    private void Awake()
+    {
+        instance = this;
+        PlayerGO = this.gameObject;
+
+        // Only assign if the public variable is null
+        if (playerRigidbody == null) playerRigidbody = PlayerRigidbody;
+        if (playerWalkingCollider == null) playerWalkingCollider = PlayerWalkingCollider;
+        if (playerCrawlingCollider == null) playerCrawlingCollider = PlayerCrawlingCollider;
+        if (playerInteractCollider == null) playerInteractCollider = PlayerInteractCollider;
+        if (playerOverlapCheckCollider == null) playerOverlapCheckCollider = PlayerOverlapCheckCollider;
+        //if (playerGroundedCollider == null) playerGroundedCollider = PlayerGroundedCollider;
+        if (playerCatchClimbCollider == null) playerCatchClimbCollider = PlayerCatchClimbCollider;
+        if (playerAnimatorComponent == null) playerAnimatorComponent = PlayerAnimatorComponent;
+        if (playerSprite == null) playerSprite = PlayerSprite;
+    }
     private void Start()
     {
+
+
         playerLayer = LayerMask.GetMask("Player");
 
         currentPlayerRBMass = playerRBMass;

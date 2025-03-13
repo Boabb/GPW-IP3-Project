@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerData playerData;
+    PlayerData playerData; //I have moved this to a static variable in GameManager for easier access and consistency (Singleton pattern)
     Collider2D uprightCollider;
     Collider2D crawlingCollider;
     Rigidbody2D playerRB2D;
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerData = GetComponent<PlayerData>();
+        playerData = GameManager.playerData;
         uprightCollider = playerData.playerWalkingCollider;
         crawlingCollider = playerData.playerCrawlingCollider;
         //groundedCollider = playerData.playerGroundedCollider;
@@ -162,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //Debug.Log("Jump");
             playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
+            grounded = false;
         }
     }
 
@@ -278,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetGrounded()
     {
-        if (playerRB2D.velocity.y == 0)
+        if (Mathf.Abs(playerRB2D.velocity.y) <= 0.01f)
         {
             if (playerData.animationNumber == 7)
             {

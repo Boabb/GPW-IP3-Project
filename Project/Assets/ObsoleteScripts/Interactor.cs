@@ -32,7 +32,7 @@ public class Interactor : MonoBehaviour
 
     IEnumerator Interact()
     {
-        while (interacting && Vector2.Distance(GameManager.player.transform.position, transform.position) <= interactRange)
+        while (interacting && Vector2.Distance(PlayerData.PlayerGO.transform.position, transform.position) <= interactRange)
         {
             if (SystemSettings.tapInteract)
             {

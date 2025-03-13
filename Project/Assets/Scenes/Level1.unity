@@ -5301,11 +5301,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!61 &1754994745 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1169479427166480290, guid: 6a72f0a874fd98c4f9282baeeefeded9, type: 3}
-  m_PrefabInstance: {fileID: 1088813472}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1792829677
 GameObject:
   m_ObjectHideFlags: 0
@@ -6211,7 +6206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7a1d4ee8a5ce4468a1b84a8541d3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 1056329803}
 --- !u!114 &1920065857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7024,10 +7018,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: playerCatchClimbCollider
-      value: 
-      objectReference: {fileID: 1754994745}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

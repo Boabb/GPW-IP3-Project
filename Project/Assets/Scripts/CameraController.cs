@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.GetPlayer();
+        player = PlayerData.PlayerGO;
         mainCamera = Camera.main;
     }
 

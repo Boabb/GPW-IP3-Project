@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerClimb : MonoBehaviour
 {
-    PlayerData playerData;
+    PlayerData playerData; //I have moved this to a static variable in GameManager for easier access and consistency (Singleton pattern)
     Rigidbody2D playerRB;
     PlayerAnimator playerAnimator;
 

@@ -18,7 +18,7 @@ public class Follower : MonoBehaviour
     {
         if (agentToFollow == null)
         {
-            agentToFollow = GameManager.GetPlayer();
+            agentToFollow = PlayerData.PlayerGO;
         }
     }
 
@@ -35,7 +35,7 @@ public class Follower : MonoBehaviour
         }
         else
         {
-            agentToFollow = GameManager.player;
+            agentToFollow = PlayerData.PlayerGO;
         }
 
         if (shake)
