@@ -279,7 +279,17 @@ public class PlayerMovement : MonoBehaviour
 
     void SetGrounded()
     {
-        if (Mathf.Abs(playerRB2D.velocity.y) <= 0.01f)
+    }
+
+    public float GetMovementForce()
+    {
+        return movementForce;
+    }
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (Mathf.Abs(playerRB2D.velocity.y) <= 0.001f && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             if (playerData.animationNumber == 7)
             {
@@ -298,7 +308,10 @@ public class PlayerMovement : MonoBehaviour
 
             grounded = true;
         }
-        else
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             switch (movementDirection)
             {
@@ -311,13 +324,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             grounded = false;
+            playerData.grounded = grounded;
         }
-
-        playerData.grounded = grounded;
-    }
-
-    public float GetMovementForce()
-    {
-        return movementForce;
     }
 }
