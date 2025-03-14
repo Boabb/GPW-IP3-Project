@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
 
     bool freezeYFollow = true; //keeps the y coord stationary even when following
     float levelUpperLimit = 48.03f;
-    float levelLowerLimit = 8.41f;
+    float levelLowerLimit = 6.21f;
 
     private void Start()
     {
