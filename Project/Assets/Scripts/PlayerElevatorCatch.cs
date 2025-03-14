@@ -63,7 +63,6 @@ public class PlayerElevatorCatch : MonoBehaviour
     void ElevatorCatch()
     {
         Debug.Log("ElevatorCatch");
-        playerData.clinging = true;
         playerAnimator.PlayerElevatorEnter();
 
         climbType = ElevatorEnterMode.Catch;

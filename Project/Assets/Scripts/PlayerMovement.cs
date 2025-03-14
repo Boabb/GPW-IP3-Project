@@ -289,7 +289,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (Mathf.Abs(playerRB2D.velocity.y) <= 0.001f && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (Mathf.Abs(playerRB2D.velocity.y) <= 0.01f && collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             if (playerData.animationNumber == 7)
             {
@@ -307,11 +307,12 @@ public class PlayerMovement : MonoBehaviour
             }
 
             grounded = true;
+            playerData.grounded = grounded;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             switch (movementDirection)
             {
