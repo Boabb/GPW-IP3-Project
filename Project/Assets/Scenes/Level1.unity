@@ -676,7 +676,6 @@ GameObject:
   m_Component:
   - component: {fileID: 158802223}
   - component: {fileID: 158802224}
-  - component: {fileID: 158802225}
   m_Layer: 0
   m_Name: SmallCabinet
   m_TagString: Untagged
@@ -752,27 +751,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &158802225
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158802222}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ce07a0d0cc3b6ab4c820b88fc89cb8dd, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &204944345
 GameObject:
   m_ObjectHideFlags: 0
@@ -6377,18 +6355,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1122339146}
     m_Modifications:
-    - target: {fileID: 98296168549160290, guid: 6a72f0a874fd98c4f9282baeeefeded9, type: 3}
-      propertyPath: playerData
-      value: 
-      objectReference: {fileID: 1056329803}
     - target: {fileID: 2078058555946870369, guid: 6a72f0a874fd98c4f9282baeeefeded9, type: 3}
       propertyPath: playerData
       value: 
       objectReference: {fileID: 1056329803}
-    - target: {fileID: 5271382529409463992, guid: 6a72f0a874fd98c4f9282baeeefeded9, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8544129508168249577, guid: 6a72f0a874fd98c4f9282baeeefeded9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.87
@@ -6627,7 +6597,7 @@ Transform:
   m_GameObject: {fileID: 2057718740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5400004, y: 0.85694754, z: -10}
+  m_LocalPosition: {x: 3, y: 0.85694754, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
