@@ -238,7 +238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36f7b807b0de49418036d591c632cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGO: {fileID: 2116040391875107370}
   playerRigidbody: {fileID: 1456820099601487006}
   playerWalkingCollider: {fileID: 3461528295405900189}
   playerCrawlingCollider: {fileID: 8686667805701452908}
@@ -871,7 +870,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.19, y: 0.19, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6850051165633342354}
