@@ -90,6 +90,88 @@ public class PlayerAnimator : MonoBehaviour
     {
         playerAnimator.SetInteger("AnimationNumber", 5);
         spriteRenderer.flipX = false;
+<<<<<<< Updated upstream
         //spriteRenderer.gameObject.transform.localPosition = new Vector3(-0.12f, 0, 0);
+=======
+    }
+
+    public void PlayerJumpLeft()
+    {
+
+        playerAnimator.SetInteger("AnimationNumber", 6); 
+        spriteRenderer.flipX = false;
+    }
+
+    public void PlayerJumpRight()
+    {
+
+        playerAnimator.SetInteger("AnimationNumber", 6);
+        spriteRenderer.flipX = true;
+    }
+
+    public void PlayerFallLeft()
+    {
+        playerAnimator.SetInteger("AnimationNumber", 7);
+        spriteRenderer.flipX = false;
+    }
+
+    public void PlayerFallRight()
+    {
+
+        playerAnimator.SetInteger("AnimationNumber", 7);
+        spriteRenderer.flipX = true;
+    }
+
+    public void PlayerLandLeft()
+    {
+        //if (playerAnimator.GetInteger("AnimationNumber") == 7 || playerAnimator.GetInteger("AnimationNumber") == 6)
+        //{
+        //}
+
+
+        playerAnimator.SetInteger("AnimationNumber", 8);
+        spriteRenderer.flipX = false;
+    }
+
+    public void PlayerLandRight()
+    {
+        //if (playerAnimator.GetInteger("AnimationNumber") == 7 || playerAnimator.GetInteger("AnimationNumber") == 6)
+        //{
+        //}
+
+        playerAnimator.SetInteger("AnimationNumber", 8);
+        spriteRenderer.flipX = true;
+
+    }
+    public void PlayerClimbLeft()
+    {
+        playerAnimator.SetInteger("AnimationNumber", 9);
+        spriteRenderer.flipX = true;
+    }
+
+    public void PlayerClimbRight()
+    {
+
+        playerAnimator.SetInteger("AnimationNumber", 9);
+        spriteRenderer.flipX = false;
+    }
+
+    public void PlayerElevatorEnter()
+    {
+        enteringElevator = true;
+        playerAnimator.SetBool("EnterElevator", enteringElevator);
+
+        var temp = playerAnimator.GetCurrentAnimatorStateInfo(0).ToString();
+        StartCoroutine(ElevatorAnimation(temp)); 
+    }
+
+    private IEnumerator ElevatorAnimation(string animatorState)
+    {
+        while (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(animatorState))
+        {
+            yield return null;
+        }
+        enteringElevator = false;
+>>>>>>> Stashed changes
     }
 }
