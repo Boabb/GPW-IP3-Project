@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseAnimator: {fileID: 0}
+  elevatorOpen: 0
+  elevatorEnterableStateName: Elevator Open
 --- !u!61 &6645763868300942594
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -431,7 +433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4655306695037019991}
   m_Layer: 0
-  m_Name: ElevatorWalls
+  m_Name: ElevatorWallColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
