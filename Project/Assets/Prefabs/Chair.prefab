@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5203465260558970694}
   m_Layer: 3
   m_Name: GroundCollider
-  m_TagString: Untagged
+  m_TagString: Armchair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: -6.245, y: 0}
-  - {x: 5.7, y: 0}
+  - {x: 6.245, y: 0}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 2793222165995189222}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Armchair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 2861155537066243405}
   m_Layer: 0
   m_Name: Sprite (1)
-  m_TagString: Untagged
+  m_TagString: Armchair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 1451504464051027490}
   m_Layer: 0
   m_Name: Chair
-  m_TagString: Untagged
+  m_TagString: Armchair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -383,3 +383,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7a1d4ee8a5ce4468a1b84a8541d3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armChair: 0
+  armChairInElevator: 0

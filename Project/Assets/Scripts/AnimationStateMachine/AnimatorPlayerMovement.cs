@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorAudioTrigger : StateMachineBehaviour
+public class AnimatorPlayerMovement : StateMachineBehaviour
 {
-    [SerializeField] private SoundEffect soundToPlay;
+    [SerializeField] private SoundEffectEnum soundToPlay;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-<<<<<<< Updated upstream:Project/Assets/Scripts/AnimatorAudioTrigger.cs
-        AudioManager.PlaySoundEffect(soundToPlay);   
-=======
-        animator.SetBool("EnterElevator", false);
->>>>>>> Stashed changes:Project/Assets/Scripts/AnimationStateMachine/AnimatorPlayerMovement.cs
+        var temp = GameManager.playerData.playerSprite;
+        temp.sortingLayerID = SortingLayer.NameToID("Background");
+        temp.sortingOrder = 13;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -25,12 +23,7 @@ public class AnimatorAudioTrigger : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-<<<<<<< Updated upstream:Project/Assets/Scripts/AnimatorAudioTrigger.cs
-        AudioManager.StopSoundEffect(soundToPlay);
-=======
         GameManager.levelLoader.TransitionToMainMenu();
-
->>>>>>> Stashed changes:Project/Assets/Scripts/AnimationStateMachine/AnimatorPlayerMovement.cs
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

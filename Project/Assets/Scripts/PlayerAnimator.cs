@@ -7,6 +7,7 @@ public class PlayerAnimator : MonoBehaviour
     PlayerData playerData;
     Animator playerAnimator;
     SpriteRenderer spriteRenderer;
+    public bool enteringElevator;
 
     private void Start()
     {
@@ -79,20 +80,18 @@ public class PlayerAnimator : MonoBehaviour
         spriteRenderer.gameObject.transform.localPosition = new Vector3(0.12f, 0, 0);
     }
 
-    public void PlayerCatchLeft()
+    public void PlayerClingLeft()
     {
         playerAnimator.SetInteger("AnimationNumber", 5);
         spriteRenderer.flipX = true;
         //spriteRenderer.gameObject.transform.localPosition = new Vector3(0.12f, 0, 0);
     }
 
-    public void PlayerCatchRight()
+    public void PlayerClingRight()
     {
         playerAnimator.SetInteger("AnimationNumber", 5);
         spriteRenderer.flipX = false;
-<<<<<<< Updated upstream
         //spriteRenderer.gameObject.transform.localPosition = new Vector3(-0.12f, 0, 0);
-=======
     }
 
     public void PlayerJumpLeft()
@@ -143,13 +142,13 @@ public class PlayerAnimator : MonoBehaviour
         spriteRenderer.flipX = true;
 
     }
-    public void PlayerClimbLeft()
+    public void PlayerClimbUpLeft()
     {
         playerAnimator.SetInteger("AnimationNumber", 9);
         spriteRenderer.flipX = true;
     }
 
-    public void PlayerClimbRight()
+    public void PlayerClimbUpRight()
     {
 
         playerAnimator.SetInteger("AnimationNumber", 9);
@@ -158,11 +157,14 @@ public class PlayerAnimator : MonoBehaviour
 
     public void PlayerElevatorEnter()
     {
-        enteringElevator = true;
-        playerAnimator.SetBool("EnterElevator", enteringElevator);
+        if (!playerData.clinging)
+        {
+            enteringElevator = true;
+            playerAnimator.SetBool("EnterElevator", true);
 
-        var temp = playerAnimator.GetCurrentAnimatorStateInfo(0).ToString();
-        StartCoroutine(ElevatorAnimation(temp)); 
+            var temp = playerAnimator.GetCurrentAnimatorStateInfo(0).ToString();
+            StartCoroutine(ElevatorAnimation(temp));
+        }
     }
 
     private IEnumerator ElevatorAnimation(string animatorState)
@@ -172,6 +174,6 @@ public class PlayerAnimator : MonoBehaviour
             yield return null;
         }
         enteringElevator = false;
->>>>>>> Stashed changes
+        playerData.clinging = false;
     }
 }

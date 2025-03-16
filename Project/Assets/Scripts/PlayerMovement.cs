@@ -24,10 +24,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravityForce = 100f;
     [SerializeField] float dragForce = 100f;
 
-    float pushForce;
-    float pullForce;
+    [SerializeField] float pushForce;
+    [SerializeField] float pullForce;
 
-    float movementForce;
+    [SerializeField] float movementForce;
     bool grounded;
 
     enum MovementDirection
@@ -61,8 +61,14 @@ public class PlayerMovement : MonoBehaviour
         movementType = MovementType.Walking;
         movementForce = walkingForce;
 
-        pushForce = walkingForce / 1.5f;
-        pullForce = walkingForce / 2f;
+        if (pushForce == 0)
+        {
+            pushForce = walkingForce / 1.5f;
+        }
+        if (pullForce == 0)
+        {
+            pullForce = walkingForce / 2f;
+        }
     }
 
     // Update is called once per frame
