@@ -1,12 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.PlayerLoop;
-using static UnityEngine.GraphicsBuffer;
 
 public enum SoundEffectEnum
 {
@@ -330,14 +326,11 @@ public class AudioManager : MonoBehaviour
         {
             if (Instance.VoiceOvers[(int)index].clip != Instance.VoiceOverAudioSource.clip)
             {
-                if (Instance.isPlaying)
+                // Store current audio and its progress
+                if (Instance.VoiceOverAudioSource.clip != null && Instance.VoiceOverAudioSource.isPlaying)
                 {
-                    // Store current audio and its progress
-                    if (Instance.VoiceOverAudioSource.clip != null && Instance.VoiceOverAudioSource.isPlaying)
-                    {
-                        Instance.VoiceOvers[(int)Instance.currentVoiceOverAudio].progress = Instance.VoiceOverAudioSource.time;
-                        Instance.VoiceOverQueue.Push(Instance.VoiceOvers[(int)Instance.currentVoiceOverAudio].clip);
-                    }
+                    Instance.VoiceOvers[(int)Instance.currentVoiceOverAudio].progress = Instance.VoiceOverAudioSource.time;
+                    Instance.VoiceOverQueue.Push(Instance.VoiceOvers[(int)Instance.currentVoiceOverAudio].clip);
                 }
 
                 // Start new audio
