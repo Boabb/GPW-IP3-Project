@@ -55,7 +55,8 @@ public class PlayerData : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        GameManager.playerData = instance = this;
+
         PlayerGO = this.gameObject;
 
         // Only assign if the public variable is null
