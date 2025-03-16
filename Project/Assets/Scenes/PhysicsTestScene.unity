@@ -1256,6 +1256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7a1d4ee8a5ce4468a1b84a8541d3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armChair: 0
+  armChairInElevator: 0
 --- !u!114 &107570783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,14 +1737,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8744028667587887705, guid: 6a72f0a874fd98c4f9282baeeefeded9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 159609625}
+      addedObject: {fileID: 159609632}
   m_SourcePrefab: {fileID: 100100000, guid: 6a72f0a874fd98c4f9282baeeefeded9, type: 3}
 --- !u!1 &159609624 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8744028667587887705, guid: 6a72f0a874fd98c4f9282baeeefeded9, type: 3}
   m_PrefabInstance: {fileID: 159609623}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &159609625
+--- !u!114 &159609632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1751,10 +1753,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 159609624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2c102b130ba1b40aa760574c240fd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dc6c357bd6d30f4491def107f41b9ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockUI: {fileID: 235268065}
+  puzzleUI: {fileID: 235268065}
 --- !u!1 &166357618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,11 +2536,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3897388878082144761, guid: 337fbab236f3903488323a8f8280a494, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3897388878082144761, guid: 337fbab236f3903488323a8f8280a494, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 300
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3897388878082144761, guid: 337fbab236f3903488323a8f8280a494, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2588,6 +2590,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4479437702926394838, guid: 337fbab236f3903488323a8f8280a494, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b0f591ee262b0b74091aa3b9abdaf892, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3622,7 +3628,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -14820,6 +14826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7a1d4ee8a5ce4468a1b84a8541d3c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armChair: 0
+  armChairInElevator: 0
 --- !u!114 &1816838181
 MonoBehaviour:
   m_ObjectHideFlags: 0

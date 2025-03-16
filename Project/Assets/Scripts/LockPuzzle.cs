@@ -11,9 +11,9 @@ public class LockPuzzle : MonoBehaviour
     [SerializeField] private GameObject lockUI; // Assign in Inspector
     private bool isUIOpen = true;
 
-    private void Start()
+    private void OnEnable()
     {
-        UpdateDisplay();
+        OpenLockUI();
     }
 
     public void OpenLockUI()
@@ -22,9 +22,12 @@ public class LockPuzzle : MonoBehaviour
         isUIOpen = true;
         Time.timeScale = 0f; // Pause the game while interacting
 
-        // Reset event system selection to avoid UI issues
-        EventSystem.current.SetSelectedGameObject(null);
+        //Ensure the UI updates properly
+        UpdateDisplay();
+
+        Debug.Log("Lock UI opened, restoring previous values.");
     }
+
 
     public void CloseLockUI()
     {
@@ -34,12 +37,22 @@ public class LockPuzzle : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void ExitLockUI()
+    {
+        lockUI.SetActive(false);
+        isUIOpen = false;
+        Time.timeScale = 1f;
+    }
+
+
     // Function to change a number at a specific index
     public void ChangeNumber(int index, int change)
     {
         if (!isUIOpen) return; // Prevent changes when UI isn't open
         currentCode[index] = (currentCode[index] + change + 10) % 10; // Cycle between 0-9
         UpdateDisplay(); // Ensure UI updates
+
+        Debug.Log($"Digit {index} changed to {currentCode[index]}");
     }
 
     // Wrapper functions for Unity UI Buttons
