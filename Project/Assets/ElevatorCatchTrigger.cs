@@ -5,8 +5,8 @@ using UnityEngine;
 public class ElevatorCatchTrigger : MonoBehaviour
 {
     PlayerData playerData;
-    private bool armchairInZone;
-    private bool playerInZone;
+    private bool armchairInZone = false;
+    private bool playerInZone = false;
 
     Collider2D climbObjectCollider;
     ElevatorEnterMode climbType;

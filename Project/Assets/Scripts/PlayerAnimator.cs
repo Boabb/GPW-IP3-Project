@@ -159,7 +159,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (!playerData.clinging)
         {
-            enteringElevator = true;
+            playerData.clinging = enteringElevator = true;
             playerAnimator.SetBool("EnterElevator", true);
 
             var temp = playerAnimator.GetCurrentAnimatorStateInfo(0).ToString();
