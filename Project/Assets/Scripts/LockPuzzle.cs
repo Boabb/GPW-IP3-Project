@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class LockPuzzle : MonoBehaviour
 {
     public int[] currentCode = { 0, 0, 0, 0 }; // Player's current input
-    public int[] correctCode = { 3, 5, 7, 2 }; // The correct code
+    public int[] correctCode = { 5, 3, 8, 1 }; // The correct code
 
     [SerializeField] private TMP_Text[] numberDisplays; // Assign in Inspector
     [SerializeField] private GameObject lockUI; // Assign in Inspector
@@ -25,7 +25,7 @@ public class LockPuzzle : MonoBehaviour
         //Ensure the UI updates properly
         UpdateDisplay();
 
-        Debug.Log("Lock UI opened, restoring previous values.");
+        //Debug.Log("Lock UI opened, restoring previous values.");
     }
 
 
@@ -52,7 +52,7 @@ public class LockPuzzle : MonoBehaviour
         currentCode[index] = (currentCode[index] + change + 10) % 10; // Cycle between 0-9
         UpdateDisplay(); // Ensure UI updates
 
-        Debug.Log($"Digit {index} changed to {currentCode[index]}");
+        //Debug.Log($"Digit {index} changed to {currentCode[index]}");
     }
 
     // Wrapper functions for Unity UI Buttons
