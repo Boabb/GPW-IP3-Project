@@ -19,6 +19,7 @@ public class PauseMenuManager : MonoBehaviour
         }
 
         bg.SetActive(false);
+        Time.timeScale = 1; // Ensure time is running normally at start
     }
 
     void Update()
@@ -43,6 +44,7 @@ public class PauseMenuManager : MonoBehaviour
             // Show the menu button again when the menus are closed
             menuButton.SetActive(true);
             bg.SetActive(false);
+            Time.timeScale = 1; // Resume game
         }
         else
         {
@@ -51,6 +53,7 @@ public class PauseMenuManager : MonoBehaviour
 
             menuButton.SetActive(false);
             bg.SetActive(true); // Show background
+            Time.timeScale = 0; // Pause game
         }
     }
 
@@ -68,6 +71,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1; // Ensure time resumes when returning to the main menu
         SceneManager.LoadScene("MainMenu");
     }
 }
