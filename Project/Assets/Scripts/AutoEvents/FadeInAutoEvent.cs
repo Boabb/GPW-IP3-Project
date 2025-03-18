@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FadeInAutoEvent : AutoEvent
 {
+    public static FadeInAutoEvent instance;
     [SerializeField] SpriteRenderer[] fadeObject;
 
     float currentFadeAmount = 0f;
@@ -13,6 +14,7 @@ public class FadeInAutoEvent : AutoEvent
 
     private void Start()
     {
+        instance = this;
         for (int i = 0; i < fadeObject.Length; i++)
         {
             fadeObject[i].color = new Color(fadeObject[i].color.r, fadeObject[i].color.g, fadeObject[i].color.b, 0);
@@ -49,8 +51,8 @@ public class FadeInAutoEvent : AutoEvent
         }
     }
 
-    public override void EventEnter(GameObject playerGO)
+    public static void TriggerFade()
     {
-        fade = true;
+        instance.fade = true;
     }
 }

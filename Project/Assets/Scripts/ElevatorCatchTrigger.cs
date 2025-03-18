@@ -5,6 +5,8 @@ using UnityEngine;
 public class ElevatorCatchTrigger : MonoBehaviour
 {
     PlayerData playerData;
+    GameObject armchair;
+    Rigidbody2D armchairRB;
     private bool armchairInZone;
     private bool playerInZone;
 
@@ -30,6 +32,24 @@ public class ElevatorCatchTrigger : MonoBehaviour
     {
         if(armchairInZone && playerInZone)
         {
+            if(armchair != null)
+            {
+                armchairRB.constraints = RigidbodyConstraints2D.FreezeAll;
+                if(climbType == ElevatorEnterMode.Catch)
+                {
+                    
+                }
+                else
+                {
+                    ElevatorCatch();
+                    armchairRB.gameObject.transform.position = new Vector3(climbObjectCollider.bounds.center.x, playerData.playerRigidbody.gameObject.transform.position.y, playerData.playerRigidbody.gameObject.transform.position.z);
+                }
+            }   
+            else
+            {
+                armchair = GameObject.FindGameObjectWithTag("Armchair").transform.parent.gameObject;
+                armchairRB = armchair.GetComponent<Rigidbody2D>();
+            }
             playerData.playerAnimator.PlayerElevatorEnter();
             playerData.clinging = true;
             playerData.playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -79,6 +99,18 @@ public class ElevatorCatchTrigger : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             playerInZone = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Armchair"))
+        {
+            armchairInZone = false;
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            playerInZone = false;
         }
     }
 }
