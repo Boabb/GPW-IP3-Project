@@ -36,6 +36,7 @@ public class LevelLoader : MonoBehaviour
 
     private IEnumerator Invoke()
     {
+        yield return new WaitForSeconds(transitionTime);
         // Trigger the transition animation
         transition.SetTrigger("Start");
 
