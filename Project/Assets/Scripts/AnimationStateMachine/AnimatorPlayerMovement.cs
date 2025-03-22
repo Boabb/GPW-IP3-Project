@@ -9,9 +9,7 @@ public class AnimatorPlayerMovement : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        var temp = GameManager.playerData.playerSprite;
-        temp.sortingLayerID = SortingLayer.NameToID("Background");
-        temp.sortingOrder = 13;
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,6 +21,8 @@ public class AnimatorPlayerMovement : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        ElevatorAutoEvent.ToBeEnabled = true;
+        GameManager.cameraController.m_shake = true;
         FadeInAutoEvent.TriggerFade();
     }
 

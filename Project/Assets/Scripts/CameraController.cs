@@ -151,7 +151,7 @@ public class CameraController : MonoBehaviour
         m_zoomLerp = true;
     }
 
-    bool m_follow = true;
+    public bool m_follow = true;
     public void BeginFollow()
     {
         m_follow = true;
@@ -179,7 +179,7 @@ public class CameraController : MonoBehaviour
     float m_shakeTime;
     float m_shakeAmount;
     float m_shakeDecrease;
-    bool m_shake;
+    public bool m_shake;
     public void StartShake(float shakeTime, float shakeAmount, float shakeDecrease)
     {
         m_shakeTime = shakeTime;

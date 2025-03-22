@@ -1463,6 +1463,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!212 &518593361 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4613723016046478097, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
+  m_PrefabInstance: {fileID: 7929354863880904816}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &540888633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4986078360027701192, guid: 31d8f765321b2964f9521bdd0211ce08, type: 3}
@@ -4476,11 +4481,23 @@ PrefabInstance:
       value: Audio Manager
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.data[10].name
+      value: ElevatorDoorClose
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[6].reference
       value: 
-      objectReference: {fileID: 7929354863880904819}
+      objectReference: {fileID: 637540016}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[7].reference
+      value: 
+      objectReference: {fileID: 708879407}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: AllSounds.Array.data[8].reference
       value: 
       objectReference: {fileID: 637540016}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
@@ -4495,6 +4512,10 @@ PrefabInstance:
       propertyPath: AllSounds.Array.data[10].reference
       value: 
       objectReference: {fileID: 2061738073}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.data[10].mixerGroup
+      value: 
+      objectReference: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.data[4].audioSource
       value: 
@@ -4516,29 +4537,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: SoundEffects.Array.data[10].audioSource
-      value: 
-      objectReference: {fileID: 992048283}
-    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: SoundEffects.Array.data[0].clips.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: SoundEffects.Array.data[1].clips.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.data[9].clips.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: SoundEffects.Array.data[0].clips.Array.data[0]
+      propertyPath: SoundEffects.Array.data[10].clips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.data[9].clips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 2ea04ef375ccdae4b88f62e57966eccb, type: 3}
+      objectReference: {fileID: 8300000, guid: 07abafeceea3223429e1e7ff6efaaede, type: 3}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.data[9].clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 07abafeceea3223429e1e7ff6efaaede, type: 3}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.data[10].clips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 6bd511855c1a7884198e847fbe13bebb, type: 3}
+      objectReference: {fileID: 8300000, guid: aaff37c9591f3c54fac8aeda05dfe60b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5646,6 +5663,11 @@ Transform:
   - {fileID: 158802223}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1661694935 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6391755872806277586, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
+  m_PrefabInstance: {fileID: 7929354863880904816}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1682945199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7489,6 +7511,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e6edacd29bef4faa4598c81a5f648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_positionLerp: 0
+  m_zoomLerp: 0
+  m_follow: 1
+  m_shake: 0
 --- !u!82 &2061738073 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 7941402240223346885, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
@@ -8238,13 +8264,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 151902671}
     m_Modifications:
     - target: {fileID: 211401469704400461, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
+      propertyPath: fadeObject.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 211401469704400461, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
       propertyPath: fadeObject.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 518593361}
     - target: {fileID: 211401469704400461, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
       propertyPath: fadeObject.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1661694935}
+    - target: {fileID: 211401469704400461, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
+      propertyPath: fadeObject.Array.data[2]
+      value: 
+      objectReference: {fileID: 1661694935}
     - target: {fileID: 250892381698950377, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -8293,10 +8327,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5097865946596941344, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
+      propertyPath: fadeObject.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097865946596941344, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
+      propertyPath: fadeObject.Array.data[0]
+      value: 
+      objectReference: {fileID: 518593361}
+    - target: {fileID: 5097865946596941344, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
+      propertyPath: fadeObject.Array.data[1]
+      value: 
+      objectReference: {fileID: 1661694935}
     - target: {fileID: 5920986721013392722, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.699
       objectReference: {fileID: 0}
+    - target: {fileID: 7553616873447720115, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
+      propertyPath: fadeParentObject
+      value: 
+      objectReference: {fileID: 7929354863880904819}
     - target: {fileID: 9194043738208686276, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
       propertyPath: m_Animation
       value: 

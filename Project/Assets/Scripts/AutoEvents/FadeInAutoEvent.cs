@@ -53,6 +53,18 @@ public class FadeInAutoEvent : AutoEvent
 
     public static void TriggerFade()
     {
-        instance.fade = true;
+        if (instance != null)
+        {
+            instance.fade = true;
+        }
+        else
+        {
+            
+        }
+    }
+
+    public override void EventEnter(GameObject playerGO)
+    {
+        fade = true;
     }
 }
