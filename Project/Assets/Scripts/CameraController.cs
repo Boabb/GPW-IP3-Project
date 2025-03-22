@@ -8,14 +8,15 @@ public class CameraController : MonoBehaviour
     GameObject player;
     Camera mainCamera;
     float lerpCounter;
-    float standardZoom = 3f;
+    float standardZoom = 3.1f;
+    float standardY = 0.8569475f;
     float xOffset = 0;
     float yOffset = 0;
     float cameraSpeed = 10;
 
     bool freezeYFollow = true; //keeps the y coord stationary even when following
     float levelUpperLimit = 48.03f;
-    float levelLowerLimit = 6.21f;
+    float levelLowerLimit = 2.13f;
 
     private void Start()
     {
@@ -72,7 +73,7 @@ public class CameraController : MonoBehaviour
 
     float m_positionLerpCounter;
     bool m_positionLerp;
-    public void LerpToPosition(Vector3 position, float lerpSpeed) //lerps from current position to a stationary position
+    public void LerpToPosition(float lerpSpeed, Vector3 position) //lerps from current position to a stationary position
     {
         m_positionToLerpTo = position;
         m_positionToLerpFrom = mainCamera.transform.position;
@@ -80,7 +81,48 @@ public class CameraController : MonoBehaviour
 
         m_positionLerpCounter = 0;
         m_positionLerp = true;
-        m_follow = false;
+        StopFollow();
+    }
+
+    public void LerpToPosition(float lerpSpeed)
+    {
+        m_positionToLerpTo = player.transform.position;
+        m_positionToLerpFrom = mainCamera.transform.position;
+        m_positionLerpSpeed = lerpSpeed;
+
+        m_positionLerpCounter = 0;
+        m_positionLerp = true;
+        StopFollow();
+    }
+
+    public void LerpToPositionY(float lerpSpeed, float position)
+    {
+        m_positionToLerpTo = new Vector3(mainCamera.transform.position.x, position, mainCamera.transform.position.z);
+        m_positionToLerpFrom = mainCamera.transform.position;
+        m_positionLerpSpeed = lerpSpeed;
+
+        m_positionLerpCounter = 0;
+        m_positionLerp = true;
+    }
+
+    public void LerpToPositionY(float lerpSpeed)
+    {
+        m_positionToLerpTo = new Vector3(mainCamera.transform.position.x, standardY, mainCamera.transform.position.z);
+        m_positionToLerpFrom = mainCamera.transform.position;
+        m_positionLerpSpeed = lerpSpeed;
+
+        m_positionLerpCounter = 0;
+        m_positionLerp = true;
+    }
+
+    public void LerpToPositionX(float lerpSpeed, float position)
+    {
+        m_positionToLerpTo = new Vector3(position, mainCamera.transform.position.y);
+        m_positionToLerpFrom = mainCamera.transform.position;
+        m_positionLerpSpeed = lerpSpeed;
+
+        m_positionLerpCounter = 0;
+        m_positionLerp = true;
     }
 
     float m_zoomToLerpTo;
@@ -89,7 +131,7 @@ public class CameraController : MonoBehaviour
 
     float m_zoomLerpCounter;
     bool m_zoomLerp;
-    public void LerpToZoom(float zoom, float lerpSpeed) //lerps from current zoom to a given zoom
+    public void LerpToZoom(float lerpSpeed, float zoom) //lerps from current zoom to a given zoom
     {
         m_zoomToLerpTo = zoom;
         m_zoomToLerpFrom = mainCamera.orthographicSize;
@@ -97,7 +139,16 @@ public class CameraController : MonoBehaviour
 
         m_zoomLerpCounter = 0;
         m_zoomLerp = true;
-        m_follow = false;
+    }
+
+    public void LerpToZoom(float lerpSpeed)
+    {
+        m_zoomToLerpTo = standardZoom;
+        m_zoomToLerpFrom = mainCamera.orthographicSize;
+        m_zoomLerpSpeed = lerpSpeed;
+
+        m_zoomLerpCounter = 0;
+        m_zoomLerp = true;
     }
 
     bool m_follow = true;
@@ -106,6 +157,11 @@ public class CameraController : MonoBehaviour
         m_follow = true;
         m_positionLerp = false;
     }
+
+    public void StopFollow()
+    {
+        m_follow = false;
+    }    
 
     //set offsets
     public void SetYOffset(float setOffset)
@@ -119,6 +175,7 @@ public class CameraController : MonoBehaviour
     }
 
     //camera effects
+    //https://discussions.unity.com/t/screen-shake-effect/391783/5
     float m_shakeTime;
     float m_shakeAmount;
     float m_shakeDecrease;
@@ -180,10 +237,11 @@ public class CameraController : MonoBehaviour
         if (m_positionLerpCounter < 1)
         {
             mainCamera.transform.position = Vector3.Lerp(m_positionToLerpFrom, m_positionToLerpTo, m_positionLerpCounter);
-            m_positionLerpCounter += m_positionLerpCounter + (m_positionLerpSpeed * Time.deltaTime);
+            m_positionLerpCounter += m_positionLerpSpeed * Time.deltaTime;
         }
         else
         {
+            mainCamera.transform.position = m_positionToLerpTo;
             m_positionLerp = false;
         }
     }
@@ -193,10 +251,11 @@ public class CameraController : MonoBehaviour
         if (m_zoomLerpCounter < 1)
         {
             mainCamera.orthographicSize = Mathf.Lerp(m_zoomToLerpFrom, m_zoomToLerpTo, m_zoomLerpCounter);
-            m_zoomLerpCounter += m_zoomLerpCounter + (m_zoomLerpSpeed * Time.deltaTime);
+            m_zoomLerpCounter += m_zoomLerpSpeed * Time.deltaTime;
         }
         else
         {
+            mainCamera.orthographicSize = m_zoomToLerpTo;
             m_zoomLerp = false;
         }
     }

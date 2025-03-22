@@ -15,7 +15,8 @@ public enum SoundEffectEnum
     SuzanneExhale,
     SuzanneExert,
     LockedDoor,
-    ElevatorDoorOpenAndClose
+    ElevatorDoorOpenAndClose,
+    Marching
 }
 public enum VoiceOverEnum
 {
@@ -39,7 +40,6 @@ public enum BackgroundMusicEnum
 [ExecuteInEditMode]
 public class AudioManager : MonoBehaviour
 {
-
     public static AudioManager Instance;
     public static AudioSource MasterAudioSource;
     public static AudioClip currentBGM;
@@ -226,6 +226,10 @@ public class AudioManager : MonoBehaviour
                 {
                     case SoundEffectEnum.WoodenScrape:
                     case SoundEffectEnum.WoodenFootsteps:
+                        Instance.SoundEffects[(int)soundEffect].audioSource.clip = Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)];
+                        Instance.SoundEffects[(int)soundEffect].audioSource.Play();
+                        break;
+                    case SoundEffectEnum.Marching:
                         Instance.SoundEffects[(int)soundEffect].audioSource.clip = Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)];
                         Instance.SoundEffects[(int)soundEffect].audioSource.Play();
                         break;
