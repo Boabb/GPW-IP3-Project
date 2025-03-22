@@ -71,7 +71,7 @@ public class CameraController : MonoBehaviour
     float m_positionLerpSpeed;
 
     float m_positionLerpCounter;
-    bool m_positionLerp;
+    public bool m_positionLerp;
     public void LerpToPosition(Vector3 position, float lerpSpeed) //lerps from current position to a stationary position
     {
         m_positionToLerpTo = position;
@@ -88,7 +88,7 @@ public class CameraController : MonoBehaviour
     float m_zoomLerpSpeed;
 
     float m_zoomLerpCounter;
-    bool m_zoomLerp;
+    public bool m_zoomLerp;
     public void LerpToZoom(float zoom, float lerpSpeed) //lerps from current zoom to a given zoom
     {
         m_zoomToLerpTo = zoom;
@@ -100,7 +100,7 @@ public class CameraController : MonoBehaviour
         m_follow = false;
     }
 
-    bool m_follow = true;
+    public bool m_follow = true;
     public void BeginFollow()
     {
         m_follow = true;
@@ -122,7 +122,7 @@ public class CameraController : MonoBehaviour
     float m_shakeTime;
     float m_shakeAmount;
     float m_shakeDecrease;
-    bool m_shake;
+    public bool m_shake;
     public void StartShake(float shakeTime, float shakeAmount, float shakeDecrease)
     {
         m_shakeTime = shakeTime;

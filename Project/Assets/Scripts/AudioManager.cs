@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -116,14 +117,23 @@ public class AudioManager : MonoBehaviour
     {
         AllSounds.Clear();
 
-        if (Enum.GetNames(typeof(SoundEffectEnum)).Length != SoundEffects.Length)
-            SoundEffects = new SoundEffect[Enum.GetNames(typeof(SoundEffectEnum)).Length];
+        var noOfSFXsInInspector = Enum.GetNames(typeof(SoundEffectEnum)).Length;
+        var noOfBGMsInInspector = Enum.GetNames(typeof(BackgroundMusicEnum)).Length;
+        var noOfVOsInInspector = Enum.GetNames(typeof(VoiceOverEnum)).Length;
 
-        if (Enum.GetNames(typeof(BackgroundMusicEnum)).Length != BackgroundMusics.Length)
-            BackgroundMusics = new BackgroundMusic[Enum.GetNames(typeof(BackgroundMusicEnum)).Length];
+        //if (Enum.GetNames(typeof(SoundEffectEnum)).Length != SoundEffects.Length)
+        //{
+        //    var temp = new SoundEffect[SoundEffects.Length];
+        //    SoundEffects.CopyTo(temp, noOfSFXsInInspector);
+        //    SoundEffects = temp;
 
-        if (Enum.GetNames(typeof(VoiceOverEnum)).Length != VoiceOvers.Length)
-            VoiceOvers = new VoiceOver[Enum.GetNames(typeof(VoiceOverEnum)).Length];
+        //}
+
+        //if (noOfBGMsInInspector != BackgroundMusics.Length)
+        //    BackgroundMusics = new BackgroundMusic[noOfBGMsInInspector];
+
+        //if (Enum.GetNames(typeof(VoiceOverEnum)).Length != VoiceOvers.Length)
+        //    VoiceOvers = new VoiceOver[Enum.GetNames(typeof(VoiceOverEnum)).Length];
 
         Debug.ClearDeveloperConsole();
         foreach (var audioSrc in FindObjectsOfType<AudioSource>())

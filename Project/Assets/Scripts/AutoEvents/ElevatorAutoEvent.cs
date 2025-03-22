@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ElevatorAutoEvent : AutoEvent
 {
+    public static bool? ToBeEnabled;
+    [SerializeField] private GameObject fadeParentObject;
     public Animator openCloseAnimator;
     public bool elevatorOpen;
     public string elevatorEnterableStateName = "ElevatorOpen";
@@ -14,11 +17,14 @@ public class ElevatorAutoEvent : AutoEvent
     }
     public override void EventEnter(GameObject playerGO)
     {
-
         openCloseAnimator.SetTrigger("Open/Close");
     }
     public override void EventStay(GameObject playerGO)
     {
+        if(ToBeEnabled != null)
+        {
+            fadeParentObject.SetActive((bool)ToBeEnabled);
+        }
         if (openCloseAnimator != null)
         {
 
@@ -27,5 +33,9 @@ public class ElevatorAutoEvent : AutoEvent
                 elevatorOpen = true;
             }
         }
+    }
+    public override void EventExit(GameObject playerGO)
+    {
+        fadeParentObject.SetActive(false);
     }
 }

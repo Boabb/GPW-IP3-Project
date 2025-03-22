@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static PlayerData playerData;
     public static Camera mainCamera;
+    public static CameraController cameraController;
     public static LevelLoader levelLoader => FindObjectOfType<LevelLoader>(true);
     public static PauseMenuManager pauseMenuManager => FindObjectOfType<PauseMenuManager>();
     internal static string ventFadeTag = "VentFade";
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        cameraController = GetComponent<CameraController>();
         levelLoader.gameObject.SetActive(true);
     }
 }

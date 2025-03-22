@@ -754,6 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6fcb1181127444a9ee5e4f40809f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeParentObject: {fileID: 0}
   openCloseAnimator: {fileID: 1445593825551128062}
   elevatorOpen: 1
   elevatorEnterableStateName: Elevator Open
@@ -1188,7 +1189,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -633325497
   m_SortingLayer: 1
-  m_SortingOrder: 15
+  m_SortingOrder: 14
   m_Sprite: {fileID: 21300000, guid: aff07ba793b3f614fb48ab07916ad615, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
