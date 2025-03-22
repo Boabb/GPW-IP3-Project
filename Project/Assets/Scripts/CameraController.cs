@@ -14,7 +14,6 @@ public class CameraController : MonoBehaviour
     float yOffset = 0;
     float cameraSpeed = 10;
 
-    bool freezeYFollow = true; //keeps the y coord stationary even when following
     float levelUpperLimit = 48.03f;
     float levelLowerLimit = 2.13f;
 
@@ -31,11 +30,6 @@ public class CameraController : MonoBehaviour
             Shake();
         }
 
-        if (m_follow)
-        {
-            Follow();
-        }
-
         if (m_positionLerp)
         {
             PositionLerp();
@@ -45,26 +39,31 @@ public class CameraController : MonoBehaviour
         {
             ZoomLerp();
         }
+
+        if (m_followX || m_followY)
+        {
+            Follow();
+        }
     }
 
     //camera controls
     public void Stationary(Vector3 position) //sets the camera at a specific location
     {
         mainCamera.transform.position = position;
-        m_follow = false;
+        StopFollow();
     }
 
     public void Stationary(float zoom) //sets the camera at a specific zoom
     {
         mainCamera.orthographicSize = zoom;
-        m_follow = false;
+        StopFollow();
     }
 
     public void Stationary(Vector3 position, float zoom) //sets the camera at a specific location and zoom
     {
         mainCamera.orthographicSize = zoom;
         mainCamera.transform.position = position;
-        m_follow = false;
+        StopFollow();
     }
 
     Vector3 m_positionToLerpTo;
@@ -103,6 +102,7 @@ public class CameraController : MonoBehaviour
 
         m_positionLerpCounter = 0;
         m_positionLerp = true;
+        StopFollowY();
     }
 
     public void LerpToPositionY(float lerpSpeed)
@@ -113,6 +113,7 @@ public class CameraController : MonoBehaviour
 
         m_positionLerpCounter = 0;
         m_positionLerp = true;
+        StopFollowY();
     }
 
     public void LerpToPositionX(float lerpSpeed, float position)
@@ -123,6 +124,7 @@ public class CameraController : MonoBehaviour
 
         m_positionLerpCounter = 0;
         m_positionLerp = true;
+        StopFollowX();
     }
 
     float m_zoomToLerpTo;
@@ -151,17 +153,40 @@ public class CameraController : MonoBehaviour
         m_zoomLerp = true;
     }
 
-    public bool m_follow = true;
+    //public bool m_follow = true;
+    bool m_followY = false;
+    bool m_followX = true;
+
     public void BeginFollow()
     {
-        m_follow = true;
-        m_positionLerp = false;
+        BeginFollowX();
+        BeginFollowY();
+    }    
+
+    public void BeginFollowX()
+    {
+        m_followX = true;
+    }
+
+    public void BeginFollowY()
+    {
+        m_followY = true;
     }
 
     public void StopFollow()
     {
-        m_follow = false;
+        StopFollowX();
+        StopFollowY();
+    }
+    public void StopFollowX()
+    {
+        m_followX = false;
     }    
+
+    public void StopFollowY()
+    {
+        m_followY = false;
+    }
 
     //set offsets
     public void SetYOffset(float setOffset)
@@ -192,14 +217,16 @@ public class CameraController : MonoBehaviour
     //private methods
     void Follow() //follows the player
     {
-        Vector3 position;
-        if (freezeYFollow)
+        Vector3 position = transform.position;
+
+        if (m_followX)
         {
-            position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+            position = new Vector3(player.transform.position.x, position.y, position.z);
         }
-        else
+
+        if (m_followY)
         {
-            position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+            position = new Vector3(position.x, player.transform.position.y, position.z);
         }
 
         if (player.transform.position.x > levelUpperLimit)

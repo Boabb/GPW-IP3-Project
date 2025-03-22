@@ -16,7 +16,8 @@ public enum SoundEffectEnum
     SuzanneExhale,
     SuzanneExert,
     LockedDoor,
-    ElevatorDoorOpenAndClose,
+    ElevatorDoorOpen,
+    ElevatorDoorClose,
     Marching
 }
 public enum VoiceOverEnum

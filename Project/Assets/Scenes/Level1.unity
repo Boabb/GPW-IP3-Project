@@ -2124,11 +2124,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!82 &637540016 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3113612781411206329, guid: cc9c739327dff9741b398f555a933366, type: 3}
-  m_PrefabInstance: {fileID: 870433201917545728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &638410997
 GameObject:
   m_ObjectHideFlags: 0
@@ -4482,38 +4477,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.data[10].name
       value: ElevatorDoorClose
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.data[11].name
+      value: Marching
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[6].reference
       value: 
-      objectReference: {fileID: 637540016}
+      objectReference: {fileID: 708879407}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[7].reference
       value: 
-      objectReference: {fileID: 708879407}
+      objectReference: {fileID: 768029583}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[8].reference
       value: 
-      objectReference: {fileID: 637540016}
-    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: AllSounds.Array.data[8].reference
-      value: 
-      objectReference: {fileID: 708879407}
+      objectReference: {fileID: 992048283}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[9].reference
       value: 
-      objectReference: {fileID: 768029583}
+      objectReference: {fileID: 2061738073}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[10].reference
       value: 
-      objectReference: {fileID: 2061738073}
+      objectReference: {fileID: 7929354863880904819}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.data[10].mixerGroup
+      value: 
+      objectReference: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.data[11].mixerGroup
       value: 
       objectReference: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
@@ -4537,11 +4536,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.data[11].audioSource
+      value: 
+      objectReference: {fileID: 992048283}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.data[9].clips.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.data[10].clips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.data[11].clips.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
@@ -4556,6 +4563,10 @@ PrefabInstance:
       propertyPath: SoundEffects.Array.data[10].clips.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: aaff37c9591f3c54fac8aeda05dfe60b, type: 3}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: SoundEffects.Array.data[11].clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6bd511855c1a7884198e847fbe13bebb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5480,7 +5491,7 @@ Transform:
   m_GameObject: {fileID: 1628978746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.56, y: -0.52305245, z: 0.14300053}
+  m_LocalPosition: {x: 15.94, y: -0.52305245, z: 0.14300053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5776,6 +5787,10 @@ PrefabInstance:
     - target: {fileID: 4029149514165341558, guid: c3fcb68e0943a9b428edcea9ec30bd01, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901823025249360231, guid: c3fcb68e0943a9b428edcea9ec30bd01, type: 3}
+      propertyPath: testimonyNumber
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7511,9 +7526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185e6edacd29bef4faa4598c81a5f648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_positionLerp: 0
-  m_zoomLerp: 0
-  m_follow: 1
   m_shake: 0
 --- !u!82 &2061738073 stripped
 AudioSource:

@@ -24,7 +24,6 @@ public class MarchingAutoEvent : AutoEvent
     {
         if(activated) return;
         AudioManager.PlaySoundEffect(SoundEffectEnum.Marching);
-        
     }
 
     public override void EventExit(GameObject playerGO)
