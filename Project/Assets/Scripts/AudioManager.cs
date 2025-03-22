@@ -16,7 +16,8 @@ public enum SoundEffectEnum
     SuzanneExhale,
     SuzanneExert,
     LockedDoor,
-    ElevatorDoorOpenAndClose
+    ElevatorDoorOpen,
+    ElevatorDoorClose
 }
 public enum VoiceOverEnum
 {
@@ -182,17 +183,17 @@ public class AudioManager : MonoBehaviour
         string[] bGMsAsStrings = Enum.GetNames(typeof(BackgroundMusicEnum));
         string[] soundEffectsAsStrings = Enum.GetNames(typeof(SoundEffectEnum));
 
-        for (int i = 0; i < voiceOversAsStrings.Length; i++)
+        for (int i = 0; i < VoiceOvers.Length; i++)
         {
             VoiceOvers[i].mixerGroup = VoiceOverMixerGroup;
             VoiceOvers[i].name = voiceOversAsStrings[i];
         }
-        for (int i = 0; i < bGMsAsStrings.Length; i++)
+        for (int i = 0; i < BackgroundMusics.Length; i++)
         {
             BackgroundMusics[i].mixerGroup = MusicMixerGroup;
             BackgroundMusics[i].name = bGMsAsStrings[i];
         }
-        for (int i = 0; i < soundEffectsAsStrings.Length; i++)
+        for (int i = 0; i < SoundEffects.Length; i++)
         {
             SoundEffects[i].mixerGroup = SoundEffectsMixerGroup;
             SoundEffects[i].name = soundEffectsAsStrings[i];
