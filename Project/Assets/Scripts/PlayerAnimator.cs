@@ -7,7 +7,6 @@ public class PlayerAnimator : MonoBehaviour
     PlayerData playerData;
     Animator playerAnimator;
     SpriteRenderer spriteRenderer;
-    public bool enteringElevator;
 
     private void Start()
     {
@@ -157,10 +156,10 @@ public class PlayerAnimator : MonoBehaviour
 
     public void PlayerElevatorEnter()
     {
-        if (!playerData.clinging)
+        if (!playerData.insideElevator)
         {
-            enteringElevator = true;
-            playerAnimator.SetBool("EnterElevator", true);
+            playerData.insideElevator = true;
+            playerAnimator.SetTrigger("EnterElevator");
 
             var temp = playerAnimator.GetCurrentAnimatorStateInfo(0).ToString();
             StartCoroutine(ElevatorAnimation(temp));
@@ -173,7 +172,7 @@ public class PlayerAnimator : MonoBehaviour
         {
             yield return null;
         }
-        enteringElevator = false;
-        playerData.clinging = false;
+        playerData.insideElevator = true;
+        playerData.shouldLimitMovement = false;
     }
 }

@@ -44,7 +44,7 @@ public class PlayerClimb : MonoBehaviour
     {
         if (climbType == ClimbType.Catch)
         {
-            playerData.clinging = true;
+            playerData.shouldLimitMovement = true;
 
             if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
             {
@@ -65,7 +65,7 @@ public class PlayerClimb : MonoBehaviour
         }
         else
         {
-            playerData.clinging = false;
+            playerData.shouldLimitMovement = false;
 
             if (climbType == ClimbType.Quick)
             {
@@ -144,7 +144,7 @@ public class PlayerClimb : MonoBehaviour
     void CatchClimb()
     {
         Debug.Log("CatchClimb");
-        playerData.clinging = true;
+        playerData.shouldLimitMovement = true;
         if (climbSide == ClimbSide.Left)
         {
             //animation left

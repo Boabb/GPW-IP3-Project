@@ -47,7 +47,8 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public float currentPlayerRBMass; //this is the mass of the player when it is moving an object (equal to the player mass plus the object mass)
     [HideInInspector] public bool pulling = false; //is the player currently pulling an object?
     [HideInInspector] public bool pushing = false; //is the player currently pushing an object?
-    [HideInInspector] public bool clinging = false; //is the player currently clinging onto an object?
+    [HideInInspector] public bool shouldLimitMovement = false; //should the player's movement currently be limited? i.e clinging onto an object, entering elevator etc.
+    [HideInInspector] public bool insideElevator = false; //is the player currently inside the elevator?
     [HideInInspector] public bool grounded = false; //is the player currently grounded?
     [HideInInspector] public bool crawling = false; //is the player currently crawling?
     [HideInInspector] public int animationNumber = 0; //what animation is currently trying to be active

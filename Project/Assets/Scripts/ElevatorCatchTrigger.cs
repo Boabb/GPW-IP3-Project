@@ -50,13 +50,12 @@ public class ElevatorCatchTrigger : MonoBehaviour
                 armchair = GameObject.FindGameObjectWithTag("Armchair").transform.parent.gameObject;
                 armchairRB = armchair.GetComponent<Rigidbody2D>();
             }
-            playerData.playerAnimator.PlayerElevatorEnter();
-            playerData.clinging = true;
-            playerData.playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            if (!playerData.playerAnimator.enteringElevator)
+            if (!playerData.insideElevator)
             {
-                UnFreezePlayer();
+                playerData.playerAnimator.PlayerElevatorEnter();
+                playerData.insideElevator = true;
+                playerData.playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             }
 
             else
@@ -67,7 +66,7 @@ public class ElevatorCatchTrigger : MonoBehaviour
         }
         else
         {
-            playerData.clinging = false;
+            playerData.insideElevator = false;
         }
     }
 

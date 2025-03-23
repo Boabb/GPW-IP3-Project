@@ -116,7 +116,10 @@ public class AudioManager : MonoBehaviour
 #endif
     private void OnSceneRefresh()
     {
-        AllSounds.Clear();
+        if (AllSounds != null)
+        {
+            AllSounds.Clear();
+        }
 
         var noOfSFXsInInspector = Enum.GetNames(typeof(SoundEffectEnum)).Length;
         var noOfBGMsInInspector = Enum.GetNames(typeof(BackgroundMusicEnum)).Length;
