@@ -42,7 +42,6 @@ public class MoveableObject : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) //should also specify here whether the player is moving in the direction in which pushing would also 
         {
-            //Set player to pushing state
         }
     }
 

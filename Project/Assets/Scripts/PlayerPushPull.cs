@@ -223,6 +223,14 @@ public class PlayerPushPull : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (currentPushPullObject == null)
+        {
+            AttachPushPullObject(collider);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider == currentPushPullObject)
