@@ -34,7 +34,7 @@ public class PlayerData : MonoBehaviour
     static SpriteRenderer PlayerSprite => PlayerAnimatorComponent.gameObject.GetComponent<SpriteRenderer>();
 
     //scripts
-    public PlayerAnimator playerAnimator;
+    public PlayerAnimation playerAnimator;
     public PlayerMovement playerMovement;
 
     //set in start

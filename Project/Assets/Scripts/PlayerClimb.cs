@@ -6,7 +6,7 @@ public class PlayerClimb : MonoBehaviour
 {
     PlayerData playerData; //I have moved this to a static variable in GameManager for easier access and consistency (Singleton pattern)
     Rigidbody2D playerRB;
-    PlayerAnimator playerAnimator;
+    PlayerAnimation playerAnimator;
     Coroutine climbingTask;
     Collider2D climbObjectCollider;
     ObjectTags currentClimbObjectTags;
@@ -89,7 +89,7 @@ public class PlayerClimb : MonoBehaviour
     IEnumerator ClimbUpObjectLeft()
     {
         playerAnimator.PlayerClimbUpLeft();
-        yield return new WaitForSeconds(playerData.climbAnimationClip.length * 1.2f);
+        yield return new WaitUntil(() => playerData.playerAnimatorComponent.GetInteger("AnimationNumber") != 9);
 
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
@@ -107,7 +107,7 @@ public class PlayerClimb : MonoBehaviour
     IEnumerator ClimbUpObjectRight()
     {
         playerAnimator.PlayerClimbUpRight();
-        yield return new WaitForSeconds(playerData.climbAnimationClip.length * 1.2f);
+        yield return new WaitUntil(() => playerData.playerAnimatorComponent.GetInteger("AnimationNumber") != 9);
 
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
@@ -117,7 +117,7 @@ public class PlayerClimb : MonoBehaviour
 
         playerData.playerSprite.gameObject.transform.position = Vector3.zero;
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x - offsetX, playerRB.gameObject.transform.position.y + offsetY);
-        //playerAnimator.PlayerIdle();
+        playerAnimator.PlayerIdle();
 
         climbingTask = null;
     }

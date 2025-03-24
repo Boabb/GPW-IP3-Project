@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 7611025018939487156}
   - component: {fileID: 1456820099601487006}
   - component: {fileID: 7870648954657162630}
-  - component: {fileID: 4606130778600714574}
+  - component: {fileID: 1515963672127951417}
   m_Layer: 15
   m_Name: Player (w_Physics)
   m_TagString: Player
@@ -226,6 +226,9 @@ MonoBehaviour:
   jumpForce: 400
   gravityForce: 25
   dragForce: 10
+  pushForce: 0
+  pullForce: 0
+  movementForce: 0
 --- !u!114 &7611025018939487156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +251,7 @@ MonoBehaviour:
   climbAnimationClip: {fileID: 7400000, guid: 5555743ccdf9a8e40b12fe1d2f47fa8f, type: 2}
   quickClimbAnimationClip: {fileID: 7400000, guid: df85337897d8d8646b7413ddaecdc235, type: 2}
   playerSprite: {fileID: 7614294576506648438}
-  playerAnimator: {fileID: 4606130778600714574}
+  playerAnimator: {fileID: 0}
   playerMovement: {fileID: 289016603007994097}
   playerLayer:
     serializedVersion: 2
@@ -257,7 +260,8 @@ MonoBehaviour:
   currentPlayerRBMass: 0
   pulling: 0
   pushing: 0
-  clinging: 0
+  shouldLimitMovement: 0
+  insideElevator: 0
   grounded: 0
   crawling: 0
   animationNumber: 0
@@ -301,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47aedef12ac4ba4f994b6e58f1b24b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4606130778600714574
+--- !u!114 &1515963672127951417
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,10 +314,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2116040391875107370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c98eff9e2762d054cab58cb3ec90a158, type: 3}
+  m_Script: {fileID: 11500000, guid: aade6aa8c4d57b942892f0e725a50f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enteringElevator: 0
 --- !u!1 &2557245870366520776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,7 +1309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955087458548789448}
   - component: {fileID: 3461528295405900189}
-  - component: {fileID: 2768229929244796961}
+  - component: {fileID: 1695527033846788314}
   m_Layer: 15
   m_Name: WalkingCollider
   m_TagString: Player
@@ -1374,7 +1377,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
---- !u!114 &2768229929244796961
+--- !u!114 &1695527033846788314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1383,11 +1386,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7523364886909989846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa17b6311469204bb5e1499e0a34348, type: 3}
+  m_Script: {fileID: 11500000, guid: ef9ff69bc9fa43b4594e762b438f45d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetX: 1
-  offsetY: 10
 --- !u!1 &7875826492110234324
 GameObject:
   m_ObjectHideFlags: 0

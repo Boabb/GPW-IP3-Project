@@ -6,7 +6,7 @@ public class PlayerPushPull : MonoBehaviour
 {
     PlayerData playerData;
     Collider2D triggerCollider;
-    PlayerAnimator playerAnimator;
+    PlayerAnimation playerAnimator;
 
     Collider2D currentPushPullObject;
     MoveableObject pushPullMoveableObject;
