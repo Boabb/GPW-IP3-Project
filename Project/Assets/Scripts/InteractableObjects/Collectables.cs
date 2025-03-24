@@ -13,6 +13,8 @@ public class Collectables : InteractableObject
     private GameObject currentPlayer;
     private Vector3 startPosition;
 
+    public VoiceOverEnum[] itemVoiceOvers;
+
     void Start()
     {
         startPosition = transform.position;
@@ -51,7 +53,17 @@ public class Collectables : InteractableObject
     {
         OnItemCollected?.Invoke(itemIndex);
         FindObjectOfType<PickupManager>().CollectItem(itemIndex);
-        AudioManager.PlayVoiceOverAudio(VoiceOverEnum.EmbroideredRoseCollectable);
-        Destroy(gameObject); // Removes the collectable from the scene
+
+        // Play the correct voice-over based on item index
+        if (itemIndex >= 0 && itemIndex < itemVoiceOvers.Length)
+        {
+            AudioManager.PlayVoiceOverAudio(itemVoiceOvers[itemIndex]);
+        }
+        else
+        {
+            Debug.LogWarning("Invalid item index for voice-over playback.");
+        }
+
+        Destroy(gameObject);
     }
 }
