@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ElevatorCatchTrigger : MonoBehaviour
 {
+    public static bool DisableColliders;
+
     PlayerData playerData;
     GameObject armchair;
     Rigidbody2D armchairRB;
+    EdgeCollider2D elevatorGround;
     private bool armchairInZone;
     private bool playerInZone;
 
@@ -42,7 +45,8 @@ public class ElevatorCatchTrigger : MonoBehaviour
                 else
                 {
                     ElevatorCatch();
-                    armchairRB.gameObject.transform.position = new Vector3(climbObjectCollider.bounds.center.x, playerData.playerRigidbody.gameObject.transform.position.y, playerData.playerRigidbody.gameObject.transform.position.z);
+                    var collider = armchair.GetComponent<BoxCollider2D>();
+                    armchairRB.gameObject.transform.position = new Vector3(climbObjectCollider.bounds.center.x, climbObjectCollider.bounds.center.y + collider.bounds.size.y/2, playerData.playerRigidbody.gameObject.transform.position.z);
                 }
             }   
             else
@@ -61,12 +65,34 @@ public class ElevatorCatchTrigger : MonoBehaviour
             else
             {
                 ElevatorCatch();
-                playerData.playerRigidbody.gameObject.transform.position = new Vector3(climbObjectCollider.bounds.center.x, playerData.playerRigidbody.gameObject.transform.position.y, playerData.playerRigidbody.gameObject.transform.position.z);
+                playerData.playerRigidbody.gameObject.transform.position = new Vector3(climbObjectCollider.bounds.center.x, climbObjectCollider.bounds.center.y + playerData.playerWalkingCollider.bounds.size.y/2, playerData.playerRigidbody.gameObject.transform.position.z);
+
             }
         }
         else
         {
             playerData.insideElevator = false;
+        }
+        if(ElevatorAutoEvent.ToBeEnabled != null)
+        {
+            if ((bool)ElevatorAutoEvent.ToBeEnabled)
+            {
+                playerInZone = false;
+                UnFreezePlayer();
+            }
+        }
+        if(DisableColliders)
+        {
+            if ((bool)ElevatorAutoEvent.ToBeEnabled)
+            {
+                playerInZone = false;
+                UnFreezePlayer();
+            }
+            var temp = transform.parent.GetComponentsInChildren<Collider2D>();
+            foreach (var collider in temp)
+            {
+                collider.enabled = false;
+            }
         }
     }
 

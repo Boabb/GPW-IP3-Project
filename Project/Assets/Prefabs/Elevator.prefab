@@ -1,5 +1,78 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &39679028750839256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7574753828391455367}
+  - component: {fileID: 367231437789548890}
+  m_Layer: 3
+  m_Name: GroundCollider
+  m_TagString: Armchair
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7574753828391455367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39679028750839256}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.68838066, y: -0.108233325, z: 0}
+  m_LocalScale: {x: 0.025114153, y: 0.012499999, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7201898654114949179}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &367231437789548890
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39679028750839256}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -6.245, y: 0}
+  - {x: 6.245, y: 0}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &250892381698950377
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,7 +88,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7201898654114949179
 Transform:
   m_ObjectHideFlags: 0
@@ -29,11 +102,13 @@ Transform:
   m_LocalScale: {x: 55.34728, y: 54.545456, z: 12.1457}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3451835243463504942}
   - {fileID: 2230212196219985592}
   - {fileID: 2881393291549234079}
   - {fileID: 2242883491749258897}
   - {fileID: 2002126869684017272}
   - {fileID: 5920986721013392722}
+  - {fileID: 7574753828391455367}
   m_Father: {fileID: 4884866027856633708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &649491576641882401
@@ -52,7 +127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4802090365800128064
 Transform:
   m_ObjectHideFlags: 0
@@ -62,7 +137,7 @@ Transform:
   m_GameObject: {fileID: 649491576641882401}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.72, y: 0, z: 0}
+  m_LocalPosition: {x: -6.23, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -482,7 +557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8660258156340532256
 Transform:
   m_ObjectHideFlags: 0
@@ -492,7 +567,7 @@ Transform:
   m_GameObject: {fileID: 3258875493836945287}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.12, y: 0, z: 0}
+  m_LocalPosition: {x: 7.82, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -664,7 +739,6 @@ Transform:
   - {fileID: 4789147200553584614}
   - {fileID: 1140537003831454791}
   - {fileID: 3888682181503601765}
-  - {fileID: 3451835243463504942}
   - {fileID: 4657345851424678213}
   - {fileID: 7201898654114949179}
   m_Father: {fileID: 0}
@@ -754,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6fcb1181127444a9ee5e4f40809f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeParentObject: {fileID: 0}
+  gameObjectsToBeEnabled: {fileID: 0}
   openCloseAnimator: {fileID: 1445593825551128062}
   elevatorOpen: 1
   elevatorEnterableStateName: Elevator Open
@@ -923,14 +997,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5289678970412271692}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.68838066, y: 0.06666666, z: 0}
+  m_LocalScale: {x: 0.018067736, y: 0.018333334, z: 0.08233366}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4802090365800128064}
   - {fileID: 8660258156340532256}
-  m_Father: {fileID: 4884866027856633708}
+  m_Father: {fileID: 7201898654114949179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5790524519895142122
 GameObject:
@@ -1250,8 +1324,8 @@ MonoBehaviour:
   fadeObject:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 4613723016046478097}
-  - {fileID: 6391755872806277586}
+  - {fileID: 0}
+  - {fileID: 0}
   fadeScalar: 0.5
 --- !u!114 &5097865946596941344
 MonoBehaviour:

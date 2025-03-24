@@ -9,6 +9,8 @@ TagManager:
   - Collectable
   - VentFade
   - Armchair
+  - UpperLevelSection
+  - LowerLevelSection
   layers:
   - Default
   - TransparentFX

@@ -25,6 +25,7 @@ public class FadeInAutoEvent : AutoEvent
     {
         if (fade)
         {
+            StartCoroutine(GameManager.TransitionToOutsideSection(12f));
             Debug.Log("CurrentFade: " + currentFadeAmount);
             if (currentFadeAmount >= 1)
             {
@@ -66,5 +67,6 @@ public class FadeInAutoEvent : AutoEvent
     public override void EventEnter(GameObject playerGO)
     {
         fade = true;
+
     }
 }

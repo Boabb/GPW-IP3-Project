@@ -7,7 +7,7 @@ using UnityEngine;
 public class ElevatorAutoEvent : AutoEvent
 {
     public static bool? ToBeEnabled;
-    //[SerializeField] private GameObject fadeParentObject;
+    [SerializeField] private GameObject gameObjectsToBeEnabled;
     public Animator openCloseAnimator;
     public bool elevatorOpen;
     public string elevatorEnterableStateName = "ElevatorOpen";
@@ -23,7 +23,7 @@ public class ElevatorAutoEvent : AutoEvent
     {
         if(ToBeEnabled != null)
         {
-            //fadeParentObject.SetActive((bool)ToBeEnabled);
+            gameObjectsToBeEnabled.SetActive((bool)ToBeEnabled);
         }
         if (openCloseAnimator != null)
         {
@@ -36,6 +36,6 @@ public class ElevatorAutoEvent : AutoEvent
     }
     public override void EventExit(GameObject playerGO)
     {
-        //fadeParentObject.SetActive(false);
+        gameObjectsToBeEnabled.SetActive(false);
     }
 }
