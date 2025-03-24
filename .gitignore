@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Project/Packages/com.merry-yellow.code-assist/Editor/ExternalReferences/Meryel.UnityCodeAssist.RoslynAnalyzerManager.dll
+Project/Packages/com.merry-yellow.code-assist/Editor/ExternalReferences/Meryel.UnityCodeAssist.YamlDotNet.dll.meta
+Project/Packages/com.merry-yellow.code-assist/Editor/Preferences/PreferenceStorageAccessor.cs

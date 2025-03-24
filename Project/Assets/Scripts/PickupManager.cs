@@ -1,25 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickupManager : MonoBehaviour
 {
-    public GameObject[] items; // Array of collectible items
-    private bool[] itemActive;  // Array to track if items are collected
+    public GameObject[] items;
+    public Material grayscaleMaterial;
+    private Material defaultMaterial;
+    private bool[] itemActive;
+
+    public VoiceOverEnum[] itemVoiceOvers;
 
     void Start()
     {
         // Optional: Uncomment to clear PlayerPrefs during testing
         PlayerPrefs.DeleteAll(); 
 
-        itemActive = new bool[items.Length]; // Initialize the tracking array
+        itemActive = new bool[items.Length];
+
         for (int i = 0; i < items.Length; i++)
         {
-            // Get the collected state of each item
-            int collectedState = PlayerPrefs.GetInt("ItemCollected_" + i, 0); // Default to 0 if key doesn't exist
-            itemActive[i] = collectedState == 1; // true if collected
-            items[i].SetActive(itemActive[i]); // Set item active if collected
-            Debug.Log($"Item {i} collected state: {collectedState}, active: {itemActive[i]}");
+            int collectedState = PlayerPrefs.GetInt("ItemCollected_" + i, 0);
+            itemActive[i] = collectedState == 1;
+
+            
+            items[i].SetActive(true);
+
+            Image imageComponent = items[i].GetComponentInChildren<Image>();
+            Button buttonComponent = items[i].GetComponentInChildren<Button>(); // Find the Button component
+
+            if (imageComponent != null)
+            {
+                // Store the default material only once
+                if (defaultMaterial == null)
+                {
+                    defaultMaterial = imageComponent.material;
+                }
+
+                // Apply the appropriate material based on collected state
+                imageComponent.material = itemActive[i] ? defaultMaterial : grayscaleMaterial;
+            }
+            else
+            {
+                Debug.LogWarning($"No Image component found on {items[i].name} or its children!");
+            }
+
+            // Enable or disable button interaction based on collected state
+            if (buttonComponent != null)
+            {
+                buttonComponent.interactable = itemActive[i];
+            }
+            else
+            {
+                Debug.LogWarning($"No Button component found on {items[i].name} or its children!");
+            }
         }
     }
 
@@ -28,18 +63,33 @@ public class PickupManager : MonoBehaviour
         if (!itemActive[itemIndex]) // If the item has not been collected yet
         {
             itemActive[itemIndex] = true; // Mark the item as collected
-            PlayerPrefs.SetInt("ItemCollected_" + itemIndex, 1); // Save the collected state
-            items[itemIndex].SetActive(true); // Enable the item in the game
-            Debug.Log($"Item {itemIndex} collected and saved.");
-        }
-        else
-        {
-            Debug.Log($"Item {itemIndex} already collected. Current state: {PlayerPrefs.GetInt("ItemCollected_" + itemIndex, 0)}");
+            PlayerPrefs.SetInt("ItemCollected_" + itemIndex, 1); // Save state
+            PlayerPrefs.Save(); // Ensure data is written immediately
+
+            Image imageComponent = items[itemIndex].GetComponentInChildren<Image>();
+            Button buttonComponent = items[itemIndex].GetComponentInChildren<Button>();
+
+            if (imageComponent != null)
+            {
+                imageComponent.material = defaultMaterial;
+            }
+
+            if (buttonComponent != null)
+            {
+                buttonComponent.interactable = true;
+            }
         }
     }
 
-    public void buttonPress()
+    public void ButtonPress(int itemIndex)
     {
-        AudioManager.PlayVoiceOverAudio(VoiceOverEnum.EmbroideredRoseCollectable, 5);
+        if (itemIndex >= 0 && itemIndex < itemVoiceOvers.Length)
+        {
+            AudioManager.PlayVoiceOverAudio(itemVoiceOvers[itemIndex], 5);
+        }
+        else
+        {
+            Debug.LogWarning("Invalid item index or voice-over not assigned.");
+        }
     }
 }
