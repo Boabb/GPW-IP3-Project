@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(elevatorSectionPeriod / 2);
 
-        ElevatorCatchTrigger.DisableColliders = true;
+        //ElevatorCatchTrigger.DisableColliders = true;
 
     }
 }

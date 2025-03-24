@@ -22,7 +22,7 @@ public class FadeOutAutoEvent : AutoEvent
     {
         if (fade)
         {
-            Debug.Log("CurrentFade: " + currentFadeAmount);
+            //Debug.Log("CurrentFade: " + currentFadeAmount);
             if (currentFadeAmount >= 1)
             {
                 currentFadeAmount = 0;

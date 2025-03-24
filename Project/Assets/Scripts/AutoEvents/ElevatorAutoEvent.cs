@@ -6,36 +6,149 @@ using UnityEngine;
 
 public class ElevatorAutoEvent : AutoEvent
 {
-    public static bool? ToBeEnabled;
-    [SerializeField] private GameObject gameObjectsToBeEnabled;
+    [SerializeField] Collider2D armChair;
+    Collider2D elevatorCollider;
+    PlayerData playerData;
     public Animator openCloseAnimator;
-    public bool elevatorOpen;
-    public string elevatorEnterableStateName = "ElevatorOpen";
-    public void Awake()
+
+    int stage = 0;
+    bool stageActive = false;
+
+    float stage3Count = 5f;
+    float stage3Subtractor = 0.5f;
+    bool stage3End = false;
+    [SerializeField] SpriteRenderer[] elevatorRenderers;
+    //[SerializeField] SpriteRenderer[] fadeRenderers;
+    [SerializeField] FadeInAutoEvent fadeIn;
+    [SerializeField] FadeOutAutoEvent fadeOut;
+    [SerializeField] AudioSource testimonyAudioSource;
+    CameraController camCon;
+
+    private void Start()
     {
-        openCloseAnimator = GetComponent<Animator>();
+        playerData = GameManager.playerData;
+        camCon = GameManager.mainCamera.GetComponent<CameraController>();
+        elevatorCollider = gameObject.GetComponent<Collider2D>();
     }
-    public override void EventEnter(GameObject playerGO)
+
+    private void Update()
     {
-        openCloseAnimator.SetTrigger("Open/Close");
+        switch (stage)
+        {
+            case 0:
+                break;
+            case 1:
+                if (!stageActive)
+                {
+                    playerData.FreezePlayer();
+
+                    //doors open
+                    openCloseAnimator.SetTrigger("Open/Close");
+                    stageActive = true;
+                }
+
+                if (openCloseAnimator.GetCurrentAnimatorStateInfo(0).IsName("Elevator Open"))
+                {
+                    openCloseAnimator.ResetTrigger("Open/Close");
+                    stage = 2;
+                    stageActive = false;
+                }
+                break;
+            case 2:
+                //zoom, doors close,
+                if (!stageActive)
+                {
+                    //puts the doors and the elevator front into the foreground
+                    for (int i = 0; i < elevatorRenderers.Length; i++)
+                    {
+                        elevatorRenderers[i].sortingLayerID = SortingLayer.NameToID("Foreground");
+                    }
+
+                    openCloseAnimator.SetTrigger("Open/Close");
+                    camCon.LerpToZoom(0.5f, 1.6f);
+                    camCon.LerpToPositionY(0.5f, 0.35f);
+                    stageActive = true;
+                }
+                
+                if (openCloseAnimator.GetCurrentAnimatorStateInfo(0).IsName("Elevator Closed"))
+                {
+                    openCloseAnimator.ResetTrigger("Open/Close");
+                    stage = 3;
+                    stageActive = false;
+                }
+                break;
+            case 3:
+                if (!stageActive)
+                {
+                    fadeIn.EventEnter(playerData.gameObject);
+                    stageActive = true;
+                }
+                //fade, shake and lift details move, continue until testimony is complete
+                camCon.StartShake(1, 0.05f, 1);
+                stage3Count -= stage3Subtractor * Time.deltaTime;
+
+                if (stage3Count < 0)
+                {
+                    stage3End = true;
+                }
+
+                if (!testimonyAudioSource.isPlaying && stage3End)
+                {
+                    stage = 4;
+                    stageActive = false;
+                }
+                break;
+            case 4:
+                //ding effect, doors open, fade, undo zoom
+                if (!stageActive)
+                {
+                    openCloseAnimator.SetTrigger("Open/Close");
+                    fadeOut.EventEnter(playerData.gameObject);
+                    camCon.LerpToPositionY(0.5f);
+                    stageActive = true;
+                }
+
+                if (openCloseAnimator.GetCurrentAnimatorStateInfo(0).IsName("Elevator Open"))
+                {
+                    openCloseAnimator.ResetTrigger("Open/Close");
+                    stage = 5;
+                    stageActive = false;
+                }
+                break;
+            case 5:
+                //doors and lift go back to background, player unfreezes
+                if (!stageActive)
+                {
+                    playerData.UnfreezePlayer();
+                    camCon.LerpToZoom(0.5f);
+                    openCloseAnimator.SetTrigger("Open/Close");
+
+                    for (int i = 0; i < elevatorRenderers.Length; i++)
+                    {
+                        elevatorRenderers[i].sortingLayerID = SortingLayer.NameToID("Background");
+                    }
+
+                    stageActive = true;
+                }
+
+                if (openCloseAnimator.GetCurrentAnimatorStateInfo(0).IsName("Elevator Closed"))
+                {
+                    openCloseAnimator.ResetTrigger("Open/Close");
+                    stage = 6;
+                    stageActive = false;
+                }
+                //doors close
+                break;
+            default:
+                break;
+        }
     }
+
     public override void EventStay(GameObject playerGO)
     {
-        if(ToBeEnabled != null)
+        if (elevatorCollider.bounds.Intersects(armChair.bounds) && stage == 0)
         {
-            gameObjectsToBeEnabled.SetActive((bool)ToBeEnabled);
+            stage = 1;
         }
-        if (openCloseAnimator != null)
-        {
-
-            if (openCloseAnimator.GetCurrentAnimatorStateInfo(0).IsName(elevatorEnterableStateName))
-            {
-                elevatorOpen = true;
-            }
-        }
-    }
-    public override void EventExit(GameObject playerGO)
-    {
-        gameObjectsToBeEnabled.SetActive(false);
     }
 }

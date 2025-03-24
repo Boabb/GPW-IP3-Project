@@ -21,8 +21,8 @@ public class AnimatorPlayerMovement : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        ElevatorAutoEvent.ToBeEnabled = true;
-        GameManager.cameraController.m_shake = true;
+        //ElevatorAutoEvent.ToBeEnabled = true;
+        //GameManager.cameraController.m_shake = true;
         FadeInAutoEvent.TriggerFade();
     }
 

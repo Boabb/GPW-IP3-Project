@@ -73,16 +73,16 @@ public class PlayerData : MonoBehaviour
     }
     private void Start()
     {
-
-
         playerLayer = LayerMask.GetMask("Player");
-
-        currentPlayerRBMass = playerRBMass;
-        playerRigidbody.mass = currentPlayerRBMass;
     }
 
-    private void Update()
+    public void FreezePlayer()
     {
-        playerRigidbody.mass = currentPlayerRBMass;
+        PlayerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public void UnfreezePlayer()
+    {
+        PlayerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
