@@ -82,6 +82,7 @@ public class ElevatorAutoEvent : AutoEvent
                 {
                     fadeIn.EventEnter(playerData.gameObject);
                     stageActive = true;
+                    StartCoroutine(GameManager.TransitionToOutsideSection(4));
                 }
                 //fade, shake and lift details move, continue until testimony is complete
                 camCon.StartShake(1, 0.05f, 1);

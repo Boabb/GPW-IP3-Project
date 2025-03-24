@@ -586,7 +586,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7929354863880904820}
   - {fileID: 2061950450}
   - {fileID: 1717218609}
   - {fileID: 150125565}
@@ -4721,7 +4720,6 @@ Transform:
   m_Children:
   - {fileID: 267335475}
   - {fileID: 269048661}
-  - {fileID: 1150019329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938279479
@@ -5811,7 +5809,7 @@ GameObject:
   - component: {fileID: 1150019328}
   - component: {fileID: 1150019327}
   m_Layer: 0
-  m_Name: sky
+  m_Name: Skybox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5875,7 +5873,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 80, y: 30.000002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -5891,11 +5889,11 @@ Transform:
   m_GameObject: {fileID: 1150019326}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57.79, y: -1.44, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 76.78, y: -1.44, z: 0}
+  m_LocalScale: {x: 3.4536, y: 3.4536, z: 3.4536}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 935026658}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1151073621
 GameObject:
@@ -6111,6 +6109,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1238314843 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1515963672127951417, guid: cc9c739327dff9741b398f555a933366, type: 3}
+  m_PrefabInstance: {fileID: 870433201917545728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aade6aa8c4d57b942892f0e725a50f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1244436548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10295,6 +10304,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 1238314843}
+    - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: climbAnimationClip
       value: 
       objectReference: {fileID: 7400000, guid: 7951493f136d3ac499abde2ace95f2c2, type: 2}
@@ -10395,7 +10408,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151902671}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 39679028750839256, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
       propertyPath: m_IsActive
@@ -10495,7 +10508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4884866027856633708, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.97
+      value: 46.07
       objectReference: {fileID: 0}
     - target: {fileID: 4884866027856633708, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10861,7 +10874,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 340233280}
+  - {fileID: 1150019329}
   - {fileID: 1244436548}
+  - {fileID: 7929354863880904816}
   - {fileID: 669356773}
   - {fileID: 935026658}
   - {fileID: 280706847}
