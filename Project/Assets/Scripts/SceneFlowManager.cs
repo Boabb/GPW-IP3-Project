@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class SceneFlowManager : MonoBehaviour
 {
@@ -14,7 +17,14 @@ public class SceneFlowManager : MonoBehaviour
     {
         "Scene 0, no context scene",
         "Scene 1, no context scene",
-        "During the German occupation of Hungary in 1944, Budapest's Jewish community faced unprecedented persecution under the alliance between Nazi Germany and the Arrow Cross Party. Before the occupation, Hungarian Jews had been subject to increasing antisemitic laws, but their situation drastically worsened after March 19, when German forces took control. Jewish families were forced into marked “starred houses” and subjected to strict curfews, food shortages, and constant fear of deportation. Despite these hardships, Budapest remained a centre of Jewish resilience, with individuals and organizations—such as diplomats like Raoul Wallenberg—working to provide refuge and forged documents to save lives in the final months of the war.",
+        "During the German occupation of Hungary in 1944, Budapest's Jewish community faced " +
+        "unprecedented persecution under the alliance between Nazi Germany and the Arrow Cross Party. " +
+        "Before the occupation, Hungarian Jews had been subject to increasing antisemitic laws, but their " +
+        "situation drastically worsened after March 19, when German forces took control. Jewish families " +
+        "were forced into marked “starred houses” and subjected to strict curfews, food shortages, and " +
+        "constant fear of deportation. Despite these hardships, Budapest remained a centre of Jewish " +
+        "resilience, with individuals and organizations—such as diplomats like Raoul Wallenberg—working " +
+        "to provide refuge and forged documents to save lives in the final months of the war.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " +
         "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit " +
         "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
@@ -86,4 +96,97 @@ public class SceneFlowManager : MonoBehaviour
         }
         return "Get ready for the next challenge!";
     }
+
+    private List<string> SplitTextIntoChunks(string text)
+    {
+        List<string> chunks = new List<string>();
+
+        // Split text while keeping punctuation
+        string[] sentences = text.Split(new[] { ".", "!", "?" }, System.StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string sentence in sentences)
+        {
+            string trimmedSentence = sentence.Trim();
+            if (!string.IsNullOrEmpty(trimmedSentence))
+            {
+                chunks.Add(trimmedSentence + "."); // Re-add punctuation
+            }
+        }
+
+        return chunks;
+    }
+
+    private List<string> currentTextChunks;
+    private int currentChunkIndex = 0;
+    private TextMeshProUGUI currentUIText;
+
+    public void StartDisplayingText(TextMeshProUGUI uiText)
+    {
+        currentUIText = uiText;
+        string message = GetContextMessage();
+        currentTextChunks = SplitTextIntoChunks(message);
+        currentChunkIndex = 0;
+
+        if (currentTextChunks.Count > 0)
+        {
+            currentUIText.text = currentTextChunks[currentChunkIndex];
+        }
+    }
+
+    public void ShowNextSentence()
+    {
+        if (currentTextChunks == null || currentUIText == null) return;
+
+        StartCoroutine(FadeTextOutAndChange());
+    }
+
+    private IEnumerator FadeTextOutAndChange()
+    {
+        // Fade out
+        yield return StartCoroutine(FadeTextAlpha(0f, 0.5f));
+
+        currentChunkIndex++;
+
+        if (currentChunkIndex < currentTextChunks.Count)
+        {
+            // Change the text
+            currentUIText.text = currentTextChunks[currentChunkIndex];
+
+            // Fade in
+            yield return StartCoroutine(FadeTextAlpha(1f, 0.5f));
+        }
+        else
+        {
+            // Fade out and load the next scene
+            yield return StartCoroutine(FadeTextAlpha(0f, 0.5f));
+            int nextLevelIndex = PlayerPrefs.GetInt("NextLevel", 1);
+            LoadScene(nextLevelIndex);
+        }
+    }
+
+    private IEnumerator FadeTextAlpha(float targetAlpha, float duration)
+    {
+        float startAlpha = currentUIText.color.a;
+        float time = 0;
+        Color textColor = currentUIText.color;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            textColor.a = Mathf.Lerp(startAlpha, targetAlpha, time / duration);
+            currentUIText.color = textColor;
+            yield return null;
+        }
+
+        textColor.a = targetAlpha;
+        currentUIText.color = textColor;
+    }
+
+    // Function to call the coroutine from other scripts
+    public void DisplayContextMessage(TextMeshProUGUI uiText)
+    {
+        string message = GetContextMessage();
+        StartDisplayingText(uiText);
+    }
+
 }

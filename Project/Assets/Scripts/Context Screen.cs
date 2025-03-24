@@ -1,39 +1,37 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class ContextScreen : MonoBehaviour
 {
     public TextMeshProUGUI contextText;
     public CanvasGroup canvasGroup;
-    public float displayTime = 5f;
     public float fadeDuration = 1f;
 
     private void Start()
     {
         // Get the context message and display it
-        contextText.text = SceneFlowManager.Instance.GetContextMessage();
+        SceneFlowManager.Instance.StartDisplayingText(contextText);
 
-        // Start the process of displaying and loading the next level
-        StartCoroutine(DisplayAndLoadNextLevel());
+        // Start fade-in
+        StartCoroutine(FadeCanvasGroup(1, fadeDuration));
     }
 
-    private IEnumerator DisplayAndLoadNextLevel()
+    public void ProceedToNextScene()
     {
-        // Fade in the canvas group
-        yield return StartCoroutine(FadeCanvasGroup(1, fadeDuration));
+        // Start fade-out and load next scene
+        StartCoroutine(FadeOutAndLoadScene());
+    }
 
-        // Wait for the display time
-        yield return new WaitForSeconds(displayTime);
-
-        // Fade out the canvas group
+    private IEnumerator FadeOutAndLoadScene()
+    {
         yield return StartCoroutine(FadeCanvasGroup(0, fadeDuration));
 
         // Retrieve the next level index stored in PlayerPrefs
         int nextLevelIndex = PlayerPrefs.GetInt("NextLevel", 1);
 
-        // Load the next level (this can be the actual gameplay scene)
+        // Load the next level
         SceneFlowManager.Instance.LoadScene(nextLevelIndex);
     }
 
