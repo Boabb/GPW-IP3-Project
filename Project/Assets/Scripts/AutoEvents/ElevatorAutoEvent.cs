@@ -32,6 +32,10 @@ public class ElevatorAutoEvent : AutoEvent
             {
                 elevatorOpen = true;
             }
+            else
+            {
+                elevatorOpen = false;
+            }
         }
     }
     public override void EventExit(GameObject playerGO)

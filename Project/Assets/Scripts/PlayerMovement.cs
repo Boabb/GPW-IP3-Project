@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            playerData.playerAnimator.PlayerIdle();
+            //playerData.playerAnimator.PlayerIdle();
             AudioManager.StopSoundEffect(SoundEffectEnum.WoodenFootsteps);
         }
 

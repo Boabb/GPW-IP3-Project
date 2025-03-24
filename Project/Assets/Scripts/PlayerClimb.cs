@@ -7,7 +7,7 @@ public class PlayerClimb : MonoBehaviour
     PlayerData playerData; //I have moved this to a static variable in GameManager for easier access and consistency (Singleton pattern)
     Rigidbody2D playerRB;
     PlayerAnimator playerAnimator;
-
+    Coroutine climbingTask;
     Collider2D climbObjectCollider;
     ObjectTags currentClimbObjectTags;
     ClimbSide climbSide;
@@ -36,27 +36,32 @@ public class PlayerClimb : MonoBehaviour
         playerData = GetComponentInParent<PlayerData>();
         playerRB = playerData.playerRigidbody;
         playerAnimator = playerData.playerAnimator;
+        climbingTask = null;
         climbType = ClimbType.None;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (climbType == ClimbType.Catch)
         {
             playerData.shouldLimitMovement = true;
 
-            if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
+            if (SystemSettings.tapRight && climbSide == ClimbSide.Left && climbingTask == null)
             {
-                ClimbUpObjectLeft();
+                climbingTask = StartCoroutine(ClimbUpObjectLeft());
             }
-            else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
+            else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right && climbingTask == null)
             {
-                ClimbUpObjectRight();
+                climbingTask = StartCoroutine(ClimbUpObjectRight());
             }
             else if ((SystemSettings.tapRight && climbSide == ClimbSide.Right) || (SystemSettings.tapLeft && climbSide == ClimbSide.Left))
             {
                 LetGoOfObject();
+            }
+            else if(climbingTask != null)
+            {
+
             }
             else
             {
@@ -81,8 +86,11 @@ public class PlayerClimb : MonoBehaviour
         }
     }
 
-    void ClimbUpObjectLeft()
+    IEnumerator ClimbUpObjectLeft()
     {
+        playerAnimator.PlayerClimbUpLeft();
+        yield return new WaitForSeconds(playerData.climbAnimationClip.length * 1.2f);
+
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
@@ -90,7 +98,28 @@ public class PlayerClimb : MonoBehaviour
         //add animation and delay for animation
 
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x  + offsetX, playerRB.gameObject.transform.position.y + offsetY);
+        playerData.playerSprite.gameObject.transform.position = Vector3.zero;
         playerAnimator.PlayerIdle();
+
+        climbingTask = null;
+    }
+
+    IEnumerator ClimbUpObjectRight()
+    {
+        playerAnimator.PlayerClimbUpRight();
+        yield return new WaitForSeconds(playerData.climbAnimationClip.length * 1.2f);
+
+        playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+        climbSide = ClimbSide.None;
+        climbType = ClimbType.None;
+
+        //add animation and delay for animation
+
+        playerData.playerSprite.gameObject.transform.position = Vector3.zero;
+        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x - offsetX, playerRB.gameObject.transform.position.y + offsetY);
+        //playerAnimator.PlayerIdle();
+
+        climbingTask = null;
     }
 
     void QuickClimbLeft()
@@ -101,18 +130,6 @@ public class PlayerClimb : MonoBehaviour
         //add animation and delay for animation
 
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x + offsetX, playerRB.gameObject.transform.position.y + climbObjectCollider.bounds.size.y);
-        playerAnimator.PlayerIdle();
-    }
-
-    void ClimbUpObjectRight()
-    {
-        playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
-        climbSide = ClimbSide.None;
-        climbType = ClimbType.None;
-
-        //add animation and delay for animation
-
-        playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x - offsetX, playerRB.gameObject.transform.position.y + offsetY);
         playerAnimator.PlayerIdle();
     }
 
