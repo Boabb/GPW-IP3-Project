@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 388392839}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -359.76, y: -421.98, z: -6.8567}
+  m_LocalPosition: {x: 1006.23987, y: 602.0199, z: -6.8566995}
   m_LocalScale: {x: 2.7541327, y: 2.7541327, z: 2.7541327}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -157,7 +157,7 @@ Transform:
   - {fileID: 805822237}
   - {fileID: 1094928577}
   - {fileID: 770047774}
-  m_Father: {fileID: 758433342}
+  m_Father: {fileID: 1777014189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &425178254
 GameObject:
@@ -415,7 +415,6 @@ RectTransform:
   m_Children:
   - {fileID: 1833415035}
   - {fileID: 951655177}
-  - {fileID: 388392840}
   - {fileID: 1777014189}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1131,9 +1130,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 7470802648963414678, guid: 993fca9f01214e94283557cef427c18a, type: 3}
+      propertyPath: useSceneFlowManager
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 814773832425083691, guid: 993fca9f01214e94283557cef427c18a, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 388392840}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 993fca9f01214e94283557cef427c18a, type: 3}
 --- !u!1 &1777014188 stripped

@@ -130,6 +130,13 @@ public class SceneFlowManager : MonoBehaviour
         if (currentTextChunks.Count > 0)
         {
             currentUIText.text = currentTextChunks[currentChunkIndex];
+
+            // Show the appropriate sprite for this sentence
+            ContextScreen contextScreen = FindObjectOfType<ContextScreen>(); // Get the ContextScreen instance
+            if (contextScreen != null)
+            {
+                contextScreen.UpdateSpriteForSentence(currentChunkIndex); // Pass the current sentence index
+            }
         }
     }
 
@@ -151,6 +158,13 @@ public class SceneFlowManager : MonoBehaviour
         {
             // Change the text
             currentUIText.text = currentTextChunks[currentChunkIndex];
+
+            // Update the sprite based on the sentence index
+            ContextScreen contextScreen = FindObjectOfType<ContextScreen>();
+            if (contextScreen != null)
+            {
+                contextScreen.UpdateSpriteForSentence(currentChunkIndex); // Pass the updated sentence index
+            }
 
             // Fade in
             yield return StartCoroutine(FadeTextAlpha(1f, 0.5f));

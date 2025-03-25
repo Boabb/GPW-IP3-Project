@@ -1,48 +1,68 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+    [Header("Transition Settings")]
     public Animator transition; // Animator for the transition animation
     public float transitionTime = 1f; // Duration for the transition effect
 
-    // This method can be triggered to load the next level
+    [Header("Loading Options")]
+    public bool useSceneFlowManager = true; // Toggle in Inspector to choose method
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Something entered the trigger: " + other.gameObject.name); // Debug Log
+
+        // Check if the object entering the collider is the player
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player entered the trigger!"); // Debug Log
+            LoadNextLevel();
+        }
+    }
+
     public void LoadNextLevel()
     {
-        // Start the transition and then load the level
+        Debug.Log("Loading next level..."); // Debug Log
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    // Coroutine to handle the transition effect and scene loading
-    public IEnumerator LoadLevel(int levelIndex)
+    private IEnumerator LoadLevel(int levelIndex)
     {
+        Debug.Log("Playing transition animation..."); // Debug Log
+
         // Trigger the transition animation
-        transition.SetTrigger("Start");
+        if (transition != null)
+        {
+            transition.SetTrigger("Start");
+        }
+        else
+        {
+            Debug.LogWarning("No transition animator assigned!");
+        }
 
         // Wait for the transition animation to finish
         yield return new WaitForSeconds(transitionTime);
 
-        // Now call the SceneFlowManager to load the next level
-        // This will trigger the context screen and load the level after it's done
-        SceneFlowManager.Instance.LoadNextLevel();
-    }
-
-    internal void TransitionToMainMenu()
-    {
-        StartCoroutine(Invoke());
-    }
-
-    private IEnumerator Invoke()
-    {
-        yield return new WaitForSeconds(transitionTime);
-        // Trigger the transition animation
-        transition.SetTrigger("Start");
-
-        // Wait for the transition animation to finish
-        yield return new WaitForSeconds(GameManager.levelLoader.transitionTime);
-
-        GameManager.pauseMenuManager.MainMenu();
+        // Decide whether to use SceneFlowManager or load directly
+        if (useSceneFlowManager)
+        {
+            if (SceneFlowManager.Instance != null)
+            {
+                Debug.Log("Using SceneFlowManager to load the next level...");
+                SceneFlowManager.Instance.LoadNextLevel();
+            }
+            else
+            {
+                Debug.LogError("SceneFlowManager.Instance is null! Cannot load scene.");
+            }
+        }
+        else
+        {
+            Debug.Log("Directly loading menu ");
+            SceneManager.LoadScene(0);
+        }
     }
 }
