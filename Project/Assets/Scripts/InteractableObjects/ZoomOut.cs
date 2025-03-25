@@ -14,7 +14,7 @@ public class ZoomOut : InteractableObject
 
     public override void Interaction(GameObject playerGO)
     {
-        playerGO.GetComponentInParent<PlayerData>().customPlayerVelocity = -50;
+        playerGO.GetComponentInParent<PlayerData>().customPlayerVelocity = -40;
         camCon.LerpToZoom(0.1f, 8.5f);
         camCon.LerpToPositionY(0.1f, 6.15f);
     }

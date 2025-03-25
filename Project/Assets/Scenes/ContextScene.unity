@@ -506,7 +506,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 38}
-  m_SizeDelta: {x: 500, y: 200}
+  m_SizeDelta: {x: 570, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &826739952
 MonoBehaviour:
@@ -713,7 +713,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65.5
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 4096
+  m_VerticalAlignment: 2048
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -779,8 +779,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -6}
-  m_SizeDelta: {x: -100, y: -100}
+  m_AnchoredPosition: {x: 0, y: -138.73317}
+  m_SizeDelta: {x: -100, y: -393.4655}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1748337687
 GameObject:
@@ -1077,9 +1077,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 2129123488}
   fadeDuration: 1
   contextSprites:
-  - {fileID: 21300000, guid: 14a2e53ff66eda7458849ddd29c78e53, type: 3}
-  - {fileID: 21300000, guid: b3657e22cb77a8f44a98e1bbd85afed2, type: 3}
-  - {fileID: 21300000, guid: 2502da0ba6026944f9bc2e44a151b262, type: 3}
+  - {fileID: 21300000, guid: d5c9cffc2e404644dbd63242356ba8e7, type: 3}
+  - {fileID: 21300000, guid: a8a940ba9c390cb48a8b28d2891613d6, type: 3}
+  - {fileID: 21300000, guid: 18d6aee3c3ced8b4bb6cd5e0c1b3ca13, type: 3}
   spriteDurations: 010000000100000002000000
   contextImage: {fileID: 826739952}
 --- !u!1660057539 &9223372036854775807
