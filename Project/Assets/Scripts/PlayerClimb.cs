@@ -89,7 +89,7 @@ public class PlayerClimb : MonoBehaviour
     IEnumerator ClimbUpObjectLeft()
     {
         playerAnimator.PlayerClimbUpLeft();
-        yield return new WaitUntil(() => playerData.playerAnimatorComponent.GetInteger("AnimationNumber") != 9);
+        yield return new WaitForSeconds(playerData.climbAnimationClip.length);
 
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
@@ -98,7 +98,6 @@ public class PlayerClimb : MonoBehaviour
         //add animation and delay for animation
 
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x  + offsetX, playerRB.gameObject.transform.position.y + offsetY);
-        playerData.playerSprite.gameObject.transform.position = Vector3.zero;
         playerAnimator.PlayerIdle();
 
         climbingTask = null;
@@ -107,7 +106,7 @@ public class PlayerClimb : MonoBehaviour
     IEnumerator ClimbUpObjectRight()
     {
         playerAnimator.PlayerClimbUpRight();
-        yield return new WaitUntil(() => playerData.playerAnimatorComponent.GetInteger("AnimationNumber") != 9);
+        yield return new WaitForSeconds(playerData.climbAnimationClip.length);
 
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
@@ -115,7 +114,6 @@ public class PlayerClimb : MonoBehaviour
 
         //add animation and delay for animation
 
-        playerData.playerSprite.gameObject.transform.position = Vector3.zero;
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x - offsetX, playerRB.gameObject.transform.position.y + offsetY);
         playerAnimator.PlayerIdle();
 
