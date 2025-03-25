@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     float yOffset = 0;
     float cameraSpeed = 10;
 
-    float levelUpperLimit = 48.03f;
+    float levelUpperLimit = 114.6f;
     float levelLowerLimit = 2.13f;
 
     private void Start()
