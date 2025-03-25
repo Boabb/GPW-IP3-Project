@@ -95,8 +95,6 @@ public class PlayerClimb : MonoBehaviour
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
 
-        //add animation and delay for animation
-
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x  + offsetX, playerRB.gameObject.transform.position.y + offsetY);
         playerAnimator.PlayerIdle();
 
@@ -111,8 +109,6 @@ public class PlayerClimb : MonoBehaviour
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
-
-        //add animation and delay for animation
 
         playerRB.gameObject.transform.position = new Vector3(playerRB.gameObject.transform.position.x - offsetX, playerRB.gameObject.transform.position.y + offsetY);
         playerAnimator.PlayerIdle();
