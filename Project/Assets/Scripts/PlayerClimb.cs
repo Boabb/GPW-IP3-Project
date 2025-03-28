@@ -193,13 +193,7 @@ public class PlayerClimb : MonoBehaviour
 
         if (tags.clingClimbable && playerRB.velocity.y < 0)
         {
-            if (currentClimbObjectTags.background == true)
-            {
-                if (!climbObjectCollider.gameObject.GetComponentInParent<BackgroundObject>().CheckOverlap())
-                {
-                    CatchClimb();
-                }
-            }
+             CatchClimb();
         }
     }
 
