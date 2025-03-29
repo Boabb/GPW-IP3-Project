@@ -28,23 +28,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float pullForce;
 
     [SerializeField] float movementForce;
-
-    [SerializeField] float slopeCheckDistance = 0.01f;
-    [SerializeField] float maxSlopeAngle;
-
-    PhysicsMaterial2D noFrictionMat => Resources.Load<PhysicsMaterial2D>("Physics Materials/NoFriction&Bounciness");
-    PhysicsMaterial2D allFrictionMat => Resources.Load<PhysicsMaterial2D>("Physics Materials/FullFriction&NoBounciness");
-    Vector2 slopeNormalPerp;
     bool grounded;
-    bool isOnSlope;
-    bool canWalkOnSlope;
-    float slopeSideAngle;
-    float slopeDownAngle;
-    float slopeDownAngleOld;
 
     enum MovementDirection
     {
-        None,
         Left,
         Right
     }
@@ -109,10 +96,6 @@ public class PlayerMovement : MonoBehaviour
         {
             movementDirection = MovementDirection.Left;
         }
-        else
-        {
-            movementDirection = MovementDirection.None;
-        }
     }
 
     private void FixedUpdate()
@@ -122,82 +105,6 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         ApplyGravity();
         ApplyHorizontalDrag();
-        ApplySlopeBehaviour();
-    }
-    /// <summary>
-    /// Check for if the player should have a frictionless or full friction physics material or not based on slope angle.
-    /// https://www.youtube.com/watch?app=desktop&v=QPiZSTEuZnw
-    /// </summary>
-    private void ApplySlopeBehaviour()
-    {
-        Vector2 checkPos = transform.position - new Vector3(0.0f, playerData.playerWalkingCollider.bounds.extents.y, 0.0f);
-
-        CheckSlopeVertical(checkPos);
-        CheckSlopeHorizontal(checkPos);
-    }
-
-    void CheckSlopeVertical(Vector2 checkPos)
-    {
-        RaycastHit2D slopeHitDown = Physics2D.Raycast(checkPos, transform.up, slopeCheckDistance, 3);
-
-        if (slopeHitDown)
-        {
-            slopeNormalPerp = Vector2.Perpendicular(slopeHitDown.normal).normalized;
-
-            slopeDownAngle = Vector2.Angle(slopeHitDown.normal, transform.up);
-
-            if(slopeDownAngle != slopeDownAngleOld)
-            {
-                isOnSlope = true;
-            }
-
-            slopeDownAngleOld = slopeDownAngle;
-
-            Debug.DrawRay(slopeHitDown.point, slopeNormalPerp, Color.red, .6f ,false);
-            Debug.DrawRay(slopeHitDown.point, slopeHitDown.normal, Color.yellow, .6f, false);
-
-        }
-
-        if(slopeDownAngle > maxSlopeAngle || slopeSideAngle > maxSlopeAngle)
-        {
-            canWalkOnSlope = false;
-        }    
-        else
-        {
-            canWalkOnSlope = true;
-        }
-
-        if(isOnSlope && movementDirection == MovementDirection.None)
-        {
-            playerData.playerRigidbody.sharedMaterial = allFrictionMat;
-        }
-        else
-        {
-            playerData.playerRigidbody.sharedMaterial = noFrictionMat;
-        }
-    }
-
-    void CheckSlopeHorizontal(Vector2 checkPos)
-    {
-        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, 3);
-
-        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, 3);
-
-        if(slopeHitFront)
-        {
-            isOnSlope = true;
-            slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
-        }
-        else if(slopeHitBack)
-        {
-            isOnSlope = true;
-            slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
-        }
-        else
-        {
-            slopeSideAngle = 0.0f;
-            isOnSlope = false;
-        }
     }
 
     void Move()
@@ -239,11 +146,6 @@ public class PlayerMovement : MonoBehaviour
                     }
 
                     playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
-                }
-
-                else
-                {
-                    movementDirection = MovementDirection.None;
                 }
             }
             else if (movementType == MovementType.Walking)
