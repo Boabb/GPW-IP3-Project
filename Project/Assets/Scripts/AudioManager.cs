@@ -59,6 +59,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioMixerGroup SoundEffectsMixerGroup;
     [SerializeField] private AudioMixerGroup MusicMixerGroup;
     [SerializeField] private AudioMixerGroup VoiceOverMixerGroup;
+    [SerializeField] private SubtitleManager subtitleManager;  // Reference to the SubtitleManager
 
     public SoundEffect[] SoundEffects = new SoundEffect[Enum.GetNames(typeof(SoundEffectEnum)).Length];
     public BackgroundMusic[] BackgroundMusics = new BackgroundMusic[Enum.GetNames(typeof(BackgroundMusicEnum)).Length];
@@ -342,6 +343,8 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance.VoiceOvers[(int)index].clip != null)
         {
+            Debug.Log($"Starting Voice Over: {Instance.VoiceOvers[(int)index].name}");
+
             if (Instance.VoiceOvers[(int)index].clip != Instance.VoiceOverAudioSource.clip)
             {
                 // Store current audio and its progress
@@ -365,6 +368,24 @@ public class AudioManager : MonoBehaviour
         else
         {
             Debug.LogWarning($"Audio Clip not assigned for: {Instance.VoiceOvers[(int)index].name}. PlayVoiceOverAudio aborted");
+        }
+    }
+
+    public static void PlayVoiceOverWithSubtitles(VoiceOverEnum index, float volume = 1.0f)
+    {
+        if (Instance.VoiceOvers[(int)index].clip != null)
+        {
+            // Play the voice-over audio
+            PlayVoiceOverAudio(index, volume);
+
+            // Ensure that SubtitleManager.Instance is called correctly here
+            SubtitleManager.Instance.PlaySubtitleSequence(index.ToString());
+
+            Debug.Log("VoiceOver and subtitles are playing.");
+        }
+        else
+        {
+            Debug.LogWarning($"Audio Clip not assigned for: {Instance.VoiceOvers[(int)index].name}. PlayVoiceOverWithSubtitles aborted");
         }
     }
 
