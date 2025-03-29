@@ -6732,11 +6732,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[3].duration
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[4].duration
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[0].duration

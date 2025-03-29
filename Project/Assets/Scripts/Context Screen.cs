@@ -21,6 +21,8 @@ public class ContextScreen : MonoBehaviour
 
     private int currentSentenceIndex = 0; // Track the current sentence index
 
+    private bool isTransitioning = false;
+
     private void Start()
     {
         // Get the context message and display it
@@ -33,11 +35,18 @@ public class ContextScreen : MonoBehaviour
     public void ProceedToNextScene()
     {
         // Start fade-out and load the next scene
+        if (!isTransitioning)
         StartCoroutine(FadeOutAndLoadScene());
+        else
+        {
+            print("Flipping pages");
+        }
     }
 
     private IEnumerator FadeOutAndLoadScene()
     {
+        isTransitioning = true;
+
         yield return StartCoroutine(FadeCanvasGroup(0, fadeDuration));
 
         // Retrieve the next level index stored in PlayerPrefs
@@ -45,6 +54,8 @@ public class ContextScreen : MonoBehaviour
 
         // Load the next level
         SceneFlowManager.Instance.LoadScene(nextLevelIndex);
+
+        isTransitioning = false;
     }
 
     private IEnumerator FadeCanvasGroup(float targetAlpha, float duration)

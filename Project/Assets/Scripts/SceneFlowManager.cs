@@ -9,6 +9,8 @@ public class SceneFlowManager : MonoBehaviour
 {
     public static SceneFlowManager Instance;
 
+    public bool isTransitioning = false;
+
     // List of scene indexes to skip the context scene for
     private HashSet<int> scenesToSkipContext = new HashSet<int> { 0, 1, 5 };
 
@@ -45,6 +47,8 @@ public class SceneFlowManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        if (isTransitioning) return;
+
         // Get the next level index
         int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
@@ -67,16 +71,30 @@ public class SceneFlowManager : MonoBehaviour
 
     private void ShowContextScreenAndLoadNextLevel(int nextLevelIndex)
     {
+        if (isTransitioning) return;
+
+        isTransitioning = true;
+
         // Save the next level index to PlayerPrefs for use in ContextScene
         PlayerPrefs.SetInt("NextLevel", nextLevelIndex);
         PlayerPrefs.Save();
 
         // Load the context scene before the next level
         SceneManager.LoadScene("ContextScene");
+
+        StartCoroutine(ResetTransitionFlag());
+    }
+
+    private IEnumerator ResetTransitionFlag()
+    {
+        yield return new WaitForSeconds(1f);
+        isTransitioning = false;
     }
 
     public void LoadScene(int sceneIndex)
     {
+        if (isTransitioning) return;
+
         if (sceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene(sceneIndex);
