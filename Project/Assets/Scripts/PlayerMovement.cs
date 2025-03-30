@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -28,10 +24,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float pullForce;
 
     [SerializeField] float movementForce;
+
+    [SerializeField] float slopeCheckDistance = 0.01f;
+    [SerializeField] float maxSlopeAngle;
+
+    PhysicsMaterial2D noFrictionMat => Resources.Load<PhysicsMaterial2D>("Physics Materials/NoFriction&Bounciness");
+    PhysicsMaterial2D allFrictionMat => Resources.Load<PhysicsMaterial2D>("Physics Materials/FullFriction&NoBounciness");
+    Vector2 slopeNormalPerp;
     bool grounded;
+    bool isOnSlope;
+    bool canWalkOnSlope;
+    float slopeSideAngle;
+    float slopeDownAngle;
+    float slopeDownAngleOld;
 
     enum MovementDirection
     {
+        None,
         Left,
         Right
     }
