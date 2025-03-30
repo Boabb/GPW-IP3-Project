@@ -11206,6 +11206,14 @@ PrefabInstance:
       propertyPath: movementForce
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 289016603007994097, guid: cc9c739327dff9741b398f555a933366, type: 3}
+      propertyPath: slopeCheckDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1456820099601487006, guid: cc9c739327dff9741b398f555a933366, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2116040391875107370, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: m_Name
       value: Player (w/Physics)
@@ -11347,6 +11355,10 @@ PrefabInstance:
     - target: {fileID: 6821542805166233126, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
       propertyPath: m_Name
       value: Bigger Armchair
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821542805166233126, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
