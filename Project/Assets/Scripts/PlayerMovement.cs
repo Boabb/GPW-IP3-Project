@@ -138,36 +138,34 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckSlopeVertical(Vector2 checkPos)
     {
-        RaycastHit2D slopeHitDown = Physics2D.Raycast(checkPos, transform.up, slopeCheckDistance, 3);
+        RaycastHit2D slopeHitDown = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, LayerMask.GetMask("Ground"));
 
         if (slopeHitDown)
         {
             slopeNormalPerp = Vector2.Perpendicular(slopeHitDown.normal).normalized;
+            slopeDownAngle = Vector2.Angle(slopeHitDown.normal, Vector2.up);
 
-            slopeDownAngle = Vector2.Angle(slopeHitDown.normal, transform.up);
-
-            if(slopeDownAngle != slopeDownAngleOld)
+            if (slopeDownAngle != slopeDownAngleOld)
             {
                 isOnSlope = true;
             }
 
             slopeDownAngleOld = slopeDownAngle;
 
-            Debug.DrawRay(slopeHitDown.point, slopeNormalPerp, Color.red, .6f ,false);
-            Debug.DrawRay(slopeHitDown.point, slopeHitDown.normal, Color.yellow, .6f, false);
-
+            Debug.DrawRay(slopeHitDown.point, slopeNormalPerp, Color.red, 0.6f, false);
+            Debug.DrawRay(slopeHitDown.point, slopeHitDown.normal, Color.yellow, 0.6f, false);
         }
 
-        if(slopeDownAngle > maxSlopeAngle || slopeSideAngle > maxSlopeAngle)
+        if (slopeDownAngle > maxSlopeAngle)
         {
             canWalkOnSlope = false;
-        }    
+        }
         else
         {
             canWalkOnSlope = true;
         }
 
-        if(isOnSlope && movementDirection == MovementDirection.None)
+        if (isOnSlope && movementDirection == MovementDirection.None)
         {
             playerData.playerRigidbody.sharedMaterial = allFrictionMat;
         }
@@ -179,16 +177,16 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckSlopeHorizontal(Vector2 checkPos)
     {
-        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, 3);
 
-        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, 3);
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, LayerMask.GetMask("Ground"));
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, LayerMask.GetMask("Ground"));
 
-        if(slopeHitFront)
+        if (slopeHitFront)
         {
             isOnSlope = true;
             slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
         }
-        else if(slopeHitBack)
+        else if (slopeHitBack)
         {
             isOnSlope = true;
             slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
@@ -383,6 +381,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetGrounded()
     {
+
     }
 
     public float GetMovementForce()
