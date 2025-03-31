@@ -6213,8 +6213,16 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 289016603007994097, guid: cc9c739327dff9741b398f555a933366, type: 3}
+      propertyPath: maxSlopeAngle
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 289016603007994097, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: movementForce
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 289016603007994097, guid: cc9c739327dff9741b398f555a933366, type: 3}
+      propertyPath: slopeCheckDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2116040391875107370, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: m_Name
