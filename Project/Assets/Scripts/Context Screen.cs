@@ -19,8 +19,6 @@ public class ContextScreen : MonoBehaviour
     // Reference to the Image component to change its sprite
     public Image contextImage;
 
-    private int currentSentenceIndex = 0; // Track the current sentence index
-
     private bool isTransitioning = false;
 
     private void Start()
