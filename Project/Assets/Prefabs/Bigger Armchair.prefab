@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 6294744455248766008}
   - component: {fileID: 117570848960710085}
   - component: {fileID: 8938521344317750736}
+  - component: {fileID: 6594004961378590486}
   - component: {fileID: 7346325213202076173}
   m_Layer: 0
   m_Name: Bigger Armchair
@@ -135,7 +136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6821542805166233126}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.69, y: -0.7, z: 0}
   m_LocalScale: {x: 0.185448, y: 0.185448, z: 0}
   m_ConstrainProportionsScale: 0
@@ -232,8 +233,8 @@ MonoBehaviour:
   moveable: 1
   quickClimbable: 0
   clingClimbable: 0
-  foreground: 1
-  background: 0
+  foreground: 0
+  background: 1
   autoEvent: 0
   elevatorCatch: 0
 --- !u!114 &8938521344317750736
@@ -250,6 +251,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armChair: 0
   armChairInElevator: 0
+--- !u!114 &6594004961378590486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821542805166233126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0843d52ecf5c4fb4fae9a28f9f00d80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 0}
 --- !u!212 &7346325213202076173
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -154,8 +154,6 @@ MonoBehaviour:
   - {fileID: 391638703}
   - {fileID: 644327425}
   - {fileID: 254612747}
-  - {fileID: 16191058}
-  - {fileID: 973712338}
   - {fileID: 2007834157}
   - {fileID: 974579746}
   - {fileID: 1316218013}
@@ -165,6 +163,7 @@ MonoBehaviour:
   - {fileID: 1212074587}
   - {fileID: 901566020}
   - {fileID: 269048663}
+  - {fileID: 16191058}
   fadeScalar: 1
 --- !u!224 &55942007 stripped
 RectTransform:
@@ -5730,11 +5729,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!212 &973712338 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5805439785742493379, guid: c3fcb68e0943a9b428edcea9ec30bd01, type: 3}
-  m_PrefabInstance: {fileID: 1295516506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!212 &974579746 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5713285830615597038, guid: 6021a0c6029135c429a811dcc02d0fc1, type: 3}
@@ -11872,13 +11866,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6594004961378590486, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 1056329803}
     - target: {fileID: 6821542805166233126, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
       propertyPath: m_Name
       value: Bigger Armchair
-      objectReference: {fileID: 0}
-    - target: {fileID: 6821542805166233126, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

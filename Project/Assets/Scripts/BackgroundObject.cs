@@ -8,12 +8,13 @@ public class BackgroundObject : MonoBehaviour
     Collider2D objectCollider;
 
     [Header("Designers Don't Change!")]
-    [SerializeField] PlayerData playerData;
+    PlayerData playerData;
 
     // Start is called before the first frame update
     void Start()
     {
         objectCollider = GetComponent<Collider2D>();
+        playerData = GameManager.playerData;
         //objectCollider.excludeLayers = LayerMask.GetMask("Default");
     }
 
