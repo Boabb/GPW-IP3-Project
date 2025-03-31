@@ -17,16 +17,16 @@ public class SubtitleManager : MonoBehaviour
     [System.Serializable]
     public struct SubtitleSequence
     {
-        public string sequenceName; // Name for this sequence
+        public string sequenceName;
         public SubtitleData[] subtitles;
     }
 
     [Header("Subtitle Settings")]
-    public SubtitleSequence[] subtitleSequences; // Array of sequences
+    public SubtitleSequence[] subtitleSequences;
     public TextMeshProUGUI subtitleText;
 
-    private Dictionary<string, int> sequenceIndexTracker = new Dictionary<string, int>(); // Tracks progress for each sequence
-    private HashSet<string> activeSequences = new HashSet<string>(); // Tracks sequences that are currently playing
+    private Dictionary<string, int> sequenceIndexTracker = new Dictionary<string, int>();
+    private HashSet<string> activeSequences = new HashSet<string>();
     private Coroutine subtitleCoroutine;
 
     private void Awake()
@@ -41,16 +41,12 @@ public class SubtitleManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Starts playing a subtitle sequence by name.
-    /// </summary>
     public void PlaySubtitleSequence(string sequenceName)
     {
-        // Check if sequence is already playing
         if (activeSequences.Contains(sequenceName))
         {
             Debug.Log($"Sequence '{sequenceName}' is already in progress. Skipping.");
-            return; // Skip if sequence is currently playing
+            return;
         }
 
         SubtitleSequence sequence = GetSubtitleSequence(sequenceName);
@@ -60,7 +56,6 @@ public class SubtitleManager : MonoBehaviour
             return;
         }
 
-        // Add the sequence to active sequences
         activeSequences.Add(sequenceName);
 
         if (subtitleCoroutine != null)
@@ -81,13 +76,11 @@ public class SubtitleManager : MonoBehaviour
         for (int i = sequenceIndexTracker[sequenceName]; i < sequence.subtitles.Length; i++)
         {
             subtitleText.text = sequence.subtitles[i].text;
-            yield return new WaitForSeconds(sequence.subtitles[i].duration);
+            yield return new WaitForSecondsRealtime(sequence.subtitles[i].duration); // Use WaitForSecondsRealtime
             subtitleText.text = "";
         }
 
-        sequenceIndexTracker[sequenceName] = sequence.subtitles.Length; // Mark as fully played
-
-        // Once the sequence is finished, remove it from active sequences
+        sequenceIndexTracker[sequenceName] = sequence.subtitles.Length;
         activeSequences.Remove(sequenceName);
     }
 
@@ -100,6 +93,6 @@ public class SubtitleManager : MonoBehaviour
                 return sequence;
             }
         }
-        return new SubtitleSequence(); // Return empty if not found
+        return new SubtitleSequence();
     }
 }

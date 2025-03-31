@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject settingsMenu;
+    public GameObject creditsPage;
     public GameObject mainMenu;
 
     public void PlayGame()
@@ -21,6 +22,7 @@ public class MainMenu : MonoBehaviour
 
     public void CreditsScreen()
     {
-
+        creditsPage.SetActive(!creditsPage.activeSelf);
+        mainMenu.SetActive(!creditsPage.activeSelf);
     }
 }
