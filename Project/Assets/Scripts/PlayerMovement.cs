@@ -29,7 +29,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float maxSlopeAngle;
 
     PhysicsMaterial2D noFrictionMat => Resources.Load<PhysicsMaterial2D>("Physics Materials/NoFriction&Bounciness");
-    PhysicsMaterial2D allFrictionMat => Resources.Load<PhysicsMaterial2D>("Physics Materials/FullFriction&NoBounciness");
+    PhysicsMaterial2D fullFrictionMat => Resources.Load<PhysicsMaterial2D>("Physics Materials/FullFriction&NoBounciness");
+
     Vector2 slopeNormalPerp;
     bool grounded;
     bool isOnSlope;
@@ -129,43 +130,42 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void CheckSlopeVertical(Vector2 checkPos)
+{
+    RaycastHit2D slopeHitDown = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, LayerMask.GetMask("Ground"));
+
+    if (slopeHitDown)
     {
-        RaycastHit2D slopeHitDown = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, LayerMask.GetMask("Ground"));
+        slopeNormalPerp = Vector2.Perpendicular(slopeHitDown.normal).normalized;
+        slopeDownAngle = Vector2.Angle(slopeHitDown.normal, Vector2.up);
 
-        if (slopeHitDown)
+        if (slopeDownAngle != slopeDownAngleOld) // Only update if angle changed
         {
-            slopeNormalPerp = Vector2.Perpendicular(slopeHitDown.normal).normalized;
-            slopeDownAngle = Vector2.Angle(slopeHitDown.normal, Vector2.up);
-
-            if (slopeDownAngle != slopeDownAngleOld)
-            {
-                isOnSlope = true;
-            }
-
             slopeDownAngleOld = slopeDownAngle;
-
-            Debug.DrawRay(slopeHitDown.point, slopeNormalPerp, Color.red, 0.6f, false);
-            Debug.DrawRay(slopeHitDown.point, slopeHitDown.normal, Color.yellow, 0.6f, false);
+            UpdateMaterialBasedOnSlope();
         }
 
-        if (slopeDownAngle > maxSlopeAngle)
-        {
-            canWalkOnSlope = false;
-        }
-        else
-        {
-            canWalkOnSlope = true;
-        }
-
-        if (isOnSlope && movementDirection == MovementDirection.None)
-        {
-            playerData.playerRigidbody.sharedMaterial = allFrictionMat;
-        }
-        else
-        {
-            playerData.playerRigidbody.sharedMaterial = noFrictionMat;
-        }
+        Debug.DrawRay(slopeHitDown.point, slopeNormalPerp, Color.red, 0.6f, false);
+        Debug.DrawRay(slopeHitDown.point, slopeHitDown.normal, Color.yellow, 0.6f, false);
     }
+}
+
+void UpdateMaterialBasedOnSlope()
+{
+    if (slopeDownAngle == 0f)
+    {
+        playerData.playerRigidbody.sharedMaterial = noFrictionMat;
+    }
+    else if (slopeDownAngle > maxSlopeAngle)
+    {
+        canWalkOnSlope = false;
+        playerData.playerRigidbody.sharedMaterial = noFrictionMat;
+    }
+    else
+    {
+        canWalkOnSlope = true;
+        playerData.playerRigidbody.sharedMaterial = fullFrictionMat;
+    }
+}
 
     void CheckSlopeHorizontal(Vector2 checkPos)
     {
