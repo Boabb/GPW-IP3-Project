@@ -226,9 +226,11 @@ MonoBehaviour:
   jumpForce: 400
   gravityForce: 25
   dragForce: 10
-  pushForce: 0
-  pullForce: 0
-  movementForce: 0
+  pushForce: 120
+  pullForce: 120
+  movementForce: 100
+  slopeCheckDistance: 3
+  maxSlopeAngle: 40
 --- !u!114 &7611025018939487156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,10 +250,10 @@ MonoBehaviour:
   playerOverlapCheckCollider: {fileID: 6829465168859839149}
   playerCatchClimbCollider: {fileID: 7833222782003071501}
   playerAnimatorComponent: {fileID: 6571747437202914289}
-  climbAnimationClip: {fileID: 7400000, guid: 5555743ccdf9a8e40b12fe1d2f47fa8f, type: 2}
+  climbAnimationClip: {fileID: 7400000, guid: 7951493f136d3ac499abde2ace95f2c2, type: 2}
   quickClimbAnimationClip: {fileID: 7400000, guid: df85337897d8d8646b7413ddaecdc235, type: 2}
   playerSprite: {fileID: 7614294576506648438}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 1515963672127951417}
   playerMovement: {fileID: 289016603007994097}
   playerLayer:
     serializedVersion: 2
@@ -282,7 +284,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 898b27dae8f829044bd4d385268566be, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -761,7 +763,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 8300000, guid: 29e32ea84645cd444baaf3ebc4c0c320, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.286
+  m_Volume: 0.22
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1308,6 +1310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1955087458548789448}
+  - component: {fileID: 4098037009016949211}
   - component: {fileID: 3461528295405900189}
   - component: {fileID: 1695527033846788314}
   m_Layer: 15
@@ -1332,6 +1335,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6850051165633342354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &4098037009016949211
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7523364886909989846}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.3}
+  m_Size: {x: 0.4, y: 0.4}
+  m_Direction: 0
 --- !u!61 &3461528295405900189
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1339,7 +1377,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7523364886909989846}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

@@ -106,6 +106,10 @@ public class PlayerMovement : MonoBehaviour
         {
             movementDirection = MovementDirection.Left;
         }
+        else
+        {
+            movementDirection = MovementDirection.None;
+        }
     }
 
     private void FixedUpdate()
@@ -127,45 +131,71 @@ public class PlayerMovement : MonoBehaviour
 
         CheckSlopeVertical(checkPos);
         CheckSlopeHorizontal(checkPos);
+        UpdateMaterialBasedOnMovement();
     }
 
     void CheckSlopeVertical(Vector2 checkPos)
-{
-    RaycastHit2D slopeHitDown = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, LayerMask.GetMask("Ground"));
-
-    if (slopeHitDown)
     {
-        slopeNormalPerp = Vector2.Perpendicular(slopeHitDown.normal).normalized;
-        slopeDownAngle = Vector2.Angle(slopeHitDown.normal, Vector2.up);
+        RaycastHit2D slopeHitDown = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, LayerMask.GetMask("Ground"));
 
-        if (slopeDownAngle != slopeDownAngleOld) // Only update if angle changed
+        if (slopeHitDown)
         {
-            slopeDownAngleOld = slopeDownAngle;
-            UpdateMaterialBasedOnSlope();
+            slopeNormalPerp = Vector2.Perpendicular(slopeHitDown.normal).normalized;
+            slopeDownAngle = Vector2.Angle(slopeHitDown.normal, Vector2.up);
+
+            if (slopeDownAngle != slopeDownAngleOld) // Only update if angle changed
+            {
+                slopeDownAngleOld = slopeDownAngle;
+                UpdateMaterialBasedOnSlope();
+            }
+
+            Debug.DrawRay(slopeHitDown.point, slopeNormalPerp, Color.red, 0.6f, false);
+            Debug.DrawRay(slopeHitDown.point, slopeHitDown.normal, Color.yellow, 0.6f, false);
         }
+    }
 
-        Debug.DrawRay(slopeHitDown.point, slopeNormalPerp, Color.red, 0.6f, false);
-        Debug.DrawRay(slopeHitDown.point, slopeHitDown.normal, Color.yellow, 0.6f, false);
+    void UpdateMaterialBasedOnSlope()
+    {
+        if (slopeDownAngle == 0f)
+        {
+            playerData.playerRigidbody.sharedMaterial = noFrictionMat;
+        }
+        else if (slopeDownAngle > maxSlopeAngle)
+        {
+            canWalkOnSlope = false;
+            playerData.playerRigidbody.sharedMaterial = noFrictionMat;
+        }
+        else
+        {
+            canWalkOnSlope = true;
+            playerData.playerRigidbody.sharedMaterial = fullFrictionMat;
+        }
     }
-}
 
-void UpdateMaterialBasedOnSlope()
-{
-    if (slopeDownAngle == 0f)
+    private void RotatePlayerToMatchSlope()
     {
-        playerData.playerRigidbody.sharedMaterial = noFrictionMat;
+        if (currentPlayerCollider.transform.localEulerAngles.z != slopeDownAngle)
+        {
+            currentPlayerCollider.transform.localEulerAngles = new(currentPlayerCollider.transform.localEulerAngles.x, currentPlayerCollider.transform.localEulerAngles.y, slopeDownAngle);
+        }
+        //Right now this is silly because it affects all of the players children for some reason but could be worth looking at
+        //if (playerData.playerRigidbody.rotation != slopeDownAngle)
+        //{
+        //    playerData.playerRigidbody.rotation = slopeDownAngle;
+        //}
     }
-    else if (slopeDownAngle > maxSlopeAngle)
+
+    private void UpdateMaterialBasedOnMovement()
     {
-        canWalkOnSlope = false;
-        playerData.playerRigidbody.sharedMaterial = noFrictionMat;
+        if (movementDirection == MovementDirection.None)
+        {
+            playerData.playerRigidbody.sharedMaterial = fullFrictionMat;
+        }
+        else
+        {
+            playerData.playerRigidbody.sharedMaterial = noFrictionMat;
+        }
     }
-    else
-    {
-        canWalkOnSlope = true;
-        playerData.playerRigidbody.sharedMaterial = fullFrictionMat;
-    }
-}
 
     void CheckSlopeHorizontal(Vector2 checkPos)
     {
