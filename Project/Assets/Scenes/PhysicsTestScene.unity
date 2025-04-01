@@ -6165,6 +6165,7 @@ MonoBehaviour:
   SoundEffectsMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   VoiceOverMixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  subtitleManager: {fileID: 0}
   SoundEffects:
   - name: LandOnWood
     clips: []
@@ -6202,7 +6203,7 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: ElevatorDoorOpenAndClose
+  - name: ElevatorDoorOpen
     clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -6495,6 +6496,7 @@ MonoBehaviour:
   itemIndex: 1
   bobbingSpeed: 2
   bobbingAmount: 0.1
+  itemVoiceOvers: 
 --- !u!58 &762390656
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8369,9 +8371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5555b11b77a97354fa623821c37d5df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fade1: {fileID: 1874953184}
-  Fade2: {fileID: 1259498201}
-  collision: 0
 --- !u!4 &954138758
 Transform:
   m_ObjectHideFlags: 0
@@ -8887,9 +8886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5555b11b77a97354fa623821c37d5df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fade1: {fileID: 945836330}
-  Fade2: {fileID: 852184767}
-  collision: 0
 --- !u!4 &978086949
 Transform:
   m_ObjectHideFlags: 0
@@ -12472,7 +12468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98eff9e2762d054cab58cb3ec90a158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enteringElevator: 0
 --- !u!95 &1536471942
 Animator:
   serializedVersion: 5
@@ -13716,6 +13711,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &1707205403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1515963672127951417, guid: cc9c739327dff9741b398f555a933366, type: 3}
+  m_PrefabInstance: {fileID: 870433201917545728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aade6aa8c4d57b942892f0e725a50f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1726216437
 GameObject:
   m_ObjectHideFlags: 0
@@ -15896,8 +15902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0f796c71889014090332fbeeae553a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fader: {fileID: 954138757}
-  mainCamera: {fileID: 2057718742}
 --- !u!4 &1848003207
 Transform:
   m_ObjectHideFlags: 0
@@ -18213,7 +18217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7d5d93c4c85664b96839023994dee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fade: {fileID: 0}
 --- !u!114 &2037346748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18451,7 +18454,6 @@ GameObject:
   - component: {fileID: 2057718747}
   - component: {fileID: 2057718742}
   - component: {fileID: 2057718746}
-  - component: {fileID: 2057718741}
   - component: {fileID: 2057718745}
   - component: {fileID: 2057718743}
   - component: {fileID: 2057718744}
@@ -18462,22 +18464,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2057718741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057718740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec1e4f7e8a52aa4981641dbcce0120d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentToFollow: {fileID: 1585614872}
-  xOffset: -1.15
-  yOffset: -1.15
-  cameraSpeed: 10
 --- !u!20 &2057718742
 Camera:
   m_ObjectHideFlags: 0
@@ -18667,6 +18653,7 @@ MonoBehaviour:
   SoundEffectsMixerGroup: {fileID: 0}
   MusicMixerGroup: {fileID: 0}
   VoiceOverMixerGroup: {fileID: 0}
+  subtitleManager: {fileID: 0}
   SoundEffects:
   - name: LandOnWood
     clips: []
@@ -18704,7 +18691,7 @@ MonoBehaviour:
     clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: 0}
-  - name: ElevatorDoorOpenAndClose
+  - name: ElevatorDoorOpen
     clips: []
     audioSource: {fileID: 0}
     mixerGroup: {fileID: 0}
@@ -19215,25 +19202,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 289016603007994097, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: gravityForce
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1135509934555482556, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_Volume
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015197054146556503, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2116040391875107370, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: m_Name
       value: Player (w/Physics)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6224082541099400952, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_Layer
-      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6850051165633342354, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19276,21 +19247,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611025018939487156, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: playerCatchClimbCollider
+      propertyPath: playerAnimator
       value: 
-      objectReference: {fileID: 1754994745}
-    - target: {fileID: 8686667805701452908, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218022312057331588, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_Name
-      value: CatchClimbCollider
-      objectReference: {fileID: 0}
-    - target: {fileID: 9218022312057331588, guid: cc9c739327dff9741b398f555a933366, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1707205403}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
