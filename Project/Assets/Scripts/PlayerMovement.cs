@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateMovementType();
         UpdateMovementForce();
         SetGrounded();
+        Debug.Log(grounded);
         playerData.grounded = grounded;
 
         //Debug.Log("Ground: " + grounded);
@@ -398,7 +399,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetGrounded()
     {
-
+        //OnCollisionStay2D();
     }
 
     public float GetMovementForce()
@@ -444,7 +445,6 @@ public class PlayerMovement : MonoBehaviour
                     break;
             }
 
-            grounded = false;
             playerData.grounded = grounded;
         }
     }

@@ -217,6 +217,8 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning("More than one AudioManager Detected! Please find and remove the extra one!");
         }
+
+        PlayVoiceOverWithSubtitles(VoiceOverEnum.Level1Track1);
     }
 
 
