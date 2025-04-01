@@ -7081,7 +7081,6 @@ PrefabInstance:
       addedObject: {fileID: 1023554804}
     - targetCorrespondingSourceObject: {fileID: 7523364886909989846, guid: cc9c739327dff9741b398f555a933366, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1023554808}
   m_SourcePrefab: {fileID: 100100000, guid: cc9c739327dff9741b398f555a933366, type: 3}
 --- !u!82 &870433201917545729 stripped
 AudioSource:
