@@ -18,8 +18,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
         mainCamera = Camera.main;
+        if (playerData != null)
+        {
+
+        }
+        else
+        {
+            //PlayerData.CallAwake();
+        }
     }
 
     void Start()
