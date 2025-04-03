@@ -5,6 +5,27 @@ public class PuzzleManager : InteractableObject
     [SerializeField] private GameObject puzzleUI; // Assign the UI in Inspector
     private bool canBeInteractedWith = false;
 
+    public delegate void PuzzleCompletedEvent();
+    public event PuzzleCompletedEvent OnPuzzleCompleted;
+
+    public Sprite openLocker;
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField] private PuzzleCompletionAction completionAction;
+
+    public enum PuzzleCompletionAction
+    {
+        ClosePuzzleUI,
+        OpenLocker
+    }
+
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        OnPuzzleCompleted += HandlePuzzleCompletion;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -52,7 +73,32 @@ public class PuzzleManager : InteractableObject
         }
     }
 
-    public void ClosePuzzleUI()
+    public void CompletePuzzle()
+    {
+        Debug.Log($"{gameObject.name}: Puzzle completed!");
+
+        OnPuzzleCompleted?.Invoke();
+    }
+
+
+    private void HandlePuzzleCompletion()
+    {
+        switch (completionAction)
+        {
+            case PuzzleCompletionAction.ClosePuzzleUI:
+                ClosePuzzleUI();
+                break;
+            case PuzzleCompletionAction.OpenLocker:
+                OpenLocker();
+                ClosePuzzleUI();
+                break;
+            default:
+                Debug.Log($"{gameObject.name}: No special action on completion.");
+                break;
+        }
+    }
+    
+    private void ClosePuzzleUI()
     {
         if (puzzleUI != null)
         {
@@ -60,5 +106,10 @@ public class PuzzleManager : InteractableObject
             Time.timeScale = 1f; // Resume the game
             Debug.Log($"{gameObject.name}: Puzzle UI closed.");
         }
+    }
+
+    private void OpenLocker()
+    {
+        spriteRenderer.sprite = openLocker;
     }
 }

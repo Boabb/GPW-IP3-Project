@@ -860,12 +860,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159434111}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.069, y: -1.444, z: -0.050940163}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 44.969, y: -1.444, z: -0.050940163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 669356773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &159434113
 BoxCollider2D:
@@ -3794,7 +3794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &669356773
 Transform:
   m_ObjectHideFlags: 0
@@ -3813,6 +3813,8 @@ Transform:
   - {fileID: 1122339146}
   - {fileID: 1645933104}
   - {fileID: 151902671}
+  - {fileID: 2052120007}
+  - {fileID: 159434112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &708879407 stripped
@@ -5438,7 +5440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &935026658
 Transform:
   m_ObjectHideFlags: 0
@@ -6938,7 +6940,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 648406160439785931, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2941370728548640270, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6998,7 +7000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleArray.Array.data[0].text
@@ -7042,7 +7044,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[2].sequenceName
-      value: Sequence 2
+      value: Level1Track3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].sequenceName
+      value: Level1Track4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].sequenceName
+      value: Level1Track4
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[0].subtitles.Array.size
@@ -7051,6 +7061,18 @@ PrefabInstance:
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[1].subtitles.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[0].text
@@ -7082,6 +7104,113 @@ PrefabInstance:
       value: And one family came in and then other Jewish families came in.
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[2].text
+      value: And one family came in and then other Jewish families came in.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[0].text
+      value: The Nazis liked this lovely big building in a prominent position,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[1].text
+      value: 'and then they ousted us and we had to move to a very small flat. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[2].text
+      value: The problem was what did you do with your furniture?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[3].text
+      value: "You had to clear out within 24 hours the new place you couldn\u2019t
+        house everything."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[4].text
+      value: "You couldn\u2019t leave it out on the street,"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[5].text
+      value: but you also had to look after it because it now belonged to the state,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[6].text
+      value: so you were between a rock and a hard place
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[7].text
+      value: "and all the restrictions where so complicated that a lawyer couldn\u2019t
+        understand it,"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[8].text
+      value: and they deliberately did that to trick you so they had any excuse to
+        take you away.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[0].text
+      value: Every day there was a new regulation, complicated regulations,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[1].text
+      value: they would ring some bell and we would go out on to the courtyard,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[2].text
+      value: the houses were built round courtyards and there would be some proclamation.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[3].text
+      value: All Jews had to hand in their radios on pain of death,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[4].text
+      value: "you weren\u2019t allowed even before then to listen to foreign stations,
+        on pain of death,"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[5].text
+      value: you know, any excuse they take you away.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[6].text
+      value: 'You hand in all your jewellery, anything valuable, you had to declare
+        it. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[7].text
+      value: "The flat we went into was on the second floor of a very tall building
+        I don\u2019t know 6 stories high or something."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[8].text
+      value: ' It was very dark, because the rooms opened out onto the courtyard,'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[9].text
+      value: there was no light at all it was electric light all the time.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[0].text
+      value: Every day there was a new regulation, complicated regulations,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[1].text
+      value: they would ring some bell and we would go out on to the courtyard,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[2].text
+      value: the houses were built round courtyards and there would be some proclamation.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[3].text
+      value: All Jews had to hand in their radios on pain of death,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[4].text
+      value: "you weren\u2019t allowed even before then to listen to foreign stations,
+        on pain of death,"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[0].duration
       value: 4
       objectReference: {fileID: 0}
@@ -7108,6 +7237,106 @@ PrefabInstance:
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[1].duration
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[2].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[0].duration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[1].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[2].duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[3].duration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[4].duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[5].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[6].duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[7].duration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[8].duration
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[0].duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[1].duration
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[2].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[3].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[4].duration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[5].duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[6].duration
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[7].duration
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[8].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[9].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[0].duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[1].duration
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[2].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[3].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[4].duration
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3261205478862988532, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleText
@@ -7169,6 +7398,10 @@ PrefabInstance:
       propertyPath: AllSounds.Array.data[9].reference
       value: 
       objectReference: {fileID: 870433201917545732}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: VoiceOvers.Array.data[2].progress
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[10].reference
       value: 
@@ -8895,6 +9128,10 @@ PrefabInstance:
     - target: {fileID: 4313011249939471637, guid: c3fcb68e0943a9b428edcea9ec30bd01, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901823025249360231, guid: c3fcb68e0943a9b428edcea9ec30bd01, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6901823025249360231, guid: c3fcb68e0943a9b428edcea9ec30bd01, type: 3}
       propertyPath: testimonyNumber
@@ -10956,12 +11193,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052120005}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.13052616, w: 0.9914449}
-  m_LocalPosition: {x: 45.117, y: -1.7, z: -0.050940163}
+  m_LocalRotation: {x: -0, y: -0, z: 0.13052616, w: 0.9914449}
+  m_LocalPosition: {x: 43.017002, y: -1.7, z: -0.050940163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 669356773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
 --- !u!212 &2052120008
 SpriteRenderer:
@@ -12002,7 +12239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850051165633342354, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.49
+      value: 52.86
       objectReference: {fileID: 0}
     - target: {fileID: 6850051165633342354, guid: cc9c739327dff9741b398f555a933366, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12643,5 +12880,3 @@ SceneRoots:
   - {fileID: 1469985137}
   - {fileID: 2131115383}
   - {fileID: 1680055305}
-  - {fileID: 2052120007}
-  - {fileID: 159434112}

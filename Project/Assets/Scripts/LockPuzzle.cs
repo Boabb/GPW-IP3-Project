@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro; // For TextMeshPro
-using UnityEngine.EventSystems;
 
 public class LockPuzzle : MonoBehaviour
 {
@@ -9,6 +8,8 @@ public class LockPuzzle : MonoBehaviour
 
     [SerializeField] private TMP_Text[] numberDisplays; // Assign in Inspector
     [SerializeField] private GameObject lockUI; // Assign in Inspector
+    [SerializeField] private PuzzleManager puzzleManager; // Reference to PuzzleManager
+
     private bool isUIOpen = true;
 
     private void OnEnable()
@@ -21,13 +22,8 @@ public class LockPuzzle : MonoBehaviour
         lockUI.SetActive(true);
         isUIOpen = true;
         Time.timeScale = 0f; // Pause the game while interacting
-
-        //Ensure the UI updates properly
         UpdateDisplay();
-
-        //Debug.Log("Lock UI opened, restoring previous values.");
     }
-
 
     public void CloseLockUI()
     {
@@ -44,18 +40,13 @@ public class LockPuzzle : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-
-    // Function to change a number at a specific index
     public void ChangeNumber(int index, int change)
     {
         if (!isUIOpen) return; // Prevent changes when UI isn't open
         currentCode[index] = (currentCode[index] + change + 10) % 10; // Cycle between 0-9
-        UpdateDisplay(); // Ensure UI updates
-
-        //Debug.Log($"Digit {index} changed to {currentCode[index]}");
+        UpdateDisplay();
     }
 
-    // Wrapper functions for Unity UI Buttons
     public void IncreaseDigit(int index) { ChangeNumber(index, 1); }
     public void DecreaseDigit(int index) { ChangeNumber(index, -1); }
 
@@ -94,6 +85,15 @@ public class LockPuzzle : MonoBehaviour
     {
         Debug.Log("Lock Opened!");
         CloseLockUI();
-        // Add additional unlocking logic here if needed
+
+        // Call PuzzleManager's event to notify completion
+        if (puzzleManager != null)
+        {
+            puzzleManager.CompletePuzzle(); // This triggers the event
+        }
+        else
+        {
+            Debug.LogWarning("PuzzleManager reference is missing in LockPuzzle!");
+        }
     }
 }

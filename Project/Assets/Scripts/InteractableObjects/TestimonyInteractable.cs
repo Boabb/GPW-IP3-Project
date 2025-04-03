@@ -7,6 +7,6 @@ public class TestimonyInteractable : InteractableObject
     [SerializeField] int testimonyNumber;
     public override void Interaction(GameObject playerGO)
     {
-        AudioManager.PlayVoiceOverAudio((VoiceOverEnum)testimonyNumber);
+        AudioManager.PlayVoiceOverWithSubtitles((VoiceOverEnum.Level1Track1 + testimonyNumber), 1f);
     }
 }
