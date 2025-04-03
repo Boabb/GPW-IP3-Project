@@ -101,7 +101,7 @@ public class SystemSettings: MonoBehaviour
                 jump = false;
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.E))
             {
                 interact = true;
             }
@@ -110,7 +110,7 @@ public class SystemSettings: MonoBehaviour
                 interact = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 tapInteract = true;
             }

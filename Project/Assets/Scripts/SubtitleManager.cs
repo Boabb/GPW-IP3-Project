@@ -41,6 +41,20 @@ public class SubtitleManager : MonoBehaviour
         }
     }
 
+    [SerializeField] private VoiceOverEnum startingSequence;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        PlayLevelVoiceOver();
+    }
+
+    private void PlayLevelVoiceOver()
+    {
+        AudioManager.PlayVoiceOverWithSubtitles(startingSequence);
+        Debug.Log($"Now playing {startingSequence}");
+    }
+
     public void PlaySubtitleSequence(string sequenceName)
     {
         if (activeSequences.Contains(sequenceName))
@@ -61,6 +75,7 @@ public class SubtitleManager : MonoBehaviour
         if (subtitleCoroutine != null)
         {
             StopCoroutine(subtitleCoroutine);
+            subtitleCoroutine = null;
         }
         subtitleCoroutine = StartCoroutine(PlaySequence(sequence));
     }

@@ -366,6 +366,10 @@ public class AudioManager : MonoBehaviour
                 // Resume previous audio after the new one finishes
                 Instance.StartCoroutine(ResumePreviousVoiceOver());
             }
+            else if(!Instance.VoiceOverAudioSource.isPlaying)
+            {
+                Instance.VoiceOverAudioSource.Play();
+            }
         }
         else
         {
