@@ -91,7 +91,6 @@ public class PlayerMovement : MonoBehaviour
         UpdateMovementType();
         UpdateMovementForce();
         SetGrounded();
-        Debug.Log(grounded);
         playerData.grounded = grounded;
 
         //Debug.Log("Ground: " + grounded);
