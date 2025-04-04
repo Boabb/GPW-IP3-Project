@@ -7,9 +7,7 @@ public class MoveableObject : MonoBehaviour
 {
     //public float objectRBMass = 0.0f; //this should be 0 unless the object is moveable, then it should be equal to the mass of the object's rigidbody
     Rigidbody2D objectRB;
-
-    public bool armChair;
-    public bool armChairInElevator;
+    Collider2D groundCollider;
 
     //[Header("Designers Don't Change!")]
     PlayerData playerData; //I have made this a static variable as part of GameManager for easier access and consistency
@@ -17,8 +15,10 @@ public class MoveableObject : MonoBehaviour
 
     private void Start()
     {
-        playerData = GameManager.playerData;
         objectRB = GetComponent<Rigidbody2D>();
+        groundCollider = GetComponentInChildren<EdgeCollider2D>();
+
+        playerData = GameManager.playerData;
         //currentObjectRBMass = objectRBMass;
         //objectRB.mass = currentObjectRBMass;
     }
@@ -35,6 +35,14 @@ public class MoveableObject : MonoBehaviour
         else
         {
             objectRB.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        }
+        if(playerData.playerWalkingCollider.bounds.min.y <= groundCollider.bounds.max.y)
+        {
+            Physics2D.IgnoreCollision(groundCollider, playerData.playerWalkingCollider, true);
+        }
+        else
+        {
+            Physics2D.IgnoreCollision(groundCollider, playerData.playerWalkingCollider, false);
         }
     }
 
