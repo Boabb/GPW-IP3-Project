@@ -36,20 +36,21 @@ public class MoveableObject : MonoBehaviour
         {
             objectRB.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
-        if(playerData.playerWalkingCollider.bounds.min.y <= groundCollider.bounds.max.y)
-        {
-            Physics2D.IgnoreCollision(groundCollider, playerData.playerWalkingCollider, true);
-        }
-        else
-        {
-            Physics2D.IgnoreCollision(groundCollider, playerData.playerWalkingCollider, false);
-        }
+        //if(playerData.playerWalkingCollider.bounds.min.y <= groundCollider.transform.position.y)
+        //{
+        //    groundCollider.excludeLayers = LayerMask.NameToLayer("Player");
+        //}
+        //else
+        //{
+        //    groundCollider.excludeLayers = 0; 
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) //should also specify here whether the player is moving in the direction in which pushing would also 
         {
+
         }
     }
 

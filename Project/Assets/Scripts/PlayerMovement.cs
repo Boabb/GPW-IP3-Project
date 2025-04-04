@@ -38,10 +38,10 @@ public class PlayerMovement : MonoBehaviour
     float slopeSideAngle;
     float slopeDownAngle;
     float slopeDownAngleOld;
+    private int contactsWithGround;
 
     enum MovementDirection
     {
-        None,
         Left,
         Right
     }
@@ -105,10 +105,6 @@ public class PlayerMovement : MonoBehaviour
         else if (!SystemSettings.moveRight && SystemSettings.moveLeft)
         {
             movementDirection = MovementDirection.Left;
-        }
-        else
-        {
-            movementDirection = MovementDirection.None;
         }
     }
 
@@ -187,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateMaterialBasedOnMovement()
     {
-        if (movementDirection == MovementDirection.None)
+        if ((!SystemSettings.moveRight && !SystemSettings.moveLeft))
         {
             playerData.playerRigidbody.sharedMaterial = fullFrictionMat;
         }
@@ -280,6 +276,16 @@ public class PlayerMovement : MonoBehaviour
         if (SystemSettings.jump && grounded && movementType != MovementType.Crawling)
         {
             //Debug.Log("Jump");
+            switch (movementDirection)
+            {
+                case MovementDirection.Left:
+                    playerData.playerAnimator.PlayerJumpLeft();
+                    break;
+                case MovementDirection.Right:
+                    playerData.playerAnimator.PlayerJumpRight();
+                    break;
+
+            }
             playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
             grounded = false;
         }
@@ -406,26 +412,33 @@ public class PlayerMovement : MonoBehaviour
         return movementForce;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            contactsWithGround++;
+        }
+        if (playerData.animationNumber == 6)
+        {
+            switch (movementDirection)
+            {
+                case MovementDirection.Left:
+                    playerData.playerAnimator.PlayerLandLeft();
+                    break;
+                case MovementDirection.Right:
+                    playerData.playerAnimator.PlayerLandRight();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (Mathf.Abs(playerRB2D.velocity.y) <= 0.01f && collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            if (playerData.animationNumber == 7)
-            {
-                switch (movementDirection)
-                {
-                    case MovementDirection.Left:
-                        playerData.playerAnimator.PlayerLandLeft();
-                        break;
-                    case MovementDirection.Right:
-                        playerData.playerAnimator.PlayerLandRight();
-                        break;
-                    default:
-                        break;
-                }
-            }
-
             grounded = true;
             playerData.grounded = grounded;
         }
@@ -434,17 +447,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            switch (movementDirection)
+            contactsWithGround--;
+            if(contactsWithGround <= 0)
             {
-                case MovementDirection.Left:
-                    playerData.playerAnimator.PlayerFallLeft();
-                    break;
-                case MovementDirection.Right:
-                    playerData.playerAnimator.PlayerFallRight();
-                    break;
-            }
-
-            playerData.grounded = grounded;
+                contactsWithGround = 0;
+                playerData.grounded = grounded = false;
+            }    
         }
     }
 }

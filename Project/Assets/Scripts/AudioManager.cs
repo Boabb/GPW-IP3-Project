@@ -252,13 +252,16 @@ public class AudioManager : MonoBehaviour
                         break;
 
                     default:
-                        if (Instance.SoundEffects[(int)soundEffect].clips.Length > 0)
+                        if (UnityEngine.Random.Range(0, 4) == 1)
                         {
-                            Instance.SoundEffects[(int)soundEffect].audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
-                        }
-                        else
-                        {
-                            Debug.LogWarning($"{Instance.SoundEffects[(int)soundEffect].name} is valid but Sound Effect has no clips to play!");
+                            if (Instance.SoundEffects[(int)soundEffect].clips.Length > 0)
+                            {
+                                Instance.SoundEffects[(int)soundEffect].audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
+                            }
+                            else
+                            {
+                                Debug.LogWarning($"{Instance.SoundEffects[(int)soundEffect].name} is valid but Sound Effect has no clips to play!");
+                            }
                         }
                         break;
                 }
