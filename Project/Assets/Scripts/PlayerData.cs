@@ -73,7 +73,7 @@ public class PlayerData : MonoBehaviour
     }
     private void Start()
     {
-        playerLayer = LayerMask.NameToLayer("Player");
+        playerLayer = LayerMask.GetMask("Player");
     }
 
     public void FreezePlayer()
