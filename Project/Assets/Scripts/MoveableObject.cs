@@ -36,14 +36,14 @@ public class MoveableObject : MonoBehaviour
         {
             objectRB.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
-        if (playerData.playerWalkingCollider.bounds.min.y <= groundCollider.bounds.max.y)
-        {
-            Physics2D.IgnoreCollision(groundCollider, playerData.playerWalkingCollider, true);
-        }
-        else
-        {
-            Physics2D.IgnoreCollision(groundCollider, playerData.playerWalkingCollider, false);
-        }
+        //if (playerData.playerWalkingCollider.bounds.min.y <= groundCollider.bounds.max.y)
+        //{
+        //    Physics2D.IgnoreCollision(groundCollider, playerData.playerWalkingCollider, true);
+        //}
+        //else
+        //{
+        //    Physics2D.IgnoreCollision(groundCollider, playerData.playerWalkingCollider, false);
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
