@@ -98,6 +98,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void GetMoveDirection()
     {
+        SystemSettings.moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
+        SystemSettings.moveLeft = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
+
         if (SystemSettings.moveRight && !SystemSettings.moveLeft)
         {
             movementDirection = MovementDirection.Right;
