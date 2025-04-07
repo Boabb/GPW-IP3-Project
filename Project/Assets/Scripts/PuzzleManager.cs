@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PuzzleManager : InteractableObject
@@ -12,6 +14,10 @@ public class PuzzleManager : InteractableObject
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private PuzzleCompletionAction completionAction;
+
+    // Reference to the cabinet GameObject (optional for certain objects)
+    [SerializeField] private GameObject cabinet;
+    public float minClearDistance = 0.5f;
 
     public enum PuzzleCompletionAction
     {
@@ -48,10 +54,14 @@ public class PuzzleManager : InteractableObject
 
     public override void Interaction(GameObject playerGO)
     {
-        if (canBeInteractedWith)
+        if (canBeInteractedWith && (!cabinet || !IsCabinetBlocking())) // Check cabinet only if it's assigned
         {
             Debug.Log($"{gameObject.name}: Puzzle interaction triggered!");
             OpenPuzzleUI();
+        }
+        else if (canBeInteractedWith)
+        {
+            Debug.Log($"{gameObject.name}: Cabinet is blocking interaction!");
         }
         else
         {
@@ -73,13 +83,18 @@ public class PuzzleManager : InteractableObject
         }
     }
 
+    private bool IsCabinetBlocking()
+    {
+        // Check if the cabinet is too close to the puzzle, preventing interaction
+        return Vector2.Distance(cabinet.transform.position, transform.position) <= minClearDistance;
+    }
+
     public void CompletePuzzle()
     {
         Debug.Log($"{gameObject.name}: Puzzle completed!");
 
         OnPuzzleCompleted?.Invoke();
     }
-
 
     private void HandlePuzzleCompletion()
     {
@@ -97,7 +112,7 @@ public class PuzzleManager : InteractableObject
                 break;
         }
     }
-    
+
     private void ClosePuzzleUI()
     {
         if (puzzleUI != null)

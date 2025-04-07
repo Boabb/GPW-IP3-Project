@@ -7,7 +7,8 @@ public class Level2LockPuzzleCompletion : MonoBehaviour
 {
     [SerializeField] private PuzzleManager puzzleManager;
     [SerializeField] private GameObject terka;
-    [SerializeField] private GameObject brothers;
+    [SerializeField] private GameObject[] brothers;
+    [SerializeField] private VoiceOverEnum voiceOverToPlay;
 
     private void OnEnable()
     {
@@ -24,10 +25,18 @@ public class Level2LockPuzzleCompletion : MonoBehaviour
         Debug.Log("The door is unlocked. Triggers everything now.");
 
         // Start next testimony
-        AudioManager.PlayVoiceOverAudio(VoiceOverEnum.Level1Track2, 1.0f); // <- TO BE CHANGED!!!!
+        AudioManager.PlayVoiceOverAudio(voiceOverToPlay, 1.0f); // <- TO BE CHANGED!!!!
 
         // Spawn characters
         if (terka != null) terka.SetActive(true);
-        if (brothers != null) brothers.SetActive(true);
+
+        if (brothers != null)
+        {
+            foreach (GameObject brother in brothers)
+            {
+                if (brother != null)
+                    brother.SetActive(true);
+            }
+        }
     }
 }
