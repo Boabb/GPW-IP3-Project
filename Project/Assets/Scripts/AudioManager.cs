@@ -22,11 +22,27 @@ public enum SoundEffectEnum
 }
 public enum VoiceOverEnum
 {
+    //level testimony
     Level1Track1,
     Level1Track2,
     Level1Track3,
     Level1Track4,
-    Level1Track5,
+    Level2Track1And2,
+    Level2Track3,
+    Level2Track4,
+    Level2Track5,
+    Level3Track1,
+    Level3Track2,
+    Level3Track3,
+    Level3Track4,
+
+    //end montage testimony
+    EndingMontageTrack1,
+    EndingMontageTrack2,
+    EndingMontageTrack3,
+    EndingMontageTrack4,
+
+    //collectable testimony
     BookCollectable,
     BrokenToyCollectable,
     FoodCardCollectable,
