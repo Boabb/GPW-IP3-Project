@@ -74,7 +74,7 @@ public class SystemSettings: MonoBehaviour
 
         if (systemType == SystemType.Desktop)
         {
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 moveLeft = true;
             }
@@ -83,7 +83,7 @@ public class SystemSettings: MonoBehaviour
                 moveLeft = false;
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 moveRight = true;
             }
@@ -119,7 +119,7 @@ public class SystemSettings: MonoBehaviour
                 tapInteract = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 tapLeft = true;
             }
@@ -128,7 +128,7 @@ public class SystemSettings: MonoBehaviour
                 tapLeft = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 tapRight = true;
             }

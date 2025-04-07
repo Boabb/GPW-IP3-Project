@@ -11,11 +11,11 @@ public class CameraController : MonoBehaviour
     float standardZoom = 3.1f;
     float standardY = 0.86f;
     float xOffset = 0;
-    float yOffset = 0;
+    float yOffset = 0.86f;
     float cameraSpeed = 10;
 
-    float levelUpperLimit = 114.6f;
-    float levelLowerLimit = 2.13f;
+    [SerializeField] float levelUpperLimit = 114.6f;
+    [SerializeField] float levelLowerLimit = 2.13f;
 
     private void Start()
     {
@@ -235,7 +235,7 @@ public class CameraController : MonoBehaviour
 
         if (m_followY)
         {
-            position = new Vector3(position.x, player.transform.position.y, position.z);
+            position = new Vector3(position.x, player.transform.position.y + standardY, position.z);
         }
 
         if (player.transform.position.x > levelUpperLimit)

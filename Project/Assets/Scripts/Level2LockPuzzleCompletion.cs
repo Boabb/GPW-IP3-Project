@@ -6,8 +6,8 @@ using UnityEngine;
 public class Level2LockPuzzleCompletion : MonoBehaviour
 {
     [SerializeField] private PuzzleManager puzzleManager;
-    [SerializeField] private GameObject terka;
-    [SerializeField] private GameObject[] brothers;
+    [SerializeField] private GameObject[] objectsToActivate;
+    [SerializeField] private GameObject[] objectsToDeactivate;
     [SerializeField] private VoiceOverEnum voiceOverToPlay;
 
     private void OnEnable()
@@ -28,15 +28,14 @@ public class Level2LockPuzzleCompletion : MonoBehaviour
         AudioManager.PlayVoiceOverAudio(voiceOverToPlay, 1.0f);
 
         // Spawn characters
-        if (terka != null) terka.SetActive(true);
-
-        if (brothers != null)
+        for (int i = 0; i < objectsToActivate.Length; i++)
         {
-            foreach (GameObject brother in brothers)
-            {
-                if (brother != null)
-                    brother.SetActive(true);
-            }
+            objectsToActivate[i].SetActive(true);
+        }
+
+        for (int i = 0;i < objectsToDeactivate.Length; i++)
+        {
+            objectsToDeactivate[i].SetActive(false);
         }
     }
 }

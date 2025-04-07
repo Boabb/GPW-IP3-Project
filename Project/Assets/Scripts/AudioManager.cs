@@ -234,6 +234,8 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("More than one AudioManager Detected! Please find and remove the extra one!");
         }
 
+        Instance.VoiceOverQueue.Clear();
+
         //PlayVoiceOverWithSubtitles(VoiceOverEnum.Level1Track1);
     }
 
@@ -371,8 +373,19 @@ public class AudioManager : MonoBehaviour
                 // Store current audio and its progress
                 if (Instance.VoiceOverAudioSource.clip != null && Instance.VoiceOverAudioSource.isPlaying)
                 {
-                    Instance.VoiceOvers[(int)Instance.currentVoiceOverAudio].progress = Instance.VoiceOverAudioSource.time;
-                    Instance.VoiceOverQueue.Push(Instance.VoiceOvers[(int)Instance.currentVoiceOverAudio].clip);
+                    int currentIndex = 0;
+
+                    for (int i = 0; i < Instance.VoiceOvers.Length; i++)
+                    {
+                        if (Instance.VoiceOverAudioSource.clip == Instance.VoiceOvers[i].clip)
+                        {
+                            currentIndex = i;
+                            break;
+                        }
+                    }
+
+                    Instance.VoiceOvers[currentIndex].progress = Instance.VoiceOverAudioSource.time;
+                    Instance.VoiceOverQueue.Push(Instance.VoiceOvers[currentIndex].clip);
                 }
 
                 // Start new audio
