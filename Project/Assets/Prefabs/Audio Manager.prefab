@@ -210,6 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
+  - name: Marching (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: crawlInVent (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -238,6 +241,9 @@ MonoBehaviour:
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: woodenFootsteps (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Elevator (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 7941402240223346885}
@@ -794,6 +800,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a509baf362bbe7c40a9d77c945d8c49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subtitleSequences: []
+  subtitleSequences:
+  - sequenceName: Level1Track1
+    subtitles:
+    - text: I remember distinctly when the Germans came into Budapest,
+      duration: 4
+    - text: I remember climbing up on a chair looking out of a window,
+      duration: 4
+    - text: and seeing them march twenty abreast up the street.
+      duration: 4
+    - text: "We lived up on Andr\xE1ssy Avenue, which was one of the prominent streets,"
+      duration: 5
+    - text: and it was then that things really became bad.
+      duration: 5
+  - sequenceName: Level1Track2
+    subtitles:
+    - text: And in the end, there were 18 people living there, because we tried to
+        get our own relatives to move in.
+      duration: 7
+    - text: And one family came in and then other Jewish families came in.
+      duration: 5
+  - sequenceName: Level1Track3
+    subtitles:
+    - text: The Nazis liked this lovely big building in a prominent position,
+      duration: 4
+    - text: 'and then they ousted us and we had to move to a very small flat. '
+      duration: 5
+    - text: The problem was what did you do with your furniture?
+      duration: 3
+    - text: "You had to clear out within 24 hours the new place you couldn\u2019t
+        house everything."
+      duration: 6
+    - text: "You couldn\u2019t leave it out on the street,"
+      duration: 2
+    - text: but you also had to look after it because it now belonged to the state,
+      duration: 5
+    - text: so you were between a rock and a hard place
+      duration: 3
+    - text: "and all the restrictions where so complicated that a lawyer couldn\u2019t
+        understand it,"
+      duration: 6
+    - text: and they deliberately did that to trick you so they had any excuse to
+        take you away.
+      duration: 7
+  - sequenceName: Level1Track4
+    subtitles:
+    - text: Every day there was a new regulation, complicated regulations,
+      duration: 3
+    - text: they would ring some bell and we would go out on to the courtyard,
+      duration: 7
+    - text: the houses were built round courtyards and there would be some proclamation.
+      duration: 5
+    - text: All Jews had to hand in their radios on pain of death,
+      duration: 5
+    - text: "you weren\u2019t allowed even before then to listen to foreign stations,
+        on pain of death,"
+      duration: 6
+    - text: you know, any excuse they take you away.
+      duration: 3
+    - text: 'You hand in all your jewellery, anything valuable, you had to declare
+        it. '
+      duration: 7
+    - text: "The flat we went into was on the second floor of a very tall building
+        I don\u2019t know 6 stories high or something."
+      duration: 12
+    - text: ' It was very dark, because the rooms opened out onto the courtyard,'
+      duration: 5
+    - text: there was no light at all it was electric light all the time.
+      duration: 5
   subtitleText: {fileID: 0}
   startingSequence: 0

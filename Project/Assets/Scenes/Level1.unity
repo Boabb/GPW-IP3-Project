@@ -6901,10 +6901,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 55942009}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: startingSequence
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleTextElement
       value: 
       objectReference: {fileID: 55942009}
@@ -6915,10 +6911,6 @@ PrefabInstance:
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitlesData.Array.size
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.size
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleArray.Array.data[0].text
@@ -6953,159 +6945,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].sequenceName
-      value: Level1Track1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[1].sequenceName
-      value: Level1Track2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].sequenceName
-      value: Level1Track3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].sequenceName
-      value: Level1Track4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[4].sequenceName
       value: Level1Track4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[1].subtitles.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.size
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[4].subtitles.Array.size
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[0].text
-      value: I remember distinctly when the Germans came into Budapest,
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[1].text
-      value: I remember climbing up on a chair looking out of a window,
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[2].text
-      value: and seeing them march twenty abreast up the street.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[3].text
-      value: "We lived up on Andr\xE1ssy Avenue, which was one of the prominent streets,"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[4].text
-      value: and it was then that things really became bad.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[0].text
-      value: And in the end, there were 18 people living there, because we tried
-        to get our own relatives to move in.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[1].text
-      value: And one family came in and then other Jewish families came in.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[2].text
       value: And one family came in and then other Jewish families came in.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[0].text
-      value: The Nazis liked this lovely big building in a prominent position,
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[1].text
-      value: 'and then they ousted us and we had to move to a very small flat. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[2].text
-      value: The problem was what did you do with your furniture?
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[3].text
-      value: "You had to clear out within 24 hours the new place you couldn\u2019t
-        house everything."
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[4].text
-      value: "You couldn\u2019t leave it out on the street,"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[5].text
-      value: but you also had to look after it because it now belonged to the state,
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[6].text
-      value: so you were between a rock and a hard place
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[7].text
-      value: "and all the restrictions where so complicated that a lawyer couldn\u2019t
-        understand it,"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[8].text
-      value: and they deliberately did that to trick you so they had any excuse to
-        take you away.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[0].text
-      value: Every day there was a new regulation, complicated regulations,
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[1].text
-      value: they would ring some bell and we would go out on to the courtyard,
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[2].text
-      value: the houses were built round courtyards and there would be some proclamation.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[3].text
-      value: All Jews had to hand in their radios on pain of death,
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[4].text
-      value: "you weren\u2019t allowed even before then to listen to foreign stations,
-        on pain of death,"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[5].text
-      value: you know, any excuse they take you away.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[6].text
-      value: 'You hand in all your jewellery, anything valuable, you had to declare
-        it. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[7].text
-      value: "The flat we went into was on the second floor of a very tall building
-        I don\u2019t know 6 stories high or something."
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[8].text
-      value: ' It was very dark, because the rooms opened out onto the courtyard,'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[9].text
-      value: there was no light at all it was electric light all the time.
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[0].text
@@ -7129,111 +6978,7 @@ PrefabInstance:
         on pain of death,"
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[0].duration
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[1].duration
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[2].duration
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[3].duration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[0].subtitles.Array.data[4].duration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[0].duration
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[1].duration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[1].subtitles.Array.data[2].duration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[0].duration
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[1].duration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[2].duration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[3].duration
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[4].duration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[5].duration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[6].duration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[7].duration
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[2].subtitles.Array.data[8].duration
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[0].duration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[1].duration
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[2].duration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[3].duration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[4].duration
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[5].duration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[6].duration
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[7].duration
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[8].duration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: subtitleSequences.Array.data[3].subtitles.Array.data[9].duration
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3112646419663289426, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
@@ -7289,33 +7034,41 @@ PrefabInstance:
       value: Marching
       objectReference: {fileID: 0}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: AllSounds.Array.data[0].reference
+      value: 
+      objectReference: {fileID: 1258132276}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[2].reference
+      value: 
+      objectReference: {fileID: 870433201917545733}
+    - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: AllSounds.Array.data[3].reference
       value: 
       objectReference: {fileID: 708879407}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: AllSounds.Array.data[3].reference
+      propertyPath: AllSounds.Array.data[4].reference
       value: 
       objectReference: {fileID: 768029583}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[5].reference
       value: 
-      objectReference: {fileID: 2061738073}
+      objectReference: {fileID: 992048283}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[6].reference
       value: 
-      objectReference: {fileID: 870433201917545729}
+      objectReference: {fileID: 2061738073}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[7].reference
       value: 
-      objectReference: {fileID: 870433201917545730}
+      objectReference: {fileID: 870433201917545729}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[8].reference
       value: 
-      objectReference: {fileID: 870433201917545731}
+      objectReference: {fileID: 870433201917545730}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[9].reference
       value: 
-      objectReference: {fileID: 870433201917545732}
+      objectReference: {fileID: 870433201917545731}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: VoiceOvers.Array.data[2].progress
       value: 0
@@ -7323,7 +7076,7 @@ PrefabInstance:
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: AllSounds.Array.data[10].reference
       value: 
-      objectReference: {fileID: 7929354863880904819}
+      objectReference: {fileID: 870433201917545732}
     - target: {fileID: 5825762436611128037, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: SoundEffects.Array.data[0].audioSource
       value: 
@@ -7404,6 +7157,11 @@ PrefabInstance:
       addedObject: {fileID: 1123573889}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+--- !u!82 &1258132276 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1777325121200211096, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+  m_PrefabInstance: {fileID: 1258132275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1285520387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12229,6 +11987,11 @@ AudioSource:
 --- !u!82 &870433201917545732 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1135509934555482556, guid: cc9c739327dff9741b398f555a933366, type: 3}
+  m_PrefabInstance: {fileID: 870433201917545728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &870433201917545733 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5552823536169944809, guid: cc9c739327dff9741b398f555a933366, type: 3}
   m_PrefabInstance: {fileID: 870433201917545728}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5744604647084044413 stripped

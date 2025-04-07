@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LookAtObject : MonoBehaviour
 {
-    void onEnable()
+    void onAwake()
     {
         Time.timeScale = 0f;
     }

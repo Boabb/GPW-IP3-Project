@@ -56,8 +56,7 @@ public class PuzzleManager : InteractableObject
     {
         if (canBeInteractedWith && (!cabinet || !IsCabinetBlocking())) // Check cabinet only if it's assigned
         {
-            Debug.Log($"{gameObject.name}: Puzzle interaction triggered!");
-            OpenPuzzleUI();
+            TogglePuzzleUI();  // Toggle UI open/closed
         }
         else if (canBeInteractedWith)
         {
@@ -69,13 +68,27 @@ public class PuzzleManager : InteractableObject
         }
     }
 
-    private void OpenPuzzleUI()
+    private void TogglePuzzleUI()
     {
+        // Toggle the UI visibility
         if (puzzleUI != null)
         {
-            puzzleUI.SetActive(true);
-            Time.timeScale = 0f; // Pause the game
-            Debug.Log($"{gameObject.name}: Puzzle UI opened.");
+            bool isUIActive = puzzleUI.activeSelf;
+
+            // Toggle the UI state
+            puzzleUI.SetActive(!isUIActive);
+
+            // Pause or resume the game based on the UI state
+            if (!isUIActive)
+            {
+                Time.timeScale = 0f; // Pause the game when UI is opened
+                Debug.Log($"{gameObject.name}: Puzzle UI opened.");
+            }
+            else
+            {
+                Time.timeScale = 1f; // Resume the game when UI is closed
+                Debug.Log($"{gameObject.name}: Puzzle UI closed.");
+            }
         }
         else
         {
@@ -126,5 +139,15 @@ public class PuzzleManager : InteractableObject
     private void OpenLocker()
     {
         spriteRenderer.sprite = openLocker;
+    }
+
+    // New update method to check for tapInteract and release
+    void Update()
+    {
+        // Only open or close puzzle UI when the interact button is released
+        if (canBeInteractedWith && SystemSettings.tapInteract)
+        {
+            Interaction(player); // Call the interaction when tapped
+        }
     }
 }
