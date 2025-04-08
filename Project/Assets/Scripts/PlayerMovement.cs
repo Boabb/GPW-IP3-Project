@@ -417,6 +417,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             contactsWithGround++;
+            grounded = true;
         }
         if (playerData.animationNumber == 6)
         {
@@ -439,7 +440,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Mathf.Abs(playerRB2D.velocity.y) <= 0.01f && collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            grounded = true;
+            //grounded = true;
             playerData.grounded = grounded;
         }
     }
