@@ -162,6 +162,11 @@ public class CameraController : MonoBehaviour
         m_zoomLerp = true;
     }
 
+    public bool GetZoomStatus()
+    {
+        return m_zoomLerp;
+    }
+
     //public bool m_follow = true;
     bool m_followY = false;
     bool m_followX = true;
