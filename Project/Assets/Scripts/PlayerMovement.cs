@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -39,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     float slopeDownAngle;
     float slopeDownAngleOld;
     private int contactsWithGround;
+
+    private Coroutine groundCoroutine;
 
     enum MovementDirection
     {
@@ -272,10 +275,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        SetGrounded();
         if (SystemSettings.jump && grounded && movementType != MovementType.Crawling)
         {
-            //Debug.Log("Jump");
             switch (movementDirection)
             {
                 case MovementDirection.Left:
@@ -284,12 +285,18 @@ public class PlayerMovement : MonoBehaviour
                 case MovementDirection.Right:
                     playerData.playerAnimator.PlayerJumpRight();
                     break;
-
             }
-            playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
+
+            if (Mathf.Abs(playerRB2D.velocity.y) <= 0.01f)
+            {
+                playerRB2D.velocity = new Vector3(playerRB2D.velocity.x, transform.up.y * jumpForce * Time.fixedDeltaTime, 0);
+            }
+
             grounded = false;
+            playerData.grounded = false;
         }
     }
+
 
     void UpdateMovementType()
     {
@@ -417,8 +424,13 @@ public class PlayerMovement : MonoBehaviour
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             contactsWithGround++;
-            grounded = true;
+
+            if (!grounded && groundCoroutine == null)
+            {
+                groundCoroutine = StartCoroutine(DelayedGround());
+            }
         }
+
         if (playerData.animationNumber == 6)
         {
             switch (movementDirection)
@@ -429,8 +441,6 @@ public class PlayerMovement : MonoBehaviour
                 case MovementDirection.Right:
                     playerData.playerAnimator.PlayerLandRight();
                     break;
-                default:
-                    break;
             }
         }
     }
@@ -440,20 +450,37 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Mathf.Abs(playerRB2D.velocity.y) <= 0.01f && collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            //grounded = true;
-            playerData.grounded = grounded;
+            if (!grounded)
+            {
+                StartCoroutine(DelayedGround());
+            }
         }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             contactsWithGround--;
-            if(contactsWithGround <= 0)
+            if (contactsWithGround <= 0)
             {
                 contactsWithGround = 0;
-                playerData.grounded = grounded = false;
-            }    
+                grounded = false;
+                playerData.grounded = false;
+            }
         }
+    }
+
+    private IEnumerator DelayedGround()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        if (contactsWithGround > 0 && !grounded)
+        {
+            grounded = true;
+            playerData.grounded = true;
+        }
+
+        groundCoroutine = null;
     }
 }
