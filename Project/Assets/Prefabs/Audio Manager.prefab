@@ -56,7 +56,7 @@ MonoBehaviour:
     - text: "We lived up on Andr\xE1ssy Avenue, which was one of the prominent streets,"
       duration: 4.47
     - text: and it was then that things really became bad.
-      duration: 4.12
+      duration: 4.11
   - sequenceName: Level1Track2
     subtitles:
     - text: And in the end, there were 18 people living there, because we tried to
@@ -365,7 +365,7 @@ MonoBehaviour:
   SoundEffectsMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   VoiceOverMixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  subtitleManager: {fileID: 0}
+  SubtitleManager: {fileID: 0}
   SoundEffects:
   - name: LandOnWood
     clips:
@@ -425,7 +425,7 @@ MonoBehaviour:
   - name: Marching
     clips:
     - {fileID: 8300000, guid: 6bd511855c1a7884198e847fbe13bebb, type: 3}
-    audioSource: {fileID: 1777325121200211096}
+    audioSource: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   BackgroundMusics:
   - name: FirstRoomSong
