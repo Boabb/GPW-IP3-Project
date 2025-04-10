@@ -14,14 +14,10 @@ public class ExitHospitalEvent : AutoEvent
     bool stage3End = false;
     [SerializeField] FadeInAutoEvent fadeIn;
     [SerializeField] FadeOutAutoEvent fadeOut;
-    [SerializeField] ActivateObject activateObjectEvent;
-    [SerializeField] DeactivateObject deactivateObjectEvent;
     CameraController camCon;
 
     [SerializeField] GameObject[] familyRenderers;
-    [SerializeField] GameObject[] hospitalRenderers;
-
-    [SerializeField] private Animator familyAnimator;
+    [SerializeField] GameObject hospitalRenderer;
 
     private void Start()
     {
@@ -40,16 +36,13 @@ public class ExitHospitalEvent : AutoEvent
                 {
                     playerData.FreezePlayer(); //freeze player
                     AudioManager.PlayVoiceOverAudio(VoiceOverEnum.Level2Track4); //testimony begins
-                    camCon.LerpToZoom(0.2f, 4); //zoom on family and door
-                    camCon.LerpToPositionY(.2f, .8f);
-                    activateObjectEvent.Interaction(playerData.gameObject); //fade out scene and family
-                    deactivateObjectEvent.Interaction(playerData.gameObject); //fade out scene and family
+                    camCon.LerpToZoom(0.2f, 2); //zoom on family and door
                     fadeOut.EventEnter(playerData.gameObject); //fade out scene and family
                     fadeIn.EventEnter(playerData.gameObject); //fade in hospital exterior
 
                     for (int i = 0; i < familyRenderers.Length; i++)
                     {
-                        familyRenderers[i].transform.localScale = new Vector3(.8f,.8f, 1);
+                        familyRenderers[i].transform.localScale = new Vector3(0.08f, 0.08f, 1);
                     }
 
                     stageActive = true;
@@ -66,32 +59,21 @@ public class ExitHospitalEvent : AutoEvent
                 {
                     //camCon.LerpToZoom(0.5f, 10f); //zoom out exterior
                     playerData.UnfreezePlayer(); //unfreeze the player
-                    camCon.LerpToZoom(0.2f, 8); //zoom on family and door
-                    camCon.LerpToPositionY(.2f, 5);
+                    camCon.LerpToZoom(0.2f, 3); //zoom on family and door
                     playerData.customPlayerVelocity = -100; //make the player very slow
                     stageActive = true;
                 }
+                else if (SystemSettings.moveRight || SystemSettings.moveLeft)
+                {
+                    SpriteLerp();
+                }
+
                 if (!spriteLerpToggle)
                 {
                     playerData.customPlayerVelocity = 0;
                     stage = 3;
                     stageActive = false;
                 }
-                else
-                {
-                    SpriteLerp();
-                }
-                break;
-                case 3:
-                stageActive = true;
-                if(Vector2.Distance(playerData.transform.position, familyRenderers[0].transform.position) <= 1f)
-                {
-                    familyAnimator.SetBool("Walk", true);
-                    camCon.LerpToZoom(0.2f, 4); //zoom on family
-                    camCon.transform.position = new(camCon.transform.position.x, 2f, camCon.transform.position.z);
-                    camCon.LerpToPositionX(.05f, 16f);
-                }
-
                 break;
             default:
                 break;
@@ -108,15 +90,23 @@ public class ExitHospitalEvent : AutoEvent
 
     float lerpCounter = 0;
     bool spriteLerpToggle = true;
-
     void SpriteLerp()
     {
         if (lerpCounter < 1)
         {
+            for (int i = 0; i < familyRenderers.Length; i++)
+            {
+                familyRenderers[i].transform.localScale = Vector3.Lerp(new Vector3(0.08f, 0.08f, 1), new Vector3(0.19f, 0.19f, 1), lerpCounter);
+                hospitalRenderer.transform.position = Vector3.Lerp(new Vector3(-0.19f, 2.62f, 0), new Vector3(-0.19f, 3.4f, 0), lerpCounter);
+            }
             lerpCounter += 0.1f * Time.deltaTime;
         }
         else
         {
+            for (int i = 0; i < familyRenderers.Length; i++)
+            {
+                familyRenderers[i].transform.localScale = new Vector3(0.19f, 0.19f, 1);
+            }
 
             spriteLerpToggle = false;
         }
