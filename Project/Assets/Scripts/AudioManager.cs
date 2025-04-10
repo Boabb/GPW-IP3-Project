@@ -69,13 +69,13 @@ public class AudioManager : MonoBehaviour
 
     [Header("Change (Drag and Drop)")]
     [Header("Audio Sources")]
-    [SerializeField] private AudioSource MusicAudioSource;
-    [SerializeField] private AudioSource VoiceOverAudioSource;
+    [SerializeField] public AudioSource MusicAudioSource;
+    [SerializeField] public AudioSource VoiceOverAudioSource;
     [Header("Audio Mixers")]
     [SerializeField] private AudioMixerGroup SoundEffectsMixerGroup;
     [SerializeField] private AudioMixerGroup MusicMixerGroup;
     [SerializeField] private AudioMixerGroup VoiceOverMixerGroup;
-    [SerializeField] private SubtitleManager subtitleManager;  // Reference to the SubtitleManager
+    [SerializeField] private SubtitleManager SubtitleManager;  // Reference to the SubtitleManager
 
     public SoundEffect[] SoundEffects = new SoundEffect[Enum.GetNames(typeof(SoundEffectEnum)).Length];
     public BackgroundMusic[] BackgroundMusics = new BackgroundMusic[Enum.GetNames(typeof(BackgroundMusicEnum)).Length];
@@ -225,6 +225,7 @@ public class AudioManager : MonoBehaviour
     {
         Instance = this;
         MasterAudioSource = GetComponent<AudioSource>();
+        SubtitleManager = GetComponentInChildren<SubtitleManager>();
     }
 
     private void Start()
