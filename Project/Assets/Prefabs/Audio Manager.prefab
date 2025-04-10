@@ -1,5 +1,119 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1599324753905065686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2346822134440228847}
+  - component: {fileID: 285458712940609321}
+  m_Layer: 0
+  m_Name: SubtitleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2346822134440228847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599324753905065686}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2941370728548640270}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &285458712940609321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599324753905065686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a509baf362bbe7c40a9d77c945d8c49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleSequences:
+  - sequenceName: Level1Track1
+    subtitles:
+    - text: I remember distinctly when the Germans came into Budapest,
+      duration: 4.52
+    - text: I remember climbing up on a chair looking out of a window,
+      duration: 3.68
+    - text: and seeing them march twenty abreast up the street.
+      duration: 4.75
+    - text: "We lived up on Andr\xE1ssy Avenue, which was one of the prominent streets,"
+      duration: 4.47
+    - text: and it was then that things really became bad.
+      duration: 4.12
+  - sequenceName: Level1Track2
+    subtitles:
+    - text: And in the end, there were 18 people living there, because we tried to
+        get our own relatives to move in.
+      duration: 7
+    - text: And one family came in and then other Jewish families came in.
+      duration: 5
+  - sequenceName: Level1Track3
+    subtitles:
+    - text: The Nazis liked this lovely big building in a prominent position,
+      duration: 4
+    - text: 'and then they ousted us and we had to move to a very small flat. '
+      duration: 5
+    - text: The problem was what did you do with your furniture?
+      duration: 3
+    - text: "You had to clear out within 24 hours the new place you couldn\u2019t
+        house everything."
+      duration: 6
+    - text: "You couldn\u2019t leave it out on the street,"
+      duration: 2
+    - text: but you also had to look after it because it now belonged to the state,
+      duration: 5
+    - text: so you were between a rock and a hard place
+      duration: 3
+    - text: "and all the restrictions where so complicated that a lawyer couldn\u2019t
+        understand it,"
+      duration: 6
+    - text: and they deliberately did that to trick you so they had any excuse to
+        take you away.
+      duration: 7
+  - sequenceName: Level1Track4
+    subtitles:
+    - text: Every day there was a new regulation, complicated regulations,
+      duration: 3
+    - text: they would ring some bell and we would go out on to the courtyard,
+      duration: 7
+    - text: the houses were built round courtyards and there would be some proclamation.
+      duration: 5
+    - text: All Jews had to hand in their radios on pain of death,
+      duration: 5
+    - text: "you weren\u2019t allowed even before then to listen to foreign stations,
+        on pain of death,"
+      duration: 6
+    - text: you know, any excuse they take you away.
+      duration: 3
+    - text: 'You hand in all your jewellery, anything valuable, you had to declare
+        it. '
+      duration: 7
+    - text: "The flat we went into was on the second floor of a very tall building
+        I don\u2019t know 6 stories high or something."
+      duration: 12
+    - text: ' It was very dark, because the rooms opened out onto the courtyard,'
+      duration: 5
+    - text: there was no light at all it was electric light all the time.
+      duration: 5
+  subtitleText: {fileID: 0}
+  startingSequence: 0
 --- !u!1 &2909311250373351691
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +307,7 @@ Transform:
   m_Children:
   - {fileID: 827965565809045431}
   - {fileID: 5556762402861421567}
-  - {fileID: 3668238998098404040}
+  - {fileID: 2346822134440228847}
   - {fileID: 3662660501711133829}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -210,13 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
-  - name: Marching (Sound Effects)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: crawlInVent (Sound Effects)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenScrape (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Audio Manager (Master)
@@ -225,6 +333,9 @@ MonoBehaviour:
   - name: Voice-Over Audio (Voice-Over)
     reference: {fileID: 0}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Marching (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Marching (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -243,6 +354,9 @@ MonoBehaviour:
   - name: woodenFootsteps (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenScrape (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Elevator (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -251,7 +365,7 @@ MonoBehaviour:
   SoundEffectsMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   VoiceOverMixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  subtitleManager: {fileID: 3112646419663289426}
+  subtitleManager: {fileID: 0}
   SoundEffects:
   - name: LandOnWood
     clips:
@@ -756,117 +870,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &8298284198867261376
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3668238998098404040}
-  - component: {fileID: 3112646419663289426}
-  m_Layer: 0
-  m_Name: SubtitleManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3668238998098404040
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8298284198867261376}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2941370728548640270}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3112646419663289426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8298284198867261376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a509baf362bbe7c40a9d77c945d8c49f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  subtitleSequences:
-  - sequenceName: Level1Track1
-    subtitles:
-    - text: I remember distinctly when the Germans came into Budapest,
-      duration: 4
-    - text: I remember climbing up on a chair looking out of a window,
-      duration: 4
-    - text: and seeing them march twenty abreast up the street.
-      duration: 4
-    - text: "We lived up on Andr\xE1ssy Avenue, which was one of the prominent streets,"
-      duration: 5
-    - text: and it was then that things really became bad.
-      duration: 5
-  - sequenceName: Level1Track2
-    subtitles:
-    - text: And in the end, there were 18 people living there, because we tried to
-        get our own relatives to move in.
-      duration: 7
-    - text: And one family came in and then other Jewish families came in.
-      duration: 5
-  - sequenceName: Level1Track3
-    subtitles:
-    - text: The Nazis liked this lovely big building in a prominent position,
-      duration: 4
-    - text: 'and then they ousted us and we had to move to a very small flat. '
-      duration: 5
-    - text: The problem was what did you do with your furniture?
-      duration: 3
-    - text: "You had to clear out within 24 hours the new place you couldn\u2019t
-        house everything."
-      duration: 6
-    - text: "You couldn\u2019t leave it out on the street,"
-      duration: 2
-    - text: but you also had to look after it because it now belonged to the state,
-      duration: 5
-    - text: so you were between a rock and a hard place
-      duration: 3
-    - text: "and all the restrictions where so complicated that a lawyer couldn\u2019t
-        understand it,"
-      duration: 6
-    - text: and they deliberately did that to trick you so they had any excuse to
-        take you away.
-      duration: 7
-  - sequenceName: Level1Track4
-    subtitles:
-    - text: Every day there was a new regulation, complicated regulations,
-      duration: 3
-    - text: they would ring some bell and we would go out on to the courtyard,
-      duration: 7
-    - text: the houses were built round courtyards and there would be some proclamation.
-      duration: 5
-    - text: All Jews had to hand in their radios on pain of death,
-      duration: 5
-    - text: "you weren\u2019t allowed even before then to listen to foreign stations,
-        on pain of death,"
-      duration: 6
-    - text: you know, any excuse they take you away.
-      duration: 3
-    - text: 'You hand in all your jewellery, anything valuable, you had to declare
-        it. '
-      duration: 7
-    - text: "The flat we went into was on the second floor of a very tall building
-        I don\u2019t know 6 stories high or something."
-      duration: 12
-    - text: ' It was very dark, because the rooms opened out onto the courtyard,'
-      duration: 5
-    - text: there was no light at all it was electric light all the time.
-      duration: 5
-  subtitleText: {fileID: 0}
-  startingSequence: 0

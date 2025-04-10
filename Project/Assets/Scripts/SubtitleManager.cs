@@ -49,6 +49,11 @@ public class SubtitleManager : MonoBehaviour
         PlayLevelVoiceOver();
     }
 
+    void Update()
+    {
+        Debug.Log($"{AudioManager.Instance.VoiceOverAudioSource.time}");
+    }
+
     private void PlayLevelVoiceOver()
     {
         AudioManager.PlayVoiceOverWithSubtitles(startingSequence);
@@ -88,10 +93,16 @@ public class SubtitleManager : MonoBehaviour
             sequenceIndexTracker[sequenceName] = 0;
         }
 
+        float subtitleEndPosition = 0f;
+
         for (int i = sequenceIndexTracker[sequenceName]; i < sequence.subtitles.Length; i++)
         {
             subtitleText.text = sequence.subtitles[i].text;
-            yield return new WaitForSecondsRealtime(sequence.subtitles[i].duration); // Use WaitForSecondsRealtime
+
+            subtitleEndPosition += sequence.subtitles[i].duration;
+
+            yield return new WaitUntil(() => AudioManager.Instance.VoiceOverAudioSource.time >= subtitleEndPosition || (!AudioManager.Instance.VoiceOverAudioSource.isPlaying && AudioManager.Instance.VoiceOverAudioSource.time == 0)); // Use WaitForSecondsRealtime
+
             subtitleText.text = "";
         }
 
