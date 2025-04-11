@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class DeactivateObject : InteractableObject
 {
-    [SerializeField] GameObject toDeactivate;
+    [SerializeField] GameObject[] toDeactivate;
     public override void Interaction(GameObject playerGO)
     {
-        toDeactivate.SetActive(false);
+        foreach (var obj in toDeactivate)
+        {
+            obj.SetActive(false);
+        }
     }
 }

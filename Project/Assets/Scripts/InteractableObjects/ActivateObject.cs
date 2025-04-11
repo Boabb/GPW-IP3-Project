@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ActivateObject : InteractableObject
 {
-    [SerializeField] GameObject toActivate;
+    [SerializeField] GameObject[] toActivate;
     public override void Interaction(GameObject playerGO)
     {
-        toActivate.SetActive(true);
+        foreach (GameObject obj in toActivate)
+        {
+            obj.SetActive(true);
+        }
     }
 }
