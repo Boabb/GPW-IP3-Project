@@ -71,23 +71,25 @@ public class ExitHospitalEvent : AutoEvent
                     playerData.customPlayerVelocity = -100; //make the player very slow
                     stageActive = true;
                 }
-                else if (SystemSettings.moveRight || SystemSettings.moveLeft)
-                {
-                    SpriteLerp();
-                }
-
                 if (!spriteLerpToggle)
                 {
                     playerData.customPlayerVelocity = 0;
                     stage = 3;
                     stageActive = false;
                 }
+                else
+                {
+                    SpriteLerp();
+                }
                 break;
                 case 3:
+                stageActive = true;
                 if(Vector2.Distance(playerData.transform.position, familyRenderers[0].transform.position) <= 1f)
                 {
                     familyAnimator.SetBool("Walk", true);
-                    camCon.LerpToPositionX(.05f, 20f);
+                    camCon.LerpToZoom(0.2f, 4); //zoom on family
+                    camCon.transform.position = new(camCon.transform.position.x, 2f, camCon.transform.position.z);
+                    camCon.LerpToPositionX(.05f, 16f);
                 }
 
                 break;
@@ -111,18 +113,10 @@ public class ExitHospitalEvent : AutoEvent
     {
         if (lerpCounter < 1)
         {
-            for (int i = 0; i < familyRenderers.Length; i++)
-            {
-                familyRenderers[i].transform.localScale = Vector3.Lerp(new Vector3(.8f , .8f, 1), new Vector3(1, 1, 1), lerpCounter);
-            }
             lerpCounter += 0.1f * Time.deltaTime;
         }
         else
         {
-            for (int i = 0; i < familyRenderers.Length; i++)
-            {
-                familyRenderers[i].transform.localScale = Vector3.one;
-            }
 
             spriteLerpToggle = false;
         }
