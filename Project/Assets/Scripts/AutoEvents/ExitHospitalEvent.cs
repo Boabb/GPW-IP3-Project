@@ -17,7 +17,7 @@ public class ExitHospitalEvent : AutoEvent
     CameraController camCon;
 
     [SerializeField] GameObject[] familyRenderers;
-    [SerializeField] GameObject hospitalRenderer;
+    [SerializeField] GameObject[] hospitalRenderers;
 
     private void Start()
     {
@@ -97,7 +97,10 @@ public class ExitHospitalEvent : AutoEvent
             for (int i = 0; i < familyRenderers.Length; i++)
             {
                 familyRenderers[i].transform.localScale = Vector3.Lerp(new Vector3(0.08f, 0.08f, 1), new Vector3(0.19f, 0.19f, 1), lerpCounter);
-                hospitalRenderer.transform.position = Vector3.Lerp(new Vector3(-0.19f, 2.62f, 0), new Vector3(-0.19f, 3.4f, 0), lerpCounter);
+            }
+            for (int i = 0; i < hospitalRenderers.Length; i++)
+            {
+                hospitalRenderers[i].transform.position = Vector3.Lerp(new Vector3(-0.19f, 2.62f, 0), new Vector3(-0.19f, 3.4f, 0), lerpCounter);
             }
             lerpCounter += 0.1f * Time.deltaTime;
         }
