@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class ContextScreen : MonoBehaviour
 {
@@ -20,21 +21,33 @@ public class ContextScreen : MonoBehaviour
     public Image contextImage;
 
     private bool isTransitioning = false;
+    private List<string> currentTextChunks; // To hold chunks of text for each sentence
+    private int currentChunkIndex = 0;
 
     private void Start()
     {
-        // Get the context message and display it
+        // Initialize context text and sprite with the data from SceneFlowManager
         SceneFlowManager.Instance.StartDisplayingText(contextText);
 
         // Start fade-in
         StartCoroutine(FadeCanvasGroup(1, fadeDuration));
     }
 
+    public void InitializeContextScreen(List<string> textChunks, Sprite[] sprites, int[] durations)
+    {
+        currentTextChunks = textChunks;
+        contextSprites = sprites;
+        spriteDurations = durations;
+
+        // Show the first chunk of text and sprite
+        UpdateTextAndSprite(currentTextChunks[currentChunkIndex], contextSprites[GetSpriteIndexForSentence(currentChunkIndex)]);
+    }
+
     public void ProceedToNextScene()
     {
         // Start fade-out and load the next scene
         if (!isTransitioning)
-        StartCoroutine(FadeOutAndLoadScene());
+            StartCoroutine(FadeOutAndLoadScene());
         else
         {
             print("Flipping pages");
@@ -50,8 +63,8 @@ public class ContextScreen : MonoBehaviour
         // Retrieve the next level index stored in PlayerPrefs
         int nextLevelIndex = PlayerPrefs.GetInt("NextLevel", 1);
 
-        // Load the next level
-        SceneFlowManager.Instance.LoadScene(nextLevelIndex);
+        // Use the SceneFlowManager to load the scene
+        SceneFlowManager.Instance.LoadScene((SceneFlowManager.SceneIndex)nextLevelIndex);
 
         isTransitioning = false;
     }
@@ -71,17 +84,10 @@ public class ContextScreen : MonoBehaviour
         canvasGroup.alpha = targetAlpha;
     }
 
-    // Method to update the sprite based on the current sentence index
-    public void UpdateSpriteForSentence(int sentenceIndex)
+    public void UpdateTextAndSprite(string newText, Sprite newSprite)
     {
-        // Find the correct sprite index based on sentence count
-        int spriteIndex = GetSpriteIndexForSentence(sentenceIndex);
-
-        // Update the image with the selected sprite
-        if (spriteIndex >= 0 && spriteIndex < contextSprites.Length)
-        {
-            contextImage.sprite = contextSprites[spriteIndex];
-        }
+        contextText.text = newText;
+        contextImage.sprite = newSprite;
     }
 
     // Method to calculate which sprite to display based on the current sentence index
@@ -101,7 +107,28 @@ public class ContextScreen : MonoBehaviour
             }
         }
 
-        // If we don't find a matching sprite (e.g., more sentences than we have durations), return the last sprite
+        // If we don't find a matching sprite return the last sprite
         return contextSprites.Length - 1;
+    }
+
+    public void ShowNextSentence()
+    {
+        // Check if there are more text chunks to show
+        if (currentTextChunks == null || currentChunkIndex >= currentTextChunks.Count)
+            return;
+
+        // Increment the chunk index to move to the next sentence
+        currentChunkIndex++;
+
+        // If there are more sentences, show the next one
+        if (currentChunkIndex < currentTextChunks.Count)
+        {
+            UpdateTextAndSprite(currentTextChunks[currentChunkIndex], contextSprites[GetSpriteIndexForSentence(currentChunkIndex)]);
+        }
+        else
+        {
+            // If we've reached the last sentence, transition to the next scene
+            ProceedToNextScene();
+        }
     }
 }

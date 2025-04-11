@@ -208,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8524424544509167813, guid: 056b9f8c1ee9b49449103b7c2a5d6e89, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 19.2
+      value: 23.8
       objectReference: {fileID: 0}
     - target: {fileID: -8524424544509167813, guid: 056b9f8c1ee9b49449103b7c2a5d6e89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -282,6 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextButton: {fileID: 692849498}
+  contextScreen: {fileID: 2129123494}
+  delayTime: 0.5
 --- !u!114 &692849498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,7 +306,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -328,7 +330,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 692849497}
         m_TargetAssemblyTypeName: NextSentenceButton, Assembly-CSharp
-        m_MethodName: nextSentence
+        m_MethodName: NextSentence
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1081,7 +1083,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d5c9cffc2e404644dbd63242356ba8e7, type: 3}
   - {fileID: 21300000, guid: a8a940ba9c390cb48a8b28d2891613d6, type: 3}
   - {fileID: 21300000, guid: 18d6aee3c3ced8b4bb6cd5e0c1b3ca13, type: 3}
-  spriteDurations: 010000000100000002000000
+  - {fileID: 21300000, guid: a6ea0498489bcb1428f6fb4c07b9c83e, type: 3}
+  - {fileID: 21300000, guid: 7134a33573440e041a0cb6347af21017, type: 3}
+  spriteDurations: 0100000001000000020000000200000002000000
   contextImage: {fileID: 826739952}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
