@@ -112,8 +112,72 @@ MonoBehaviour:
       duration: 5
     - text: there was no light at all it was electric light all the time.
       duration: 5
+  - sequenceName: Level2Track1And2
+    subtitles:
+    - text: What happened was we went into a protected house. It was a hospital.
+      duration: 6
+    - text: So we all moved into this hospital on one of the large boulevards.
+      duration: 5
+    - text: And this hospital was actually in the pay of some Nazis.
+      duration: 5
+    - text: And this hospital was actually in the pay of some Nazis.
+      duration: 5
+    - text: "And there\u2019s a Nazi guard outside. But inside was a bedlam of Jews."
+      duration: 6
+    - text: And the adults were on the first two floors and the children were up
+        on the third and fourth floor.
+      duration: 5
+    - text: 'And it was absolute bedlam. '
+      duration: 3
+    - text: And the children were trying to commit suicide,
+      duration: 4
+    - text: throwing themselves, you know, into the courtyard.
+      duration: 4
+    - text: It was awful. But we were there for about six weeks, I think.
+      duration: 5
+  - sequenceName: Level2Track3
+    subtitles:
+    - text: And just before Christmas, things were getting worse and worse.
+      duration: 3.5
+    - text: And one day Little Grandma said to us, she dressed us all up in our clothes
+        and she said,
+      duration: 7
+    - text: "\u201CSomeone\u2019s going to come at 9 o\u2019clock tonight"
+      duration: 3
+    - text: "and you have to call her mother and just do everything she says. Just
+        go with her.\u201D"
+      duration: 3
+    - text: All I knew was it was her sister Terka,
+      duration: 4
+    - text: who had some Christian papers.
+      duration: 3
+  - sequenceName: Level2Track4
+    subtitles:
+    - text: And my brothers and I, she took us out onto the street and it was dark.
+      duration: 4
+    - text: Everyone was running around, it was pre-christmas and it was busy.
+      duration: 4
+    - text: "And we hadn\u2019t been out, you know, for six weeks in the streets."
+      duration: 4
+    - text: "nd she said, \u201CDon\u2019t talk,\u201D you know, \u201CDon\u2019t
+        say anything.\u201D"
+      duration: 4
+    - text: Just call her mother.
+      duration: 3
+  - sequenceName: Level2Track5
+    subtitles:
+    - text: And we got onto a very crammed bus.
+      duration: 3
+    - text: And, no not bus it was a tram, we had trams.
+      duration: 3
+    - text: And we just followed her. And she took us down to near the Danube.
+      duration: 5
+    - text: And I remember this house and so,
+      duration: 4
+    - text: she deposited us there and she went away.
+      duration: 5
   subtitleText: {fileID: 0}
-  startingSequence: 0
+  startingSequence: 4
 --- !u!1 &2909311250373351691
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,15 +391,15 @@ MonoBehaviour:
   - name: crawlInVent (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenScrape (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Audio Manager (Master)
     reference: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Voice-Over Audio (Voice-Over)
     reference: {fileID: 0}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Marching (Sound Effects)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Marching (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -352,12 +416,6 @@ MonoBehaviour:
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: woodenFootsteps (Sound Effects)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenScrape (Sound Effects)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Elevator (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 7941402240223346885}

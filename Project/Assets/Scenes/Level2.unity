@@ -6366,7 +6366,44 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
-      propertyPath: startingSequence
+      propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[6].text
+      value: 'And it was absolute bedlam. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[7].text
+      value: And the children were trying to commit suicide,
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[8].text
+      value: throwing themselves, you know, into the courtyard.
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[9].text
+      value: It was awful. But we were there for about six weeks, I think.
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[6].subtitles.Array.data[5].text
+      value: "nd she said, \u201CDon\u2019t talk,\u201D you know, \u201CDon\u2019t
+        say anything.\u201D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[6].duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[7].duration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[8].duration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[9].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[6].subtitles.Array.data[5].duration
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 648406160439785931, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
