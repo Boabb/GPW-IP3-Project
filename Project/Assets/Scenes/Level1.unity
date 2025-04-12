@@ -478,11 +478,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &106159031 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1589484449032314498, guid: c3fcb68e0943a9b428edcea9ec30bd01, type: 3}
-  m_PrefabInstance: {fileID: 1295516506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &121315655
 GameObject:
   m_ObjectHideFlags: 0
@@ -6862,6 +6857,10 @@ PrefabInstance:
       propertyPath: subtitleText
       value: 
       objectReference: {fileID: 55942009}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: startingSequence
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 648406160439785931, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -7410,7 +7409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b5f63bcfb77a448bfb7e475e461340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toActivate: {fileID: 828748950}
+  toActivate:
+  - {fileID: 0}
 --- !u!114 &1295516514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7423,7 +7423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fed6582b8da95248b21b8d155347664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toDeactivate: {fileID: 106159031}
+  toDeactivate:
+  - {fileID: 0}
 --- !u!114 &1295516515
 MonoBehaviour:
   m_ObjectHideFlags: 0
