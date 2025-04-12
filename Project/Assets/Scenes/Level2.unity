@@ -6374,6 +6374,40 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[3].text
+      value: "And there\u2019s a Nazi guard outside. But inside was a bedlam of Jews."
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[4].text
+      value: And the adults were on the first two floors and the children were up
+        on the third and fourth floor.
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[5].text
+      value: 'And it was absolute bedlam. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[6].text
+      value: Because, you know, they crammed lots of Jews in and they were in the
+        corridors.
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[7].text
+      value: And the children were trying to commit suicide,
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[8].text
+      value: throwing themselves, you know, into the courtyard.
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[9].text
+      value: It was awful. But we were there for about six weeks, I think.
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[6].text
       value: 'And it was absolute bedlam. '
       objectReference: {fileID: 0}
@@ -6453,6 +6487,26 @@ PrefabInstance:
     - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[8].subtitles.Array.data[10].text
       value: and eventually we went down into the cellar and they bombed the house.
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[3].duration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[4].duration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[5].duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[6].duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: subtitleSequences.Array.data[4].subtitles.Array.data[8].duration
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: subtitleSequences.Array.data[5].subtitles.Array.data[6].duration
@@ -12562,7 +12616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3209808768042723545, guid: be4d57b2c32ecb24fa83636d0bcfdda4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3209808768042723545, guid: be4d57b2c32ecb24fa83636d0bcfdda4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
