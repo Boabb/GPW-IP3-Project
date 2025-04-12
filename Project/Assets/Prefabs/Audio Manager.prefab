@@ -176,8 +176,131 @@ MonoBehaviour:
       duration: 4
     - text: she deposited us there and she went away.
       duration: 5
+  - sequenceName: Level3Track1
+    subtitles:
+    - text: Now we stayed in that house and we had Christmas there.
+      duration: 5
+    - text: And it was a sort of nursery. And there were mostly mothers and babies.
+      duration: 7
+    - text: And we were sort of big children,
+      duration: 3
+    - text: you know like 9 and 7 we were.
+      duration: 1
+    - text: "So we were, we didn\u2019t have any relatives there."
+      duration: 3
+    - text: We stayed there and it was actually very nice because we got food,
+      duration: 3
+    - text: proper food, we had proper beds.
+      duration: 2
+    - text: This is Christmas 1944 and the Russians are coming in,
+      duration: 5
+    - text: and the Germans are retreating the bombs are flying,
+      duration: 5
+    - text: so we were going down into the cellar all the time.
+      duration: 5
+  - sequenceName: Level3Track2
+    subtitles:
+    - text: and eventually we went down into the cellar
+      duration: 3
+    - text: and they bombed the house.
+      duration: 5
+  - sequenceName: Level3Track3
+    subtitles:
+    - text: "The Russians came in and I don\u2019t know whether it was the Germans
+        or the Russians;"
+      duration: 5
+    - text: they poisoned the water supply.
+      duration: 3
+    - text: And I remember my brother Joseph and I going upstairs
+      duration: 3
+    - text: because we had no water so we where scraping the snow
+      duration: 4
+    - text: and bringing it down to melt it.
+      duration: 2
+    - text: My brother Louis, he was too dispirited, he just lay there on the ground.
+      duration: 7
+  - sequenceName: Level3Track4
+    subtitles:
+    - text: The basement was actually the basement of a paper factory
+      duration: 4
+    - text: so there were shelves and we just slept on the shelves or on the floor
+      duration: 5
+    - text: 'and there were just two loos for everybody. '
+      duration: 3
+    - text: So it was pretty awful.
+      duration: 2
+    - text: And there was nothing to eat except, sackfuls of,
+      duration: 4
+    - text: it was called bebe leves,
+      duration: 3
+    - text: it was some sort of powdered stuff.
+      duration: 2
+    - text: It was made of pulse, some sort of peas or something.
+      duration: 5
+    - text: We lived down there about 6 weeks.
+      duration: 5
+  - sequenceName: EndingMontageTrack1
+    subtitles:
+    - text: By middle of January, you know,
+      duration: 2
+    - text: the Germans were out and people started disappearing.
+      duration: 3
+    - text: "the mothers with their children, and we had nobody so they didn\u2019t
+        know what to do with us."
+      duration: 5
+    - text: "And I don\u2019t know why but they separated me and my brothers."
+      duration: 5
+    - text: I was taken by Stefi the cook.
+      duration: 2
+    - text: 'eventually we found an orphanage but it was for boys and I was a girl. '
+      duration: 7
+    - text: And she pleaded with the lady there to take me,
+      duration: 5
+    - text: so I was eventually taken in to the orphanage as the only girl.
+      duration: 6
+  - sequenceName: EndingMontageTrack2
+    subtitles:
+    - text: I actually had quite a happy time there.
+      duration: 3
+    - text: We were all forty five of us sleeping in one big bedroom and we were
+        given little nightgowns
+      duration: 7
+    - text: and we had to say our prayers before going to bed and,
+      duration: 4
+    - text: well, we were given a minimal amount of food.
+      duration: 6
+  - sequenceName: EndingMontageTrack3
+    subtitles:
+    - text: But eventually it really was quite miraculous because we all got together.
+      duration: 5
+    - text: "one day a man appeared and he was distant relative of little grandma\u2019s.
+        He somehow found me. "
+      duration: 6
+    - text: And little grandma turned up in the orphanage where I was.
+      duration: 3
+    - text: And so, you know, we were together and then the boys were
+      duration: 5
+    - text: 'eventually they came to join me in the orphanage. '
+      duration: 7
+  - sequenceName: EndingMontageTrack4
+    subtitles:
+    - text: Little grandma made contact with London, my parents.
+      duration: 3
+    - text: So we were in contact again.
+      duration: 2
+    - text: I suppose our luck was because we were too young to be of use to the
+        communist state,
+      duration: 5
+    - text: the grandmas were too old, so eventually they let us go,
+      duration: 3.5
+    - text: she got the papers and we emigrated.
+      duration: 3
+    - text: And we even got some of the furniture out.
+      duration: 2
+    - text: So we were reunited in 1946.
+      duration: 5
   subtitleText: {fileID: 0}
-  startingSequence: 4
+  startingSequence: 15
 --- !u!1 &2909311250373351691
 GameObject:
   m_ObjectHideFlags: 0
