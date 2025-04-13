@@ -85,6 +85,10 @@ public class AudioManager : MonoBehaviour
     private VoiceOverEnum currentVoiceOverAudio;
     private bool isPlaying;
 
+    private const string MUSIC_VOLUME_PARAM = "MusicVolume";
+    private const string SFX_VOLUME_PARAM = "SFXVolume";
+    private const string VO_VOLUME_PARAM = "VoiceOverVolume";
+
     #region
 
     [System.Serializable]
@@ -238,8 +242,50 @@ public class AudioManager : MonoBehaviour
         Instance.VoiceOverQueue.Clear();
 
         //PlayVoiceOverWithSubtitles(VoiceOverEnum.Level1Track1);
+
+        if (FindObjectsOfType<AudioManager>().Length > 1)
+        {
+            Debug.LogWarning("More than one AudioManager Detected! Please find and remove the extra one!");
+        }
+
+        Instance.VoiceOverQueue.Clear();
+
+        // Load volume from PlayerPrefs
+        float musicVol = PlayerPrefs.GetFloat(MUSIC_VOLUME_PARAM, 0.75f);
+        float sfxVol = PlayerPrefs.GetFloat(SFX_VOLUME_PARAM, 0.75f);
+        float voVol = PlayerPrefs.GetFloat(VO_VOLUME_PARAM, 0.75f);
+
+        SetMixerVolume(MusicMixerGroup.audioMixer, MUSIC_VOLUME_PARAM, musicVol);
+        SetMixerVolume(SoundEffectsMixerGroup.audioMixer, SFX_VOLUME_PARAM, sfxVol);
+        SetMixerVolume(VoiceOverMixerGroup.audioMixer, VO_VOLUME_PARAM, voVol);
     }
 
+    public void SetMixerVolume(AudioMixer mixer, string paramName, float linearVolume)
+    {
+        float dB = Mathf.Log10(Mathf.Clamp(linearVolume, 0.0001f, 1f)) * 20;
+        mixer.SetFloat(paramName, dB);
+    }
+
+    public void UpdateVolume(string key, float value)
+    {
+        print("updating volume");
+        switch (key)
+        {
+            case "MusicVolume":
+                MusicAudioSource.volume = value;  // Adjust the MusicAudioSource volume
+                break;
+            case "SFXVolume":
+                // Assuming there is an array or similar for sound effect sources, you may want to update them here.
+                // If you have multiple SFX audio sources, you would loop through and set their volume.
+                break;
+            case "VoiceVolume":
+                VoiceOverAudioSource.volume = value;  // Ensure this is actually modifying the VoiceOverAudioSource's volume
+                break;
+            default:
+                Debug.LogWarning($"Unknown volume key: {key}");
+                break;
+        }
+    }
 
     public static void PlaySound(AudioClip audioClip, float volume = 1.0f)
     {
@@ -410,12 +456,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public static void PlayVoiceOverWithSubtitles(VoiceOverEnum index, float volume = 1.0f)
+    public static void PlayVoiceOverWithSubtitles(VoiceOverEnum index, float volume = -1f)
     {
+        // Default to saved volume if no volume is passed
+        if (volume == -1f)
+        {
+            volume = PlayerPrefs.GetFloat("VoiceVolume", 0.75f); // Load from PlayerPrefs if not provided
+        }
+
         if (Instance.VoiceOvers[(int)index].clip != null)
         {
             // Play the voice-over audio
-            PlayVoiceOverAudio(index, volume);
+            PlayVoiceOverAudio(index, volume);  // volume should now be the value from PlayerPrefs
 
             // Ensure that SubtitleManager.Instance is called correctly here
             SubtitleManager.Instance.PlaySubtitleSequence(index.ToString());
