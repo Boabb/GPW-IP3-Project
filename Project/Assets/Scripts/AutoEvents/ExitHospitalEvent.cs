@@ -18,6 +18,7 @@ public class ExitHospitalEvent : AutoEvent
 
     [SerializeField] GameObject[] familyRenderers;
     [SerializeField] GameObject hospitalRenderer;
+    [SerializeField] GameObject[] deactivateObjects;
 
     private void Start()
     {
@@ -36,13 +37,11 @@ public class ExitHospitalEvent : AutoEvent
                 {
                     playerData.FreezePlayer(); //freeze player
                     AudioManager.PlayVoiceOverAudio(VoiceOverEnum.Level2Track4); //testimony begins
-                    camCon.LerpToZoom(0.2f, 2); //zoom on family and door
-                    fadeOut.EventEnter(playerData.gameObject); //fade out scene and family
-                    fadeIn.EventEnter(playerData.gameObject); //fade in hospital exterior
+                    camCon.LerpToZoom(0.3f, 2); //zoom on family and door
 
                     for (int i = 0; i < familyRenderers.Length; i++)
                     {
-                        familyRenderers[i].transform.localScale = new Vector3(0.08f, 0.08f, 1);
+                        //familyRenderers[i].transform.localScale = new Vector3(0.08f, 0.08f, 1);
                     }
 
                     stageActive = true;
@@ -57,18 +56,25 @@ public class ExitHospitalEvent : AutoEvent
             case 2:
                 if (!stageActive)
                 {
-                    //camCon.LerpToZoom(0.5f, 10f); //zoom out exterior
+                    for (int i = 0; i < deactivateObjects.Length; i++)
+                    {
+                        deactivateObjects[i].gameObject.SetActive(false);
+                    }
+
+                    camCon.LerpToZoom(0.2f, 5f); //zoom out exterior
+                    camCon.LerpToPositionY(0.2f, 2.25f);
+                    fadeOut.EventEnter(playerData.gameObject); //fade out scene and family
+                    fadeIn.EventEnter(playerData.gameObject); //fade in hospital exterior
                     playerData.UnfreezePlayer(); //unfreeze the player
-                    camCon.LerpToZoom(0.2f, 3); //zoom on family and door
-                    playerData.customPlayerVelocity = -100; //make the player very slow
+                    //playerData.customPlayerVelocity = -100; //make the player very slow
                     stageActive = true;
                 }
-                else if (SystemSettings.moveRight || SystemSettings.moveLeft)
-                {
-                    SpriteLerp();
-                }
+                //else if (SystemSettings.moveRight || SystemSettings.moveLeft)
+                //{
+                //    //SpriteLerp();
+                //}
 
-                if (!spriteLerpToggle)
+                if (!camCon.GetZoomStatus())
                 {
                     playerData.customPlayerVelocity = 0;
                     stage = 3;
@@ -96,7 +102,7 @@ public class ExitHospitalEvent : AutoEvent
         {
             for (int i = 0; i < familyRenderers.Length; i++)
             {
-                familyRenderers[i].transform.localScale = Vector3.Lerp(new Vector3(0.08f, 0.08f, 1), new Vector3(0.19f, 0.19f, 1), lerpCounter);
+                //familyRenderers[i].transform.localScale = Vector3.Lerp(new Vector3(0.08f, 0.08f, 1), new Vector3(0.19f, 0.19f, 1), lerpCounter);
                 hospitalRenderer.transform.position = Vector3.Lerp(new Vector3(-0.19f, 2.62f, 0), new Vector3(-0.19f, 3.4f, 0), lerpCounter);
             }
             lerpCounter += 0.1f * Time.deltaTime;

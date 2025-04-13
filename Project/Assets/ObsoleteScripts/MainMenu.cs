@@ -20,9 +20,8 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(!mainMenu.activeSelf);
     }
 
-    public void CreditsScreen()
+    public void LoadCreditsScene()
     {
-        creditsPage.SetActive(!creditsPage.activeSelf);
-        mainMenu.SetActive(!creditsPage.activeSelf);
+        SceneManager.LoadScene("Credits Scene");
     }
 }

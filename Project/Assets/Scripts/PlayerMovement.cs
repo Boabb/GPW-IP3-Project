@@ -221,6 +221,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        //Debug.Log("move left: " + SystemSettings.moveLeft + ". Move right:" +  SystemSettings.moveRight);
+
         //Debug.Log("Player mass: " + playerRB2D.mass);
         if (!playerData.shouldLimitMovement && !playerData.pulling)
         {
