@@ -11376,6 +11376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobileUIObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 1324529233036057973, guid: 8f01b50355780f2439d55d9ba3ec341c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3466233952391060620, guid: 8f01b50355780f2439d55d9ba3ec341c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
