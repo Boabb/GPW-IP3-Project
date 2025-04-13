@@ -3684,7 +3684,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.7693, y: -2.2406526, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.08, z: 1}
+  m_LocalScale: {x: 1.875, y: 0.32085562, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 669356773}
@@ -3730,14 +3730,14 @@ SpriteRenderer:
   m_SortingLayerID: -633325497
   m_SortingLayer: 1
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: c4bbb47d4023c134c82153fcf50da39a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 980494d6fe0a08f4391a728b1e07fb16, type: 3}
   m_Color: {r: 1, g: 0.94235915, b: 0.8820755, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 30.000002, y: 30.000002}
   m_AdaptiveModeThreshold: 0
-  m_SpriteTileMode: 0
+  m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
@@ -6432,12 +6432,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 2057718742}
   touchControlsParent: {fileID: 2062487370}
-  movementParent: {fileID: 2027051054}
-  otherParent: {fileID: 1037287785}
-  rightButton: {fileID: 1859482170}
-  leftButton: {fileID: 65764307}
-  jumpButton: {fileID: 626538382}
-  interactButton: {fileID: 1830724009}
 --- !u!4 &1469985137
 Transform:
   m_ObjectHideFlags: 0
