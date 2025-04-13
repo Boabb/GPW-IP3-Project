@@ -19,7 +19,8 @@ public class SceneFlowManager : MonoBehaviour
         Level2,
         Level3,
         ContextScreen,
-        MontageScene
+        MontageScene,
+        CreditsScene
     }
 
     // List of scene names to skip the context scene for
@@ -28,7 +29,8 @@ public class SceneFlowManager : MonoBehaviour
         SceneIndex.MainMenu,
         SceneIndex.ControlScreen,
         SceneIndex.ContextScreen,
-        SceneIndex.MontageScene
+        SceneIndex.MontageScene,
+        SceneIndex.CreditsScene
     };
 
     // Array of context messages (using the SceneIndex enum)
