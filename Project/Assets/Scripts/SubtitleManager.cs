@@ -29,6 +29,8 @@ public class SubtitleManager : MonoBehaviour
     private HashSet<string> activeSequences = new HashSet<string>();
     private Coroutine subtitleCoroutine;
 
+    [SerializeField] private bool playOnStart = true;
+
     private void Awake()
     {
         if (Instance == null)
@@ -46,7 +48,10 @@ public class SubtitleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayLevelVoiceOver();
+        if (playOnStart)
+        {
+            PlayLevelVoiceOver();
+        }
     }
 
     void Update()
