@@ -8,6 +8,8 @@ public class PlayerAnimation : MonoBehaviour
     Animator playerAnimator;
     SpriteRenderer spriteRenderer;
 
+    [SerializeField] SpriteRenderer[] familyRenderers;
+
     private void Start()
     {
         playerData = GetComponent<PlayerData>();
@@ -20,6 +22,13 @@ public class PlayerAnimation : MonoBehaviour
         playerAnimator.SetInteger("AnimationNumber", 1);
         spriteRenderer.flipX = true;
         spriteRenderer.flipY = false;
+
+        for (int i = 0; i < familyRenderers.Length; i++)
+        {
+            familyRenderers[i].flipX = true;
+            familyRenderers[i].flipY = false;
+        }
+
         spriteRenderer.gameObject.transform.localPosition = new Vector3(0, 0, 0);
     }
 
@@ -28,6 +37,13 @@ public class PlayerAnimation : MonoBehaviour
         playerAnimator.SetInteger("AnimationNumber", 1);
         spriteRenderer.flipX = false;
         spriteRenderer.flipY = false;
+
+        for (int i = 0; i < familyRenderers.Length; i++)
+        {
+            familyRenderers[i].flipX = false;
+            familyRenderers[i].flipY = false;
+        }
+
         spriteRenderer.gameObject.transform.localPosition = new Vector3(0, 0, 0);
     }
 
