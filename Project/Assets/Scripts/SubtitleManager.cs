@@ -31,32 +31,30 @@ public class SubtitleManager : MonoBehaviour
 
     [SerializeField] private bool playOnStart = true;
 
+    private bool subtitlesEnabled = true; // Global subtitle enabled flag
+
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+
+        // Load preference for subtitles
+        subtitlesEnabled = PlayerPrefs.GetInt("SubtitlesEnabled", 1) == 1; // Default to 'true' if no preference exists
     }
 
     [SerializeField] private VoiceOverEnum startingSequence;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (playOnStart)
         {
             PlayLevelVoiceOver();
         }
-    }
-
-    void Update()
-    {
-        //Debug.Log($"{AudioManager.Instance.VoiceOverAudioSource.time}");
     }
 
     private void PlayLevelVoiceOver()
@@ -67,6 +65,12 @@ public class SubtitleManager : MonoBehaviour
 
     public void PlaySubtitleSequence(string sequenceName)
     {
+        if (!subtitlesEnabled)
+        {
+            Debug.Log("Subtitles are disabled globally.");
+            return; // Don't play any subtitles if they are globally disabled
+        }
+
         if (activeSequences.Contains(sequenceName))
         {
             Debug.Log($"Sequence '{sequenceName}' is already in progress. Skipping.");
@@ -106,7 +110,7 @@ public class SubtitleManager : MonoBehaviour
 
             subtitleEndPosition += sequence.subtitles[i].duration;
 
-            yield return new WaitUntil(() => AudioManager.Instance.VoiceOverAudioSource.time >= subtitleEndPosition || (!AudioManager.Instance.VoiceOverAudioSource.isPlaying && AudioManager.Instance.VoiceOverAudioSource.time == 0)); // Use WaitForSecondsRealtime
+            yield return new WaitUntil(() => AudioManager.Instance.VoiceOverAudioSource.time >= subtitleEndPosition || (!AudioManager.Instance.VoiceOverAudioSource.isPlaying && AudioManager.Instance.VoiceOverAudioSource.time == 0));
 
             subtitleText.text = "";
         }
@@ -125,5 +129,46 @@ public class SubtitleManager : MonoBehaviour
             }
         }
         return new SubtitleSequence();
+    }
+
+    // Set subtitle enable/disable and save the preference to PlayerPrefs
+    public void SetSubtitlesEnabled(bool enabled)
+    {
+        // If disabling subtitles, immediately stop the current subtitle sequence
+        if (!enabled)
+        {
+            StopSubtitles(); // Stop the subtitle coroutine
+            ClearSubtitleText(); // Clear any existing subtitle text immediately
+        }
+
+        subtitlesEnabled = enabled;
+        PlayerPrefs.SetInt("SubtitlesEnabled", enabled ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    private void StopSubtitles()
+    {
+        if (subtitleCoroutine != null)
+        {
+            StopCoroutine(subtitleCoroutine);
+            subtitleCoroutine = null;  // Clear the reference to the coroutine
+        }
+
+        // Ensure subtitle text is cleared immediately
+        ClearSubtitleText();
+    }
+
+    private void ClearSubtitleText()
+    {
+        subtitleText.text = ""; // Clear the subtitle text immediately
+    }
+
+    public void SetSubtitleFontSize(float size)
+    {
+        print("font size chanign to: " + size);
+        if (subtitleText != null)
+        {
+            subtitleText.fontSize = size;
+        }
     }
 }
