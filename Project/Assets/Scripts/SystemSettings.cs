@@ -42,15 +42,19 @@ public class SystemSettings : MonoBehaviour
             systemType = SystemType.Desktop;
         }
 
-#if UNITY_EDITOR
-        systemType = SystemType.TouchScreen;
-        if (touchControlsParent != null)
-            touchControlsParent.SetActive(true);
-#endif
+//#if UNITY_EDITOR
+//        systemType = SystemType.TouchScreen;
+//#endif
 
         if (systemType == SystemType.TouchScreen)
         {
-            touchControlsParent.SetActive(true);
+            if (touchControlsParent != null)
+                touchControlsParent.SetActive(true);
+        }
+        else
+        {
+            if (touchControlsParent != null)
+                touchControlsParent.SetActive(false);
         }
     }
 
