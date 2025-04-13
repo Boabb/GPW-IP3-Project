@@ -3130,6 +3130,14 @@ PrefabInstance:
       value: GroundColliderForMarioJumping
       objectReference: {fileID: 0}
     - target: {fileID: 2011809886484676503, guid: 974479ba17b8d084987f1d7173d3f005, type: 3}
+      propertyPath: m_Size.x
+      value: 16.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011809886484676503, guid: 974479ba17b8d084987f1d7173d3f005, type: 3}
+      propertyPath: m_Size.y
+      value: 6.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011809886484676503, guid: 974479ba17b8d084987f1d7173d3f005, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
