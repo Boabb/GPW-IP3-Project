@@ -163,7 +163,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Elevator Closed
-  m_Speed: 10
+  m_Speed: 0
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4115562171512399220}
@@ -218,7 +218,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Elevator Open
-  m_Speed: 10.74
+  m_Speed: 0
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6852430375993806387}
