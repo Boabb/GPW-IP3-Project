@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SystemSettings: MonoBehaviour
+public class SystemSettings : MonoBehaviour
 {
     public static bool moveLeft;
     public static bool moveRight;
@@ -15,16 +15,6 @@ public class SystemSettings: MonoBehaviour
     [SerializeField] Camera mainCamera;
 
     [SerializeField] GameObject touchControlsParent; //this should be activated if touch controls are in use
-
-    //these are used to control the placement of the controls depending on resolution of the screen
-    [SerializeField] GameObject movementParent;
-    [SerializeField] GameObject otherParent;
-
-    //the actual buttons to be clicked on
-    [SerializeField] Collider2D rightButton;
-    [SerializeField] Collider2D leftButton;
-    [SerializeField] Collider2D jumpButton;
-    [SerializeField] Collider2D interactButton;
 
     enum SystemType
     {
@@ -52,6 +42,12 @@ public class SystemSettings: MonoBehaviour
             systemType = SystemType.Desktop;
         }
 
+#if UNITY_EDITOR
+        systemType = SystemType.TouchScreen;
+        if (touchControlsParent != null)
+            touchControlsParent.SetActive(true);
+#endif
+
         if (systemType == SystemType.TouchScreen)
         {
             touchControlsParent.SetActive(true);
@@ -60,18 +56,6 @@ public class SystemSettings: MonoBehaviour
 
     private void Update()
     {
-        float viewHeight = mainCamera.orthographicSize;
-        float viewWidth = viewHeight * mainCamera.aspect;
-
-        Vector3 movementButtons = new Vector3(-viewWidth + (viewWidth / 4) + mainCamera.transform.position.x, -viewHeight + (viewHeight / 3) + mainCamera.transform.position.y, 0);
-        Vector3 otherButtons = new Vector3(viewWidth - (viewWidth / 4) + mainCamera.transform.position.x, -viewHeight + (viewHeight / 3) + mainCamera.transform.position.y, 0);
-
-        movementParent.transform.position = movementButtons;
-        otherParent.transform.position = otherButtons;
-
-        //Debug.Log(movementParent.transform.position);
-        //Debug.Log(otherParent.transform.position);
-
         if (systemType == SystemType.Desktop)
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -137,59 +121,48 @@ public class SystemSettings: MonoBehaviour
                 tapRight = false;
             }
         }
-
-        if (systemType == SystemType.TouchScreen)
-        {
-
-            moveLeft = false;
-            moveRight = false;
-            interact = false;
-            jump = false;
-            tapLeft = false;
-            tapRight = false;
-            tapInteract = false;
-
-            Ray[] rays = new Ray[Input.touchCount];
-            for (int i = 0; i < Input.touchCount; i++)
-            {
-                rays[i] = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-                Collider2D checkCollider = Physics2D.Raycast(rays[i].origin, rays[i].direction).collider;
-
-                if (checkCollider == leftButton && (Input.GetTouch(i).phase == TouchPhase.Began || Input.GetTouch(i).phase == TouchPhase.Stationary))
-                {
-                    moveLeft = true;
-                }
-
-                if (checkCollider == rightButton && (Input.GetTouch(i).phase == TouchPhase.Began || Input.GetTouch(i).phase == TouchPhase.Stationary))
-                {
-                    moveRight = true;
-                }
-
-                if (checkCollider == interactButton && (Input.GetTouch(i).phase == TouchPhase.Began || Input.GetTouch(i).phase == TouchPhase.Stationary))
-                {
-                    interact = true;
-                }
-
-                if (checkCollider == jumpButton && Input.GetTouch(i).phase == TouchPhase.Began)
-                {
-                    jump = true;
-                }
-
-                if (checkCollider == leftButton && Input.GetTouch(i).phase == TouchPhase.Began)
-                {
-                    tapLeft = true;
-                }
-
-                if (checkCollider == rightButton && Input.GetTouch(i).phase == TouchPhase.Began)
-                {
-                    tapRight = true;
-                }
-
-                if (checkCollider == interactButton && Input.GetTouch(i).phase == TouchPhase.Began)
-                {
-                    tapInteract = true;
-                }
-            }
-        }
     }
+
+    public void OnLeftDown()
+    {
+        print("left pressed");
+        SystemSettings.moveLeft = true;
+        Debug.Log("moveLeft: " + SystemSettings.moveLeft); // Debugging
+    }
+
+    public void OnLeftUp()
+    {
+        print("left unpressed");
+        SystemSettings.moveLeft = false;
+        Debug.Log("moveLeft: " + SystemSettings.moveLeft); // Debugging
+    }
+
+    public void OnRightDown()
+    {
+        print("Right pressed");
+        SystemSettings.moveRight = true;
+        Debug.Log("moveRight: " + SystemSettings.moveRight); // Debugging
+    }
+
+    public void OnRightUp()
+    {
+        print("Right unpressed");
+        SystemSettings.moveRight = false;
+        Debug.Log("moveRight: " + SystemSettings.moveRight); // Debugging
+    }
+
+    public void OnJumpDown()
+    {
+        jump = true;  // Trigger jump when jump button is pressed
+        Debug.Log("Jump: " + jump);  // Debugging
+    }
+
+    public void OnJumpUp()
+    {
+        jump = false;  // Stop jump when jump button is released
+        Debug.Log("Jump: " + jump);  // Debugging
+    }
+
+    public void OnInteractDown() { interact = true; tapInteract = true; }
+    public void OnInteractUp() { interact = false; }
 }

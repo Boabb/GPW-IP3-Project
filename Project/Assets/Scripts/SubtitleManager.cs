@@ -56,7 +56,7 @@ public class SubtitleManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"{AudioManager.Instance.VoiceOverAudioSource.time}");
+        //Debug.Log($"{AudioManager.Instance.VoiceOverAudioSource.time}");
     }
 
     private void PlayLevelVoiceOver()
