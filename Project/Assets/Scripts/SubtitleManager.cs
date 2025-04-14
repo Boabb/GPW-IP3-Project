@@ -114,19 +114,31 @@ public class SubtitleManager : MonoBehaviour
             sequenceIndexTracker[sequenceName] = 0;
         }
 
-        float subtitleEndPosition = 0f;
+        float subtitleStartTime = AudioManager.Instance.VoiceOverAudioSource.time;
 
         for (int i = sequenceIndexTracker[sequenceName]; i < sequence.subtitles.Length; i++)
         {
-            subtitleText.text = sequence.subtitles[i].text;
+            var subtitle = sequence.subtitles[i];
+            subtitleText.text = subtitle.text;
 
-            subtitleEndPosition += sequence.subtitles[i].duration;
+            float subtitleEndTime = subtitleStartTime + subtitle.duration;
 
-            yield return new WaitUntil(() => AudioManager.Instance.VoiceOverAudioSource.time >= subtitleEndPosition || (!AudioManager.Instance.VoiceOverAudioSource.isPlaying && AudioManager.Instance.VoiceOverAudioSource.time == 0));
+            yield return new WaitUntil(() =>
+            {
+                var source = AudioManager.Instance.VoiceOverAudioSource;
+                return !source.isPlaying || source.time >= subtitleEndTime;
+            });
 
-            subtitleText.text = "";
+            if (!AudioManager.Instance.VoiceOverAudioSource.isPlaying)
+            {
+                // Audio stopped early — exit the loop
+                break;
+            }
+
+            subtitleStartTime += subtitle.duration;
         }
 
+        ClearSubtitleText();
         sequenceIndexTracker[sequenceName] = sequence.subtitles.Length;
         activeSequences.Remove(sequenceName);
     }
@@ -168,6 +180,12 @@ public class SubtitleManager : MonoBehaviour
 
         // Ensure subtitle text is cleared immediately
         ClearSubtitleText();
+    }
+
+    public void ForceStopSubtitles()
+    {
+        StopSubtitles(); // This already clears the coroutine and text
+        Debug.Log("Subtitles forcefully stopped.");
     }
 
     private void ClearSubtitleText()

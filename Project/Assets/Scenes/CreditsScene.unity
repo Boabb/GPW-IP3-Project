@@ -456,8 +456,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1043,8 +1043,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1181,8 +1181,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1316,8 +1316,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2436,8 +2436,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2816,8 +2816,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3418,12 +3418,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1372235805}
   touchControlsParent: {fileID: 759811252}
-  movementParent: {fileID: 163735368}
-  otherParent: {fileID: 197748254}
-  rightButton: {fileID: 62929193}
-  leftButton: {fileID: 1494075540}
-  jumpButton: {fileID: 628539907}
-  interactButton: {fileID: 1197291906}
 --- !u!4 &1773319864
 Transform:
   m_ObjectHideFlags: 0
@@ -3458,6 +3452,10 @@ PrefabInstance:
     - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: startingSequence
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 648406160439785931, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 648406160439785931, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: m_audioClip
@@ -3832,6 +3830,10 @@ PrefabInstance:
       propertyPath: SoundEffects.Array.data[11].clips.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 6bd511855c1a7884198e847fbe13bebb, type: 3}
+    - target: {fileID: 7941402240223346885, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4416,8 +4418,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
