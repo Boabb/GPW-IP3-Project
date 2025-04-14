@@ -5,18 +5,22 @@ using UnityEngine;
 public class VoiceOverScriptsPlayer : MonoBehaviour
 {
     public List<VoiceOverEnum> voiceOverSequence = new List<VoiceOverEnum>(4);
+    public LevelLoader levelLoader;
 
     private int currentIndex = 0;
     private AudioSource voiceOverSource;
 
+    public bool IsSequenceComplete { get; private set; } = false;
+    private float totalDuration = 0f;
+    private float elapsedTime = 0f;
+
     void Start()
     {
-        // Get the reference from AudioManager
         voiceOverSource = AudioManager.Instance.VoiceOverAudioSource;
 
-        // Optional: Auto-play on start if list is populated
         if (voiceOverSequence.Count > 0)
         {
+            CalculateTotalDuration();
             StartCoroutine(PlayVoiceOverSequence());
         }
     }
@@ -25,7 +29,26 @@ public class VoiceOverScriptsPlayer : MonoBehaviour
     {
         voiceOverSequence = sequence;
         currentIndex = 0;
+        elapsedTime = 0f;
+        IsSequenceComplete = false;
+        CalculateTotalDuration();
         StartCoroutine(PlayVoiceOverSequence());
+    }
+
+    private void CalculateTotalDuration()
+    {
+        totalDuration = 0f;
+        foreach (var clipEnum in voiceOverSequence)
+        {
+            var clip = AudioManager.GetVoiceOverClip(clipEnum);
+            if (clip != null)
+                totalDuration += clip.length;
+        }
+    }
+
+    public float GetProgress()
+    {
+        return totalDuration > 0f ? Mathf.Clamp01(elapsedTime / totalDuration) : 0f;
     }
 
     private IEnumerator PlayVoiceOverSequence()
@@ -33,8 +56,32 @@ public class VoiceOverScriptsPlayer : MonoBehaviour
         while (currentIndex < voiceOverSequence.Count)
         {
             AudioManager.PlayVoiceOverWithSubtitles(voiceOverSequence[currentIndex]);
-            yield return new WaitUntil(() => !voiceOverSource.isPlaying);
+            var clip = AudioManager.GetVoiceOverClip(voiceOverSequence[currentIndex]);
+
+            float timer = 0f;
+            float clipLength = clip != null ? clip.length : 0f;
+
+            // Hybrid waiting: ensure we wait for the clip's duration, but also respect isPlaying
+            while (voiceOverSource.isPlaying || timer < clipLength)
+            {
+                timer += Time.deltaTime;
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
             currentIndex++;
+        }
+
+        IsSequenceComplete = true;
+
+        // Load the next level once voiceovers are done
+        if (levelLoader != null)
+        {
+            levelLoader.LoadNextLevel();
+        }
+        else
+        {
+            Debug.LogWarning("LevelLoader is not assigned to VoiceOverScriptsPlayer.");
         }
     }
 }
