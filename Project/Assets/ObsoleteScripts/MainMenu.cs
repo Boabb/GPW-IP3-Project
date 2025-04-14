@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject settingsMenu;
-    public GameObject creditsPage;
     public GameObject mainMenu;
 
     public void PlayGame()
@@ -16,6 +15,10 @@ public class MainMenu : MonoBehaviour
 
     public void SettingsMenuToggle()
     {
+        if(settingsMenu.gameObject.activeSelf == true)
+        {
+            settingsMenu.GetComponent<SettingsMenu>().RevertSettings();
+        }
         settingsMenu.SetActive(!settingsMenu.activeSelf);
         mainMenu.SetActive(!mainMenu.activeSelf);
     }

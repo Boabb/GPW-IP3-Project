@@ -87,7 +87,7 @@ public class AudioManager : MonoBehaviour
 
     private const string MUSIC_VOLUME_PARAM = "MusicVolume";
     private const string SFX_VOLUME_PARAM = "SFXVolume";
-    private const string VO_VOLUME_PARAM = "VoiceOverVolume";
+    private const string VO_VOLUME_PARAM = "VoiceVolume";
 
     #region
 
@@ -225,6 +225,8 @@ public class AudioManager : MonoBehaviour
 
     }
     #endregion
+
+
     private void Awake()
     {
         Instance = this;
@@ -234,15 +236,6 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if(FindObjectsOfType<AudioManager>().Length > 1)
-        {
-            Debug.LogWarning("More than one AudioManager Detected! Please find and remove the extra one!");
-        }
-
-        Instance.VoiceOverQueue.Clear();
-
-        //PlayVoiceOverWithSubtitles(VoiceOverEnum.Level1Track1);
-
         if (FindObjectsOfType<AudioManager>().Length > 1)
         {
             Debug.LogWarning("More than one AudioManager Detected! Please find and remove the extra one!");
@@ -255,19 +248,30 @@ public class AudioManager : MonoBehaviour
         float sfxVol = PlayerPrefs.GetFloat(SFX_VOLUME_PARAM, 0.75f);
         float voVol = PlayerPrefs.GetFloat(VO_VOLUME_PARAM, 0.75f);
 
+        ApplySavedVolumes();
+
+        // Apply the loaded volume settings directly using SetMixerVolume
         SetMixerVolume(MusicMixerGroup.audioMixer, MUSIC_VOLUME_PARAM, musicVol);
         SetMixerVolume(SoundEffectsMixerGroup.audioMixer, SFX_VOLUME_PARAM, sfxVol);
         SetMixerVolume(VoiceOverMixerGroup.audioMixer, VO_VOLUME_PARAM, voVol);
     }
 
-    public void SetMixerVolume(AudioMixer mixer, string paramName, float linearVolume)
+    void SetMixerVolume(AudioMixer mixer, string param, float value)
     {
-        float dB = Mathf.Log10(Mathf.Clamp(linearVolume, 0.0001f, 1f)) * 20;
-        mixer.SetFloat(paramName, dB);
+        mixer.SetFloat(param, Mathf.Log10(value) * 20); // Logarithmic scale
+    }
+
+    public void ApplySavedVolumes()
+    {
+        UpdateVolume("MusicVolume", PlayerPrefs.GetFloat("MusicVolume", 0.5f));
+        UpdateVolume("SFXVolume", PlayerPrefs.GetFloat("SFXVolume", 0.5f));
+        UpdateVolume("VoiceVolume", PlayerPrefs.GetFloat("VoiceVolume", 0.5f));
     }
 
     public void UpdateVolume(string key, float value)
     {
+        value = Mathf.Clamp(value, 0.001f, 1f);
+
         print("updating volume");
         switch (key)
         {

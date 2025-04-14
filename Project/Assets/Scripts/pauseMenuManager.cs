@@ -10,16 +10,23 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject menuButton;
     public GameObject bg;
 
+    private SettingsMenu settingsMenu; // Reference to settings script (if any)
+    public int settingsScreenIndex = 1; // Index of your settings screen in 'screens'
+
     void Start()
     {
-        // Loop through all screens and deactivate them
         foreach (GameObject screen in screens)
         {
             screen.SetActive(false);
         }
 
+        if (screens.Length > settingsScreenIndex)
+        {
+            settingsMenu = screens[settingsScreenIndex].GetComponent<SettingsMenu>();
+        }
+
         bg.SetActive(false);
-        Time.timeScale = 1; // Ensure time is running normally at start
+        Time.timeScale = 1;
     }
 
     void Update()
@@ -34,26 +41,29 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (activeScreenIndex != -1)
         {
-            // Hide all screens and background when closing the menu
+            // If leaving settings without saving, revert them
+            if (activeScreenIndex == settingsScreenIndex && settingsMenu != null)
+            {
+                settingsMenu.RevertSettings();
+            }
+
             foreach (GameObject screen in screens)
             {
                 screen.SetActive(false);
             }
             activeScreenIndex = -1;
 
-            // Show the menu button again when the menus are closed
             menuButton.SetActive(true);
             bg.SetActive(false);
-            Time.timeScale = 1; // Resume game
+            Time.timeScale = 1;
         }
         else
         {
-            // Default to showing the first screen
             SwitchScreen(0);
 
             menuButton.SetActive(false);
-            bg.SetActive(true); // Show background
-            Time.timeScale = 0; // Pause game
+            bg.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
@@ -61,9 +71,15 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (screenIndex >= 0 && screenIndex < screens.Length)
         {
+            // If switching away from settings without saving, revert
+            if (activeScreenIndex == settingsScreenIndex && screenIndex != settingsScreenIndex && settingsMenu != null)
+            {
+                settingsMenu.RevertSettings();
+            }
+
             for (int i = 0; i < screens.Length; i++)
             {
-                screens[i].SetActive(i == screenIndex); // Only activate the selected screen
+                screens[i].SetActive(i == screenIndex);
             }
             activeScreenIndex = screenIndex;
         }
@@ -71,7 +87,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void MainMenu()
     {
-        Time.timeScale = 1; // Ensure time resumes when returning to the main menu
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 }
