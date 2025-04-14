@@ -16,7 +16,7 @@ public class LevelLoader : MonoBehaviour
         Debug.Log("Something entered the trigger: " + other.gameObject.name); // Debug Log
 
         // Check if the object entering the collider is the player
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Debug.Log("Player entered the trigger!"); // Debug Log
             LoadNextLevel();
