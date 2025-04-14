@@ -545,5 +545,26 @@ public class AudioManager : MonoBehaviour
     {
         mixerGroup.SetFloat("Volume", volume);
     }
+
+    public static AudioClip GetVoiceOverClip(VoiceOverEnum clipEnum)
+    {
+        var index = (int)clipEnum;
+
+        if (index >= 0 && index < Instance.VoiceOvers.Length)
+        {
+            var clip = Instance.VoiceOvers[index].clip;
+
+            if (clip != null)
+                return clip;
+            else
+                Debug.LogWarning($"VoiceOver clip for {clipEnum} is not assigned.");
+        }
+        else
+        {
+            Debug.LogWarning($"VoiceOverEnum index {index} is out of bounds.");
+        }
+
+        return null;
+    }
 }
 
