@@ -17,6 +17,11 @@ public class PlayerAnimation : MonoBehaviour
         spriteRenderer = playerData.playerSprite;
     }
 
+    private void Update()
+    {
+        Debug.Log(playerAnimator.GetInteger("AnimationNumber"));
+    }
+
     public void PlayerWalkRight()
     {
         playerAnimator.SetInteger("AnimationNumber", 1);

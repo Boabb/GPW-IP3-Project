@@ -264,7 +264,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (movementType == MovementType.Walking)
             {
-                playerData.playerAnimator.PlayerIdle();
+                //playerData.playerAnimator.PlayerIdle();
             }
         }
         else
