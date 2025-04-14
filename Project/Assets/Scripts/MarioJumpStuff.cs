@@ -5,18 +5,20 @@ using UnityEngine;
 public class MarioJumpStuff : MonoBehaviour
 {
     Collider2D groundCollider;
+    Collider2D playerCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         groundCollider = GetComponentInChildren<EdgeCollider2D>();
+        playerCollider = GameManager.playerData.playerInteractCollider;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         print("in box");
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision == playerCollider)
         {
             groundCollider.enabled = false;
         }
@@ -24,7 +26,7 @@ public class MarioJumpStuff : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision == playerCollider)
         {
             groundCollider.enabled = true;
         }
