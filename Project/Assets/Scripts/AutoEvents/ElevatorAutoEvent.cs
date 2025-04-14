@@ -22,6 +22,7 @@ public class ElevatorAutoEvent : AutoEvent
     [SerializeField] FadeInAutoEvent fadeIn;
     [SerializeField] FadeOutAutoEvent fadeOut;
     [SerializeField] AudioSource testimonyAudioSource;
+    [SerializeField] Collider2D[] collidersToDeactivate;
     CameraController camCon;
 
     private void Start()
@@ -127,6 +128,11 @@ public class ElevatorAutoEvent : AutoEvent
                     for (int i = 0; i < elevatorRenderers.Length; i++)
                     {
                         elevatorRenderers[i].sortingLayerID = SortingLayer.NameToID("Background");
+                    }
+
+                    for (int i = 0; i < collidersToDeactivate.Length; i++)
+                    {
+                        collidersToDeactivate[i].enabled = false;
                     }
 
                     stageActive = true;
