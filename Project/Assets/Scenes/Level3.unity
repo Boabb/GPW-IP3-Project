@@ -17249,17 +17249,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
-  - name: woodenScrape (Sound Effects)
-    reference: {fileID: 329987085}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenFootsteps (Sound Effects)
-    reference: {fileID: 1234633403}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: woodenJump (Sound Effects)
     reference: {fileID: 258723239}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: suzanneExhale (Sound Effects)
-    reference: {fileID: 819907735}
+  - name: woodenScrape (Sound Effects)
+    reference: {fileID: 329987085}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: crawlInVent (Sound Effects)
+    reference: {fileID: 610086423}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: suzanneExert (Sound Effects)
     reference: {fileID: 644302718}
@@ -17267,18 +17264,21 @@ MonoBehaviour:
   - name: MusicAudio (Music)
     reference: {fileID: 798256890}
     mixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: crawlInVent (Sound Effects)
-    reference: {fileID: 610086423}
+  - name: suzanneExhale (Sound Effects)
+    reference: {fileID: 819907735}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenFootsteps (Sound Effects)
+    reference: {fileID: 1234633403}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Voice-Over Audio (Voice-Over)
+    reference: {fileID: 1369477379}
+    mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Marching (Sound Effects)
     reference: {fileID: 1535314648}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Marching (Sound Effects)
     reference: {fileID: 1588591759}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Voice-Over Audio (Voice-Over)
-    reference: {fileID: 1369477379}
-    mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Audio Manager (Master)
     reference: {fileID: 1643648831}
     mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -19160,7 +19160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1855487086
 Transform:
   m_ObjectHideFlags: 0
