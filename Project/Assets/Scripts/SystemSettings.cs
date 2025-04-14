@@ -42,9 +42,9 @@ public class SystemSettings : MonoBehaviour
             systemType = SystemType.Desktop;
         }
 
-#if UNITY_EDITOR
-        systemType = SystemType.TouchScreen;
-#endif
+//#if UNITY_EDITOR
+//        systemType = SystemType.TouchScreen;
+//#endif
 
         if (systemType == SystemType.TouchScreen)
         {
