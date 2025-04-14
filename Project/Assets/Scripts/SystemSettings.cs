@@ -125,6 +125,8 @@ public class SystemSettings : MonoBehaviour
                 tapRight = false;
             }
         }
+
+        tapInteract = false;
     }
 
     public void OnLeftDown()
@@ -168,5 +170,5 @@ public class SystemSettings : MonoBehaviour
     }
 
     public void OnInteractDown() { interact = true; tapInteract = true; }
-    public void OnInteractUp() { interact = false; }
+    public void OnInteractUp() { interact = false;}
 }
