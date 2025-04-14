@@ -41,7 +41,7 @@ public class PlayerClimb : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         if (climbType == ClimbType.Catch)
         {
@@ -143,6 +143,7 @@ public class PlayerClimb : MonoBehaviour
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         climbSide = ClimbSide.None;
         climbType = ClimbType.None;
+        playerData.shouldLimitMovement = false;
         playerAnimator.PlayerIdle();
     }
 

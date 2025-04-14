@@ -224,6 +224,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("move left: " + SystemSettings.moveLeft + ". Move right:" +  SystemSettings.moveRight);
 
         //Debug.Log("Player mass: " + playerRB2D.mass);
+
         if (!playerData.shouldLimitMovement && !playerData.pulling)
         {
             if (SystemSettings.moveLeft || SystemSettings.moveRight)
@@ -262,14 +263,13 @@ public class PlayerMovement : MonoBehaviour
                     playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
                 }
             }
-            else if (movementType == MovementType.Walking)
+            else
             {
-                //playerData.playerAnimator.PlayerIdle();
+                playerData.playerAnimator.PlayerIdle();
             }
         }
-        else
+        else 
         {
-            //playerData.playerAnimator.PlayerIdle();
             AudioManager.StopSoundEffect(SoundEffectEnum.WoodenFootsteps);
         }
 
