@@ -4993,7 +4993,8 @@ MonoBehaviour:
   - {fileID: 8408893642036035472}
   menuButton: {fileID: 3956892209017747191}
   bg: {fileID: 7687304761213535854}
-  settingsScreenIndex: 1
+  settingsScreenIndex: 2
+  controlScreenIndex: 1
 --- !u!114 &28879940709575475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6574,6 +6575,8 @@ MonoBehaviour:
   musicSlider: {fileID: 1858956439980928386}
   sfxSlider: {fileID: 1384810156809474720}
   voiceSlider: {fileID: 5996299899065678699}
+  subtitlesToggle: {fileID: 3702892003137943767}
+  subtitleFontSizeSlider: {fileID: 1521949276581322183}
 --- !u!1 &8481820749010891286
 GameObject:
   m_ObjectHideFlags: 0

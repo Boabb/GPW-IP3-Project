@@ -3013,7 +3013,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 159279348}
   m_HandleRect: {fileID: 492604013}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0.01
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.5
@@ -4913,6 +4913,8 @@ MonoBehaviour:
   musicSlider: {fileID: 1138713652}
   sfxSlider: {fileID: 1986297956}
   voiceSlider: {fileID: 1993072580}
+  subtitlesToggle: {fileID: 775103580}
+  subtitleFontSizeSlider: {fileID: 2105879776}
 --- !u!1001 &1982134784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4927,7 +4929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 648406160439785931, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: m_Volume
-      value: 0.030752616
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 648406160439785931, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: m_PlayOnAwake
@@ -5035,7 +5037,7 @@ PrefabInstance:
       objectReference: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     - target: {fileID: 7941402240223346885, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: m_Volume
-      value: 0.03691206
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5156,7 +5158,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1604748180}
   m_HandleRect: {fileID: 277627658}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0.01
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.5
@@ -5246,7 +5248,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1332940038}
   m_HandleRect: {fileID: 897708359}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0.01
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.5

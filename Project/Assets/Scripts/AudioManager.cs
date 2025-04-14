@@ -258,7 +258,15 @@ public class AudioManager : MonoBehaviour
 
     void SetMixerVolume(AudioMixer mixer, string param, float value)
     {
-        mixer.SetFloat(param, Mathf.Log10(value) * 20); // Logarithmic scale
+        if (value <= 0.0001f) // Protect against zero
+        {
+            Debug.Log("Muted");
+            mixer.SetFloat(param, -80f); // Practically silent
+        }
+        else
+        {
+            mixer.SetFloat(param, Mathf.Log10(value) * 20f);
+        }
     }
 
     public void ApplySavedVolumes()
