@@ -42,9 +42,9 @@ public class SystemSettings : MonoBehaviour
             systemType = SystemType.Desktop;
         }
 
-//#if UNITY_EDITOR
-//        systemType = SystemType.TouchScreen;
-//#endif
+#if UNITY_EDITOR
+        systemType = SystemType.TouchScreen;
+#endif
 
         if (systemType == SystemType.TouchScreen)
         {
@@ -125,6 +125,8 @@ public class SystemSettings : MonoBehaviour
                 tapRight = false;
             }
         }
+
+        tapInteract = false;
     }
 
     public void OnLeftDown()
@@ -168,5 +170,5 @@ public class SystemSettings : MonoBehaviour
     }
 
     public void OnInteractDown() { interact = true; tapInteract = true; }
-    public void OnInteractUp() { interact = false; }
+    public void OnInteractUp() { interact = false;}
 }
