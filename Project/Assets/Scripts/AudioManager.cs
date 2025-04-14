@@ -492,6 +492,20 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public static void StopVoiceOver()
+    {
+        if (Instance.VoiceOverAudioSource.isPlaying)
+        {
+            Instance.VoiceOverAudioSource.Stop();
+
+            // Tell SubtitleManager to stop subtitles as well
+            if (SubtitleManager.Instance != null)
+            {
+                SubtitleManager.Instance.ForceStopSubtitles();
+            }
+        }
+    }
+
     private static IEnumerator ResumePreviousVoiceOver()
     {
         yield return new WaitUntil(() => Instance.VoiceOverAudioSource.isPlaying == false);

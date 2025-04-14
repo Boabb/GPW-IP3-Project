@@ -418,7 +418,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -90}
-  m_SizeDelta: {x: 450, y: 50}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &267043427
 MonoBehaviour:
@@ -440,14 +440,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Eilidh Bell
+  m_text: 'Eilidh Bell - Character Artist and Animator
 
-    Ryland Kyle
+    Ryland Kyle - Prop, UI
+    and Art Direction
 
-    Sherin Ayyakath Puthiyapurayil
+    Sherin Ayyakath Puthiyapurayil - Prop artist
 
     Struan
-    Duncan'
+    Duncan - Prop artist'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03ccc0f6e60743346a7d528e67d1e3dc, type: 2}
   m_sharedMaterial: {fileID: 562437296763985714, guid: 03ccc0f6e60743346a7d528e67d1e3dc, type: 2}
@@ -456,8 +457,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1043,8 +1044,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1168,9 +1169,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Akira Park-Hagiwara
+  m_text: 'Aiden Struthers
 
-    Aiden Struthers
+    Akira Park-Hagiwara
 
     Ryan Gaffney'
   m_isRightToLeft: 0
@@ -1181,8 +1182,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1284,7 +1285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -250.99998}
+  m_AnchoredPosition: {x: 0, y: -201}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &751337741
@@ -1316,8 +1317,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2436,8 +2437,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2782,8 +2783,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -90}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 0, y: -120}
+  m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507752893
 MonoBehaviour:
@@ -2805,9 +2806,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'David Steranko
+  m_text: 'Akira Park-Hagiwara
 
-    Jordan Lynch'
+    David Steranko
+
+
+    <b>Additional Design</b>
+
+
+    Jordan
+    Lynch'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03ccc0f6e60743346a7d528e67d1e3dc, type: 2}
   m_sharedMaterial: {fileID: 562437296763985714, guid: 03ccc0f6e60743346a7d528e67d1e3dc, type: 2}
@@ -2816,8 +2824,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3271,7 +3279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -22}
   m_SizeDelta: {x: 640, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1683404881
@@ -3418,12 +3426,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1372235805}
   touchControlsParent: {fileID: 759811252}
-  movementParent: {fileID: 163735368}
-  otherParent: {fileID: 197748254}
-  rightButton: {fileID: 62929193}
-  leftButton: {fileID: 1494075540}
-  jumpButton: {fileID: 628539907}
-  interactButton: {fileID: 1197291906}
 --- !u!4 &1773319864
 Transform:
   m_ObjectHideFlags: 0
@@ -3458,6 +3460,10 @@ PrefabInstance:
     - target: {fileID: 285458712940609321, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: startingSequence
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 648406160439785931, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 648406160439785931, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
       propertyPath: m_audioClip
@@ -3832,6 +3838,10 @@ PrefabInstance:
       propertyPath: SoundEffects.Array.data[11].clips.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 6bd511855c1a7884198e847fbe13bebb, type: 3}
+    - target: {fileID: 7941402240223346885, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4384,7 +4394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -8}
+  m_AnchoredPosition: {x: 0, y: 63}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2138513607
@@ -4416,8 +4426,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
