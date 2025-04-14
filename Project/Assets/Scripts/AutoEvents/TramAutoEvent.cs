@@ -9,18 +9,26 @@ public class TramAutoEvent : AutoEvent
     int stage = 0;
     bool stageActive = false;
 
-    float stage3Count = 5f;
-    float stage3Subtractor = 0.5f;
     bool stage3End = false;
 
     [SerializeField] FadeOutAutoEvent fadeOut;
+    [SerializeField] FadeInAutoEvent fadeIn;
     [SerializeField] GameObject[] familyRenderers;
+    Vector3[] ogFamilyPositions;
+    [SerializeField] GameObject[] toDeactivate;
     CameraController camCon;
 
     private void Start()
     {
         playerData = GameManager.playerData;
         camCon = GameManager.mainCamera.GetComponent<CameraController>();
+
+        ogFamilyPositions = new Vector3[familyRenderers.Length];
+
+        for (int i = 0; i < familyRenderers.Length; i++)
+        {
+            ogFamilyPositions[i] = familyRenderers[i].transform.localPosition;
+        }
     }
 
     private void Update()
@@ -49,10 +57,16 @@ public class TramAutoEvent : AutoEvent
                 {
                     camCon.LerpToZoom(0.2f, 3f);
                     SpriteLerp();
+                    fadeIn.EventEnter(playerData.gameObject);
                     //camCon.LerpToPositionY(0.2f, 2.25f);
                     fadeOut.EventEnter(playerData.gameObject); //fade out scene and family
                     //playerData.customPlayerVelocity = -100; //make the player very slow
                     stageActive = true;
+
+                    for (int i = 0; i < toDeactivate.Length; i ++)
+                    {
+                        toDeactivate[i].SetActive(false);
+                    }
                 }
                 else
                 {
@@ -79,15 +93,15 @@ public class TramAutoEvent : AutoEvent
         {
             for (int i = 0; i < familyRenderers.Length; i++)
             {
-                familyRenderers[i].transform.localPosition = Vector3.Lerp(new Vector3(0f, 0f, 1), new Vector3(0, 2.8f, 1), lerpCounter);
+                familyRenderers[i].transform.localPosition = Vector3.Lerp(ogFamilyPositions[i], new Vector3(ogFamilyPositions[i].x, -1.36f, 1), lerpCounter);
             }
-            lerpCounter += 0.2f * Time.deltaTime;
+            lerpCounter += 0.3f * Time.deltaTime;
         }
         else
         {
             for (int i = 0; i < familyRenderers.Length; i++)
             {
-                familyRenderers[i].transform.localPosition = new Vector3(0, 2.8f, 1);
+                familyRenderers[i].transform.localPosition = new Vector3(ogFamilyPositions[i].x, -1.36f, 1);
             }
 
             spriteLerpToggle = false;
