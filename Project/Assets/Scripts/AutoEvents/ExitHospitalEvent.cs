@@ -36,7 +36,7 @@ public class ExitHospitalEvent : AutoEvent
                 if (!stageActive)
                 {
                     playerData.FreezePlayer(); //freeze player
-                    AudioManager.PlayVoiceOverAudio(VoiceOverEnum.Level2Track4); //testimony begins
+                    AudioManager.PlayVoiceOverWithSubtitles(VoiceOverEnum.Level2Track4); //testimony begins
                     camCon.LerpToZoom(0.3f, 2); //zoom on family and door
 
                     for (int i = 0; i < familyRenderers.Length; i++)

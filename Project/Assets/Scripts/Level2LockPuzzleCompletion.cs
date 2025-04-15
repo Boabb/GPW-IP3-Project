@@ -25,7 +25,7 @@ public class Level2LockPuzzleCompletion : MonoBehaviour
         Debug.Log("The door is unlocked. Triggers everything now.");
 
         // Start next testimony
-        AudioManager.PlayVoiceOverAudio(voiceOverToPlay, 1.0f);
+        AudioManager.PlayVoiceOverWithSubtitles(voiceOverToPlay, 1.0f);
 
         // Spawn characters
         for (int i = 0; i < objectsToActivate.Length; i++)
