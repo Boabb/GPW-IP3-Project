@@ -9,6 +9,6 @@ public class TestimonyAutoEvents : AutoEvent
 
     public override void EventEnter(GameObject playerGO)
     {
-        AudioManager.PlayVoiceOverAudio(voiceClip);
+        AudioManager.PlayVoiceOverWithSubtitles(voiceClip);
     }
 }
