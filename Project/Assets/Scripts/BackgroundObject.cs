@@ -21,14 +21,19 @@ public class BackgroundObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!SystemSettings.interact && playerData.grounded) //when the player isn't holding the interact button and isnt in the air
+        bool overlap = CheckOverlap();
+
+        if(playerData.grounded)
+        {
+            if (!overlap) { }
+        }
+        if (!SystemSettings.interact && playerData.grounded && !overlap) //when the player isn't holding the interact button and isnt in the air
         {
             objectCollider.excludeLayers = playerData.playerLayer; //the collider excludes the player layer
             //the player can walk past the object 
         }
         else //when the player is holding the interact button
         {
-            bool overlap = CheckOverlap();
 
             if (overlap)
             {
