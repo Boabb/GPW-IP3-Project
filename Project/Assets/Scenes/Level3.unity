@@ -1127,6 +1127,7 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: -5.6, y: -12.3}
+  - {x: -5.62994, y: -12.112129}
   - {x: -5.6, y: 7.907411}
   - {x: -5.761385, y: 7.6248617}
   - {x: -6.201541, y: 8.41083}
@@ -1138,10 +1139,10 @@ EdgeCollider2D:
   - {x: 5.2653394, y: 7.6232915}
   - {x: 5.1, y: 7.94}
   - {x: 5.1, y: -12.3}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+  m_AdjacentStartPoint: {x: -5.5, y: 0}
+  m_AdjacentEndPoint: {x: 5, y: 0}
+  m_UseAdjacentStartPoint: 1
+  m_UseAdjacentEndPoint: 1
 --- !u!1 &103613746
 GameObject:
   m_ObjectHideFlags: 0
@@ -19529,7 +19530,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963729784}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -19621,7 +19622,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963729784}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

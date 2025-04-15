@@ -44,11 +44,11 @@ public class PlayerPushPull : MonoBehaviour
     {
         CheckIfPushPullObjectIsEnabled();
         FindInteractionType();  
-        ChooseSuitableAnimation();
     }
 
     private void FixedUpdate()
     {
+        ChooseSuitableAnimation();
         MoveObject();
     }
 
@@ -191,10 +191,18 @@ public class PlayerPushPull : MonoBehaviour
     void AttachPushPullObject(Collider2D collider)
     {
         pushPullMoveableObject = collider.gameObject.GetComponent<MoveableObject>(); //gets the moveableobject component of the pushPullObject
-        
+        var objectTags = collider.GetComponentInParent<ObjectTags>();
+
+
         if (pushPullMoveableObject != null && playerData.grounded)
         {
-            currentPushPullObject = collider; //sets the pushPullObject to the collider
+            if (objectTags != null)
+            {
+                if ((!SystemSettings.interact && objectTags.foreground) || SystemSettings.interact)
+                {
+                    currentPushPullObject = collider; //sets the pushPullObject to the collider
+                }
+            }
         }
         else
         {
