@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("For Designers")]
     [SerializeField] float walkingForce = 100f;
-    [SerializeField] float crawlingForce = 50f;
+    [SerializeField] float crawlingForce = 40f;
     [SerializeField] float jumpForce = 1000f;
 
     [SerializeField] float gravityForce = 100f;
