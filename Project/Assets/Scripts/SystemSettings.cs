@@ -125,8 +125,11 @@ public class SystemSettings : MonoBehaviour
                 tapRight = false;
             }
         }
-
-        tapInteract = false;
+		
+		if(systemType == SystemType.TouchScreen)
+		{
+			tapInteract = false;
+		}
     }
 
     public void OnLeftDown()

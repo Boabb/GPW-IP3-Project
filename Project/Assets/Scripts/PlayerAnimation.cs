@@ -19,7 +19,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(playerAnimator.GetInteger("AnimationNumber"));
+        //Debug.Log(playerAnimator.GetInteger("AnimationNumber"));
     }
 
     public void PlayerWalkRight()
