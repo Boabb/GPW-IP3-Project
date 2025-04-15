@@ -97,6 +97,7 @@ public class PlayerPushPull : MonoBehaviour
                 else
                 {
                     interactionType = InteractionType.Push;
+                    playerData.pushing = true;
                     playerData.pulling = false;
                 }
             }
@@ -120,6 +121,7 @@ public class PlayerPushPull : MonoBehaviour
                 else
                 {
                     interactionType = InteractionType.Push;
+                    playerData.pushing = true;
                     playerData.pulling = false;
                 }
             }
@@ -127,12 +129,14 @@ public class PlayerPushPull : MonoBehaviour
             {
                 interactionType = InteractionType.None;
                 playerData.pulling = false;
+                playerData.pushing = false;
             }
         }
         else
         {
             interactionType = InteractionType.None;
             playerData.pulling = false;
+            playerData.pushing = false;
         }
     }
 
@@ -193,7 +197,6 @@ public class PlayerPushPull : MonoBehaviour
         pushPullMoveableObject = collider.gameObject.GetComponent<MoveableObject>(); //gets the moveableobject component of the pushPullObject
         var objectTags = collider.GetComponentInParent<ObjectTags>();
 
-
         if (pushPullMoveableObject != null && playerData.grounded)
         {
             if (objectTags != null)
@@ -224,7 +227,7 @@ public class PlayerPushPull : MonoBehaviour
     //I don't remember, this is why we write better comments
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        //Debug.Log("Tiggered!");
+        Debug.Log("Tiggered!");
         if (currentPushPullObject == null)
         {
             AttachPushPullObject(collider);

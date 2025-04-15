@@ -2823,7 +2823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &366160176432074652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3740,7 +3740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5164151068602625339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4958,7 +4958,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7149540321188975229}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5013,7 +5013,7 @@ MonoBehaviour:
   - {fileID: 2664833659480263973}
   - {fileID: 7855481638249798809}
   grayscaleMaterial: {fileID: 2100000, guid: 174118571496bf246b4514215fb93ab5, type: 2}
-  itemVoiceOvers: 08000000070000000600000005000000
+  itemVoiceOvers: 13000000120000001100000010000000
 --- !u!1 &7232709351285446317
 GameObject:
   m_ObjectHideFlags: 0
@@ -7158,7 +7158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5567868813287497981, guid: 3bd7193faba278a40b8166ccb8f9a62b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
