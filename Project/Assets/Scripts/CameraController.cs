@@ -224,7 +224,7 @@ public class CameraController : MonoBehaviour
         m_shakeTime = shakeTime;
         m_shakeAmount = shakeAmount;
         m_shakeDecrease = shakeDecrease;
-
+        camPosition = gameObject.transform.position;
         m_shake = true;
     }
 
@@ -256,11 +256,12 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, position, cameraSpeed / 10);
     }
 
+    Vector3 camPosition;
     void Shake()
     {
         if (m_shakeTime > 0)
         {
-            gameObject.transform.localPosition = new Vector3(player.transform.localPosition.x + Random.insideUnitSphere.x * m_shakeAmount, player.transform.localPosition.y + Random.insideUnitSphere.y * m_shakeAmount, gameObject.transform.localPosition.z);
+            gameObject.transform.localPosition = new Vector3(camPosition.x + Random.insideUnitSphere.x * m_shakeAmount, camPosition.y + Random.insideUnitSphere.y * m_shakeAmount, gameObject.transform.localPosition.z);
             m_shakeTime -= Time.deltaTime * m_shakeDecrease;
         }
         else
