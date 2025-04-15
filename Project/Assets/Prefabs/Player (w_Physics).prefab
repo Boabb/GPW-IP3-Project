@@ -313,8 +313,8 @@ MonoBehaviour:
   pushForce: 120
   pullForce: 120
   movementForce: 100
-  slopeCheckDistance: 0.02
-  maxSlopeAngle: 35
+  slopeCheckDistance: 20
+  maxSlopeAngle: 45
 --- !u!114 &7611025018939487156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &7870648954657162630
 MonoBehaviour:
@@ -1921,7 +1921,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7523364886909989846}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
