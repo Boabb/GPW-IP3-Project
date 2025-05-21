@@ -10,8 +10,6 @@ public class SettingsMenu : MonoBehaviour
     public Slider sfxSlider;
     public Slider voiceSlider;
 
-    private AudioManager audioManager;
-
     private float currentMusicVolume;
     private float currentSFXVolume;
     private float currentVoiceVolume;
@@ -20,22 +18,17 @@ public class SettingsMenu : MonoBehaviour
     public Toggle subtitlesToggle;
     public Slider subtitleFontSizeSlider;
 
-    private SubtitleManager subtitleManager; // Declare SubtitleManager reference
-
     void Start()
     {
-        // Initialize the audio manager
-        audioManager = AudioManager.Instance;
-
         // Set the sliders to saved PlayerPrefs values
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
         voiceSlider.value = PlayerPrefs.GetFloat("VoiceVolume", 0.5f);
 
         // Apply volumes immediately
-        audioManager.UpdateVolume("MusicVolume", musicSlider.value);
-        audioManager.UpdateVolume("SFXVolume", sfxSlider.value);
-        audioManager.UpdateVolume("VoiceVolume", voiceSlider.value);
+        AudioManager.Instance.UpdateVolume("MusicVolume", musicSlider.value);
+        AudioManager.Instance.UpdateVolume("SFXVolume", sfxSlider.value);
+        AudioManager.Instance.UpdateVolume("VoiceVolume", voiceSlider.value);
 
         // Store the current values
         currentMusicVolume = musicSlider.value;
@@ -49,9 +42,6 @@ public class SettingsMenu : MonoBehaviour
 
         LogPlayerPrefs();
 
-        // Initialize SubtitleManager
-        subtitleManager = SubtitleManager.Instance; // Ensure SubtitleManager is referenced here
-
         // Load and set the subtitles toggle state
         bool subtitlesEnabled = PlayerPrefs.GetInt("SubtitlesEnabled", 1) == 1;
         subtitlesToggle.isOn = subtitlesEnabled;
@@ -60,7 +50,7 @@ public class SettingsMenu : MonoBehaviour
         // Load and set subtitle font size
         float fontSize = PlayerPrefs.GetFloat("SubtitleFontSize", 24f);
         subtitleFontSizeSlider.value = fontSize;
-        subtitleManager.SetSubtitleFontSize(fontSize);  // Update subtitle manager with the saved size
+        SubtitleManager.Instance.SetSubtitleFontSize(fontSize);  // Update subtitle manager with the saved size
         subtitleFontSizeSlider.onValueChanged.AddListener(OnSubtitleFontSizeChanged);
 
         StartCoroutine(Hide());
@@ -75,19 +65,19 @@ public class SettingsMenu : MonoBehaviour
     // Volume slider value change handlers (without saving to PlayerPrefs)
     void OnMusicVolumeChanged(float value)
     {
-        audioManager.UpdateVolume("MusicVolume", value);
+        AudioManager.Instance.UpdateVolume("MusicVolume", value);
         currentMusicVolume = value;
     }
 
     void OnSFXVolumeChanged(float value)
     {
-        audioManager.UpdateVolume("SFXVolume", value);
+        AudioManager.Instance.UpdateVolume("SFXVolume", value);
         currentSFXVolume = value;
     }
 
     void OnVoiceVolumeChanged(float value)
     {
-        audioManager.UpdateVolume("VoiceVolume", value);
+        AudioManager.Instance.UpdateVolume("VoiceVolume", value);
         currentVoiceVolume = value;
     }
 
@@ -115,9 +105,9 @@ public class SettingsMenu : MonoBehaviour
         sfxSlider.SetValueWithoutNotify(savedSFXVolume);
         voiceSlider.SetValueWithoutNotify(savedVoiceVolume);
 
-        audioManager.UpdateVolume("MusicVolume", savedMusicVolume);
-        audioManager.UpdateVolume("SFXVolume", savedSFXVolume);
-        audioManager.UpdateVolume("VoiceVolume", savedVoiceVolume);
+        AudioManager.Instance.UpdateVolume("MusicVolume", savedMusicVolume);
+        AudioManager.Instance.UpdateVolume("SFXVolume", savedSFXVolume);
+        AudioManager.Instance.UpdateVolume("VoiceVolume", savedVoiceVolume);
 
         currentMusicVolume = savedMusicVolume;
         currentSFXVolume = savedSFXVolume;
@@ -130,7 +120,7 @@ public class SettingsMenu : MonoBehaviour
         // Revert subtitle font size
         float savedFontSize = PlayerPrefs.GetFloat("SubtitleFontSize", 24f);
         subtitleFontSizeSlider.SetValueWithoutNotify(savedFontSize);
-        subtitleManager.SetSubtitleFontSize(savedFontSize);
+        SubtitleManager.Instance.SetSubtitleFontSize(savedFontSize);
 
         Debug.Log("Settings reverted!");
     }
@@ -146,14 +136,14 @@ public class SettingsMenu : MonoBehaviour
     // Called when the subtitles toggle is changed
     void OnSubtitlesToggle(bool isOn)
     {
-        subtitleManager.SetSubtitlesEnabled(isOn);
+        SubtitleManager.Instance.SetSubtitlesEnabled(isOn);
         // Removed saving to PlayerPrefs here
     }
 
     // Called when the subtitle font size slider is changed
     void OnSubtitleFontSizeChanged(float size)
     {
-        subtitleManager.SetSubtitleFontSize(size);
+        SubtitleManager.Instance.SetSubtitleFontSize(size);
         // Removed saving to PlayerPrefs here
     }
 }

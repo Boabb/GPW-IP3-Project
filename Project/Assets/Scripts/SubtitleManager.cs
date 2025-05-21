@@ -114,31 +114,19 @@ public class SubtitleManager : MonoBehaviour
             sequenceIndexTracker[sequenceName] = 0;
         }
 
-        float subtitleStartTime = AudioManager.Instance.VoiceOverAudioSource.time;
+        float subtitleEndPosition = 0f;
 
         for (int i = sequenceIndexTracker[sequenceName]; i < sequence.subtitles.Length; i++)
         {
-            var subtitle = sequence.subtitles[i];
-            subtitleText.text = subtitle.text;
+            subtitleText.text = sequence.subtitles[i].text;
 
-            float subtitleEndTime = subtitleStartTime + subtitle.duration;
+            subtitleEndPosition += sequence.subtitles[i].duration;
 
-            yield return new WaitUntil(() =>
-            {
-                var source = AudioManager.Instance.VoiceOverAudioSource;
-                return !source.isPlaying || source.time >= subtitleEndTime;
-            });
+            yield return new WaitUntil(() => AudioManager.Instance.VoiceOverAudioSource.time >= subtitleEndPosition || (!AudioManager.Instance.VoiceOverAudioSource.isPlaying && AudioManager.Instance.VoiceOverAudioSource.time == 0));
 
-            if (!AudioManager.Instance.VoiceOverAudioSource.isPlaying)
-            {
-                // Audio stopped early — exit the loop
-                break;
-            }
-
-            subtitleStartTime += subtitle.duration;
+            subtitleText.text = "";
         }
 
-        ClearSubtitleText();
         sequenceIndexTracker[sequenceName] = sequence.subtitles.Length;
         activeSequences.Remove(sequenceName);
     }
@@ -170,6 +158,12 @@ public class SubtitleManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public static void ForceStopSubtitles()
+    {
+        Instance.StopSubtitles(); // This already clears the coroutine and text
+        Debug.Log("Subtitles forcefully stopped.");
+    }
+
     private void StopSubtitles()
     {
         if (subtitleCoroutine != null)
@@ -180,12 +174,6 @@ public class SubtitleManager : MonoBehaviour
 
         // Ensure subtitle text is cleared immediately
         ClearSubtitleText();
-    }
-
-    public void ForceStopSubtitles()
-    {
-        StopSubtitles(); // This already clears the coroutine and text
-        Debug.Log("Subtitles forcefully stopped.");
     }
 
     private void ClearSubtitleText()

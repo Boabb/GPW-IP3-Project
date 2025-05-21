@@ -501,7 +501,7 @@ public class AudioManager : MonoBehaviour
             // Tell SubtitleManager to stop subtitles as well
             if (SubtitleManager.Instance != null)
             {
-                SubtitleManager.Instance.ForceStopSubtitles();
+                SubtitleManager.ForceStopSubtitles();
             }
         }
     }
