@@ -57,6 +57,7 @@ public class SceneFlowManager : MonoBehaviour
 
     private List<string> currentTextChunks;
     private int currentChunkIndex = 0;
+    private SceneIndex previousSceneIndex = SceneIndex.MainMenu;
 
     private void Awake()
     {
@@ -69,14 +70,27 @@ public class SceneFlowManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+
+        previousSceneIndex = (SceneIndex)SceneManager.GetActiveScene().buildIndex;
+
+	}
 
     public void LoadNextLevel()
     {
         if (isTransitioning) return;
 
+        // This is a little bit of a hack but it prevents the credits skip button from proceeding to the next level when the user flow is coming from
+        // main menu to credits screen and then hitting the skip button. This path was not considered before and you want the user to return to the
+        // main menu and not go to the "next level"
+		var currentScene = (SceneIndex)SceneManager.GetActiveScene().buildIndex;
+		if (previousSceneIndex == SceneIndex.MainMenu && currentScene == SceneIndex.CreditsScene)
+        {
+			LoadScene(previousSceneIndex);
+            return;
+		}
+
         // Get the next level index
-        SceneIndex nextLevelIndex = (SceneIndex)(SceneManager.GetActiveScene().buildIndex + 1);
+		SceneIndex nextLevelIndex = currentScene + 1;
 
         // Check if we should skip the context scene
         if (scenesToSkipContext.Contains(nextLevelIndex))
