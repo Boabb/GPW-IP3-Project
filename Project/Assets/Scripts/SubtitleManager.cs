@@ -46,17 +46,12 @@ public class SubtitleManager : MonoBehaviour
         // Load preference for subtitles
         subtitlesEnabled = PlayerPrefs.GetInt("SubtitlesEnabled", 1) == 1; // Default to 'true' if no preference exists
 
+        // Set font size from preferences if one is available
         float fontSize = PlayerPrefs.GetFloat("SubtitleFontSize", -1f);
-
-        // If no value is saved (first time running), use the Inspector value
-        if (fontSize == -1f)
+        if (fontSize != -1f)
         {
-            fontSize = subtitleText.fontSize; // Use Inspector's font size
-            PlayerPrefs.SetFloat("SubtitleFontSize", fontSize); // Save it
-            PlayerPrefs.Save();
-        }
-
-        SetSubtitleFontSize(fontSize); // Apply the font size
+			SetSubtitleFontSize(fontSize); // Apply the font size
+		}
     }
 
     [SerializeField] private VoiceOverEnum startingSequence;
