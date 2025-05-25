@@ -7872,8 +7872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b5f63bcfb77a448bfb7e475e461340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toActivate:
-  - {fileID: 0}
+  toActivate: []
 --- !u!114 &1295516514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7886,8 +7885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fed6582b8da95248b21b8d155347664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toDeactivate:
-  - {fileID: 0}
+  toDeactivate: []
 --- !u!114 &1295516515
 MonoBehaviour:
   m_ObjectHideFlags: 0

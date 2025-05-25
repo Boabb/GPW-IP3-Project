@@ -18,13 +18,10 @@ public abstract class InteractableObject : MonoBehaviour
         {
             systemInteract = true;
         }
-        Debug.Log("Tap Interact Update: " + systemInteract);
     }
 
     private void FixedUpdate()
     {
-        Debug.Log("Tap Interact Fixed Update: " + systemInteract);
-
         if (systemInteract)
         {
             fixedInteract = true;
@@ -40,7 +37,6 @@ public abstract class InteractableObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Tap Interact Trigger: " + systemInteract);
         if (fixedInteract && collision.gameObject.layer == LayerMask.NameToLayer("Player") && !interact)
         {
             interact = true;

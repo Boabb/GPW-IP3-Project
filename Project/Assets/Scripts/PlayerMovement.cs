@@ -315,7 +315,6 @@ public class PlayerMovement : MonoBehaviour
                     break;
 
             }
-
         }
         else if (playerData.pushing)
         {
@@ -329,8 +328,6 @@ public class PlayerMovement : MonoBehaviour
         {
             movementType = MovementType.Walking;
         }
-
-        Debug.Log(movementType);
     }
 
     void UpdateMovementForce()

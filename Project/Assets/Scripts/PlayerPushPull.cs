@@ -227,7 +227,6 @@ public class PlayerPushPull : MonoBehaviour
     //I don't remember, this is why we write better comments
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Tiggered!");
         if (currentPushPullObject == null)
         {
             AttachPushPullObject(collider);

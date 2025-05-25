@@ -150,12 +150,10 @@ public class PlayerClimb : MonoBehaviour
     void QuickClimb()
     {
         climbType = ClimbType.Quick;
-        Debug.Log("QuickClimb");
     }
 
     void CatchClimb()
     {
-        Debug.Log("CatchClimb");
         playerData.shouldLimitMovement = true;
         if (climbSide == ClimbSide.Left)
         {
@@ -173,7 +171,6 @@ public class PlayerClimb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Climb");
         ObjectTags tags = collider.gameObject.GetComponentInParent<ObjectTags>();
         currentClimbObjectTags = tags;
         climbObjectCollider = collider;
