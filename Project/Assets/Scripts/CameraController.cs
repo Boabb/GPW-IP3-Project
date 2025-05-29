@@ -228,6 +228,18 @@ public class CameraController : MonoBehaviour
         m_shake = true;
     }
 
+    public void SetCameraPosition(Vector3 camPos, bool useOffsets)
+    {
+        if (useOffsets)
+        {
+            gameObject.transform.position = new Vector3(camPos.x + xOffset, camPos.y + yOffset, gameObject.transform.position.z);
+        }
+        else
+        {
+            gameObject.transform.position = new Vector3(camPos.x, camPos.y, gameObject.transform.position.z);
+        }
+    }
+
     //private methods
     void Follow() //follows the player
     {

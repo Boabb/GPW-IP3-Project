@@ -86,6 +86,8 @@ public class ElevatorAutoEvent : AutoEvent
                     StartCoroutine(GameManager.TransitionToOutsideSection(4));
                 }
                 //fade, shake and lift details move, continue until testimony is complete
+                camCon.SetYOffset(0.86f);
+                camCon.SetCameraPosition(playerData.transform.position, true);
                 camCon.StartShake(1, 0.05f, 1);
                 stage3Count -= stage3Subtractor * Time.deltaTime;
 
