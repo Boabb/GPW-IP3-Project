@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class SettingsMenu : MonoBehaviour
     [Header("Subtitles")]
     public Toggle subtitlesToggle;
     public Slider subtitleFontSizeSlider;
+
+    [Header("For Designers to Tweak")]
+    public static float initialSubtitleSize = 48f;
+    public static float uninitialisedSubtitleSize = -1f;
+    public static bool initialSubtitleActiveStateAsBool = true;
+    public static int initialSubtitleActiveStateAsInt => initialSubtitleActiveStateAsBool ? 1 : 0;
+
 
     void Start()
     {
@@ -43,12 +51,12 @@ public class SettingsMenu : MonoBehaviour
         LogPlayerPrefs();
 
         // Load and set the subtitles toggle state
-        bool subtitlesEnabled = PlayerPrefs.GetInt("SubtitlesEnabled", 1) == 1;
+        bool subtitlesEnabled = PlayerPrefs.GetInt("SubtitlesEnabled", initialSubtitleActiveStateAsInt) == 1;
         subtitlesToggle.isOn = subtitlesEnabled;
         subtitlesToggle.onValueChanged.AddListener(OnSubtitlesToggle);
 
         // Load and set subtitle font size
-        float fontSize = PlayerPrefs.GetFloat("SubtitleFontSize", 24f);
+        float fontSize = PlayerPrefs.GetFloat("SubtitleFontSize", initialSubtitleSize);
         subtitleFontSizeSlider.value = fontSize;
         SubtitleManager.Instance.SetSubtitleFontSize(fontSize);  // Update subtitle manager with the saved size
         subtitleFontSizeSlider.onValueChanged.AddListener(OnSubtitleFontSizeChanged);
@@ -118,7 +126,7 @@ public class SettingsMenu : MonoBehaviour
         subtitlesToggle.isOn = subtitlesEnabled;
 
         // Revert subtitle font size
-        float savedFontSize = PlayerPrefs.GetFloat("SubtitleFontSize", 24f);
+        float savedFontSize = PlayerPrefs.GetFloat("SubtitleFontSize", initialSubtitleSize);
         subtitleFontSizeSlider.SetValueWithoutNotify(savedFontSize);
         SubtitleManager.Instance.SetSubtitleFontSize(savedFontSize);
 
