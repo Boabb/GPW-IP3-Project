@@ -243,20 +243,36 @@ public class AudioManager : MonoBehaviour
 
         Instance.VoiceOverQueue.Clear();
 
-        // Load volume from PlayerPrefs
-        float musicVol = PlayerPrefs.GetFloat(MUSIC_VOLUME_PARAM, 0.75f);
-        float sfxVol = PlayerPrefs.GetFloat(SFX_VOLUME_PARAM, 0.75f);
-        float voVol = PlayerPrefs.GetFloat(VO_VOLUME_PARAM, 0.75f);
+        //// Load volume from PlayerPrefs
+        //float musicVol = PlayerPrefs.GetFloat(MUSIC_VOLUME_PARAM, 0.75f);
+        //float sfxVol = PlayerPrefs.GetFloat(SFX_VOLUME_PARAM, 0.75f);
+        //float voVol = PlayerPrefs.GetFloat(VO_VOLUME_PARAM, 0.75f);
 
-        ApplySavedVolumes();
+        //ApplySavedVolumes();
 
-        // Apply the loaded volume settings directly using SetMixerVolume
-        SetMixerVolume(MusicMixerGroup.audioMixer, MUSIC_VOLUME_PARAM, musicVol);
-        SetMixerVolume(SoundEffectsMixerGroup.audioMixer, SFX_VOLUME_PARAM, sfxVol);
-        SetMixerVolume(VoiceOverMixerGroup.audioMixer, VO_VOLUME_PARAM, voVol);
+        //// Apply the loaded volume settings directly using SetMixerVolume
+        //SetMixerVolume(MusicMixerGroup.audioMixer, MUSIC_VOLUME_PARAM, musicVol);
+        //SetMixerVolume(SoundEffectsMixerGroup.audioMixer, SFX_VOLUME_PARAM, sfxVol);
+        //SetMixerVolume(VoiceOverMixerGroup.audioMixer, VO_VOLUME_PARAM, voVol);
     }
 
-    void SetMixerVolume(AudioMixer mixer, string param, float value)
+    public void SetMusicVolume(float value)
+    {
+        PlayerPrefs.GetFloat(MUSIC_VOLUME_PARAM, value);
+        SetMixerVolume(MusicMixerGroup.audioMixer, MUSIC_VOLUME_PARAM, value);
+    }
+    public void SetSoundEffectsVolume(float value)
+    {
+        PlayerPrefs.SetFloat(SFX_VOLUME_PARAM, value);
+        SetMixerVolume(SoundEffectsMixerGroup.audioMixer, SFX_VOLUME_PARAM, value);
+    }
+    public void SetVoiceOverVolume(float value)
+    {
+        PlayerPrefs.SetFloat(VO_VOLUME_PARAM, value);
+        SetMixerVolume(VoiceOverMixerGroup.audioMixer, VO_VOLUME_PARAM, value);
+    }
+
+    public void SetMixerVolume(AudioMixer mixer, string param, float value)
     {
         if (value <= 0.0001f) // Protect against zero
         {
