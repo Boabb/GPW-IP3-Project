@@ -1022,7 +1022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1672148330020988897, guid: 993fca9f01214e94283557cef427c18a, type: 3}
       propertyPath: m_Name
-      value: LevelLoader
+      value: LevelLoader (Black Overlay)
       objectReference: {fileID: 0}
     - target: {fileID: 7470802648963414678, guid: 993fca9f01214e94283557cef427c18a, type: 3}
       propertyPath: useSceneFlowManager
