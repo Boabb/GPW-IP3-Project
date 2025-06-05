@@ -44,11 +44,11 @@ public class SubtitleManager : MonoBehaviour
         Instance = this;
 
         // Load preference for subtitles
-        subtitlesEnabled = PlayerPrefs.GetInt("SubtitlesEnabled", 1) == 1; // Default to 'true' if no preference exists
+        subtitlesEnabled = PlayerPrefs.GetInt("SubtitlesEnabled", SettingsMenu.initialSubtitleActiveStateAsInt) == 1; // Default to 'true' if no preference exists
 
         // Set font size from preferences if one is available
-        float fontSize = PlayerPrefs.GetFloat("SubtitleFontSize", -1f);
-        if (fontSize != -1f)
+        float fontSize = PlayerPrefs.GetFloat("SubtitleFontSize", SettingsMenu.uninitialisedSubtitleSize);
+        if (fontSize != SettingsMenu.uninitialisedSubtitleSize)
         {
 			SetSubtitleFontSize(fontSize); // Apply the font size
 		}
