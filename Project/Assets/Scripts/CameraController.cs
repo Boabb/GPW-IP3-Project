@@ -25,11 +25,6 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (m_shake)
-        {
-            Shake();
-        }
-
         if (m_positionLerp)
         {
             PositionLerp();
@@ -43,6 +38,16 @@ public class CameraController : MonoBehaviour
         if (m_followX || m_followY)
         {
             Follow();
+        }
+
+        if (m_shake)
+        {
+            Shake();
+        }
+
+        if (m_playerShake)
+        {
+            PlayerFocusShake();
         }
     }
 
@@ -167,6 +172,15 @@ public class CameraController : MonoBehaviour
         return m_zoomLerp;
     }
 
+    public bool GetShakeStatus()
+    {
+        if (m_shake || m_playerShake)
+        {
+            return true;
+        }
+        return false;
+    }    
+
     //public bool m_follow = true;
     bool m_followY = false;
     bool m_followX = true;
@@ -228,6 +242,15 @@ public class CameraController : MonoBehaviour
         m_shake = true;
     }
 
+    bool m_playerShake;
+    public void StartPlayerFocusShake(float shakeTime, float shakeAmount, float shakeDecrease)
+    {
+        m_shakeTime = shakeTime;
+        m_shakeAmount = shakeAmount;
+        m_shakeDecrease = shakeDecrease;
+        m_playerShake = true;
+    }
+
     public void SetCameraPosition(Vector3 camPos, bool useOffsets)
     {
         if (useOffsets)
@@ -280,6 +303,22 @@ public class CameraController : MonoBehaviour
         {
             m_shakeTime = 0.0f;
             m_shake = false;
+        }
+    }
+
+    void PlayerFocusShake()
+    {
+        if (m_shakeTime > 0)
+        {
+            gameObject.transform.localPosition = new Vector3(player.transform.position.x + Random.insideUnitSphere.x * m_shakeAmount, player.transform.position.y + standardY + yOffset + Random.insideUnitSphere.y * m_shakeAmount, gameObject.transform.localPosition.z);
+            m_shakeTime -= Time.deltaTime * m_shakeDecrease;
+        }
+        else
+        {
+            m_shakeTime = 0.0f;
+            m_playerShake = false;
+
+            //gameObject.transform.localPosition = new Vector3(player.transform.position.x, yOffset, gameObject.transform.localPosition.z);
         }
     }
 
