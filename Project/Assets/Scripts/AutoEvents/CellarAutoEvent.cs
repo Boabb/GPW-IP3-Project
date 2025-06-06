@@ -68,7 +68,7 @@ public class CellarAutoEvent : AutoEvent
 
     public override void EventEnter(GameObject playerGO)
     {
-        AudioManager.PlayVoiceOverWithSubtitles(VoiceOverEnum.Level3Track4); //testimony begins
+        //AudioManager.PlayVoiceOverWithSubtitles(VoiceOverEnum.Level3Track4); //testimony begins
         camCon.LerpToZoom(0.8f, 3f); //zoom out exterior
         camCon.LerpToPosition(0.8f, new(60f, -4f, -10));
         camCon.BeginFollow();
