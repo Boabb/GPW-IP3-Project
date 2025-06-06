@@ -446,7 +446,7 @@ public class AudioManager : MonoBehaviour
             if (Instance.VoiceOvers[(int)index].clip != Instance.VoiceOverAudioSource.clip)
             {
                 // Store current audio and its progress
-                if (Instance.VoiceOverAudioSource.clip != null && Instance.VoiceOverAudioSource.isPlaying)
+                if (Instance.VoiceOverAudioSource.clip != null && (Instance.VoiceOverAudioSource.isPlaying && AudioListener.pause != true && Instance.VoiceOverAudioSource.time == 0))
                 {
                     int currentIndex = 0;
 

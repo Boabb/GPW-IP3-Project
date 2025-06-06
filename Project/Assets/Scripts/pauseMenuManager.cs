@@ -34,6 +34,7 @@ public class PauseMenuManager : MonoBehaviour
 
         bg.SetActive(false);
         Time.timeScale = 1;
+        AudioListener.pause = false;
     }
 
     void Update()
@@ -65,6 +66,8 @@ public class PauseMenuManager : MonoBehaviour
             menuButton.SetActive(true);
             bg.SetActive(false);
             Time.timeScale = 1;
+            AudioListener.pause = false;
+
         }
         else
         {
@@ -74,6 +77,7 @@ public class PauseMenuManager : MonoBehaviour
             menuButton.SetActive(false);
             bg.SetActive(true);
             Time.timeScale = 0;
+            AudioListener.pause = true;
         }
     }
 

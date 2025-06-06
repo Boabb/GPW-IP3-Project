@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static PlayerData playerData;
     public static Camera mainCamera;
+    public static AudioListener audioListener;
     public static CameraController cameraController;
     public static LevelLoader levelLoader => FindObjectOfType<LevelLoader>(true);
     public static PauseMenuManager pauseMenuManager => FindObjectOfType<PauseMenuManager>();
@@ -15,10 +16,12 @@ public class GameManager : MonoBehaviour
     private static GameObject lowerLevelSection;
     private static GameObject upperLevelSection;
 
+
     // Start is called before the first frame update
     void Awake()
     {
         mainCamera = Camera.main;
+        audioListener = mainCamera.GetComponentInChildren<AudioListener>();
         if (playerData != null)
         {
 
