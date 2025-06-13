@@ -15,9 +15,9 @@ ScriptedImporter:
   alignment: 0
   customPivot: {x: 0, y: 0}
   generatePhysicsShape: 0
-  viewportOptions: 1
+  viewportOptions: 2
   preserveViewport: 0
-  advancedMode: 0
+  advancedMode: 1
   predefinedResolutionIndex: 1
   targetResolution: 1080
   resolutionMultiplier: 1
@@ -34,7 +34,7 @@ ScriptedImporter:
   wrapMode: 0
   filterMode: 1
   sampleCount: 4
-  preserveSVGImageAspect: 0
+  preserveSVGImageAspect: 1
   useSVGPixelsPerUnit: 0
   spriteData:
     TessellationDetail: 0
