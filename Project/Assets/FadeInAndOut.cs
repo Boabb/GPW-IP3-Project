@@ -8,10 +8,12 @@ public class FadeInAndOut : AutoEvent
     [SerializeField] SpriteRenderer[] fadeObject;
     [SerializeField] GameObject[] objectsToActivate;
     [SerializeField] GameObject[] objectsToDeactivate;
+    [SerializeField] bool optionalSingleActivation;
 
     float currentFadeAmount = 0f;
     bool fadeIn = false;
     bool fadeOut = false;
+    bool active = false;
     [SerializeField] float fadeScalar = 1f;
 
     private void Start()
@@ -106,6 +108,12 @@ public class FadeInAndOut : AutoEvent
 
     public override void EventEnter(GameObject playerGO)
     {
+        if(optionalSingleActivation && active)
+        {
+            return;
+        }
+
         fadeIn = true;
+        active = true;
     }
 }

@@ -73,6 +73,7 @@ public class CellarAutoEvent : AutoEvent
         camCon.LerpToPosition(0.8f, new(60f, -4f, -10));
         camCon.BeginFollow();
         playerData.UnfreezePlayer(); //unfreeze the player
-        playerData.customPlayerVelocity = -60; //make the player very slow
+        playerData.gameObject.transform.position = new Vector3(49.25f, -3.57f, 0);
+        //playerData.customPlayerVelocity = -10; //make the player very slow
     }
 }
