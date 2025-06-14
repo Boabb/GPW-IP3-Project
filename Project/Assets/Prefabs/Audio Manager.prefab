@@ -159,11 +159,11 @@ MonoBehaviour:
       duration: 4
     - text: "And we hadn\u2019t been out, you know, for six weeks in the streets."
       duration: 4
-    - text: "And she said, \u201CDon\u2019t talk,\u201D you know, \u201CDon\u2019t
+    - text: "nd she said, \u201CDon\u2019t talk,\u201D you know, \u201CDon\u2019t
         say anything.\u201D"
       duration: 4
     - text: Just call her mother.
-      duration: 3.5
+      duration: 3
   - sequenceName: Level2Track5
     subtitles:
     - text: And we got onto a very crammed bus.
@@ -178,32 +178,30 @@ MonoBehaviour:
       duration: 5
   - sequenceName: Level3Track1
     subtitles:
-    - text: Now we stayed in that house and we had Christmas there.
-      duration: 5
-    - text: And it was a sort of nursery. And there were mostly mothers and babies.
-      duration: 7
-    - text: And we were sort of big children,
-      duration: 3
-    - text: you know like 9 and 7 we were.
-      duration: 1
-    - text: "So we were, we didn\u2019t have any relatives there."
-      duration: 3
-    - text: We stayed there and it was actually very nice because we got food,
-      duration: 3
-    - text: proper food, we had proper beds.
-      duration: 2
-    - text: This is Christmas 1944 and the Russians are coming in,
-      duration: 5
-    - text: and the Germans are retreating the bombs are flying,
-      duration: 5
-    - text: so we were going down into the cellar all the time.
-      duration: 5
+    - text: Now we stayed in that house,
+      duration: 2.837
+    - text: And it was actually very nice because we got food,
+      duration: 3.2
+    - text: 'Proper food, we had proper beds. '
+      duration: 2.6
+    - text: 'This is Christmas 1944, the Russians are coming in and the Germans are
+        retreating. '
+      duration: 6
+    - text: 'And the bombs are flying so we were going down into the cellar all the
+        time. '
+      duration: 4.847
+    - text: And eventually, they bombed the house, it fell to bits.
+      duration: 3.953
+    - text: 'And we were in the cellar during the Ostrom, which is the Siege of Budapest. '
+      duration: 6
   - sequenceName: Level3Track2
     subtitles:
     - text: and eventually we went down into the cellar
-      duration: 3
+      duration: 5.154
     - text: and they bombed the house.
-      duration: 5
+      duration: 4.646
+    - text: and they bombed the house.
+      duration: 7.973
   - sequenceName: Level3Track3
     subtitles:
     - text: "The Russians came in and I don\u2019t know whether it was the Germans
@@ -299,13 +297,9 @@ MonoBehaviour:
       duration: 2
     - text: So we were reunited in 1946.
       duration: 5
-  - sequenceName: Subtitle Preview
-    subtitles:
-    - text: 'This is a preview of the subtitles. '
-      duration: 1e+13
   subtitleText: {fileID: 0}
   playOnStart: 1
-  startingSequence: 4
+  startingSequence: 8
 --- !u!1 &2909311250373351691
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,18 +510,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
-  - name: Audio Manager (Master)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Voice-Over Audio (Voice-Over)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: MusicAudio (Music)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: Marching (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenJump (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenScrape (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: crawlInVent (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: suzanneExert (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: MusicAudio (Music)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: suzanneExhale (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenFootsteps (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Voice-Over Audio (Voice-Over)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Audio Manager (Master)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 7941402240223346885}
   VoiceOverAudioSource: {fileID: 648406160439785931}
   SoundEffectsMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -639,15 +651,15 @@ MonoBehaviour:
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     progress: 0
   - name: Level3Track1
-    clip: {fileID: 8300000, guid: ccd52ec324d423d439fa4f62eba2d549, type: 3}
+    clip: {fileID: 8300000, guid: 129c7b276c2c8074a83606c74cc233c0, type: 3}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     progress: 0
   - name: Level3Track2
-    clip: {fileID: 8300000, guid: ca5692a96f4c9864d86076386b9d56ec, type: 3}
+    clip: {fileID: 8300000, guid: acf381c2f7a85b045b9bcc6e8bf4f8f9, type: 3}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     progress: 0
   - name: Level3Track3
-    clip: {fileID: 8300000, guid: 3885c05e369f73f4688c70f91dee4e2a, type: 3}
+    clip: {fileID: 8300000, guid: 1bdb773453164b44ebda35b14acb80a8, type: 3}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     progress: 0
   - name: Level3Track4
@@ -697,7 +709,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
@@ -824,7 +836,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1568ac8f0dedd3b4faa3d05587f50854, type: 3}
+  m_audioClip: {fileID: 8300000, guid: de1b691970812b94a853563f64d1a911, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -952,8 +964,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6a40238bbe3df464580a7c2fef3c1ea1, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 129c7b276c2c8074a83606c74cc233c0, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
