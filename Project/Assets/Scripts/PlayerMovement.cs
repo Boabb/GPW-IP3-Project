@@ -263,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
                     playerRB2D.velocity = new Vector3(transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
                 }
             }
-            else
+            else if(movementType != MovementType.Jumping || grounded)
             {
                 playerData.playerAnimator.PlayerIdle();
             }
