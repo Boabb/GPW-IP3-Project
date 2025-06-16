@@ -196,27 +196,32 @@ MonoBehaviour:
       duration: 6
   - sequenceName: Level3Track2
     subtitles:
-    - text: and eventually we went down into the cellar
+    - text: The basement was actually the basement of a paper factory so there were
+        shelves.
       duration: 5.154
-    - text: and they bombed the house.
+    - text: And we just slept on the shelves or on the floor it was pretty awful.
       duration: 4.646
-    - text: and they bombed the house.
+    - text: 'And we lived down there about six weeks. '
       duration: 7.973
   - sequenceName: Level3Track3
     subtitles:
-    - text: "The Russians came in and I don\u2019t know whether it was the Germans
-        or the Russians;"
-      duration: 5
-    - text: they poisoned the water supply.
-      duration: 3
-    - text: And I remember my brother Joseph and I going upstairs
-      duration: 3
-    - text: because we had no water so we where scraping the snow
-      duration: 4
-    - text: and bringing it down to melt it.
-      duration: 2
-    - text: My brother Louis, he was too dispirited, he just lay there on the ground.
-      duration: 7
+    - text: "I don\u2019t know whether it was the Germans or the Russians; they poisoned
+        the water supply."
+      duration: 3.861
+    - text: And I remember my brother Joseph and I going upstairs because we had
+        no water.
+      duration: 5.737
+    - text: 'So we were scraping the snow and bringing it down to melt it. '
+      duration: 4.252
+    - text: And the Russians, they were pushing the Germans across the Danube.
+      duration: 5.55
+    - text: So the Germans retreated across the bridges from Pest to Buda.
+      duration: 2.85
+    - text: They blew up the bridges so that the Russians couldn't follow them.
+      duration: 5.206
+    - text: So, you know, all of that went on and then the Germans disappeared and
+        the Russians were in.
+      duration: 6.787
   - sequenceName: Level3Track4
     subtitles:
     - text: The basement was actually the basement of a paper factory
@@ -298,8 +303,6 @@ MonoBehaviour:
     - text: So we were reunited in 1946.
       duration: 5
   subtitleText: {fileID: 0}
-  playOnStart: 1
-  startingSequence: 8
 --- !u!1 &2909311250373351691
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,9 +513,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
-  - name: Marching (Sound Effects)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: woodenJump (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -540,6 +540,9 @@ MonoBehaviour:
   - name: Audio Manager (Master)
     reference: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Marching (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 7941402240223346885}
   VoiceOverAudioSource: {fileID: 648406160439785931}
   SoundEffectsMixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
@@ -659,7 +662,7 @@ MonoBehaviour:
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     progress: 0
   - name: Level3Track3
-    clip: {fileID: 8300000, guid: 1bdb773453164b44ebda35b14acb80a8, type: 3}
+    clip: {fileID: 8300000, guid: 68fb3ce89e929b645864ffef7c36391c, type: 3}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     progress: 0
   - name: Level3Track4
@@ -698,6 +701,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ca5692a96f4c9864d86076386b9d56ec, type: 3}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     progress: 0
+  startingSequence: 0
+  playOnStart: 1
 --- !u!82 &4772230194286788492
 AudioSource:
   m_ObjectHideFlags: 0
@@ -964,7 +969,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 129c7b276c2c8074a83606c74cc233c0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cb3ee8ff6d2482f419fee2ee607fe841, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1

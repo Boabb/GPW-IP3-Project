@@ -55,7 +55,6 @@ public enum BackgroundMusicEnum
     OutOfVentSong
 }
 
-[ExecuteInEditMode]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
@@ -234,6 +233,11 @@ public class AudioManager : MonoBehaviour
         SubtitleManager = GetComponentInChildren<SubtitleManager>();
     }
 
+    [Header("Audio/Subtitle Sequenece that will play at the beginning of the Level.")]
+
+    [SerializeField] private VoiceOverEnum startingSequence;
+    [SerializeField] private bool playOnStart = true;
+
     private void Start()
     {
         if (FindObjectsOfType<AudioManager>().Length > 1)
@@ -242,6 +246,12 @@ public class AudioManager : MonoBehaviour
         }
 
         Instance.VoiceOverQueue.Clear();
+
+
+        if (playOnStart)
+        {
+            PlayLevelVoiceOver();
+        }
 
         //// Load volume from PlayerPrefs
         //float musicVol = PlayerPrefs.GetFloat(MUSIC_VOLUME_PARAM, 0.75f);
@@ -255,6 +265,13 @@ public class AudioManager : MonoBehaviour
         //SetMixerVolume(SoundEffectsMixerGroup.audioMixer, SFX_VOLUME_PARAM, sfxVol);
         //SetMixerVolume(VoiceOverMixerGroup.audioMixer, VO_VOLUME_PARAM, voVol);
     }
+
+    private void PlayLevelVoiceOver()
+    {
+        AudioManager.PlayVoiceOverWithSubtitles(startingSequence);
+        Debug.Log($"Now playing {startingSequence}");
+    }
+
 
     public void SetMusicVolume(float value)
     {

@@ -29,8 +29,6 @@ public class SubtitleManager : MonoBehaviour
     private HashSet<string> activeSequences = new HashSet<string>();
     private Coroutine subtitleCoroutine;
 
-    [SerializeField] private bool playOnStart = true;
-
     private bool subtitlesEnabled = true; // Global subtitle enabled flag
 
     private void Awake()
@@ -52,22 +50,6 @@ public class SubtitleManager : MonoBehaviour
         {
 			SetSubtitleFontSize(fontSize); // Apply the font size
 		}
-    }
-
-    [SerializeField] private VoiceOverEnum startingSequence;
-
-    void Start()
-    {
-        if (playOnStart)
-        {
-            PlayLevelVoiceOver();
-        }
-    }
-
-    private void PlayLevelVoiceOver()
-    {
-        AudioManager.PlayVoiceOverWithSubtitles(startingSequence);
-        Debug.Log($"Now playing {startingSequence}");
     }
 
     public void PlaySubtitleSequence(string sequenceName)
