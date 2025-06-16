@@ -27,4 +27,15 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("CreditsScene");
     }
+
+	private void Update()
+	{
+        // HACK: This only exists to turn the main menu back on after the settings screen is closed. Not the best way of doing this
+        // but the quickest due to time constraints. What should happen is that the settings menu should fire off an event which is
+        // is listened for in here, rather than poll whether its off each frame like below
+		if (mainMenu.activeSelf == false && settingsMenu.gameObject.activeSelf == false)
+        {
+			mainMenu.SetActive(!mainMenu.activeSelf);
+		}
+	}
 }
