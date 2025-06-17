@@ -23,11 +23,11 @@ public class ContinuousShaking : MonoBehaviour
 
         if (rand.Next(500) == 1 && !cameraController.GetShakeStatus())
         {
-            int shakeTimeInt = rand.Next(1, 10);
+            int shakeTimeInt = rand.Next(2, 5);
 
             Debug.Log(shakeTimeInt);
 
-            cameraController.StartPlayerFocusShake((float)shakeTimeInt / 10, 0.5f, 1);
+            cameraController.StartPlayerFocusShake((float)shakeTimeInt / 10, 0.3f, 1);
 
             //cameraController.StartShake(rand.Next(5, 10) / 10, rand.Next(1) / 10, 0.5f);
         }
