@@ -302,6 +302,97 @@ MonoBehaviour:
       duration: 2
     - text: So we were reunited in 1946.
       duration: 5
+  - sequenceName: BookCollectible
+    subtitles:
+    - text: "And of course we had, in \u201944 the bombs came you know, the allies
+        were bombing us."
+      duration: 5
+    - text: 'So we had the Nazis but we also had another war from above, so about
+        3 or 4 times a day or night. '
+      duration: 6.7
+    - text: We might have to go into the cellar when the sirens started, you know,
+        hooting.
+      duration: 6
+    - text: And I remember being given a torch in order to go down into the cellar.
+      duration: 4.6
+    - text: 'And I made good use of this because I used it to read under my eiderdowns. '
+      duration: 5.99
+    - text: 'But you had to be very careful because the room was shared by the nanny
+        and my two brothers. '
+      duration: 4.81
+    - text: "And I had to insulate myself so that the light didn\u2019t seep out
+        under my covers, and I just adored reading. "
+      duration: 7.83
+    - text: "So we didn\u2019t actually experience the war in Hungary until till
+        you know 44. "
+      duration: 6.69
+    - text: 'When the bombs started flying then we had it from every side, we had
+        the Nazis getting the Jewish. '
+      duration: 5.42
+    - text: 'And we had the bombs, so we had to go down into the cellar all the time. '
+      duration: 5.053
+    - text: 'But before then it was just gradual, the Arrow Cross were harassing
+        us. '
+      duration: 6.672
+    - text: 'Always more and more and more. but in Budapest we were relatively safe
+        until later on. '
+      duration: 7.851
+    - text: 'Eichmann then settled in and his one objective was to eliminate the
+        Jews forever. '
+      duration: 5.894
+  - sequenceName: BrokenPlateCollectible
+    subtitles:
+    - text: 'I remember in our first starred house there was such confusion and so
+        many people and you know one kitchen everyone trying to cook there. '
+      duration: 9.2
+    - text: 'And of course the children we were just crammed in there. And I lost
+        my temper for the first time in my life. '
+      duration: 11.87
+    - text: "My grandmother was cross with me because I didn\u2019t obey her. You
+        know \"go to have a meal/ Sit down\"."
+      duration: 8.58
+    - text: 'I was playing around and she took one of my toys and poor grandma she
+        must have been so harassed and she broke one of these toys, a little plate '
+      duration: 12.65
+    - text: And I was so appalled by this that I lost it that I started smashing
+        my own most precious toys.
+      duration: 7.4
+    - text: 'And I was crying and weeping and I was hysterical. '
+      duration: 5.039
+  - sequenceName: FoodCardCollectible
+    subtitles:
+    - text: "Time was restricted we had an hour in the afternoon that was from march
+        March \u201844 that\u2019s when the Nazi\u2019s were in Budapest."
+      duration: 7.4
+    - text: And then food became very short and Jews were only allowed out for 1
+        hour in the afternoon during the day to do their shopping.
+      duration: 8.1
+    - text: 'But there was nothing to shop, and also, Jews were given special food
+        cards with huge yellow stars on them, bright yellow, garish yellow. '
+      duration: 10.68
+    - text: 'And by the time in the afternoon came that they were allowed to shop
+        there was nothing so it was desperate. '
+      duration: 4.803
+  - sequenceName: EmbroiderySetCollectible
+    subtitles:
+    - text: Now we stayed in that house and we had Christmas there I remember and
+        I even got a Christmas present.
+      duration: 9.2
+    - text: 'A little embroidery set, and I still have a little embroidery piece
+        which I did the cross stitch. '
+      duration: 6.28
+    - text: "But I didn\u2019t discover what that house was until the 1980\u2019s
+        here in Glasgow "
+      duration: 6.4
+    - text: "When someone handed me a newspaper cutting saying \u201CSuzanne you
+        may be interested, this is about Hungary\u201D. "
+      duration: 6.32
+    - text: "When someone handed me a newspaper cutting saying \u201CSuzanne you
+        may be interested, this is about Hungary\u201D. "
+      duration: 6.32
+    - text: 'And I read about Wallenberg, and it suddenly clicked, it was one of
+        Wallenberg''s houses. '
+      duration: 6.291
   subtitleText: {fileID: 0}
 --- !u!1 &2909311250373351691
 GameObject:
@@ -513,34 +604,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllSounds:
-  - name: woodenJump (Sound Effects)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: woodenScrape (Sound Effects)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: crawlInVent (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: suzanneExert (Sound Effects)
+  - name: Audio Manager (Master)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Voice-Over Audio (Voice-Over)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Marching (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: MusicAudio (Music)
     reference: {fileID: 0}
     mixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: suzanneExert (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: suzanneExhale (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenJump (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: woodenFootsteps (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Voice-Over Audio (Voice-Over)
+  - name: woodenScrape (Sound Effects)
     reference: {fileID: 0}
-    mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Audio Manager (Master)
-    reference: {fileID: 0}
-    mixerGroup: {fileID: 24300002, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Marching (Sound Effects)
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Elevator (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 7941402240223346885}
@@ -608,7 +702,7 @@ MonoBehaviour:
   - name: Marching
     clips:
     - {fileID: 8300000, guid: 6bd511855c1a7884198e847fbe13bebb, type: 3}
-    audioSource: {fileID: 0}
+    audioSource: {fileID: 1777325121200211096}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   BackgroundMusics:
   - name: FirstRoomSong
@@ -698,7 +792,7 @@ MonoBehaviour:
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     progress: 0
   - name: EmbroideredRoseCollectable
-    clip: {fileID: 8300000, guid: ca5692a96f4c9864d86076386b9d56ec, type: 3}
+    clip: {fileID: 8300000, guid: 7a3d64a46de3d3444a0d716f924e8775, type: 3}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
     progress: 0
   startingSequence: 0

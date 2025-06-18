@@ -482,6 +482,7 @@ public class AudioManager : MonoBehaviour
 
                 // Start new audio
                 Instance.currentVoiceOverAudio = index;
+                Instance.VoiceOverAudioSource.ignoreListenerPause = false;
                 Instance.VoiceOverAudioSource.clip = Instance.VoiceOvers[(int)index].clip;
                 Instance.VoiceOverAudioSource.time = Instance.VoiceOvers[(int)index].progress;
                 Instance.VoiceOverAudioSource.Play();
@@ -500,7 +501,13 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning($"Audio Clip not assigned for: {Instance.VoiceOvers[(int)index].name}. PlayVoiceOverAudio aborted");
         }
     }
+    public static void PlayVoiceOverAudioFromMenu(VoiceOverEnum index, float volume = -1f)
+    {
+        //Override method for when a voice over should be played when the game is paused.
+        Instance.VoiceOverAudioSource.ignoreListenerPause = true;
 
+        PlayVoiceOverWithSubtitles(index, volume);
+    }
     public static void PlayVoiceOverWithSubtitles(VoiceOverEnum index, float volume = -1f)
     {
         // Default to saved volume if no volume is passed

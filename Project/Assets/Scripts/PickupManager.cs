@@ -85,7 +85,7 @@ public class PickupManager : MonoBehaviour
     {
         if (itemIndex >= 0 && itemIndex < itemVoiceOvers.Length)
         {
-            AudioManager.PlayVoiceOverAudio(itemVoiceOvers[itemIndex], 5);
+            AudioManager.PlayVoiceOverAudioFromMenu(itemVoiceOvers[itemIndex], 5);
         }
         else
         {

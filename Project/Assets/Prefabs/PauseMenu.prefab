@@ -1027,7 +1027,7 @@ GameObject:
   - component: {fileID: 8504673190462073275}
   - component: {fileID: 3059290858436552066}
   m_Layer: 5
-  m_Name: Rose_IMG
+  m_Name: BookInInventoryImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1102,7 +1102,7 @@ GameObject:
   - component: {fileID: 7616003421058101869}
   - component: {fileID: 5334702746105931781}
   m_Layer: 5
-  m_Name: AD
+  m_Name: A & D Keys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1444,7 +1444,7 @@ GameObject:
   - component: {fileID: 2724363038263991990}
   - component: {fileID: 5200346586584598729}
   m_Layer: 5
-  m_Name: jump
+  m_Name: Jump Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 9215646910301232821}
   - component: {fileID: 3795016235123497241}
   m_Layer: 5
-  m_Name: Rose (2)
+  m_Name: BrokenPlateInInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1621,7 +1621,7 @@ GameObject:
   - component: {fileID: 3960183650434601713}
   - component: {fileID: 50363911145699723}
   m_Layer: 5
-  m_Name: push
+  m_Name: Push Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2355,7 +2355,7 @@ GameObject:
   - component: {fileID: 2069224629943096121}
   - component: {fileID: 8383245308163578211}
   m_Layer: 5
-  m_Name: Rose_IMG
+  m_Name: FoodCardInInventoryImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2701,7 +2701,7 @@ GameObject:
   - component: {fileID: 8754779886036889906}
   - component: {fileID: 732660388748663798}
   m_Layer: 5
-  m_Name: Space
+  m_Name: Space Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2826,7 +2826,7 @@ GameObject:
   - component: {fileID: 3660256042733685362}
   - component: {fileID: 7749589183297560384}
   m_Layer: 5
-  m_Name: Rose_IMG
+  m_Name: EmbroiderySetInInventoryImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2982,7 +2982,7 @@ GameObject:
   - component: {fileID: 7174874735001729881}
   - component: {fileID: 3182627076896186331}
   m_Layer: 5
-  m_Name: Walk
+  m_Name: Walk Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3057,7 +3057,7 @@ GameObject:
   - component: {fileID: 1464214560443274889}
   - component: {fileID: 7614847333401202101}
   m_Layer: 5
-  m_Name: Rose_IMG
+  m_Name: BrokenPlateInInventoryImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3239,7 +3239,7 @@ GameObject:
   - component: {fileID: 2112626401190954723}
   - component: {fileID: 4444351006695127764}
   m_Layer: 5
-  m_Name: Rose (3)
+  m_Name: BookInInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3341,7 +3341,7 @@ GameObject:
   - component: {fileID: 7191468724939760004}
   - component: {fileID: 4185512166877554970}
   m_Layer: 5
-  m_Name: Rose
+  m_Name: EmbroiderySetInInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3443,7 +3443,7 @@ GameObject:
   - component: {fileID: 3736305890376702187}
   - component: {fileID: 8925656262737639621}
   m_Layer: 5
-  m_Name: Shift
+  m_Name: Shift Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3518,7 +3518,7 @@ GameObject:
   - component: {fileID: 6733054442646147245}
   - component: {fileID: 9060653156609513242}
   m_Layer: 5
-  m_Name: Rose (1)
+  m_Name: FoodCardInInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
