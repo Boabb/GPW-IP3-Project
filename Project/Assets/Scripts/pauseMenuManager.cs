@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
+    public static Transform inventoryButtonTransform;
     public GameObject[] screens; // Array of screens to switch between
     private int activeScreenIndex = -1; // Track active screen index
     public GameObject menuButton;
@@ -15,6 +16,10 @@ public class PauseMenuManager : MonoBehaviour
     public int settingsScreenIndex = 1; // Index of your settings screen in 'screens'
     public int controlScreenIndex = 2; // Index of the control screen in 'screens'
 
+    private void Awake()
+    {
+        inventoryButtonTransform = menuButton.transform;
+    }
     void Start()
     {
         foreach (GameObject screen in screens)
@@ -35,6 +40,8 @@ public class PauseMenuManager : MonoBehaviour
         bg.SetActive(false);
         Time.timeScale = 1;
         AudioListener.pause = false;
+
+
     }
 
     void Update()
