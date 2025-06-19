@@ -26,13 +26,13 @@ public class ContinuousShaking : MonoBehaviour
             int shakeTimeInt = rand.Next(2, 5);
 
             Debug.Log(shakeTimeInt);
-
-            cameraController.SetCameraPosition(new Vector3(playerData.playerRigidbody.position.x, 0.89f), false);
             cameraController.StartPlayerFocusShake((float)shakeTimeInt / 10, 0.3f, 1);
 
             //cameraController.StartShake(rand.Next(5, 10) / 10, rand.Next(1) / 10, 0.5f);
         }
 
+
+        cameraController.SetCameraPosition(new Vector3(playerData.playerRigidbody.position.x, 0.89f), false);
 
         Debug.Log("Shake: " + cameraController.GetShakeStatus());
     }

@@ -310,7 +310,7 @@ public class CameraController : MonoBehaviour
     {
         if (m_shakeTime > 0)
         {
-            gameObject.transform.localPosition = new Vector3(player.transform.position.x + Random.insideUnitSphere.x * m_shakeAmount * 2, player.transform.position.y + standardY + yOffset + Random.insideUnitSphere.y * m_shakeAmount * 0.5f, gameObject.transform.localPosition.z);
+            gameObject.transform.localPosition = new Vector3(player.transform.position.x + Random.insideUnitSphere.x * m_shakeAmount * 2, 0.89f + Random.insideUnitSphere.y * m_shakeAmount * 0.75f, gameObject.transform.localPosition.z);
             m_shakeTime -= Time.deltaTime * m_shakeDecrease;
         }
         else
