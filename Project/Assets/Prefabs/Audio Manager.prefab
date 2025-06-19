@@ -302,7 +302,7 @@ MonoBehaviour:
       duration: 2
     - text: So we were reunited in 1946.
       duration: 5
-  - sequenceName: BookCollectible
+  - sequenceName: BookCollectable
     subtitles:
     - text: "And of course we had, in \u201944 the bombs came you know, the allies
         were bombing us."
@@ -340,7 +340,7 @@ MonoBehaviour:
     - text: 'Eichmann then settled in and his one objective was to eliminate the
         Jews forever. '
       duration: 5.894
-  - sequenceName: BrokenPlateCollectible
+  - sequenceName: BrokenToyCollectable
     subtitles:
     - text: 'I remember in our first starred house there was such confusion and so
         many people and you know one kitchen everyone trying to cook there. '
@@ -359,7 +359,7 @@ MonoBehaviour:
       duration: 7.4
     - text: 'And I was crying and weeping and I was hysterical. '
       duration: 5.039
-  - sequenceName: FoodCardCollectible
+  - sequenceName: FoodCardCollectable
     subtitles:
     - text: "Time was restricted we had an hour in the afternoon that was from march
         March \u201844 that\u2019s when the Nazi\u2019s were in Budapest."
@@ -373,7 +373,7 @@ MonoBehaviour:
     - text: 'And by the time in the afternoon came that they were allowed to shop
         there was nothing so it was desperate. '
       duration: 4.803
-  - sequenceName: EmbroiderySetCollectible
+  - sequenceName: EmbroideredRoseCollectable
     subtitles:
     - text: Now we stayed in that house and we had Christmas there I remember and
         I even got a Christmas present.
@@ -935,7 +935,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  m_audioClip: {fileID: 8300000, guid: de1b691970812b94a853563f64d1a911, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1568ac8f0dedd3b4faa3d05587f50854, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
