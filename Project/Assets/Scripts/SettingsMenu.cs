@@ -16,7 +16,7 @@ public class SettingsMenu : MonoBehaviour
     private float currentVoiceVolume;
 
     [Header("Subtitles")]
-    public Toggle subtitlesToggle;
+    //public Toggle subtitlesToggle;
     public Slider subtitleFontSizeSlider;
 
     [Header("For Designers to Tweak")]
@@ -52,8 +52,8 @@ public class SettingsMenu : MonoBehaviour
 
         // Load and set the subtitles toggle state
         bool subtitlesEnabled = PlayerPrefs.GetInt("SubtitlesEnabled", initialSubtitleActiveStateAsInt) == 1;
-        subtitlesToggle.isOn = subtitlesEnabled;
-        subtitlesToggle.onValueChanged.AddListener(OnSubtitlesToggle);
+        //subtitlesToggle.isOn = subtitlesEnabled;
+        //subtitlesToggle.onValueChanged.AddListener(OnSubtitlesToggle);
 
         // Load and set subtitle font size
         float fontSize = PlayerPrefs.GetFloat("SubtitleFontSize", initialSubtitleSize);
@@ -95,7 +95,7 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", currentMusicVolume);
         PlayerPrefs.SetFloat("SFXVolume", currentSFXVolume);
         PlayerPrefs.SetFloat("VoiceVolume", currentVoiceVolume);
-        PlayerPrefs.SetInt("SubtitlesEnabled", subtitlesToggle.isOn ? 1 : 0);
+        //PlayerPrefs.SetInt("SubtitlesEnabled", subtitlesToggle.isOn ? 1 : 0);
         PlayerPrefs.SetFloat("SubtitleFontSize", subtitleFontSizeSlider.value);
         PlayerPrefs.Save();
         Debug.Log("Settings saved!");
@@ -123,7 +123,7 @@ public class SettingsMenu : MonoBehaviour
 
         // Revert Subtitles Toggle
         bool subtitlesEnabled = PlayerPrefs.GetInt("SubtitlesEnabled", 1) == 1;
-        subtitlesToggle.isOn = subtitlesEnabled;
+        //subtitlesToggle.isOn = subtitlesEnabled;
 
         // Revert subtitle font size
         float savedFontSize = PlayerPrefs.GetFloat("SubtitleFontSize", initialSubtitleSize);
