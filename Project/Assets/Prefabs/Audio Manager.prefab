@@ -115,23 +115,23 @@ MonoBehaviour:
   - sequenceName: Level2Track1And2
     subtitles:
     - text: What happened was we went into a protected house. It was a hospital.
-      duration: 6
+      duration: 6.2
     - text: So we all moved into this hospital on one of the large boulevards.
-      duration: 5
+      duration: 4.9
     - text: And this hospital was actually in the pay of some Nazis.
-      duration: 4.6
+      duration: 4.65
     - text: "And there\u2019s a Nazi guard outside. But inside was a bedlam of Jews."
-      duration: 6
+      duration: 5.65
     - text: And the adults were on the first two floors and the children were up
         on the third and fourth floor.
-      duration: 5
+      duration: 5.6
     - text: And it was absolute bedlam, it was because y'know, lots of Jews.
-      duration: 3
-    - text: And they were all in the corridors and the children were trying to commit
+      duration: 4.6
+    - text: And they were in the corridors and the children were trying to commit
         suicide,
-      duration: 4
+      duration: 5.4
     - text: throwing themselves, you know, into the courtyard.
-      duration: 4
+      duration: 3
     - text: It was awful. But we were there for about six weeks, I think.
       duration: 5
   - sequenceName: Level2Track3
@@ -607,10 +607,28 @@ MonoBehaviour:
   - name: Voice-Over Audio (Voice-Over)
     reference: {fileID: 0}
     mixerGroup: {fileID: -703034729905184954, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: Marching (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   - name: MusicAudio (Music)
     reference: {fileID: 0}
     mixerGroup: {fileID: -9016007498595753847, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
-  - name: Marching (Sound Effects)
+  - name: suzanneExert (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: suzanneExhale (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenJump (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenFootsteps (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: crawlInVent (Sound Effects)
+    reference: {fileID: 0}
+    mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
+  - name: woodenScrape (Sound Effects)
     reference: {fileID: 0}
     mixerGroup: {fileID: -3978513426763187341, guid: 967cba045f350f0489ff7bb20c517b26, type: 2}
   MusicAudioSource: {fileID: 7941402240223346885}
