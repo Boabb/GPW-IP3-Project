@@ -166,6 +166,7 @@ MonoBehaviour:
   - {fileID: 16191058}
   - {fileID: 1244436550}
   - {fileID: 1244436549}
+  - {fileID: 190589901}
   fadeScalar: 1
 --- !u!224 &55942007 stripped
 RectTransform:
@@ -659,7 +660,7 @@ Transform:
   m_GameObject: {fileID: 158802222}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.18, y: -0.46305227, z: 0}
+  m_LocalPosition: {x: 15.66, y: -0.46305227, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -848,6 +849,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!212 &190589901 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5879780071799081069, guid: c3fcb68e0943a9b428edcea9ec30bd01, type: 3}
+  m_PrefabInstance: {fileID: 1295516506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &204944345
 GameObject:
   m_ObjectHideFlags: 0
@@ -6288,7 +6294,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 6d1838ecbec7a9b4f82a65c1045947b3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5943396, g: 0.59111524, b: 0.58032215, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -8328,7 +8334,7 @@ Transform:
   m_GameObject: {fileID: 1628978746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.94, y: -0.52305245, z: 0.14300053}
+  m_LocalPosition: {x: 23.39, y: -0.52305245, z: 0.14300053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9693,6 +9699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundColliderForMarioJumping
       objectReference: {fileID: 0}
+    - target: {fileID: 1796884109889177782, guid: 974479ba17b8d084987f1d7173d3f005, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2011809886484676503, guid: 974479ba17b8d084987f1d7173d3f005, type: 3}
       propertyPath: m_Offset.y
       value: -3.49
@@ -10491,7 +10501,7 @@ Transform:
   m_GameObject: {fileID: 2057718740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.01, y: 0.86, z: -10}
+  m_LocalPosition: {x: 0.25, y: 0.86, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11596,9 +11606,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1122339146}
     m_Modifications:
+    - target: {fileID: 117570848960710085, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+      propertyPath: moveable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117570848960710085, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117570848960710085, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+      propertyPath: background
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117570848960710085, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+      propertyPath: foreground
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1006121350385729062, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.87
+      value: 2.18
       objectReference: {fileID: 0}
     - target: {fileID: 1006121350385729062, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11637,6 +11663,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6594004961378590486, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594004961378590486, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
       propertyPath: playerData
       value: 
       objectReference: {fileID: 1056329803}
@@ -11644,7 +11674,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bigger Armchair
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6821542805166233126, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8938521344317750736, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6294744455248766008, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+    - {fileID: 117570848960710085, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+    - {fileID: 8938521344317750736, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
+    - {fileID: 6594004961378590486, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
     m_RemovedGameObjects:
     - {fileID: 9041439719304718087, guid: 99bea22747e3b7b48985814fc82412a7, type: 3}
     m_AddedGameObjects:
@@ -12041,7 +12083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481892107443492446, guid: fff531955aaa22444ba96d0ad806a35a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 5.62
       objectReference: {fileID: 0}
     - target: {fileID: 1481892107443492446, guid: fff531955aaa22444ba96d0ad806a35a, type: 3}
       propertyPath: m_LocalPosition.y
