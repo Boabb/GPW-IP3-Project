@@ -3178,7 +3178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 5
-  centreThreshold: 0.2
+  centreThreshold: 0.1
 --- !u!114 &1237186989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4900,19 +4900,19 @@ RectTransform:
   m_Children:
   - {fileID: 492766344}
   - {fileID: 958388891}
-  - {fileID: 1051958918}
   - {fileID: 1195134384}
   - {fileID: 954427178}
   - {fileID: 223029381}
   - {fileID: 818528913}
   - {fileID: 504112520}
   - {fileID: 823611189}
+  - {fileID: 1051958918}
   m_Father: {fileID: 83348621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -13048, y: 150}
-  m_SizeDelta: {x: 13899.09, y: 300}
+  m_SizeDelta: {x: 14450, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2022942847
 MonoBehaviour:
