@@ -99,7 +99,7 @@ public class SubtitleManager : MonoBehaviour
 
             subtitleEndPosition += sequence.subtitles[i].duration;
 
-            yield return new WaitUntil(() => AudioManager.Instance.VoiceOverAudioSource.time >= subtitleEndPosition || (AudioManager.Instance.VoiceOverAudioSource.isPlaying == false && AudioManager.Instance.VoiceOverAudioSource.time == 0 || (AudioListener.pause == true && AudioManager.Instance.VoiceOverAudioSource.ignoreListenerPause == false)));
+            yield return new WaitUntil(() => AudioManager.Instance.VoiceOverAudioSource.time >= subtitleEndPosition || (AudioManager.Instance.VoiceOverAudioSource.isPlaying == false && AudioManager.Instance.VoiceOverAudioSource.time == 0));
             subtitleText.text = "";
         }
 

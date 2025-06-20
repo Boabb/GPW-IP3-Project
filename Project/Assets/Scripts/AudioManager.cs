@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using static AudioManager;
 
 public enum SoundEffectEnum
 {
@@ -440,6 +441,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+
+
     public static void PlaySoundFromSource(AudioSource audioSource, AudioClip audioClip, float volume = 1.0f)
     {
         audioSource.PlayOneShot(audioClip, volume);
@@ -448,6 +451,14 @@ public class AudioManager : MonoBehaviour
     public static void PlaySoundAtLocation(Vector3 position, AudioClip audioClip, float volume = 1.0f)
     {
         AudioSource.PlayClipAtPoint(audioClip, position, volume);
+    }
+
+    public static void PlaySoundEffectFromSource(AudioSource audioSource, SoundEffectEnum soundEffect, float volume = 1.0f)
+    {
+        if (!Instance.SoundEffects[(int)soundEffect].audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(Instance.SoundEffects[(int)soundEffect].clips[UnityEngine.Random.Range(0, Instance.SoundEffects[(int)soundEffect].clips.Length)], volume);
+        }
     }
 
     /// <summary>
@@ -503,10 +514,9 @@ public class AudioManager : MonoBehaviour
     }
     public static void PlayVoiceOverAudioFromMenu(VoiceOverEnum index, float volume = -1f)
     {
+        PlayVoiceOverWithSubtitles(index, volume);
         //Override method for when a voice over should be played when the game is paused.
         Instance.VoiceOverAudioSource.ignoreListenerPause = true;
-
-        PlayVoiceOverWithSubtitles(index, volume);
     }
     public static void PlayVoiceOverWithSubtitles(VoiceOverEnum index, float volume = -1f)
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -85,7 +86,10 @@ public class PickupManager : MonoBehaviour
     {
         if (itemIndex >= 0 && itemIndex < itemVoiceOvers.Length)
         {
-            AudioManager.PlayVoiceOverAudioFromMenu(itemVoiceOvers[itemIndex], 5);
+            if (AudioManager.Instance.VoiceOverAudioSource.isPlaying == false && AudioManager.Instance.VoiceOverAudioSource.time == 0)
+            {
+                AudioManager.PlayVoiceOverAudioFromMenu(itemVoiceOvers[itemIndex], 5);
+            }
         }
         else
         {

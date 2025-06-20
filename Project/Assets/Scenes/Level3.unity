@@ -16267,6 +16267,10 @@ PrefabInstance:
       propertyPath: SoundEffects.Array.data[7].audioSource
       value: 
       objectReference: {fileID: 644302718}
+    - target: {fileID: 7941402240223346885, guid: a4ffabb2efa7b8d4f8de2e943f7db4d5, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: de1b691970812b94a853563f64d1a911, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
