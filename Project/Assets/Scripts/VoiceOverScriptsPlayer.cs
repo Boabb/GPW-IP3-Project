@@ -77,11 +77,17 @@ public class VoiceOverScriptsPlayer : MonoBehaviour
         // Load the next level once voiceovers are done
         if (levelLoader != null)
         {
-            levelLoader.LoadNextLevel();
+            
+            Invoke(nameof(LoadNextLevel), 5f);
         }
         else
         {
             Debug.LogWarning("LevelLoader is not assigned to VoiceOverScriptsPlayer.");
         }
+    }
+
+    private void LoadNextLevel()
+    {
+        levelLoader.LoadNextLevel();
     }
 }
