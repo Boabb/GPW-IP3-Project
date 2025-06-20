@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class CrowdAutoEvent : AutoEvent
 {
+    bool audioPlayed = false;
+
     public override void EventEnter(GameObject playerGO)
     {
+        if (!audioPlayed)
+        {
+            AudioManager.PlayVoiceOverWithSubtitles(VoiceOverEnum.Level1Track2);
+            audioPlayed = true;
+        }
+
         playerGO.GetComponentInParent<PlayerData>().customPlayerVelocity = -50;
-        AudioManager.PlayVoiceOverWithSubtitles(VoiceOverEnum.Level1Track2);
     }
 
     public override void EventExit(GameObject playerGO)

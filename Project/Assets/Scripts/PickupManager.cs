@@ -16,7 +16,7 @@ public class PickupManager : MonoBehaviour
     void Start()
     {
         // Optional: Uncomment to clear PlayerPrefs during testing
-        PlayerPrefs.DeleteAll(); 
+        //PlayerPrefs.DeleteAll(); 
 
         itemActive = new bool[items.Length];
 
