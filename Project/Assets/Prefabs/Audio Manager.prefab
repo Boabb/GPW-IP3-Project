@@ -119,17 +119,16 @@ MonoBehaviour:
     - text: So we all moved into this hospital on one of the large boulevards.
       duration: 5
     - text: And this hospital was actually in the pay of some Nazis.
-      duration: 5
-    - text: And this hospital was actually in the pay of some Nazis.
-      duration: 5
+      duration: 4.6
     - text: "And there\u2019s a Nazi guard outside. But inside was a bedlam of Jews."
       duration: 6
     - text: And the adults were on the first two floors and the children were up
         on the third and fourth floor.
       duration: 5
-    - text: 'And it was absolute bedlam. '
+    - text: And it was absolute bedlam, it was because y'know, lots of Jews.
       duration: 3
-    - text: And the children were trying to commit suicide,
+    - text: And they were all in the corridors and the children were trying to commit
+        suicide,
       duration: 4
     - text: throwing themselves, you know, into the courtyard.
       duration: 4
@@ -138,19 +137,17 @@ MonoBehaviour:
   - sequenceName: Level2Track3
     subtitles:
     - text: And just before Christmas, things were getting worse and worse.
-      duration: 3.5
+      duration: 3.6
     - text: And one day Little Grandma said to us, she dressed us all up in our clothes
         and she said,
-      duration: 7
-    - text: "\u201CSomeone\u2019s going to come at 9 o\u2019clock tonight"
-      duration: 3
+      duration: 6.35
+    - text: "\u201CSomeone\u2019s going to come at 9 o\u2019clock tonight,"
+      duration: 2.91
     - text: "and you have to call her mother and just do everything she says. Just
         go with her.\u201D"
-      duration: 3
-    - text: All I knew was it was her sister Terka,
-      duration: 4
-    - text: who had some Christian papers.
-      duration: 3
+      duration: 4.408
+    - text: All I knew is that it was her sister Terka, who had some Christian papers.
+      duration: 6
   - sequenceName: Level2Track4
     subtitles:
     - text: And my brothers and I, she took us out onto the street and it was dark.
