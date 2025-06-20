@@ -28,11 +28,11 @@ public class SystemSettings : MonoBehaviour
     {
         string system = SystemInfo.operatingSystem;
 
-        if (system.Contains("Windows") || system.Contains("Mac"))
+        if (system.Contains("Windows") || system.Contains("Mac") || system.Contains("Linux"))
         {
             systemType = SystemType.Desktop;
         }
-        else if (system.Contains("Android") || system.Contains("OS"))
+        else if (system.Contains("Android") || system.Contains("iOS") || system.Contains("iPad") || system.Contains("iPhone"))
         {
             systemType = SystemType.TouchScreen;
         }
