@@ -41,7 +41,13 @@ public class Collectables : AutoEvent
     private void CollectItem(GameObject playerGO)
     {
         OnItemCollected?.Invoke(itemIndex);
-        FindObjectOfType<PickupManager>().CollectItem(itemIndex);
+        var pickupManager = FindObjectOfType<PickupManager>();
+        if(pickupManager == null)
+        {
+            Debug.LogError("Cannot find PickupManager. Ensure the canvas is enabled where the PickupManager is stored otherwise it will fail!");
+            return;
+        }
+		pickupManager.CollectItem(itemIndex);
         shouldBob = false;
         StartCoroutine(CollectingItem(this.gameObject));
     }

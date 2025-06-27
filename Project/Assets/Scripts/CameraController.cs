@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     float standardY = 0.86f;
     float xOffset = 0;
     float yOffset = 0.86f;
-    float cameraSpeed = 10;
+    float cameraFollowSpeed = 2.5f;
 
     [SerializeField] float levelUpperLimit = 114.6f;
     [SerializeField] float levelLowerLimit = 2.13f;
@@ -73,15 +73,16 @@ public class CameraController : MonoBehaviour
 
     Vector3 m_positionToLerpTo;
     Vector3 m_positionToLerpFrom;
-    float m_positionLerpSpeed;
+    float m_positionLerpTime;
 
     float m_positionLerpCounter;
     bool m_positionLerp;
-    public void LerpToPosition(float lerpSpeed, Vector3 position) //lerps from current position to a stationary position
+    public void LerpToPosition(float lerpTime, Vector3 position) //lerps from current position to a stationary position
     {
-        m_positionToLerpTo = position;
-        m_positionToLerpFrom = mainCamera.transform.position;
-        m_positionLerpSpeed = lerpSpeed;
+		m_positionToLerpTo = position;
+		m_positionToLerpTo.z = mainCamera.transform.position.z;
+		m_positionToLerpFrom = mainCamera.transform.position;
+        m_positionLerpTime = lerpTime;
 
         yOffset = position.y;
         xOffset = position.x;
@@ -91,22 +92,24 @@ public class CameraController : MonoBehaviour
         StopFollow();
     }
 
-    public void LerpToPosition(float lerpSpeed)
+    public void LerpToPosition(float lerpTime)
     {
         m_positionToLerpTo = player.transform.position;
-        m_positionToLerpFrom = mainCamera.transform.position;
-        m_positionLerpSpeed = lerpSpeed;
+        m_positionToLerpTo.z = mainCamera.transform.position.z;
+
+		m_positionToLerpFrom = mainCamera.transform.position;
+        m_positionLerpTime = lerpTime;
 
         m_positionLerpCounter = 0;
         m_positionLerp = true;
         StopFollow();
     }
 
-    public void LerpToPositionY(float lerpSpeed, float position)
+    public void LerpToPositionY(float lerpTime, float position)
     {
-        m_positionToLerpTo = new Vector3(mainCamera.transform.position.x, position, mainCamera.transform.position.z);
-        m_positionToLerpFrom = mainCamera.transform.position;
-        m_positionLerpSpeed = lerpSpeed;
+		m_positionToLerpFrom = mainCamera.transform.position;
+		m_positionToLerpTo = new Vector3(m_positionToLerpFrom.x, position, m_positionToLerpFrom.z);
+        m_positionLerpTime = lerpTime;
 
         yOffset = position;
 
@@ -115,11 +118,11 @@ public class CameraController : MonoBehaviour
         StopFollowY();
     }
 
-    public void LerpToPositionY(float lerpSpeed)
+    public void LerpToPositionY(float lerpTime)
     {
         m_positionToLerpTo = new Vector3(mainCamera.transform.position.x, standardY, mainCamera.transform.position.z);
         m_positionToLerpFrom = mainCamera.transform.position;
-        m_positionLerpSpeed = lerpSpeed;
+        m_positionLerpTime = lerpTime;
 
         yOffset = 0;
 
@@ -128,11 +131,11 @@ public class CameraController : MonoBehaviour
         StopFollowY();
     }
 
-    public void LerpToPositionX(float lerpSpeed, float position)
+    public void LerpToPositionX(float lerpTime, float position)
     {
-        m_positionToLerpTo = new Vector3(position, mainCamera.transform.position.y);
+        m_positionToLerpTo = new Vector3(position, mainCamera.transform.position.y, mainCamera.transform.position.z);
         m_positionToLerpFrom = mainCamera.transform.position;
-        m_positionLerpSpeed = lerpSpeed;
+        m_positionLerpTime = lerpTime;
 
         xOffset = position;
 
@@ -143,25 +146,25 @@ public class CameraController : MonoBehaviour
 
     float m_zoomToLerpTo;
     float m_zoomToLerpFrom;
-    float m_zoomLerpSpeed;
+    float m_zoomLerpTime;
 
     float m_zoomLerpCounter;
     bool m_zoomLerp;
-    public void LerpToZoom(float lerpSpeed, float zoom) //lerps from current zoom to a given zoom
+    public void LerpToZoom(float lerpTime, float zoom) //lerps from current zoom to a given zoom
     {
         m_zoomToLerpTo = zoom;
         m_zoomToLerpFrom = mainCamera.orthographicSize;
-        m_zoomLerpSpeed = lerpSpeed;
+        m_zoomLerpTime = lerpTime;
 
         m_zoomLerpCounter = 0;
         m_zoomLerp = true;
     }
 
-    public void LerpToZoom(float lerpSpeed)
+    public void LerpToZoom(float lerpTime)
     {
         m_zoomToLerpTo = standardZoom;
         m_zoomToLerpFrom = mainCamera.orthographicSize;
-        m_zoomLerpSpeed = lerpSpeed;
+        m_zoomLerpTime = lerpTime;
 
         m_zoomLerpCounter = 0;
         m_zoomLerp = true;
@@ -238,7 +241,7 @@ public class CameraController : MonoBehaviour
         m_shakeTime = shakeTime;
         m_shakeAmount = shakeAmount;
         m_shakeDecrease = shakeDecrease;
-        camPosition = gameObject.transform.position;
+        camPosition = transform.position;
         m_shake = true;
     }
 
@@ -266,37 +269,37 @@ public class CameraController : MonoBehaviour
     //private methods
     void Follow() //follows the player
     {
-        Vector3 position = transform.position;
+		if (player.transform.position.x > levelUpperLimit)
+		{
+			return;
+		}
+
+		if (player.transform.position.x < levelLowerLimit)
+		{
+			return;
+		}
+
+		Vector3 position = transform.position;
 
         if (m_followX)
         {
-            position = new Vector3(player.transform.position.x, position.y, position.z);
+            position.x = player.transform.position.x;
         }
 
         if (m_followY)
         {
-            position = new Vector3(position.x, player.transform.position.y + standardY, position.z);
+            position.y = player.transform.position.y + standardY;
         }
 
-        if (player.transform.position.x > levelUpperLimit)
-        {
-            return;
-        }
-
-        if (player.transform.position.x < levelLowerLimit)
-        {
-            return;
-        }
-
-        transform.position = Vector3.Lerp(transform.position, position, cameraSpeed / 10);
-    }
+        transform.position += Vector3.MoveTowards(transform.position, position, cameraFollowSpeed * Time.deltaTime) - transform.position;
+	}
 
     Vector3 camPosition;
     void Shake()
     {
         if (m_shakeTime > 0)
         {
-            gameObject.transform.localPosition = new Vector3(camPosition.x + Random.insideUnitSphere.x * m_shakeAmount, camPosition.y + Random.insideUnitSphere.y * m_shakeAmount, gameObject.transform.localPosition.z);
+            transform.position = new Vector3(camPosition.x + Random.insideUnitSphere.x * m_shakeAmount, camPosition.y + Random.insideUnitSphere.y * m_shakeAmount, transform.position.z);
             m_shakeTime -= Time.deltaTime * m_shakeDecrease;
         }
         else
@@ -310,7 +313,7 @@ public class CameraController : MonoBehaviour
     {
         if (m_shakeTime > 0)
         {
-            gameObject.transform.localPosition = new Vector3(player.transform.position.x + Random.insideUnitSphere.x * m_shakeAmount * 2, 0.89f + Random.insideUnitSphere.y * m_shakeAmount * 0.75f, gameObject.transform.localPosition.z);
+            transform.localPosition = new Vector3(player.transform.position.x + Random.insideUnitSphere.x * m_shakeAmount * 2, 0.89f + Random.insideUnitSphere.y * m_shakeAmount * 0.75f, transform.localPosition.z);
             m_shakeTime -= Time.deltaTime * m_shakeDecrease;
         }
         else
@@ -323,10 +326,10 @@ public class CameraController : MonoBehaviour
 
     void PositionLerp()
     {
-        if (m_positionLerpCounter < 1)
+        if (m_positionLerpCounter < m_positionLerpTime)
         {
-            mainCamera.transform.position = Vector3.Lerp(m_positionToLerpFrom, m_positionToLerpTo, m_positionLerpCounter);
-            m_positionLerpCounter += m_positionLerpSpeed * Time.deltaTime;
+            mainCamera.transform.position = Vector3.Lerp(m_positionToLerpFrom, m_positionToLerpTo, m_positionLerpCounter / m_positionLerpTime);
+            m_positionLerpCounter += Time.deltaTime;
         }
         else
         {
@@ -337,10 +340,10 @@ public class CameraController : MonoBehaviour
 
     void ZoomLerp()
     {
-        if (m_zoomLerpCounter < 1)
+        if (m_zoomLerpCounter < m_zoomLerpTime)
         {
-            mainCamera.orthographicSize = Mathf.Lerp(m_zoomToLerpFrom, m_zoomToLerpTo, m_zoomLerpCounter);
-            m_zoomLerpCounter += m_zoomLerpSpeed * Time.deltaTime;
+            mainCamera.orthographicSize = Mathf.Lerp(m_zoomToLerpFrom, m_zoomToLerpTo, m_zoomLerpCounter / m_zoomLerpTime);
+            m_zoomLerpCounter += Time.deltaTime;
         }
         else
         {

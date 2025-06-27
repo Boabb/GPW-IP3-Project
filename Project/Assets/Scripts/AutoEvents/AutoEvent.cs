@@ -3,32 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AutoEvent : MonoBehaviour
-{    
-    public virtual void EventEnter(GameObject playerGO)
+{
+    protected int enterCount = 0;
+	protected int stayCount = 0;
+	protected int exitCount = 0;
+
+	public virtual void EventEnter(GameObject playerGO)
     {
 
     }
-    public virtual void EventExit(GameObject playerGO)
+	public virtual void EventStay(GameObject playerGO)
+	{
+
+	}
+	public virtual void EventExit(GameObject playerGO)
     {
 
     }
-    public virtual void EventStay(GameObject playerGO)
-    {
 
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EventEnter(collision.gameObject);
+        ++enterCount;
+		EventEnter(collision.gameObject);
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		++stayCount;
+		EventStay(collision.gameObject);
+	}
+	private void OnTriggerExit2D(Collider2D collision)
     {
-        EventExit(collision.gameObject);
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        EventStay(collision.gameObject);
+        ++exitCount;
+		EventExit(collision.gameObject);
     }
 }
