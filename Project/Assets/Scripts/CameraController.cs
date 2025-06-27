@@ -10,11 +10,10 @@ public class CameraController : MonoBehaviour
     float lerpCounter;
     float standardZoom = 3.1f;
     float standardY = 0.86f;
-    float xOffset = 0;
-    float yOffset = 0.86f;
     float cameraFollowSpeed = 2.5f;
+	Vector3 camPosition;
 
-    [SerializeField] float levelUpperLimit = 114.6f;
+	[SerializeField] float levelUpperLimit = 114.6f;
     [SerializeField] float levelLowerLimit = 2.13f;
 
     private void Start()
@@ -84,9 +83,6 @@ public class CameraController : MonoBehaviour
 		m_positionToLerpFrom = mainCamera.transform.position;
         m_positionLerpTime = lerpTime;
 
-        yOffset = position.y;
-        xOffset = position.x;
-
         m_positionLerpCounter = 0;
         m_positionLerp = true;
         StopFollow();
@@ -111,8 +107,6 @@ public class CameraController : MonoBehaviour
 		m_positionToLerpTo = new Vector3(m_positionToLerpFrom.x, position, m_positionToLerpFrom.z);
         m_positionLerpTime = lerpTime;
 
-        yOffset = position;
-
         m_positionLerpCounter = 0;
         m_positionLerp = true;
         StopFollowY();
@@ -124,8 +118,6 @@ public class CameraController : MonoBehaviour
         m_positionToLerpFrom = mainCamera.transform.position;
         m_positionLerpTime = lerpTime;
 
-        yOffset = 0;
-
         m_positionLerpCounter = 0;
         m_positionLerp = true;
         StopFollowY();
@@ -136,8 +128,6 @@ public class CameraController : MonoBehaviour
         m_positionToLerpTo = new Vector3(position, mainCamera.transform.position.y, mainCamera.transform.position.z);
         m_positionToLerpFrom = mainCamera.transform.position;
         m_positionLerpTime = lerpTime;
-
-        xOffset = position;
 
         m_positionLerpCounter = 0;
         m_positionLerp = true;
@@ -219,17 +209,6 @@ public class CameraController : MonoBehaviour
         m_followY = false;
     }
 
-    //set offsets
-    public void SetYOffset(float setOffset)
-    {
-        yOffset = setOffset;
-    }
-
-    public void SetXOffset(float setOffset)
-    {
-        xOffset = setOffset;
-    }
-
     //camera effects
     //https://discussions.unity.com/t/screen-shake-effect/391783/5
     float m_shakeTime;
@@ -254,17 +233,10 @@ public class CameraController : MonoBehaviour
         m_playerShake = true;
     }
 
-    public void SetCameraPosition(Vector3 camPos, bool useOffsets)
+    public void SetCameraPosition(Vector3 camPos)
     {
-        if (useOffsets)
-        {
-            gameObject.transform.position = new Vector3(camPos.x + xOffset, camPos.y + yOffset, gameObject.transform.position.z);
-        }
-        else
-        {
-            gameObject.transform.position = new Vector3(camPos.x, camPos.y, gameObject.transform.position.z);
-        }
-    }
+         gameObject.transform.position = new Vector3(camPos.x, camPos.y, gameObject.transform.position.z);
+	}
 
     //private methods
     void Follow() //follows the player
@@ -294,14 +266,13 @@ public class CameraController : MonoBehaviour
         transform.position += Vector3.MoveTowards(transform.position, position, cameraFollowSpeed * Time.deltaTime) - transform.position;
 	}
 
-    Vector3 camPosition;
     void Shake()
     {
         if (m_shakeTime > 0)
         {
             transform.position = new Vector3(camPosition.x + Random.insideUnitSphere.x * m_shakeAmount, camPosition.y + Random.insideUnitSphere.y * m_shakeAmount, transform.position.z);
             m_shakeTime -= Time.deltaTime * m_shakeDecrease;
-        }
+		}
         else
         {
             m_shakeTime = 0.0f;
@@ -315,12 +286,11 @@ public class CameraController : MonoBehaviour
         {
             transform.localPosition = new Vector3(player.transform.position.x + Random.insideUnitSphere.x * m_shakeAmount * 2, 0.89f + Random.insideUnitSphere.y * m_shakeAmount * 0.75f, transform.localPosition.z);
             m_shakeTime -= Time.deltaTime * m_shakeDecrease;
-        }
+		}
         else
         {
             m_shakeTime = 0.0f;
             m_playerShake = false;
-            //gameObject.transform.localPosition = new Vector3(player.transform.position.x, yOffset, gameObject.transform.localPosition.z);
         }
     }
 
@@ -330,7 +300,7 @@ public class CameraController : MonoBehaviour
         {
             mainCamera.transform.position = Vector3.Lerp(m_positionToLerpFrom, m_positionToLerpTo, m_positionLerpCounter / m_positionLerpTime);
             m_positionLerpCounter += Time.deltaTime;
-        }
+		}
         else
         {
             mainCamera.transform.position = m_positionToLerpTo;

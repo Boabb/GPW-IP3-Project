@@ -67,8 +67,7 @@ public class ElevatorAutoEvent : AutoEvent
 
                     openCloseAnimator.SetTrigger("Open/Close");
                     camCon.LerpToZoom(4f, 1.6f);
-					camCon.LerpToPositionY(4f, 0.35f);
-					//camCon.LerpToPosition(4f, new Vector3(46.25f, 0.35f, 0.0f));
+					camCon.LerpToPosition(4f, new Vector3(46.25f, 0.35f, 0.0f));
 					stageActive = true;
                 }
                 
@@ -87,9 +86,8 @@ public class ElevatorAutoEvent : AutoEvent
                     StartCoroutine(GameManager.TransitionToOutsideSection(4));
                 }
                 //fade, shake and lift details move, continue until testimony is complete
-                camCon.SetYOffset(0.86f);
-                camCon.SetCameraPosition(playerData.transform.position, true);
-                camCon.StartShake(1, 0.05f, 1);
+				camCon.SetCameraPosition(new Vector3(46.25f, 0.35f, 0.0f));
+				camCon.StartShake(1, 0.05f, 1);
                 stage3Count -= stage3Subtractor * Time.deltaTime;
 
                 if (stage3Count < 0)
@@ -109,7 +107,6 @@ public class ElevatorAutoEvent : AutoEvent
                 {
                     openCloseAnimator.SetTrigger("Open/Close");
                     fadeOut.EventEnter(playerData.gameObject);
-                    //camCon.LerpToPositionY(4f);
                     stageActive = true;
                 }
 
@@ -126,7 +123,8 @@ public class ElevatorAutoEvent : AutoEvent
                 {
                     playerData.UnfreezePlayer();
                     camCon.LerpToZoom(4f);
-                    openCloseAnimator.SetTrigger("Open/Close");
+					camCon.BeginFollowX();
+					openCloseAnimator.SetTrigger("Open/Close");
 
                     for (int i = 0; i < elevatorRenderers.Length; i++)
                     {
