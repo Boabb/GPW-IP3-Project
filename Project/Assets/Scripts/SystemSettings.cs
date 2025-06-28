@@ -62,68 +62,14 @@ public class SystemSettings : MonoBehaviour
     {
         if (systemType == SystemType.Desktop)
         {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            {
-                moveLeft = true;
-            }
-            else
-            {
-                moveLeft = false;
-            }
+            moveLeft = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
+            moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
+            jump = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow);
+			interact = Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                moveRight = true;
-            }
-            else
-            {
-                moveRight = false;
-            }
-
-            if (Input.GetKey(KeyCode.Space))
-            {
-                jump = true;
-            }
-            else
-            {
-                jump = false;
-            }
-
-            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.LeftShift))
-            {
-                interact = true;
-            }
-            else
-            {
-                interact = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                tapInteract = true;
-            }
-            else
-            {
-                tapInteract = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                tapLeft = true;
-            }
-            else
-            {
-                tapLeft = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                tapRight = true;
-            }
-            else
-            {
-                tapRight = false;
-            }
+			tapLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
+			tapRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
+			tapInteract = Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         }
 		
 		if(systemType == SystemType.TouchScreen)

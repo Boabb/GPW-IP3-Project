@@ -13,7 +13,6 @@ public class ContinuousShaking : MonoBehaviour
     {
         cameraController = GameManager.mainCamera.GetComponent<CameraController>();
         playerData = GameManager.playerData;
-        cameraController.SetYOffset(0.86f);
     }
 
     // Update is called once per frame
@@ -32,7 +31,7 @@ public class ContinuousShaking : MonoBehaviour
         }
 
 
-        cameraController.SetCameraPosition(new Vector3(playerData.playerRigidbody.position.x, 0.89f), false);
+        cameraController.SetCameraPosition(new Vector3(playerData.playerRigidbody.position.x, 0.89f));
 
         Debug.Log("Shake: " + cameraController.GetShakeStatus());
     }

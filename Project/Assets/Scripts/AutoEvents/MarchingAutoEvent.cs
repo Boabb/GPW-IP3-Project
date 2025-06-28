@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MarchingAutoEvent : AutoEvent
 {
-    bool activated = false;
+    public float lerpTime;
     CameraController camCon;
 
     private void Start()
@@ -14,26 +14,36 @@ public class MarchingAutoEvent : AutoEvent
 
     public override void EventEnter(GameObject playerGO)
     {
-        if(activated) return;
+        if (enterCount > 1)
+        {
+            return;
+        }
         playerGO.GetComponentInParent<PlayerData>().customPlayerVelocity = -50;
-        camCon.LerpToZoom(0.5f, 1.5f);
-        camCon.LerpToPositionY(0.5f, 0.12f);
+        camCon.LerpToZoom(lerpTime, 1.5f);
+        camCon.LerpToPosition(lerpTime, new Vector3(4.25f, 0.12f));
     }
 
     public override void EventStay(GameObject playerGO)
     {
-        if(activated) return;
+        if (exitCount > 1)
+        {
+            return;
+        }
         AudioManager.PlaySoundEffect(SoundEffectEnum.Marching);
     }
 
     public override void EventExit(GameObject playerGO)
     {
-        if(activated) return;
+        if (exitCount > 1)
+        {
+            return;
+        }
         playerGO.GetComponentInParent<PlayerData>().customPlayerVelocity = 0;
-        camCon.LerpToZoom(0.5f);
-        camCon.LerpToPositionY(0.5f);
-        activated = true;
-    }
+        camCon.LerpToZoom(lerpTime);
+        camCon.LerpToPositionY(lerpTime);
+        camCon.BeginFollowX();
+
+	}
 }
 
 

@@ -70,7 +70,7 @@ public class CellarAutoEvent : AutoEvent
     {
         //AudioManager.PlayVoiceOverWithSubtitles(VoiceOverEnum.Level3Track4); //testimony begins
         camCon.LerpToZoom(0.8f, 3f); //zoom out exterior
-        camCon.LerpToPosition(0.8f, new(60f, -4f, -10));
+        camCon.LerpToPosition(0.8f, new Vector3(49.25f, -3.57f, 0));
         camCon.BeginFollow();
         playerData.UnfreezePlayer(); //unfreeze the player
         playerData.gameObject.transform.position = new Vector3(49.25f, -3.57f, 0);
