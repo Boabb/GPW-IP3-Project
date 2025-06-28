@@ -10,7 +10,6 @@ public abstract class InteractableObject : MonoBehaviour
     protected float offset;
 
     bool systemInteract = false;
-    bool fixedInteract = false;
     private void Update()
     {
         interact = false;
@@ -20,24 +19,11 @@ public abstract class InteractableObject : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (systemInteract)
-        {
-            fixedInteract = true;
-            systemInteract = false;
-        }
-        else
-        {
-            fixedInteract = false;
-        }
-    }
-
     public abstract void Interaction(GameObject playerGO);
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (fixedInteract && collision.gameObject.layer == LayerMask.NameToLayer("Player") && !interact)
+        if (systemInteract && collision.gameObject.layer == LayerMask.NameToLayer("Player") && !interact)
         {
             interact = true;
             Interaction(collision.gameObject);

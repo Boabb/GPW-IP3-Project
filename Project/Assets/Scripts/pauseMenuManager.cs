@@ -69,8 +69,6 @@ public class PauseMenuManager : MonoBehaviour
             }
 
             activeScreenIndex = -1;
-
-            menuButton.SetActive(true);
             bg.SetActive(false);
             Time.timeScale = 1;
             AudioListener.pause = false;
@@ -80,8 +78,6 @@ public class PauseMenuManager : MonoBehaviour
         {
             // Activate the main pause screen (0) and pause the game
             SwitchScreen(0);
-
-            menuButton.SetActive(false);
             bg.SetActive(true);
             Time.timeScale = 0;
             AudioListener.pause = true;
