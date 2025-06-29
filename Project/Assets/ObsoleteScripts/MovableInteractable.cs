@@ -27,7 +27,6 @@ public class MovableInteractable : InteractableObject
 
     public override void Interaction(GameObject playerGO)
     {
-        interact = true;
         player = playerGO;
         offset = player.transform.position.x - transform.position.x;
     }

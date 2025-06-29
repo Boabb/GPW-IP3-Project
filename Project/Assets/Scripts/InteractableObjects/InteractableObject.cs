@@ -6,29 +6,18 @@ using UnityEngine;
 public abstract class InteractableObject : MonoBehaviour
 {
     protected GameObject player;
-    protected bool interact;
+    protected bool interactedThisFrame;
     protected float offset;
-
-    bool systemInteract = false;
-    private void Update()
-    {
-        interact = false;
-        if (SystemSettings.tapInteract)
-        {
-            systemInteract = true;
-        }
-    }
 
     public abstract void Interaction(GameObject playerGO);
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (systemInteract && collision.gameObject.layer == LayerMask.NameToLayer("Player") && !interact)
+        interactedThisFrame = false;
+        if (SystemSettings.interact && collision.gameObject.layer == LayerMask.NameToLayer("Player") && !interactedThisFrame)
         {
-            interact = true;
+            interactedThisFrame = true;
             Interaction(collision.gameObject);
         }
-
-        systemInteract = false;
     }
 }
