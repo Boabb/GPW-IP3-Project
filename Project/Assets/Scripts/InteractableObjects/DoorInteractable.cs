@@ -13,7 +13,8 @@ public class DoorInteractable : InteractableObject
     // Start is called before the first frame update
     void Start()
     {
-        Transform[] transforms = GetComponentsInChildren<Transform>(true);
+		interactOnce = false;
+		Transform[] transforms = GetComponentsInChildren<Transform>(true);
 
         for (int i = 0; i < transforms.Length; i++)
         {
@@ -39,6 +40,11 @@ public class DoorInteractable : InteractableObject
 
     public override void Interaction(GameObject playerGO)
     {
+        if(SystemSettings.GetPlayerActionPressed(SystemSettings.PlayerAction.Interact) == false)
+        {
+            return;
+        }
+
         open = !open;
 
         if (open)

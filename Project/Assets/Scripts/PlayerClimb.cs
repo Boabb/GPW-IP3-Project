@@ -47,15 +47,18 @@ public class PlayerClimb : MonoBehaviour
         {
             playerData.shouldLimitMovement = true;
 
-            if (SystemSettings.tapRight && climbSide == ClimbSide.Left && climbingTask == null)
+			var moveLeft = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveLeft);
+			var moveRight = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveRight);
+
+            if (moveRight && climbSide == ClimbSide.Left && climbingTask == null)
             {
                 climbingTask = StartCoroutine(ClimbUpObjectLeft());
             }
-            else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right && climbingTask == null)
+            else if (moveLeft && climbSide == ClimbSide.Right && climbingTask == null)
             {
                 climbingTask = StartCoroutine(ClimbUpObjectRight());
             }
-            else if ((SystemSettings.tapRight && climbSide == ClimbSide.Right) || (SystemSettings.tapLeft && climbSide == ClimbSide.Left))
+            else if ((moveRight && climbSide == ClimbSide.Right) || (moveLeft && climbSide == ClimbSide.Left))
             {
                 LetGoOfObject();
             }
@@ -74,11 +77,11 @@ public class PlayerClimb : MonoBehaviour
 
             if (climbType == ClimbType.Quick)
             {
-                if (SystemSettings.tapRight && climbSide == ClimbSide.Left)
+                if (SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveRight) && climbSide == ClimbSide.Left)
                 {
                     QuickClimbLeft();
                 }
-                else if (SystemSettings.tapLeft && climbSide == ClimbSide.Right)
+                else if (SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveLeft) && climbSide == ClimbSide.Right)
                 {
                     QuickClimbRight();
                 }

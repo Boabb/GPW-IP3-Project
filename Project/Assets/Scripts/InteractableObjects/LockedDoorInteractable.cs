@@ -10,7 +10,12 @@ public class LockedDoorInteractable : DoorInteractable
 
     public override void Interaction(GameObject playerGO)
     {
-        if (locked)
+		if (SystemSettings.GetPlayerActionPressed(SystemSettings.PlayerAction.Interact) == false)
+		{
+			return;
+		}
+
+		if (locked)
         {
             locked = CheckUnlock(playerGO);
             

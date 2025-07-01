@@ -27,7 +27,7 @@ public class BackgroundObject : MonoBehaviour
         {
             if (!overlap) { }
         }
-        if (!SystemSettings.interact && playerData.grounded && !overlap) //when the player isn't holding the interact button and isnt in the air
+        if (!SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.Interact) && playerData.grounded && !overlap) //when the player isn't holding the interact button and isnt in the air
         {
             objectCollider.excludeLayers = playerData.playerLayer; //the collider excludes the player layer
             //the player can walk past the object 

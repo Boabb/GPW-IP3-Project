@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ZoomOut : InteractableObject
 {
-    bool activated = false;
     CameraController camCon;
 
     private void Start()

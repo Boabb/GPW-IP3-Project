@@ -77,11 +77,15 @@ public class PlayerPushPull : MonoBehaviour
                 interactionSide = InteractionSide.Right;
             }
 
-            if (SystemSettings.moveLeft && !SystemSettings.moveRight)
+            var moveLeft = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveLeft);
+			var moveRight = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveRight);
+			var interact = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.Interact);
+
+			if (moveLeft && !moveRight)
             {
                 if (interactionSide == InteractionSide.Left)
                 {
-                    if(currentPushPullObject.GetComponent<ObjectTags>().foreground && !SystemSettings.interact)
+                    if(currentPushPullObject.GetComponent<ObjectTags>().foreground && !interact)
                     {
                         interactionType = InteractionType.None;
                         playerData.pulling = false;
@@ -101,11 +105,11 @@ public class PlayerPushPull : MonoBehaviour
                     playerData.pulling = false;
                 }
             }
-            else if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+            else if (moveRight && !moveLeft)
             {
                 if (interactionSide == InteractionSide.Right)
                 {
-                    if (currentPushPullObject.GetComponent<ObjectTags>().foreground && !SystemSettings.interact)
+                    if (currentPushPullObject.GetComponent<ObjectTags>().foreground && !interact)
                     {
                         interactionType = InteractionType.None;
                         playerData.pulling = false;
@@ -179,14 +183,17 @@ public class PlayerPushPull : MonoBehaviour
         //Debug.Log("object mass" + currentPushPullObject.attachedRigidbody.mass);
         if (interactionType == InteractionType.Pull && interactionSide != InteractionSide.None)
         {
-            movementForce = playerData.playerMovement.GetMovementForce();
+			var moveLeft = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveLeft);
+			var moveRight = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveRight);
 
-            if (SystemSettings.moveLeft && !SystemSettings.moveRight)
+			movementForce = playerData.playerMovement.GetMovementForce();
+
+            if (moveLeft && !moveRight)
             {
                 currentPushPullObject.attachedRigidbody.AddForce(-transform.right * movementForce);
             }
 
-            if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+            if (moveRight && !moveLeft)
             {
                 currentPushPullObject.attachedRigidbody.AddForce(transform.right * movementForce);
             }
@@ -201,7 +208,8 @@ public class PlayerPushPull : MonoBehaviour
         {
             if (objectTags != null)
             {
-                if ((!SystemSettings.interact && objectTags.foreground) || SystemSettings.interact)
+				var interact = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.Interact);
+				if ((!interact && objectTags.foreground) || interact)
                 {
                     currentPushPullObject = collider; //sets the pushPullObject to the collider
                 }

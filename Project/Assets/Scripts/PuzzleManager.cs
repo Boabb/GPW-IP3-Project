@@ -5,7 +5,6 @@ using UnityEngine;
 public class PuzzleManager : InteractableObject
 {
     [SerializeField] private GameObject puzzleUI; // Assign the UI in Inspector
-    private bool canBeInteractedWith = false;
 
     public delegate void PuzzleCompletedEvent();
     public event PuzzleCompletedEvent OnPuzzleCompleted;
@@ -27,38 +26,25 @@ public class PuzzleManager : InteractableObject
 
     private void Start()
     {
+        interactOnce = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         OnPuzzleCompleted += HandlePuzzleCompletion;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            canBeInteractedWith = true;
-            player = other.gameObject;
-            Debug.Log($"{gameObject.name}: Player entered interaction range.");
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            canBeInteractedWith = false;
-            player = null;
-            Debug.Log($"{gameObject.name}: Player left interaction range.");
-        }
-    }
-
     public override void Interaction(GameObject playerGO)
     {
-        if (canBeInteractedWith && (!cabinet || !IsCabinetBlocking())) // Check cabinet only if it's assigned
+		// Only open or close puzzle UI when the interact button is released
+		if (!SystemSettings.GetPlayerActionPressed(SystemSettings.PlayerAction.Interact))
+		{
+            return;
+		}
+
+		if (player != null && (!cabinet || !IsCabinetBlocking())) // Check cabinet only if it's assigned
         {
             TogglePuzzleUI();  // Toggle UI open/closed
         }
-        else if (canBeInteractedWith)
+        else if (player != null)
         {
             Debug.Log($"{gameObject.name}: Cabinet is blocking interaction!");
         }
@@ -139,15 +125,5 @@ public class PuzzleManager : InteractableObject
     private void OpenLocker()
     {
         spriteRenderer.sprite = openLocker;
-    }
-
-    // New update method to check for tapInteract and release
-    void Update()
-    {
-        // Only open or close puzzle UI when the interact button is released
-        if (canBeInteractedWith && SystemSettings.tapInteract)
-        {
-            Interaction(player); // Call the interaction when tapped
-        }
     }
 }

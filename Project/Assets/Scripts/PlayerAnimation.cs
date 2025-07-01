@@ -54,7 +54,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayerIdle()
     {
-        if (!playerData.shouldLimitMovement && !(SystemSettings.moveLeft || SystemSettings.moveRight))
+        if (!playerData.shouldLimitMovement && !(SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveLeft) || SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveRight)))
         {
             playerAnimator.SetInteger("AnimationNumber", 0);
             spriteRenderer.gameObject.transform.localPosition = new Vector3(0, 0, 0);

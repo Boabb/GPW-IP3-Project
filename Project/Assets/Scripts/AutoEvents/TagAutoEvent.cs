@@ -8,11 +8,17 @@ public class TagAutoEvent : AutoEvent
 
     public override void EventEnter(GameObject playerGO)
     {
-        controlTag.SetActive(true);
+		if (playerGO.layer == LayerMask.NameToLayer("Player"))
+		{
+			controlTag.SetActive(true);
+		}
     }
 
     public override void EventExit(GameObject playerGO)
     {
-        controlTag.SetActive(false);    
+		if (playerGO.layer == LayerMask.NameToLayer("Player"))
+		{
+			controlTag.SetActive(false);
+		}
     }
 }

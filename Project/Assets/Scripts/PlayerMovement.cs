@@ -101,11 +101,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void GetMoveDirection()
     {
-        if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+        if (SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveRight) && !SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveLeft))
         {
             movementDirection = MovementDirection.Right;
         }
-        else if (!SystemSettings.moveRight && SystemSettings.moveLeft)
+        else if (!SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveRight) && SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveLeft))
         {
             movementDirection = MovementDirection.Left;
         }
@@ -186,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateMaterialBasedOnMovement()
     {
-        if ((!SystemSettings.moveRight && !SystemSettings.moveLeft))
+        if (!SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveRight) && !SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveLeft))
         {
             playerData.playerRigidbody.sharedMaterial = fullFrictionMat;
         }
@@ -227,9 +227,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (!playerData.shouldLimitMovement && !playerData.pulling)
         {
-            if (SystemSettings.moveLeft || SystemSettings.moveRight)
+            var moveLeft = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveLeft);
+			var moveRight = SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.MoveRight);
+
+			if (moveLeft || moveRight)
             {
-                if (SystemSettings.moveLeft && !SystemSettings.moveRight)
+                if (moveLeft && !moveRight)
                 {
                     if (movementType == MovementType.Walking)
                     {
@@ -248,7 +251,7 @@ public class PlayerMovement : MonoBehaviour
                     playerRB2D.velocity = new Vector3(-transform.right.x * movementForce * Time.fixedDeltaTime, playerRB2D.velocity.y, 0);
                 }
 
-                if (SystemSettings.moveRight && !SystemSettings.moveLeft)
+                if (moveRight && !moveLeft)
                 {
                     if (movementType == MovementType.Walking)
                     {
@@ -277,7 +280,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        if (SystemSettings.jump && grounded && movementType != MovementType.Crawling)
+        if (SystemSettings.GetPlayerActionOn(SystemSettings.PlayerAction.Jump) && grounded && movementType != MovementType.Crawling)
         {
             switch (movementDirection)
             {
