@@ -37,7 +37,7 @@ public class ExitHospitalEvent : AutoEvent
                 {
                     playerData.FreezePlayer(); //freeze player
                     AudioManager.PlayVoiceOverWithSubtitles(VoiceOverEnum.Level2Track4); //testimony begins
-                    camCon.LerpToZoom(0.3f, 2); //zoom on family and door
+                    camCon.LerpToZoom(2f, 2); //zoom on family and door
 
                     for (int i = 0; i < familyRenderers.Length; i++)
                     {
@@ -61,8 +61,8 @@ public class ExitHospitalEvent : AutoEvent
                         deactivateObjects[i].gameObject.SetActive(false);
                     }
 
-                    camCon.LerpToZoom(0.2f, 5f); //zoom out exterior
-                    camCon.LerpToPositionY(0.2f, 2.25f);
+                    camCon.LerpToZoom(2f, 5f); //zoom out exterior
+                    camCon.LerpToPositionY(2f, 2.25f);
                     fadeOut.EventEnter(playerData.gameObject); //fade out scene and family
                     fadeIn.EventEnter(playerData.gameObject); //fade in hospital exterior
                     playerData.UnfreezePlayer(); //unfreeze the player
@@ -91,30 +91,6 @@ public class ExitHospitalEvent : AutoEvent
         if (stage == 0)
         {
             stage = 1;
-        }
-    }
-
-    float lerpCounter = 0;
-    bool spriteLerpToggle = true;
-    void SpriteLerp()
-    {
-        if (lerpCounter < 1)
-        {
-            for (int i = 0; i < familyRenderers.Length; i++)
-            {
-                //familyRenderers[i].transform.localScale = Vector3.Lerp(new Vector3(0.08f, 0.08f, 1), new Vector3(0.19f, 0.19f, 1), lerpCounter);
-                hospitalRenderer.transform.position = Vector3.Lerp(new Vector3(-0.19f, 2.62f, 0), new Vector3(-0.19f, 3.4f, 0), lerpCounter);
-            }
-            lerpCounter += 0.1f * Time.deltaTime;
-        }
-        else
-        {
-            for (int i = 0; i < familyRenderers.Length; i++)
-            {
-                familyRenderers[i].transform.localScale = new Vector3(0.19f, 0.19f, 1);
-            }
-
-            spriteLerpToggle = false;
         }
     }
 }

@@ -75,9 +75,9 @@ public class TramAutoEvent : AutoEvent
 
                 if (!spriteLerpToggle)
                 {
-                    playerData.UnfreezePlayer();
-                    playerData.customPlayerVelocity = 0;
-                    stage = 3;
+					playerData.UnfreezePlayer();
+					playerData.customPlayerVelocity = -40;
+					stage = 3;
                     stageActive = false;
                 }
                 break;
