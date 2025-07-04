@@ -223,8 +223,14 @@ public class CameraController : MonoBehaviour
         camPosition = transform.position;
         m_shake = true;
     }
+	public void StopShake()
+	{
+        transform.position = camPosition;
+        m_shakeTime = 0.0f;
+        m_shake = false;
+	}
 
-    bool m_playerShake;
+	bool m_playerShake;
     public void StartPlayerFocusShake(float shakeTime, float shakeAmount, float shakeDecrease)
     {
         m_shakeTime = shakeTime;
@@ -270,7 +276,8 @@ public class CameraController : MonoBehaviour
     {
         if (m_shakeTime > 0)
         {
-            transform.position = new Vector3(camPosition.x + Random.insideUnitSphere.x * m_shakeAmount, camPosition.y + Random.insideUnitSphere.y * m_shakeAmount, transform.position.z);
+            var randomOffset = Random.insideUnitSphere;
+			transform.position = new Vector3(camPosition.x + randomOffset.x * m_shakeAmount, camPosition.y + randomOffset.y * m_shakeAmount, transform.position.z);
             m_shakeTime -= Time.deltaTime * m_shakeDecrease;
 		}
         else

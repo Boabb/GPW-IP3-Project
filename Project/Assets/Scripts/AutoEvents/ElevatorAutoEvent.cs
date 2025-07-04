@@ -79,26 +79,32 @@ public class ElevatorAutoEvent : AutoEvent
                 }
                 break;
             case 3:
-                if (!stageActive)
+
+				//fade, shake and lift details move, continue until testimony is complete
+				if (!stageActive)
                 {
                     fadeIn.EventEnter(playerData.gameObject);
                     stageActive = true;
                     StartCoroutine(GameManager.TransitionToOutsideSection(4));
-                }
-                //fade, shake and lift details move, continue until testimony is complete
-				camCon.SetCameraPosition(new Vector3(46.25f, 0.35f, 0.0f));
-				camCon.StartShake(1, 0.05f, 1);
+
+                    // Set camera shake to length of audio clip, this is the max time it should play for, if earlier then we manually stop it later
+					camCon.StartShake(testimonyAudioSource.clip.length, 0.05f, 1);
+				}
+				
                 stage3Count -= stage3Subtractor * Time.deltaTime;
 
                 if (stage3Count < 0)
                 {
                     stage3End = true;
                 }
-
-                if (!testimonyAudioSource.isPlaying && stage3End)
+				
+				if (!testimonyAudioSource.isPlaying && stage3End)
                 {
                     stage = 4;
                     stageActive = false;
+
+                    // Stop camera shake as reached the end
+                    camCon.StopShake();
                 }
                 break;
             case 4:
